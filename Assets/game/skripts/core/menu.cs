@@ -38,6 +38,10 @@ public class menu : MonoBehaviour
     public Animator anim7;
     public Animator anim8;
     public Animator anim9;
+    public Animator anim10;
+    public Animator anim11;
+    public Animator anim12;
+    public Animator anim13;
 
     public ParticleSystem ps;
     public ParticleSystem ps1;
@@ -109,6 +113,10 @@ public class menu : MonoBehaviour
         anim7.Play("anim1");
         anim8.Play("anim12");
         anim9.Play("anim14");
+        anim10.Play("anim3");
+        anim11.Play("4t");
+        anim12.Play("anim5t");
+        anim13.Play("anim13");
     }
 
 

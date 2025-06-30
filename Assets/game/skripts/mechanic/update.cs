@@ -23,9 +23,9 @@ public class updated : MonoBehaviour
         {
             anim.Play("anim 12 1");
             coins -= all;
-            all += 25;
+            all += 5;
             energy = PlayerPrefs.GetFloat("energy", 0f);
-            energy = energy + 0.025f;
+            energy = energy + 0.015f;
             PlayerPrefs.SetFloat("energy", energy);
             lvl++;
             PlayerPrefs.SetInt("coins", coins);

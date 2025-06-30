@@ -38,6 +38,7 @@ public class ScoreCounter : MonoBehaviour
     public Animator achanim1;
     public Animator achanim2;
     public AudioSource AS;
+    public Animator anim;
 
     void Start()
     {
@@ -51,6 +52,8 @@ public class ScoreCounter : MonoBehaviour
 
         ach1 = PlayerPrefs.GetInt("1.5kscore", 0);
         ach2 = PlayerPrefs.GetInt("450score", 0);
+
+        anim.Play("anim6");
     }
 
     void Update()
