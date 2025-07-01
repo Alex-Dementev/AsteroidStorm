@@ -14,6 +14,7 @@ public class menu : MonoBehaviour
     public GameObject panel1;
     public GameObject panel2;
     public GameObject panel3;
+    public GameObject panel4;
     public GameObject achp1;
     public GameObject achp2;
     public GameObject image;
@@ -25,6 +26,7 @@ public class menu : MonoBehaviour
     public bool isanim1;
     public bool isanim2;
     public bool isanim3;
+    public bool isanim4;
     public RocketBehavior r;
     public RocketBehavior r2;
     [SerializeField]private int coins;
@@ -42,6 +44,8 @@ public class menu : MonoBehaviour
     public Animator anim11;
     public Animator anim12;
     public Animator anim13;
+    public Animator anim14;
+    public Animator anim15;
 
     public ParticleSystem ps;
     public ParticleSystem ps1;
@@ -55,6 +59,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps10;
     public ParticleSystem ps11;
     public ParticleSystem ps12;
+    public ParticleSystem ps13;
 
     public bool ison;
     public bool ison1;
@@ -63,12 +68,14 @@ public class menu : MonoBehaviour
     public bool isshop;
     public bool ispref;
     public bool isachi;
+    public bool isstat;
     public bool isstart = false;
     public float shop;
     public float pref;
     public float achi;
     public float ach1;
     public float ach2;
+    public float stat;
 
     public float RR;
     public Slider S;
@@ -104,6 +111,7 @@ public class menu : MonoBehaviour
         ps10.Stop();
         ps11.Stop();
         ps12.Stop();
+        ps13.Stop();
 
         RR = PlayerPrefs.GetFloat("R Rotate Speed", 100);
         S.value = RR;
@@ -117,6 +125,7 @@ public class menu : MonoBehaviour
         anim11.Play("4t");
         anim12.Play("anim5t");
         anim13.Play("anim13");
+        anim14.Play("anim 22");
     }
 
 
@@ -151,6 +160,14 @@ public class menu : MonoBehaviour
             {
                 isshop = false;
                 panel2.SetActive(!panel2.activeSelf);
+            }
+        }
+        if(stat <= 0)
+        {
+            if(isstat == true)
+            {
+                isstat = false;
+                panel4.SetActive(!panel4.activeSelf);
             }
         }
         
@@ -245,6 +262,7 @@ public class menu : MonoBehaviour
         ps10.Stop();
         ps11.Stop();
         ps12.Stop();
+        ps13.Stop();
 
         ad2.Play();
     }
@@ -315,6 +333,10 @@ public class menu : MonoBehaviour
     {
         ps12.Play();
     }
+    public void isps13()
+    {
+        ps13.Play();
+    }
 
 
     public void offpartic(){PlayerPrefs.SetInt("partic", ison3 ? 1 : 0);}
@@ -374,11 +396,12 @@ public class menu : MonoBehaviour
     {
         if(isdelay2 <= 0)
         {
-            if(isanim3 == false)
+            if (isanim3 == false)
             {
                 panel3.SetActive(!panel3.activeSelf);
                 isanim3 = true;
                 anim6.Play("anim 18 0");
+                anim3.Play("19 0");
             }
             else
             {
@@ -417,6 +440,33 @@ public class menu : MonoBehaviour
         isdelay2 = 1.2f;
 
         ad2end();
+        }
+    }
+    
+
+    public void activatepanel4()
+    {
+        if (isdelay2 <= 0)
+        {
+            if (isanim4 == false)
+            {
+                panel4.SetActive(!panel4.activeSelf);
+                anim14.Play("anim 22 0");
+                isanim4 = true;
+                anim15.Play("anim 23");
+            }
+            else
+            {
+                anim15.Play("anim 23");
+                anim14.Play("anim 22 0");
+                isanim4 = false;
+                stat = 1.1f;
+                isstat = true;
+            }
+
+            isdelay2 = 1.2f;
+
+            ad2end();
         }
     }
 }
