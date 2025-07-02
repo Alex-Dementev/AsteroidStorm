@@ -13,7 +13,7 @@ public class sceneman : MonoBehaviour
 
     void Start()
     {
-        maxScore = PlayerPrefs.GetInt("maxScore");
+        maxScore = PlayerPrefs.GetInt("maxScore", 0);
         mtext.text = "максимально очков:" + maxScore;
     }
 

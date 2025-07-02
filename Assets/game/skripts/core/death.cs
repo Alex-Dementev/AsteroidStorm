@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using RDG;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class death : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class death : MonoBehaviour
     private float isdelay1 = 2;
     private float isdelay2 = 9999999;
     public ParticleSystem ps;
+    public int score;
+    public int allcoins;
 
 
     void Start()
@@ -79,8 +82,14 @@ public class death : MonoBehaviour
                     losePanel.SetActive(true);
                     anim1.Play("anim11");
                     coins = PlayerPrefs.GetInt("coins");
+                    allcoins = PlayerPrefs.GetInt("allcoins");
+                    score = PlayerPrefs.GetInt("allscore");
                     coins += ((int)(player.position.z / 10));
+                    score += ((int)(player.position.z / 3));
+                    allcoins += ((int)(player.position.z / 10));
                     PlayerPrefs.SetInt("coins", coins); 
+                    PlayerPrefs.SetInt("allcoins", allcoins); 
+                    PlayerPrefs.SetInt("allscore", score); 
                     if (PlayerPrefs.GetInt("vibration") == 0)
                     {
                         Vibration.Vibrate(80, 100);

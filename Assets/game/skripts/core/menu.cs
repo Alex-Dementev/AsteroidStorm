@@ -99,6 +99,7 @@ public class menu : MonoBehaviour
     public float ach1;
     public float ach2;
     public float stat;
+    public int allgames;
 
     public float RR;
     public Slider S;
@@ -452,13 +453,16 @@ public class menu : MonoBehaviour
 
     public void started()
     {
-        if(r.isdelayb == true)
-        {  
+        if (r.isdelayb == true)
+        {
             isdelay = 1.33f;
             isstart = true;
             image.SetActive(!image.activeSelf);
             anim.Play("anim9 0");
             anim4.Play("anim3 0");
+            allgames = PlayerPrefs.GetInt("allgames", 0);
+            allgames++;
+            PlayerPrefs.SetInt("allgames", allgames);
         }
 
         if(r2.isdelayb == true)
