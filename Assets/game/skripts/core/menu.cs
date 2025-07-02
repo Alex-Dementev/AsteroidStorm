@@ -69,6 +69,18 @@ public class menu : MonoBehaviour
     public ParticleSystem ps16;
     public ParticleSystem ps17;
     public ParticleSystem ps18;
+    public ParticleSystem ps19;
+    public ParticleSystem ps20;
+    public ParticleSystem ps21;
+    public ParticleSystem ps22;
+    public ParticleSystem ps23;
+    public ParticleSystem ps24;
+    public ParticleSystem ps25;
+    public ParticleSystem ps26;
+    public ParticleSystem ps27;
+    public ParticleSystem ps28;
+    public ParticleSystem ps29;
+    public ParticleSystem ps30;
 
     public bool ison;
     public bool ison1;
@@ -128,6 +140,18 @@ public class menu : MonoBehaviour
         ps16.Stop();
         ps17.Stop();
         ps18.Stop();
+        ps19.Stop();
+        ps20.Stop();
+        ps21.Stop();
+        ps22.Stop();
+        ps23.Stop();
+        ps24.Stop();
+        ps25.Stop();
+        ps26.Stop();
+        ps27.Stop();
+        ps28.Stop();
+        ps29.Stop();
+        ps30.Stop();
 
         RR = PlayerPrefs.GetFloat("R Rotate Speed", 100);
         S.value = RR;
@@ -296,6 +320,18 @@ public class menu : MonoBehaviour
         ps16.Stop();
         ps17.Stop();
         ps18.Stop();
+        ps19.Stop();
+        ps20.Stop();
+        ps21.Stop();
+        ps22.Stop();
+        ps23.Stop();
+        ps24.Stop();
+        ps25.Stop();
+        ps26.Stop();
+        ps27.Stop();
+        ps28.Stop();
+        ps29.Stop();
+        ps30.Stop();
 
         ad2.Play();
     }
@@ -377,18 +413,31 @@ public class menu : MonoBehaviour
     public void isps15()
     {
         ps15.Play();
+        ps19.Play();
+        ps23.Play();
+        ps27.Play();
     }
     public void isps16()
     {
         ps16.Play();
+        ps20.Play();
+        ps24.Play();
+        ps28.Play();
     }
     public void isps17()
     {
         ps17.Play();
+        ps21.Play();
+        ps25.Play();
+        ps29.Play();
     }
     public void isps18()
     {
         ps18.Play();
+        ps22.Play();
+        ps26.Play();
+        ps30.Play();
+        
     }
 
 
@@ -466,58 +515,103 @@ public class menu : MonoBehaviour
             }
 
         isdelay2 = 0.5f;
+        ad2end();
 
         }
     }
 
     public void activatepanel23()
     {
-        if (isanim2 == false)
+        if (isdelay2 <= 0)
         {
-            panel2.SetActive(!panel2.activeSelf);
-            anim2.Play("anim12 1");
-            isanim2 = true;
-            anim5.Play("2");
-        }
-        else
-        {
-            anim2.Play("anim12 0");
-            isanim2 = false;
-            shop = 1.1f;
-            isshop = true;
-        }
-        if (isanim3 == false)
-        {
-            panel3.SetActive(!panel3.activeSelf);
-            isanim3 = true;
-            anim6.Play("anim 18 0");
-            anim3.Play("19 0");
-        }
-        else
-        {
-            anim6.Play("anim 18 0");
-            anim3.Play("19 1");
-            achi = 1.1f;
-            isachi = true;
-            isanim3 = false;
-        }
+            if (isanim2 == false)
+            {
+                panel2.SetActive(!panel2.activeSelf);
+                anim2.Play("anim12 1");
+                isanim2 = true;
+                anim5.Play("2");
+            }
+            else
+            {
+                anim2.Play("anim12 0");
+                isanim2 = false;
+                shop = 1.1f;
+                isshop = true;
+            }
+            if (isanim3 == false)
+            {
+                panel3.SetActive(!panel3.activeSelf);
+                isanim3 = true;
+                anim6.Play("anim 18 0");
+                anim3.Play("19 0");
+            }
+            else
+            {
+                anim6.Play("anim 18 0");
+                anim3.Play("19 1");
+                achi = 1.1f;
+                isachi = true;
+                isanim3 = false;
+            }
             ad2end();
+            isdelay2 = 0.6f;
+        }
     }
     public void activatepanel24()
     {
-        if (isanim2 == false)
+        if (isdelay2 <= 0)
         {
-            panel2.SetActive(!panel2.activeSelf);
-            anim2.Play("anim12 1");
-            isanim2 = true;
-            anim5.Play("2");
+            if (isanim2 == false)
+            {
+                panel2.SetActive(!panel2.activeSelf);
+                anim2.Play("anim12 1");
+                isanim2 = true;
+                anim5.Play("2");
+            }
+            else
+            {
+                anim2.Play("anim12 0");
+                isanim2 = false;
+                shop = 1.1f;
+                isshop = true;
+            }
+            if (isanim4 == false)
+            {
+                panel4.SetActive(!panel4.activeSelf);
+                anim14.Play("anim 22 0");
+                isanim4 = true;
+                anim15.Play("anim 23");
+            }
+            else
+            {
+                anim15.Play("anim 23 0");
+                anim14.Play("anim 22 0");
+                isanim4 = false;
+                stat = 1.1f;
+                isstat = true;
+            }
+            ad2end();
+            isdelay2 = 0.6f;
+        }
+    }
+    public void activatepanel54()
+    {
+        if (isdelay2 <= 0)
+        {
+        if (isanim5 == false)
+        {
+            panel5.SetActive(!panel5.activeSelf);
+            anim16.Play("anim 24 1");
+            isanim5 = true;
+            anim17.Play("anim 25");
         }
         else
         {
-            anim2.Play("anim12 0");
-            isanim2 = false;
-            shop = 1.1f;
-            isshop = true;
+            anim17.Play("anim 25 0");
+            anim16.Play("anim 24 1");
+            isanim5 = false;
+            task = 1.1f;
+            istask = true;
         }
         if (isanim4 == false)
         {
@@ -528,46 +622,128 @@ public class menu : MonoBehaviour
         }
         else
         {
-            anim15.Play("anim 23");
+            anim15.Play("anim 23 0");
             anim14.Play("anim 22 0");
             isanim4 = false;
             stat = 1.1f;
             isstat = true;
         }
+ad2end();
+            isdelay2 = 0.6f;
+        }
+    }
+    public void activatepanel34()
+    {
+        if (isdelay2 <= 0)
+        {
+            if (isanim3 == false)
+            {
+                panel3.SetActive(!panel3.activeSelf);
+                isanim3 = true;
+                anim6.Play("anim 18 0");
+                anim3.Play("19 0");
+            }
+            else
+            {
+                anim6.Play("anim 18 0");
+                anim3.Play("19 1");
+                achi = 1.1f;
+                isachi = true;
+                isanim3 = false;
+            }
+            if (isanim4 == false)
+            {
+                panel4.SetActive(!panel4.activeSelf);
+                anim14.Play("anim 22 0");
+                isanim4 = true;
+                anim15.Play("anim 23");
+            }
+            else
+            {
+                anim15.Play("anim 23 0");
+                anim14.Play("anim 22 0");
+                isanim4 = false;
+                stat = 1.1f;
+                isstat = true;
+            }
             ad2end();
+            isdelay2 = 0.6f;
+        }
     }
     public void activatepanel25()
     {
-        if (isanim2 == false)
+        if (isdelay2 <= 0)
         {
-            panel2.SetActive(!panel2.activeSelf);
-            anim2.Play("anim12 1");
-            isanim2 = true;
-            anim5.Play("2");
-        }
-        else
-        {
-            anim2.Play("anim12 0");
-            isanim2 = false;
-            shop = 1.1f;
-            isshop = true;
-        }
-        if (isanim5 == false)
-        {
-            panel5.SetActive(!panel5.activeSelf);
-            anim16.Play("anim 24 1");
-            isanim5 = true;
-            anim17.Play("anim 25");
-        }
-        else
-        {
-            anim17.Play("anim 25");
-            anim16.Play("anim 24 1");
-            isanim5 = false;
-            task = 1.1f;
-            istask = true;
-        }
+            if (isanim2 == false)
+            {
+                panel2.SetActive(!panel2.activeSelf);
+                anim2.Play("anim12 1");
+                isanim2 = true;
+                anim5.Play("2");
+            }
+            else
+            {
+                anim2.Play("anim12 0");
+                isanim2 = false;
+                shop = 1.1f;
+                isshop = true;
+            }
+            if (isanim5 == false)
+            {
+                panel5.SetActive(!panel5.activeSelf);
+                anim16.Play("anim 24 1");
+                isanim5 = true;
+                anim17.Play("anim 25");
+            }
+            else
+            {
+                anim17.Play("anim 25 0");
+                anim16.Play("anim 24 1");
+                isanim5 = false;
+                task = 1.1f;
+                istask = true;
+            }
             ad2end();
+            isdelay2 = 0.6f;
+        }
+    }
+    public void activatepanel35()
+    {
+        if (isdelay2 <= 0)
+        {
+            if (isanim3 == false)
+            {
+                panel3.SetActive(!panel3.activeSelf);
+                isanim3 = true;
+                anim6.Play("anim 18 0");
+                anim3.Play("19 0");
+            }
+            else
+            {
+                anim6.Play("anim 18 0");
+                anim3.Play("19 1");
+                achi = 1.1f;
+                isachi = true;
+                isanim3 = false;
+            }
+            if (isanim5 == false)
+            {
+                panel5.SetActive(!panel5.activeSelf);
+                anim16.Play("anim 24 1");
+                isanim5 = true;
+                anim17.Play("anim 25");
+            }
+            else
+            {
+                anim17.Play("anim 25 0");
+                anim16.Play("anim 24 1");
+                isanim5 = false;
+                task = 1.1f;
+                istask = true;
+            }
+            ad2end();
+            isdelay2 = 0.6f;
+        }
     }
     
 
@@ -610,7 +786,7 @@ public class menu : MonoBehaviour
             }
             else
             {
-                anim15.Play("anim 23");
+                anim15.Play("anim 23 0");
                 anim14.Play("anim 22 0");
                 isanim4 = false;
                 stat = 1.1f;
@@ -637,7 +813,7 @@ public class menu : MonoBehaviour
             }
             else
             {
-                anim17.Play("anim 25");
+                anim17.Play("anim 25 0");
                 anim16.Play("anim 24 1");
                 isanim5 = false;
                 task = 1.1f;
