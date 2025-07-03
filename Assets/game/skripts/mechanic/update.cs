@@ -48,6 +48,6 @@ public class updated : MonoBehaviour
         isdelay -= Time.deltaTime;
         coins = PlayerPrefs.GetInt("coins", 0);
         text2.text = "" + all;
-        text.text = "ур:" + lvl + ". " + energy.ToString("F4") + " в сек";
+        text.text = "ур:" + lvl + ".   " + energy.ToString("F3") + " в сек";
     }
 }

@@ -11,6 +11,8 @@ public class menu : MonoBehaviour
     public Image but1;
     public Image but2;
     public Image but3;
+    public Image controller;
+    public Image controller2;
     public GameObject panel1;
     public GameObject panel2;
     public GameObject panel3;
@@ -81,6 +83,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps28;
     public ParticleSystem ps29;
     public ParticleSystem ps30;
+    public ParticleSystem ps31;
 
     public bool ison;
     public bool ison1;
@@ -100,11 +103,14 @@ public class menu : MonoBehaviour
     public float ach2;
     public float stat;
     public int allgames;
+    public int is11;
+    public int is12;
+    public int maxcoins;
 
     public float RR;
     public Slider S;
 
-    
+
 
 
 
@@ -112,8 +118,27 @@ public class menu : MonoBehaviour
     {
         ach1 = PlayerPrefs.GetInt("1.5kscore", 0);
         ach2 = PlayerPrefs.GetInt("450score", 0);
+        is11 = PlayerPrefs.GetInt("tis11", 0);
+        is12 = PlayerPrefs.GetInt("tis12", 0);
 
-        if(ach1 == 1)
+        if (is11 == 0)
+        {
+            controller.GetComponent<Image>().color = new Color(255, 0, 0, 255);
+        }
+        else
+        {
+            controller.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+        }
+        if (is12 == 0)
+        {
+            controller2.GetComponent<Image>().color = new Color(255, 0, 0, 255);
+        }
+        else
+        {
+            controller2.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+        }
+
+        if (ach1 == 1)
         {
             achp1.SetActive(true);
         }
@@ -122,7 +147,6 @@ public class menu : MonoBehaviour
             achp2.SetActive(true);
         }
 
-        coins = PlayerPrefs.GetInt("coins", coins);
         ps.Stop();
         ps1.Stop();
         ps2.Stop();
@@ -153,6 +177,7 @@ public class menu : MonoBehaviour
         ps28.Stop();
         ps29.Stop();
         ps30.Stop();
+        ps31.Stop();
 
         RR = PlayerPrefs.GetFloat("R Rotate Speed", 100);
         S.value = RR;
@@ -333,8 +358,34 @@ public class menu : MonoBehaviour
         ps28.Stop();
         ps29.Stop();
         ps30.Stop();
+        ps31.Stop();
 
         ad2.Play();
+    }
+
+
+    public void isclickget()
+    {
+        if (is11 == 0 && ach1 == 1)
+        {
+            is11 = 1;
+            PlayerPrefs.SetInt("tis11", 1);
+            PlayerPrefs.SetInt("Skin3", 1);
+            controller.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+        }
+
+        if (is12 == 0 && ach2 == 1)
+        {
+            is12 = 1;
+            PlayerPrefs.SetInt("tis12", 1);
+            coins = PlayerPrefs.GetInt("coins", 0);
+            coins += 500;
+            PlayerPrefs.SetInt("coins", coins);
+            maxcoins = PlayerPrefs.GetInt("allcoins", 0);
+            maxcoins += 500;
+            PlayerPrefs.SetInt("allcoins", maxcoins);
+            controller2.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+        }
     }
 
 
@@ -343,8 +394,8 @@ public class menu : MonoBehaviour
         if (PlayerPrefs.GetInt("vibration") == 0)
         {
             Vibration.Vibrate(80, 20);
-        }  
-        
+        }
+
     }
 
     public void isvibration1()
@@ -439,6 +490,10 @@ public class menu : MonoBehaviour
         ps26.Play();
         ps30.Play();
         
+    }
+    public void isps19()
+    {
+        ps31.Play();
     }
 
 
