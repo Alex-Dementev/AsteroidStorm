@@ -8,6 +8,8 @@ public class ScoreCounter : MonoBehaviour
 {
     [SerializeField] public Transform player;
 
+    public ObstacleSpawner spawner;
+
     public GameObject s1;
     public GameObject s2;
     public GameObject s3;
@@ -21,6 +23,8 @@ public class ScoreCounter : MonoBehaviour
     public AudioSource ad2;
     public AudioSource ad3;
     public AudioSource ad4;
+    public AudioSource ad5;
+    public AudioSource ad6;
     public ObstacleSpawner o;
     public ObstaclearSpawner oar;
     public int spawn;
@@ -37,14 +41,16 @@ public class ScoreCounter : MonoBehaviour
     public int ach2;
     public Animator achanim1;
     public Animator achanim2;
-    public AudioSource AS;
     public Animator anim;
+
+    private float nextSpawnTime = 0f;
+    private float baseSpawnInterval = 1.3f;
+    private float spawnVariance = 0.5f;
 
     void Start()
     {
         isminus = 25;
 
-        // Выбираем активного игрока (скин)
         if (s1 && s1.activeInHierarchy) player = s1.transform;
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
@@ -54,11 +60,14 @@ public class ScoreCounter : MonoBehaviour
         ach2 = PlayerPrefs.GetInt("450score", 0);
 
         anim.Play("anim6");
+
+        UpdateObstacleCount();
+
+        ScheduleNextSpawn();
     }
 
     void Update()
     {
-        // Проверка активного скина — на случай если он сменится во время игры
         if (s1 && s1.activeInHierarchy) player = s1.transform;
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
@@ -85,19 +94,19 @@ public class ScoreCounter : MonoBehaviour
             }
         }
 
-        if(ach1 == 0 && spawn >= 1500)
+        if (ach1 == 0 && spawn >= 1500)
         {
             PlayerPrefs.SetInt("1.5kscore", 1);
             ach1 = 1;
             achanim2.Play("anim 21");
-            AS.Play();
+            ad5.Play();
         }
-        if(ach2 == 0 && spawn >= 500)
+        if (ach2 == 0 && spawn >= 500)
         {
             PlayerPrefs.SetInt("450score", 1);
             ach2 = 1;
             achanim1.Play("anim20");
-            AS.Play();
+            ad5.Play();
         }
 
         if (isdelay2 >= 0)
@@ -109,13 +118,13 @@ public class ScoreCounter : MonoBehaviour
         scoreText.text = (score.ToString());
         spawn = ((int)(player.position.z) / 3);
 
-        if (spawn >= function)
+        UpdateObstacleCount();
+
+        if (Time.time >= nextSpawnTime && !isbportal)
         {
             function += isminus;
-            if (!isbportal)
-            {
-                o.SpawnObstacles();
-            }
+            o.SpawnObstacles();
+            ScheduleNextSpawn();
         }
 
         if (spawn >= 3500)
@@ -151,7 +160,8 @@ public class ScoreCounter : MonoBehaviour
             ad2.enabled = true;
             ad3.enabled = true;
             ad4.enabled = true;
-            AS.enabled = true;
+            ad5.enabled = true;
+            ad6.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -159,13 +169,36 @@ public class ScoreCounter : MonoBehaviour
             ad2.enabled = false;
             ad3.enabled = false;
             ad4.enabled = false;
-            AS.enabled = false;
+            ad5.enabled = false;
+            ad6.enabled = false;
         }
 
-        if (spawn == ars)
+        if (spawn >= ars)
         {
             ars += 250;
             oar.SpawnObstaclesar();
+        }
+    }
+
+    void ScheduleNextSpawn()
+    {
+        float randomOffset = UnityEngine.Random.Range(-spawnVariance, spawnVariance);
+        nextSpawnTime = Time.time + baseSpawnInterval + randomOffset;
+    }
+
+    void UpdateObstacleCount()
+    {
+        if (spawn < 600)
+        {
+            spawner.SetObstacleCount(1);
+        }
+        else if (spawn < 1500)
+        {
+            spawner.SetObstacleCount(2);
+        }
+        else
+        {
+            spawner.SetObstacleCount(3);
         }
     }
 

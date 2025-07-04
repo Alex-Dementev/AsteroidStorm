@@ -24,6 +24,9 @@ public class death : MonoBehaviour
     public int score;
     public int allcoins;
 
+    public GameObject explosionEffect; // 🎆 Префаб взрыва
+    public AudioSource explosionSound1; // 💥 Звук 1
+    public AudioSource explosionSound2; // 💥 Звук 2
 
     void Start()
     {
@@ -31,7 +34,6 @@ public class death : MonoBehaviour
         isdelay = 9999999;
     }
 
-    // Update is called once per frame
     void Update()
     {
         isdelay -= Time.deltaTime;
@@ -39,26 +41,27 @@ public class death : MonoBehaviour
         isdelay1 -= Time.deltaTime;
         isdelay2 -= Time.deltaTime;
 
-        if(isdelay <= 0)
+        if (isdelay <= 0)
         {
             isdelay = 99999999;
             SceneManager.LoadScene("main");
         }
 
-        if(b == true)
+        if (b == true)
         {
-            if(f <= 0)
+            if (f <= 0)
             {
                 restart();
                 f = 9999999;
             }
         }
 
-        if(isdelay1 >= 0)
+        if (isdelay1 >= 0)
         {
             ps.Stop();
         }
-        if(isdelay2 <= 0)
+
+        if (isdelay2 <= 0)
         {
             isdelay1 = 1;
         }
@@ -73,37 +76,46 @@ public class death : MonoBehaviour
 
     private void OnCollisionEnter(Collision Collision)
     {
-        if(Collision.gameObject.CompareTag("obstacle"))
+        if (Collision.gameObject.CompareTag("obstacle"))
         {
-            if(b == false)
+            if (d.b == true)
             {
-                if(d.b == false)
+                if (explosionEffect != null)
                 {
-                    losePanel.SetActive(true);
-                    anim1.Play("anim11");
-                    coins = PlayerPrefs.GetInt("coins");
-                    allcoins = PlayerPrefs.GetInt("allcoins");
-                    score = PlayerPrefs.GetInt("allscore");
-                    coins += ((int)(player.position.z / 10));
-                    score += ((int)(player.position.z / 3));
-                    allcoins += ((int)(player.position.z / 10));
-                    PlayerPrefs.SetInt("coins", coins); 
-                    PlayerPrefs.SetInt("allcoins", allcoins); 
-                    PlayerPrefs.SetInt("allscore", score); 
-                    if (PlayerPrefs.GetInt("vibration") == 0)
-                    {
-                        Vibration.Vibrate(80, 100);
-                    }  
-                    ad.Play();
-                    b = true;
-                    f = 7;
-                    ps.Play();
-                    isdelay2 = 2;
+                    Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
                 }
-                else if(d.b == true)
+
+                int rand = Random.Range(0, 2);
+                if (rand == 0 && explosionSound1 != null) explosionSound1.Play();
+                else if (rand == 1 && explosionSound2 != null) explosionSound2.Play();
+
+                Destroy(Collision.gameObject);
+            }
+            else if (b == false)
+            {
+                losePanel.SetActive(true);
+                anim1.Play("anim11");
+
+                coins = PlayerPrefs.GetInt("coins");
+                allcoins = PlayerPrefs.GetInt("allcoins");
+                score = PlayerPrefs.GetInt("allscore");
+                coins += ((int)(player.position.z / 10));
+                score += ((int)(player.position.z / 3));
+                allcoins += ((int)(player.position.z / 10));
+                PlayerPrefs.SetInt("coins", coins);
+                PlayerPrefs.SetInt("allcoins", allcoins);
+                PlayerPrefs.SetInt("allscore", score);
+
+                if (PlayerPrefs.GetInt("vibration") == 0)
                 {
-                    Debug.Log("вау еееееее");
+                    Vibration.Vibrate(80, 100);
                 }
+
+                ad.Play();
+                b = true;
+                f = 7;
+                ps.Play();
+                isdelay2 = 2;
             }
         }
     }

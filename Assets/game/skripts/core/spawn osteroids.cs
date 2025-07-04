@@ -9,18 +9,20 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject s3;
     public GameObject s4;
 
-    private Transform player; // Текущий активный скин
+    private Transform player;
 
     public float spawnDistance = 6f;
     public float obstacleSpeed = 2f;
     public float rotationSpeedRange = 50f;
     public float spawnHeightOffset = -1f;
-    public float towardPlayerProbability = 0.6f;
+    public float towardPlayerProbability = 0.15f; // Снижено до 15%
     public Vector2 sizeRange = new Vector2(0.5f, 2f);
     public int obstaclesCount = 3;
     public float minDistanceBetweenObstacles = 1f;
     public float maxDistanceBetweenObstacles = 3f;
     public float xCalibrationOffset = 0f;
+
+    public Vector3 manualCenterOffset = Vector3.zero; // Центр рассеивания задаётся вручную
 
     private void Start()
     {
@@ -29,7 +31,6 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void Update()
     {
-        // В случае смены скина — постоянно обновляем ссылку
         UpdatePlayerReference();
     }
 
@@ -47,27 +48,19 @@ public class ObstacleSpawner : MonoBehaviour
 
         for (int i = 0; i < obstaclesCount; i++)
         {
-            GameObject randomObstacle = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+            GameObject prefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+            Vector3 spawnPosition = player.position + Vector3.forward * spawnDistance + manualCenterOffset;
 
-            Vector3 spawnPosition = player.position + Vector3.forward * spawnDistance;
+            Vector2 randomOffset = Random.insideUnitCircle * maxDistanceBetweenObstacles;
+            spawnPosition += new Vector3(randomOffset.x + xCalibrationOffset, spawnHeightOffset, randomOffset.y);
 
-            float randomOffsetX = Random.Range(minDistanceBetweenObstacles, maxDistanceBetweenObstacles);
-            float randomOffsetZ = Random.Range(minDistanceBetweenObstacles, maxDistanceBetweenObstacles);
+            GameObject obstacle = Instantiate(prefab, spawnPosition, Quaternion.identity);
+            obstacle.transform.localScale *= Random.Range(sizeRange.x, sizeRange.y);
 
-            spawnPosition.x += (randomOffsetX + xCalibrationOffset) * (i % 2 == 0 ? 1 : -1);
-            spawnPosition.z += randomOffsetZ * (i % 2 == 0 ? 1 : -1);
-            spawnPosition.y = spawnHeightOffset;
-
-            GameObject obstacle = Instantiate(randomObstacle, spawnPosition, Quaternion.identity);
-
-            float randomSize = Random.Range(sizeRange.x, sizeRange.y);
-            obstacle.transform.localScale *= randomSize;
-
-            Vector3 direction = DetermineMovementDirection();
             ObstacleMovement movement = obstacle.AddComponent<ObstacleMovement>();
             movement.speed = obstacleSpeed;
             movement.rotationSpeed = Random.Range(-rotationSpeedRange, rotationSpeedRange);
-            movement.direction = direction;
+            movement.direction = DetermineMovementDirection();
 
             Destroy(obstacle, 21f);
         }
@@ -87,6 +80,17 @@ public class ObstacleSpawner : MonoBehaviour
             float randomZ = Random.Range(-1f, 1f);
             return new Vector3(randomX, 0f, randomZ).normalized;
         }
+    }
+
+    public void SetObstacleCount(int count)
+    {
+        obstaclesCount = Mathf.Max(0, count);
+    }
+
+    public int ObstacleCount
+    {
+        get => obstaclesCount;
+        set => obstaclesCount = Mathf.Max(0, value);
     }
 }
 

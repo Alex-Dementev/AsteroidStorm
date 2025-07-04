@@ -40,19 +40,21 @@ public class GameManager : MonoBehaviour
         {
             Vector3 position = activeCharacter.transform.position;
 
-            if (!freezeControl && (Input.touchCount > 0 || Input.GetMouseButton(0)))
+            if (!freezeControl)
             {
-                Vector2 inputPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, Camera.main.transform.position.y));
-                worldPosition += calibrationOffset;
-                float clampedX = Mathf.Clamp(worldPosition.x * sensitivity, -xRange, xRange);
-                targetX = invertControl ? -clampedX : clampedX;
+                if (Input.touchCount > 0 || Input.GetMouseButton(0))
+                {
+                    Vector2 inputPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
+                    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, Camera.main.transform.position.y));
+                    worldPosition += calibrationOffset;
+                    float clampedX = Mathf.Clamp(worldPosition.x * sensitivity, -xRange, xRange);
+                    targetX = invertControl ? -clampedX : clampedX;
+                }
+
+                currentX = Mathf.Lerp(currentX, targetX, smoothFactor);
+                position.x = currentX;
+                activeCharacter.transform.position = position;
             }
-
-            currentX = Mathf.Lerp(currentX, targetX, smoothFactor);
-            position.x = currentX;
-
-            activeCharacter.transform.position = position;
         }
     }
 
