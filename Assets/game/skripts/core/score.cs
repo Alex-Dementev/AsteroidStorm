@@ -25,6 +25,8 @@ public class ScoreCounter : MonoBehaviour
     public AudioSource ad4;
     public AudioSource ad5;
     public AudioSource ad6;
+    public AudioSource ad7;
+    public AudioSource ad8;
     public ObstacleSpawner o;
     public ObstaclearSpawner oar;
     public int spawn;
@@ -162,6 +164,8 @@ public class ScoreCounter : MonoBehaviour
             ad4.enabled = true;
             ad5.enabled = true;
             ad6.enabled = true;
+            ad7.enabled = true;
+            ad8.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -171,6 +175,8 @@ public class ScoreCounter : MonoBehaviour
             ad4.enabled = false;
             ad5.enabled = false;
             ad6.enabled = false;
+            ad7.enabled = false;
+            ad8.enabled = false;
         }
 
         if (spawn >= ars)
@@ -188,11 +194,11 @@ public class ScoreCounter : MonoBehaviour
 
     void UpdateObstacleCount()
     {
-        if (spawn < 600)
+        if (spawn < 400)
         {
             spawner.SetObstacleCount(1);
         }
-        else if (spawn < 1500)
+        else if (spawn < 700)
         {
             spawner.SetObstacleCount(2);
         }
