@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using RDG;
+using UnityEngine.SceneManagement;
 
 public class ScoreCounter : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class ScoreCounter : MonoBehaviour
     public GameObject s2;
     public GameObject s3;
     public GameObject s4;
+
+    public Animator anim1;
 
     public GameObject image;
     public Text scoreText;
@@ -44,6 +47,10 @@ public class ScoreCounter : MonoBehaviour
     public Animator achanim1;
     public Animator achanim2;
     public Animator anim;
+    public bool isbtonext;
+    public float isdelay3;
+    public bool isend;
+    public bool isend2;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
@@ -80,6 +87,28 @@ public class ScoreCounter : MonoBehaviour
         isdelay1 -= Time.deltaTime;
         isdelay -= Time.deltaTime;
         isdelay2 -= Time.deltaTime;
+        isdelay3 -= Time.deltaTime;
+
+
+        if ((int)(player.position.z / 3) >= 890 && !isend2)
+        {
+            image.SetActive(true);
+            anim1.Play("anim10 0");
+            isdelay3 = 1f;
+            isend = true;
+            isend2 = true;
+        }
+
+        if (isdelay3 <= 0 && isend)
+        {
+            SceneManager.LoadScene("main");
+        }
+
+        if (spawn > 840)
+            {
+                isbtonext = true;
+            }
+
 
         if (isdelay1 <= 0)
         {
@@ -124,9 +153,12 @@ public class ScoreCounter : MonoBehaviour
 
         if (Time.time >= nextSpawnTime && !isbportal)
         {
-            function += isminus;
-            o.SpawnObstacles();
-            ScheduleNextSpawn();
+            if (!isbtonext)
+            {
+                function += isminus;
+                o.SpawnObstacles();
+                ScheduleNextSpawn();
+            }
         }
 
         if (spawn >= 3500)

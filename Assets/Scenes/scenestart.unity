@@ -5085,6 +5085,7 @@ MonoBehaviour:
   s2: {fileID: 814676261}
   s3: {fileID: 1950506757}
   s4: {fileID: 207934567}
+  anim1: {fileID: 590422739}
   image: {fileID: 590422737}
   scoreText: {fileID: 946596074}
   s: {fileID: 104172366}
@@ -5112,6 +5113,9 @@ MonoBehaviour:
   achanim1: {fileID: 1512530966}
   achanim2: {fileID: 1866022538}
   anim: {fileID: 1824364257}
+  isbtonext: 0
+  isdelay3: 0
+  isend: 0
 --- !u!114 &104172366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32547,7 +32551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1122586438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43087,7 +43091,7 @@ Transform:
   m_GameObject: {fileID: 1634050305}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -105.1, y: -30.2, z: 2747.5}
+  m_LocalPosition: {x: -95.7, y: -39, z: 2747.5}
   m_LocalScale: {x: 70, y: 70, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
