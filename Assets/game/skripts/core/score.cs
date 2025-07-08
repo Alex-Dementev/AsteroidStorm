@@ -21,6 +21,7 @@ public class ScoreCounter : MonoBehaviour
     public GameObject image;
     public Text scoreText;
     public sceneman s;
+    public ParticleSystem ps;
     public int score;
     public AudioSource ad1;
     public AudioSource ad2;
@@ -30,6 +31,7 @@ public class ScoreCounter : MonoBehaviour
     public AudioSource ad6;
     public AudioSource ad7;
     public AudioSource ad8;
+    public AudioSource ad9;
     public ObstacleSpawner o;
     public ObstaclearSpawner oar;
     public int spawn;
@@ -39,7 +41,7 @@ public class ScoreCounter : MonoBehaviour
     private float isdelay2 = 1;
     public float isminus;
     public SmoothSkyboxSwitcher ss;
-    public ParticleSystem ps;
+    public ParticleSystem ps1;
     public bool isbportal;
     private int ars = 300;
     public int ach1;
@@ -51,10 +53,30 @@ public class ScoreCounter : MonoBehaviour
     public float isdelay3;
     public bool isend;
     public bool isend2;
+    public float isdelay4 = 2f;
+    public Text text;
+    public Animator anim2;
+    public bool is100;
+    public bool is825;
+    public bool is440;
+    public bool is250;
+    public bool is750;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
     private float spawnVariance = 0.5f;
+
+
+    private string[] phrases = new string[]
+    {
+        "Остерегайтесь космического мусора",
+        "Курс стабилен",
+        "Курс выровнен",
+        "Какать охото",
+        "Наблюдаю Луну на горизонте"
+    };
+
+
 
     void Start()
     {
@@ -75,6 +97,11 @@ public class ScoreCounter : MonoBehaviour
         ScheduleNextSpawn();
     }
 
+    public void ps1Play()
+    {
+        ps1.Play();
+    }
+
     void Update()
     {
         if (s1 && s1.activeInHierarchy) player = s1.transform;
@@ -88,21 +115,64 @@ public class ScoreCounter : MonoBehaviour
         isdelay -= Time.deltaTime;
         isdelay2 -= Time.deltaTime;
         isdelay3 -= Time.deltaTime;
+        isdelay4 -= Time.deltaTime;
 
+
+        if (isdelay4 <= 0)
+        {
+            ps1Play();
+            isdelay4 = 999999999;
+        }
 
         if ((int)(player.position.z / 3) >= 890 && !isend2)
+            {
+                image.SetActive(true);
+                anim1.Play("anim10 0");
+                isdelay3 = 1f;
+                isend = true;
+                isend2 = true;
+            }
+        if ((int)(player.position.z / 3) >= 100 && !is100)
         {
-            image.SetActive(true);
-            anim1.Play("anim10 0");
-            isdelay3 = 1f;
-            isend = true;
-            isend2 = true;
-        }
+            anim2.Play("anim 26 1");
+            is100 = true;
+            ad9.Play();
+            }
+        if ((int)(player.position.z / 3) >= 825 && !is825)
+        {
+            text.text = "выход на высокую арбиту луны";
+            anim2.Play("anim 26 1");
+            is825 = true;
+            ad9.Play();
+            }
+        if ((int)(player.position.z / 3) >= 440 && !is440)
+        {
+            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
+            text.text = "пол пути пройдено: " + selected;
+            anim2.Play("anim 26 1");
+            is440 = true;
+            ad9.Play();
+            }
+        if ((int)(player.position.z / 3) >= 750 && !is750)
+        {
+            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
+            text.text = "Большое количество остеоидов" + selected;
+            anim2.Play("anim 26 1");
+            is750 = true;
+            ad9.Play();
+            }
+        if ((int)(player.position.z / 3) >= 250 && !is250)
+        {
+            text.text = "курс стабилен";
+            anim2.Play("anim 26 1");
+            is250 = true;
+            ad9.Play();
+            }
 
         if (isdelay3 <= 0 && isend)
-        {
-            SceneManager.LoadScene("main");
-        }
+            {
+                SceneManager.LoadScene("main");
+            }
 
         if (spawn > 840)
             {
@@ -125,7 +195,7 @@ public class ScoreCounter : MonoBehaviour
             }
         }
 
-        if (ach1 == 0 && spawn >= 1500)
+        if (ach1 == 0 && spawn >= 850)
         {
             PlayerPrefs.SetInt("1.5kscore", 1);
             ach1 = 1;
@@ -198,6 +268,7 @@ public class ScoreCounter : MonoBehaviour
             ad6.enabled = true;
             ad7.enabled = true;
             ad8.enabled = true;
+            ad9.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -209,6 +280,7 @@ public class ScoreCounter : MonoBehaviour
             ad6.enabled = false;
             ad7.enabled = false;
             ad8.enabled = false;
+            ad9.enabled = false;
         }
 
         if (spawn >= ars)
