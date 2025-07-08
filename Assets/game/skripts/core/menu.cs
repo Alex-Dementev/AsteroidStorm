@@ -84,6 +84,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps29;
     public ParticleSystem ps30;
     public ParticleSystem ps31;
+    public ParticleSystem ps32;
 
     public bool ison;
     public bool ison1;
@@ -178,6 +179,7 @@ public class menu : MonoBehaviour
         ps29.Stop();
         ps30.Stop();
         ps31.Stop();
+        ps32.Stop();
 
         RR = PlayerPrefs.GetFloat("R Rotate Speed", 100);
         S.value = RR;
@@ -359,6 +361,7 @@ public class menu : MonoBehaviour
         ps29.Stop();
         ps30.Stop();
         ps31.Stop();
+        ps32.Stop();
 
         ad2.Play();
     }
@@ -494,6 +497,10 @@ public class menu : MonoBehaviour
     public void isps19()
     {
         ps31.Play();
+    }
+    public void isps20()
+    {
+        ps32.Play();
     }
 
 

@@ -156,7 +156,7 @@ public class ScoreCounter : MonoBehaviour
         if ((int)(player.position.z / 3) >= 750 && !is750)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Большое количество остеоидов" + selected;
+            text.text = "Большое количество остеоидов: " + selected;
             anim2.Play("anim 26 1");
             is750 = true;
             ad9.Play();

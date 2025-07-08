@@ -15,6 +15,8 @@ public class statistick : MonoBehaviour
     public Text coins;
     public int recordf;
     public Text record;
+    public int alltask;
+    public Text task;
 
     void Start()
     {
@@ -33,5 +35,7 @@ public class statistick : MonoBehaviour
         alltimeT.text = alltime.ToString("F0");
         allcoinsadd = PlayerPrefs.GetInt("allcoins", 0);
         coins.text = allcoinsadd.ToString("F0");
+        alltask = PlayerPrefs.GetInt("alltask", 0);
+        task.text = alltask.ToString();
     }
 }

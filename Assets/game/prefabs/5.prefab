@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 61c3a100449e53f4ea1ee21446803d90,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.396385
+      value: -6.99957
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 61c3a100449e53f4ea1ee21446803d90,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -17.432262
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 61c3a100449e53f4ea1ee21446803d90,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.639803
+      value: 388.7086
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 61c3a100449e53f4ea1ee21446803d90,
         type: 3}
@@ -81,6 +81,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6062179040598973328}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61c3a100449e53f4ea1ee21446803d90,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5072003560650358810}
   m_SourcePrefab: {fileID: 100100000, guid: 61c3a100449e53f4ea1ee21446803d90, type: 3}
 --- !u!1 &5145136810507926667 stripped
 GameObject:
@@ -110,3 +114,30 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 61c3a100449e53f4ea1ee21446803d90, type: 3}
+--- !u!54 &5072003560650358810
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5145136810507926667}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

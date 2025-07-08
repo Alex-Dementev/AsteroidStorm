@@ -29,6 +29,8 @@ public class updated : MonoBehaviour
             PlayerPrefs.SetFloat("energy", energy);
             lvl++;
             PlayerPrefs.SetInt("coins", coins);
+            PlayerPrefs.SetInt("lvl", lvl);
+            PlayerPrefs.SetInt("all", all);
         }
         else
         anim.Play("anim 12 0");
@@ -41,6 +43,8 @@ public class updated : MonoBehaviour
     void Start()
     {
         energy = PlayerPrefs.GetFloat("energy", 0);
+        lvl = PlayerPrefs.GetInt("lvl", 0);
+        all = PlayerPrefs.GetInt("all", 200);
     }
 
     void Update()

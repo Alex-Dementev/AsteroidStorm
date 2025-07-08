@@ -21,6 +21,7 @@ public class DoubleTapHandler : MonoBehaviour
     public ParticleSystem ps;
     public ParticleSystem p;
     public float isdelay1 = 2;
+    public int abilityt;
 
     private float lastTapTime = 0;
 
@@ -53,7 +54,7 @@ public class DoubleTapHandler : MonoBehaviour
                 ps.Stop();
             }
 
-            if(delay <= -0.5)
+            if(delay <= -0.4)
             {
             b = false;
             }
@@ -87,11 +88,13 @@ public class DoubleTapHandler : MonoBehaviour
                 {
                     if(e.energyint >= 20)
                     {
+                        b = true;
                         e.energyint -= 20;
+                        abilityt++;
+                        PlayerPrefs.SetInt("abilityt", abilityt);
                         speed = r.zSpeed;
                         r.zSpeed = 650;
                         delay = isdelay;
-                        b = true;
                         otkat = isotkat;
                         bb = true;
                         if (PlayerPrefs.GetInt("vibration") == 0)
@@ -123,6 +126,7 @@ public class DoubleTapHandler : MonoBehaviour
 
     void Start()
     {
+        abilityt = PlayerPrefs.GetInt("abilityt", 0);
         isdelay = PlayerPrefs.GetFloat("isdelay");
         isotkat = PlayerPrefs.GetFloat("isotkat");
 

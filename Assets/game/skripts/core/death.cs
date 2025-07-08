@@ -24,9 +24,9 @@ public class death : MonoBehaviour
     public int score;
     public int allcoins;
 
-    public GameObject explosionEffect; // 🎆 Префаб взрыва
-    public AudioSource explosionSound1; // 💥 Звук 1
-    public AudioSource explosionSound2; // 💥 Звук 2
+    public GameObject explosionEffect;
+    public AudioSource explosionSound1;
+    public AudioSource explosionSound2;
 
     void Start()
     {
@@ -80,6 +80,7 @@ public class death : MonoBehaviour
         {
             if (d.b == true)
             {
+                Debug.Log("fly");
                 if (explosionEffect != null)
                 {
                     Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
