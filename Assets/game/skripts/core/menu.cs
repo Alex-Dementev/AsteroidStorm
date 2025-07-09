@@ -23,6 +23,7 @@ public class menu : MonoBehaviour
     public GameObject image;
     public AudioSource ad1;
     public AudioSource ad2;
+    public AudioSource ad3;
     public float isdelay;
     private float isdelay1 = 1.5f;
     private float isdelay2 = 2f;
@@ -52,6 +53,7 @@ public class menu : MonoBehaviour
     public Animator anim15;
     public Animator anim16;
     public Animator anim17;
+    public Animator anim18;
 
     public ParticleSystem ps;
     public ParticleSystem ps1;
@@ -196,6 +198,7 @@ public class menu : MonoBehaviour
         anim14.Play("anim 22");
         anim16.Play("anim 24");
         anim17.Play("anim 26");
+        anim18.Play("audio 0");
     }
 
 
@@ -284,6 +287,7 @@ public class menu : MonoBehaviour
         {
             ad1.enabled = true;
             ad2.enabled = true;
+            ad3.enabled = true;
             ison1 = true;
             but1.GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
@@ -291,6 +295,7 @@ public class menu : MonoBehaviour
         {
             ad1.enabled = false;
             ad2.enabled = false;
+            ad3.enabled = false;
             ison1 = false;
             but1.GetComponent<Image>().color = new Color(255, 0, 0, 255);
         }

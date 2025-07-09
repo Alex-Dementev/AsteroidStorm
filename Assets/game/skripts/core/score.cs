@@ -171,7 +171,7 @@ public class ScoreCounter : MonoBehaviour
 
         if (isdelay3 <= 0 && isend)
             {
-                SceneManager.LoadScene("main");
+                SceneManager.LoadScene("cutsceneG1");
             }
 
         if (spawn > 840)
