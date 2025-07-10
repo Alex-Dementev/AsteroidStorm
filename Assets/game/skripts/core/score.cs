@@ -41,7 +41,6 @@ public class ScoreCounter : MonoBehaviour
     private float isdelay2 = 1;
     public float isminus;
     public SmoothSkyboxSwitcher ss;
-    public ParticleSystem ps1;
     public bool isbportal;
     private int ars = 300;
     public int ach1;
@@ -65,6 +64,7 @@ public class ScoreCounter : MonoBehaviour
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
     private float spawnVariance = 0.5f;
+    private float audios = 0.5f;
 
 
     private string[] phrases = new string[]
@@ -73,13 +73,17 @@ public class ScoreCounter : MonoBehaviour
         "Курс стабилен",
         "Курс выровнен",
         "Какать охото",
-        "Наблюдаю Луну на горизонте"
+        "Наблюдаю Луну на горизонте",
+        "Супер облепиха",
+        "военный мёд",
+        "грусный мёд"
     };
 
 
 
     void Start()
     {
+        stopps();
         isminus = 25;
 
         if (s1 && s1.activeInHierarchy) player = s1.transform;
@@ -95,11 +99,6 @@ public class ScoreCounter : MonoBehaviour
         UpdateObstacleCount();
 
         ScheduleNextSpawn();
-    }
-
-    public void ps1Play()
-    {
-        ps1.Play();
     }
 
     void Update()
@@ -118,20 +117,26 @@ public class ScoreCounter : MonoBehaviour
         isdelay4 -= Time.deltaTime;
 
 
-        if (isdelay4 <= 0)
-        {
-            ps1Play();
-            isdelay4 = 999999999;
-        }
+        audios = PlayerPrefs.GetFloat("audios", 0.5f);
+        ad1.volume = audios / 5;
+        ad2.volume = audios;
+        ad3.volume = audios;
+        ad4.volume = audios / 1.5f;
+        ad5.volume = audios;
+        ad6.volume = audios / 3;
+        ad7.volume = audios / 3;
+        ad8.volume = audios / 17;
+        ad9.volume = audios;
+
 
         if ((int)(player.position.z / 3) >= 890 && !isend2)
-            {
-                image.SetActive(true);
-                anim1.Play("anim10 0");
-                isdelay3 = 1f;
-                isend = true;
-                isend2 = true;
-            }
+        {
+            image.SetActive(true);
+            anim1.Play("anim10 0");
+            isdelay3 = 1f;
+            isend = true;
+            isend2 = true;
+        }
         if ((int)(player.position.z / 3) >= 100 && !is100)
         {
             anim2.Play("anim 26 1");
@@ -208,11 +213,6 @@ public class ScoreCounter : MonoBehaviour
             ach2 = 1;
             achanim1.Play("anim20");
             ad5.Play();
-        }
-
-        if (isdelay2 >= 0)
-        {
-            ps.Stop();
         }
 
         score = ((int)(player.position.z / 3));
@@ -298,11 +298,11 @@ public class ScoreCounter : MonoBehaviour
 
     void UpdateObstacleCount()
     {
-        if (spawn < 400)
+        if (spawn < 550)
         {
             spawner.SetObstacleCount(1);
         }
-        else if (spawn < 700)
+        else if (spawn < 750)
         {
             spawner.SetObstacleCount(2);
         }

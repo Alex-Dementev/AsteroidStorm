@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RDG;
+using System.Net.Mail;
 
 public class menu : MonoBehaviour
 {
@@ -87,6 +88,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps30;
     public ParticleSystem ps31;
     public ParticleSystem ps32;
+    public ParticleSystem ps33;
 
     public bool ison;
     public bool ison1;
@@ -112,17 +114,31 @@ public class menu : MonoBehaviour
 
     public float RR;
     public Slider S;
+    public Slider Sm;
+    public Slider Sa;
+    public float musics;
+    public float audios;
 
 
 
 
 
     void Start()
-    {
+    {   
+        audios = PlayerPrefs.GetFloat("audios", 0.5f);
+        musics = PlayerPrefs.GetFloat("musics", 0.5f);
         ach1 = PlayerPrefs.GetInt("1.5kscore", 0);
         ach2 = PlayerPrefs.GetInt("450score", 0);
         is11 = PlayerPrefs.GetInt("tis11", 0);
         is12 = PlayerPrefs.GetInt("tis12", 0);
+
+
+        Sm.value = musics;
+        Sa.value = audios;
+        ad1.volume = audios;
+        ad2.volume = audios;
+        ad3.volume = audios / 2.5f;
+
 
         if (is11 == 0)
         {
@@ -182,6 +198,7 @@ public class menu : MonoBehaviour
         ps30.Stop();
         ps31.Stop();
         ps32.Stop();
+        ps33.Stop();
 
         RR = PlayerPrefs.GetFloat("R Rotate Speed", 100);
         S.value = RR;
@@ -213,13 +230,25 @@ public class menu : MonoBehaviour
         stat -= Time.deltaTime;
         task -= Time.deltaTime;
 
-        if(pref <= 0)
+
+
+        musics = Sm.value;
+        audios = Sa.value;
+        PlayerPrefs.SetFloat("musics", musics);
+        PlayerPrefs.SetFloat("audios", audios);
+        ad1.volume = audios;
+        ad2.volume = audios;
+        ad3.volume = audios / 18;
+
+
+
+        if (pref <= 0)
         {
             if (ispref == true)
-                {
-                    ispref = false;
-                    panel1.SetActive(!panel1.activeSelf);
-                }
+            {
+                ispref = false;
+                panel1.SetActive(!panel1.activeSelf);
+            }
         }
         if(achi <= 0)
         {
@@ -367,6 +396,7 @@ public class menu : MonoBehaviour
         ps30.Stop();
         ps31.Stop();
         ps32.Stop();
+        ps33.Stop();
 
         ad2.Play();
     }
@@ -506,6 +536,10 @@ public class menu : MonoBehaviour
     public void isps20()
     {
         ps32.Play();
+    }
+    public void isps21()
+    {
+        ps33.Play();
     }
 
 

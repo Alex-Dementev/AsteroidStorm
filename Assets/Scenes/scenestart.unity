@@ -5199,7 +5199,6 @@ MonoBehaviour:
   isdelay1: 1.5
   isminus: 0
   ss: {fileID: 104172368}
-  ps1: {fileID: 985067552}
   isbportal: 0
   ach1: 0
   ach2: 0
@@ -28024,7 +28023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1122586438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28047,7 +28046,7 @@ MonoBehaviour:
   s2: {fileID: 814676261}
   s3: {fileID: 1950506757}
   s4: {fileID: 207934567}
-  spawnDistance: 140
+  spawnDistance: 165
   obstacleSpeed: 3
   rotationSpeedRange: 60
   spawnHeightOffset: 0.5
@@ -28092,7 +28091,7 @@ MonoBehaviour:
   s2: {fileID: 814676260}
   s3: {fileID: 1950506756}
   s4: {fileID: 207934569}
-  spawnDistance: 300
+  spawnDistance: -450
   obstacleSpeed: 1.5
   rotationSpeedRange: 30
   spawnHeightOffset: -1

@@ -7,11 +7,16 @@ public class updated : MonoBehaviour
 {
     public Text text;
     public Text text2;
+    public Text text3;
+    public Text text4;
     public int coins;
     public float el;
-    public int all = 200;
+    public int allE = 200;
+    public int allO = 200;
     public float energy = 0.25f;
-    public int lvl;
+    public float otkat = 30f;
+    public int lvlE;
+    public int lvlO;
     public Animator anim;
     public float isdelay;
 
@@ -19,39 +24,65 @@ public class updated : MonoBehaviour
     {
         if(isdelay <= 0)
         {
-        if(coins >= all)
+        if(coins >= allE)
         {
-            anim.Play("anim 12 1");
-            coins -= all;
-            all += 5;
+            coins -= allE;
+            allE += 5;
             energy = PlayerPrefs.GetFloat("energy", 0f);
             energy = energy + 0.015f;
             PlayerPrefs.SetFloat("energy", energy);
-            lvl++;
+            lvlE++;
             PlayerPrefs.SetInt("coins", coins);
-            PlayerPrefs.SetInt("lvl", lvl);
-            PlayerPrefs.SetInt("all", all);
+            PlayerPrefs.SetInt("lvlE", lvlE);
+            PlayerPrefs.SetInt("allE", allE);
         }
-        else
-        anim.Play("anim 12 0");
 
         isdelay = 0.5f;
 
+        }
+    }
+    public void Otkat()
+    {
+        if (otkat >= 5)
+        {
+            if (isdelay <= 0)
+            {
+                if (coins >= allO)
+                {
+                    coins -= allO;
+                    allO += 5;
+                    otkat = PlayerPrefs.GetFloat("isotkat", 30f);
+                    otkat = otkat - 0.25f;
+                    PlayerPrefs.SetFloat("isotkat", otkat);
+                    lvlO++;
+                    PlayerPrefs.SetInt("coins", coins);
+                    PlayerPrefs.SetInt("lvlO", lvlO);
+                    PlayerPrefs.SetInt("allO", allO);
+                }
+
+                isdelay = 0.5f;
+
+            }
         }
     }
         
     void Start()
     {
         energy = PlayerPrefs.GetFloat("energy", 0);
-        lvl = PlayerPrefs.GetInt("lvl", 0);
-        all = PlayerPrefs.GetInt("all", 200);
+        lvlE = PlayerPrefs.GetInt("lvlE", 0);
+        allE = PlayerPrefs.GetInt("all", 200);
+        otkat = PlayerPrefs.GetFloat("isotkat", 30);
+        lvlO = PlayerPrefs.GetInt("lvlO", 0);
+        allO = PlayerPrefs.GetInt("allO", 200);
     }
 
     void Update()
     {
         isdelay -= Time.deltaTime;
         coins = PlayerPrefs.GetInt("coins", 0);
-        text2.text = "" + all;
-        text.text = "ур:" + lvl + ".   " + energy.ToString("F3") + " в сек";
+        text2.text = "" + allE;
+        text.text = "ур:" + lvlE + ".  " + energy.ToString("F3") + " в сек";
+        text4.text = "" + allO;
+        text3.text = "ур:" + lvlO + ".  " + otkat.ToString("F2") + " сек";
     }
 }

@@ -36,42 +36,48 @@ public class tasks : MonoBehaviour
     }
 
     public void click()
+{
+    if (istask == 0)
     {
-        if (istask == 0)
+        if (ability >= 10)
         {
-            if (ability >= 10)
-            {
-                alltask++;
-                PlayerPrefs.SetInt("alltask", alltask);
-                istask = 1;
-                PlayerPrefs.SetInt("istask", 1);
-                PlayerPrefs.SetInt("abilityt", 0);
-                s.maxValue = 900;
-                coins = PlayerPrefs.GetInt("coins", 0);
-                coins += 700;
-                PlayerPrefs.SetInt("coins", coins);
-                allcoins = PlayerPrefs.GetInt("allcoins", 0);
-                allcoins += 700;
-                PlayerPrefs.SetInt("allcoins", allcoins);
-            }
-        }
-        if (istask == 1)
-        {
-            if (time >= 600)
-            {
-                alltask++;
-                PlayerPrefs.SetInt("alltask", alltask);
-                istask = 0;
-                PlayerPrefs.SetInt("istask", 0);
-                PlayerPrefs.SetFloat("tasktimet", 0);
-                s.maxValue = 10;
-                coins = PlayerPrefs.GetInt("coins", 0);
-                coins += 700;
-                PlayerPrefs.SetInt("coins", coins);
-            }
-                
+            alltask++;
+            PlayerPrefs.SetInt("alltask", alltask);
+            istask = 1;
+            PlayerPrefs.SetInt("istask", 1);
+
+            PlayerPrefs.SetInt("abilityt", 0);
+            PlayerPrefs.SetFloat("tasktimet", 0);
+
+            s.maxValue = 900;
+            coins = PlayerPrefs.GetInt("coins", 0);
+            coins += 700;
+            PlayerPrefs.SetInt("coins", coins);
+            allcoins = PlayerPrefs.GetInt("allcoins", 0);
+            allcoins += 700;
+            PlayerPrefs.SetInt("allcoins", allcoins);
         }
     }
+    else if (istask == 1)
+    {
+        if (time >= 600)
+        {
+            alltask++;
+            PlayerPrefs.SetInt("alltask", alltask);
+            istask = 0;
+            PlayerPrefs.SetInt("istask", 0);
+
+            PlayerPrefs.SetFloat("tasktimet", 0);
+            PlayerPrefs.SetInt("abilityt", 0);
+
+            s.maxValue = 10;
+            coins = PlayerPrefs.GetInt("coins", 0);
+            coins += 700;
+            PlayerPrefs.SetInt("coins", coins);
+        }
+    }
+}
+
 
     void Update()
     {
