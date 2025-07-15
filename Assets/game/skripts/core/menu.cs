@@ -125,6 +125,8 @@ public class menu : MonoBehaviour
 
     void Start()
     {   
+        PlayerPrefs.GetFloat("isstartmusic", 1f);
+        PlayerPrefs.SetInt("isstopmusictocutscene", 0);
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
         musics = PlayerPrefs.GetFloat("musics", 0.5f);
         ach1 = PlayerPrefs.GetInt("1.5kscore", 0);
