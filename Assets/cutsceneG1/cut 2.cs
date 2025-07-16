@@ -9,6 +9,7 @@ public class AnimationSceneChanger : MonoBehaviour
 
     public bool stop;
     public bool start;
+    public Animator anim;
 
     void Start()
     {
@@ -57,8 +58,9 @@ public class AnimationSceneChanger : MonoBehaviour
         }
     }
 
-    public void LoadNextScene()
+    public void AnimNextScene()
     {
-        SceneManager.LoadScene("cutsceneG1_2");
+        anim.Play("bs2");
     }
+    
 }
