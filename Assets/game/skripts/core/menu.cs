@@ -594,7 +594,7 @@ public class menu : MonoBehaviour
                 isanim1 = false;
             }
 
-        isdelay2 = 1f;
+        isdelay2 = 1.5f;
         
         ad2end();
         }
@@ -621,7 +621,7 @@ public class menu : MonoBehaviour
                 isanim3 = false;
             }
 
-        isdelay2 = 1f;
+        isdelay2 = 2f;
         ad2end();
 
         }
@@ -661,7 +661,7 @@ public class menu : MonoBehaviour
                 isanim3 = false;
             }
             ad2end();
-            isdelay2 = 1f;
+            isdelay2 = 2f;
         }
     }
     public void activatepanel24()
@@ -698,7 +698,7 @@ public class menu : MonoBehaviour
                 isstat = true;
             }
             ad2end();
-            isdelay2 = 1f;
+            isdelay2 = 2f;
         }
     }
     public void activatepanel54()
@@ -736,7 +736,7 @@ public class menu : MonoBehaviour
             isstat = true;
         }
 ad2end();
-            isdelay2 = 1f;
+            isdelay2 = 2f;
         }
     }
     public void activatepanel34()
@@ -774,7 +774,7 @@ ad2end();
                 isstat = true;
             }
             ad2end();
-            isdelay2 = 1f;
+            isdelay2 = 2f;
         }
     }
     public void activatepanel25()
@@ -811,7 +811,7 @@ ad2end();
                 istask = true;
             }
             ad2end();
-            isdelay2 = 1f;
+            isdelay2 = 2f;
         }
     }
     public void activatepanel35()
@@ -849,7 +849,7 @@ ad2end();
                 istask = true;
             }
             ad2end();
-            isdelay2 = 1f;
+            isdelay2 = 2f;
         }
     }
     
@@ -873,7 +873,7 @@ ad2end();
                 isshop = true;
             }
 
-            isdelay2 = 1f;
+            isdelay2 = 2f;
 
             ad2end();
         }
@@ -900,7 +900,7 @@ ad2end();
                 isstat = true;
             }
 
-            isdelay2 = 1f;
+            isdelay2 = 2f;
 
             ad2end();
         }

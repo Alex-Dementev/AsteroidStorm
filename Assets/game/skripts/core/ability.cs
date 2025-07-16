@@ -5,7 +5,6 @@ using RDG;
 
 public class DoubleTapHandler : MonoBehaviour
 {
-    // Время между нажатиями для определения двойного нажатия
     public float doubleTapThreshold = 0.5f;
     private float speed;
     private float delay;
@@ -24,39 +23,39 @@ public class DoubleTapHandler : MonoBehaviour
     public int abilityt;
 
     private float lastTapTime = 0;
+    private bool isWaitingForSecondTap = false;
 
     void Update()
     {
-
         otkat -= Time.deltaTime;
         s.value = otkat;
         isdelay1 -= Time.deltaTime;
 
-        if(isdelay1 >= 0)
+        if (isdelay1 >= 0)
         {
             ps.Stop();
         }
 
-        if(b == true)
+        if (b == true)
         {
-            if(bb == true)
+            if (bb == true)
             {
-            if(delay <= 0)
-            {
-            r.zSpeed = speed;
-            r.zSpeed += 1;
-            bb = false;
-            }
+                if (delay <= 0)
+                {
+                    r.zSpeed = speed;
+                    r.zSpeed += 1;
+                    bb = false;
+                }
             }
 
-            if(delay <= -0.15)
+            if (delay <= -0.15)
             {
                 ps.Stop();
             }
 
-            if(delay <= -0.4)
+            if (delay <= -0.4)
             {
-            b = false;
+                b = false;
             }
         }
 
@@ -64,29 +63,31 @@ public class DoubleTapHandler : MonoBehaviour
 
         bool isTapDetected = false;
 
-        // Проверяем нажатие на экран (для мобильных устройств)
+        // Мобильный ввод
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             isTapDetected = true;
         }
 
-        // Проверяем нажатие левой кнопки мыши (для ПК)
+        // Мышка
         if (Input.GetMouseButtonDown(0))
         {
             isTapDetected = true;
         }
 
-        // Обрабатываем двойное нажатие
+        // Обработка касания
         if (isTapDetected)
         {
             float currentTime = Time.time;
 
-            // Проверяем, прошло ли меньше заданного времени между нажатиями
-            if (currentTime - lastTapTime <= doubleTapThreshold)
+            if (isWaitingForSecondTap)
             {
-                if(otkat <= 0)
+                // Проверка на двойное нажатие
+                if (currentTime - lastTapTime <= doubleTapThreshold)
                 {
-                    if(e.energyint >= 20)
+                    isWaitingForSecondTap = false;
+
+                    if (otkat <= 0 && e.energyint >= 20)
                     {
                         b = true;
                         e.energyint -= 20;
@@ -97,28 +98,44 @@ public class DoubleTapHandler : MonoBehaviour
                         delay = isdelay;
                         otkat = isotkat;
                         bb = true;
+
                         if (PlayerPrefs.GetInt("vibration") == 0)
                         {
                             Vibration.Vibrate(50, 60);
-                        }  
+                        }
+
                         ps.Play();
                         AS.Play();
                     }
                 }
+                else
+                {
+                    // Слишком долго — считаем это новым первым тапом
+                    lastTapTime = currentTime;
+                }
             }
+            else
+            {
+                // Первый тап — запоминаем
+                isWaitingForSecondTap = true;
+                lastTapTime = currentTime;
+            }
+        }
 
-            // Обновляем время последнего нажатия
-            lastTapTime = currentTime;
+        // Если прошло слишком много времени — сбрасываем ожидание второго тапа
+        if (isWaitingForSecondTap && Time.time - lastTapTime > doubleTapThreshold)
+        {
+            isWaitingForSecondTap = false;
         }
     }
 
     private void OnCollisionEnter(Collision Collision)
     {
-        if(Collision.gameObject.CompareTag("br"))
+        if (Collision.gameObject.CompareTag("br"))
         {
             otkat -= 20;
         }
-        if(Collision.gameObject.CompareTag("bb"))
+        if (Collision.gameObject.CompareTag("bb"))
         {
             e.energyint += 25;
         }

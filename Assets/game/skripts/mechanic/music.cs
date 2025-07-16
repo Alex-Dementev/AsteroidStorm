@@ -31,7 +31,6 @@ public class MusicManager : MonoBehaviour
             ad1.enabled = true;
             ad1_2.enabled = true;
 
-            // Получаем, какой трек сейчас должен быть (0 — ad1, 1 — ad1_2)
             int next = PlayerPrefs.GetInt("musicint", 0);
 
             if (next == 0 && !ad1.isPlaying && !ad1_2.isPlaying)
@@ -45,10 +44,34 @@ public class MusicManager : MonoBehaviour
                 PlayerPrefs.SetInt("musicint", 0);
             }
         }
-        else // Отключение музыки
+        else
         {
             ad1.enabled = false;
             ad1_2.enabled = false;
+        }
+    }
+
+    // 👇 Эту функцию можно вызвать с кнопки
+    public void NextMusicManual()
+    {
+        if (PlayerPrefs.GetInt("music") == 1) return;
+
+        int next = PlayerPrefs.GetInt("musicint", 0);
+
+        // Останавливаем текущую
+        ad1.Stop();
+        ad1_2.Stop();
+
+        // Переключаем и включаем
+        if (next == 0)
+        {
+            ad1.Play();
+            PlayerPrefs.SetInt("musicint", 1);
+        }
+        else
+        {
+            ad1_2.Play();
+            PlayerPrefs.SetInt("musicint", 0);
         }
     }
 }

@@ -231,26 +231,6 @@ public class ScoreCounter : MonoBehaviour
             }
         }
 
-        if (spawn >= 3500)
-        {
-            o.spawnDistance = -200;
-            oar.spawnDistance = -350;
-        }
-        if (spawn >= 7000)
-        {
-            o.spawnDistance = -300;
-            oar.spawnDistance = -550;
-        }
-        if (spawn >= 10000)
-        {
-            o.spawnDistance = -420;
-            oar.spawnDistance = -700;
-        }
-        if (spawn >= 6000)
-        {
-            ss.SwitchToNight();
-        }
-
         if (score >= s.maxScore)
         {
             s.maxScore = ((int)(player.position.z / 3));
@@ -298,17 +278,29 @@ public class ScoreCounter : MonoBehaviour
 
     void UpdateObstacleCount()
     {
-        if (spawn < 550)
+        if (spawn < 300)
         {
             spawner.SetObstacleCount(1);
         }
-        else if (spawn < 750)
+        else if (spawn < 400)
         {
             spawner.SetObstacleCount(2);
         }
-        else
+        else if (spawn < 550)
         {
             spawner.SetObstacleCount(3);
+        }
+        else if (spawn < 720)
+        {
+            spawner.SetObstacleCount(2);
+        }
+        else if (spawn < 800)
+        {
+            spawner.SetObstacleCount(1);
+        }
+        else
+        {
+            spawner.SetObstacleCount(2);
         }
     }
 

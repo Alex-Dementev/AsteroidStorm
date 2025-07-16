@@ -11,7 +11,7 @@ public class updated : MonoBehaviour
     public Text text4;
     public int coins;
     public float el;
-    public int allE = 200;
+    public int allE = 250;
     public int allO = 200;
     public float energy = 0.25f;
     public float otkat = 30f;
@@ -27,9 +27,9 @@ public class updated : MonoBehaviour
         if(coins >= allE)
         {
             coins -= allE;
-            allE += 5;
+            allE += 10;
             energy = PlayerPrefs.GetFloat("energy", 0f);
-            energy = energy + 0.015f;
+            energy = energy + 0.013f;
             PlayerPrefs.SetFloat("energy", energy);
             lvlE++;
             PlayerPrefs.SetInt("coins", coins);
@@ -70,7 +70,7 @@ public class updated : MonoBehaviour
     {
         energy = PlayerPrefs.GetFloat("energy", 0);
         lvlE = PlayerPrefs.GetInt("lvlE", 0);
-        allE = PlayerPrefs.GetInt("all", 200);
+        allE = PlayerPrefs.GetInt("allE", 250);
         otkat = PlayerPrefs.GetFloat("isotkat", 30);
         lvlO = PlayerPrefs.GetInt("lvlO", 0);
         allO = PlayerPrefs.GetInt("allO", 200);
