@@ -12072,7 +12072,7 @@ GameObject:
   - component: {fileID: 590422740}
   - component: {fileID: 590422739}
   m_Layer: 5
-  m_Name: Image
+  m_Name: black screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28143,11 +28143,11 @@ RectTransform:
   - {fileID: 1866022535}
   - {fileID: 1754099356}
   - {fileID: 433290490}
-  - {fileID: 1620318952}
+  - {fileID: 742726040}
   - {fileID: 1034468413}
   - {fileID: 350642952}
-  - {fileID: 742726040}
   - {fileID: 1584350827}
+  - {fileID: 1620318952}
   - {fileID: 590422738}
   m_Father: {fileID: 279589487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -38366,7 +38366,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1283901365}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 742726045}
+        m_TargetAssemblyTypeName: ChangeMusicButton, Assembly-CSharp
+        m_MethodName: OnClickChangeMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &1283901364
 Animator:
   serializedVersion: 5

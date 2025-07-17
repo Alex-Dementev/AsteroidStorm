@@ -137,8 +137,8 @@ public class menu : MonoBehaviour
 
         Sm.value = musics;
         Sa.value = audios;
-        ad1.volume = audios;
-        ad2.volume = audios;
+        ad1.volume = audios / 2;
+        ad2.volume = audios / 2;
         ad3.volume = audios / 2.5f;
 
 
