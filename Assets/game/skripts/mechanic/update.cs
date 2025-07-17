@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class updated : MonoBehaviour
 {
+    public AudioSource ad;
+    public AudioSource ad2;
     public Text text;
     public Text text2;
     public Text text3;
@@ -26,6 +28,7 @@ public class updated : MonoBehaviour
         {
         if(coins >= allE)
         {
+            ad.Play();
             coins -= allE;
             allE += 10;
             energy = PlayerPrefs.GetFloat("energy", 0f);
@@ -35,6 +38,10 @@ public class updated : MonoBehaviour
             PlayerPrefs.SetInt("coins", coins);
             PlayerPrefs.SetInt("lvlE", lvlE);
             PlayerPrefs.SetInt("allE", allE);
+        }
+        else
+        {
+            ad2.Play();
         }
 
         isdelay = 0.5f;
@@ -49,6 +56,7 @@ public class updated : MonoBehaviour
             {
                 if (coins >= allO)
                 {
+                    ad.Play();
                     coins -= allO;
                     allO += 5;
                     otkat = PlayerPrefs.GetFloat("isotkat", 30f);
@@ -59,10 +67,18 @@ public class updated : MonoBehaviour
                     PlayerPrefs.SetInt("lvlO", lvlO);
                     PlayerPrefs.SetInt("allO", allO);
                 }
+                else
+                {
+                    ad2.Play();
+                }
 
                 isdelay = 0.5f;
 
             }
+        }
+        else
+        {
+            ad2.Play();
         }
     }
         

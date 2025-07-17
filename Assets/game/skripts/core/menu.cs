@@ -25,6 +25,8 @@ public class menu : MonoBehaviour
     public AudioSource ad1;
     public AudioSource ad2;
     public AudioSource ad3;
+    public AudioSource ad4;
+    public AudioSource ad5;
     public float isdelay;
     private float isdelay1 = 1.5f;
     private float isdelay2 = 2f;
@@ -140,6 +142,8 @@ public class menu : MonoBehaviour
         ad1.volume = audios / 2;
         ad2.volume = audios / 2;
         ad3.volume = audios / 2.5f;
+        ad4.volume = audios / 1.2f;
+        ad5.volume = audios / 1.2f;
 
 
         if (is11 == 0)
