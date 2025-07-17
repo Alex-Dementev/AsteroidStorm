@@ -9,4 +9,8 @@ public class bs2 : MonoBehaviour
     {
         SceneManager.LoadScene("cutsceneG1_2");
     }
+    public void nextScene()
+    {
+        SceneManager.LoadScene("main");
+    }
 }

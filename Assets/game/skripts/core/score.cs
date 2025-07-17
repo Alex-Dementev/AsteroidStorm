@@ -121,11 +121,11 @@ public class ScoreCounter : MonoBehaviour
         ad1.volume = audios / 5;
         ad2.volume = audios;
         ad3.volume = audios;
-        ad4.volume = audios / 1.5f;
+        ad4.volume = audios / 2.5f;
         ad5.volume = audios;
         ad6.volume = audios / 3;
         ad7.volume = audios / 3;
-        ad8.volume = audios / 17;
+        ad8.volume = audios / 14;
         ad9.volume = audios;
 
 

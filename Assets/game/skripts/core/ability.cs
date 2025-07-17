@@ -5,6 +5,9 @@ using RDG;
 
 public class DoubleTapHandler : MonoBehaviour
 {
+    private bool isAbilityReady = false;
+    public Animator abilityIconAnimator;
+
     public float doubleTapThreshold = 0.5f;
     private float speed;
     private float delay;
@@ -127,6 +130,23 @@ public class DoubleTapHandler : MonoBehaviour
         {
             isWaitingForSecondTap = false;
         }
+
+    bool nowReady = otkat <= 0 && e.energyint >= 20;
+
+if (nowReady != isAbilityReady)
+{
+    isAbilityReady = nowReady;
+
+    if (isAbilityReady)
+    {
+        abilityIconAnimator.Play("anim 28 0");
+    }
+    else
+    {
+        abilityIconAnimator.Play("anim 28");
+    }
+}
+
     }
 
     private void OnCollisionEnter(Collision Collision)
