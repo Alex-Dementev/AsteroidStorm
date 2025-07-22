@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class next : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Animator anim;
 
-    // Update is called once per frame
-    void Update()
+    public void nextscene()
     {
-        
+        SceneManager.LoadScene("logos");
+    }
+    public void nextscenes()
+    {
+        SceneManager.LoadScene("main");
+    }
+    public void nextscenep()
+    {
+        anim.Play("nextp");
+    }
+    public void nextscenesed()
+    {
+        anim.Play("nexts");
     }
 }
