@@ -19,9 +19,11 @@ public class ScoreCounter : MonoBehaviour
     public Animator anim1;
 
     public GameObject image;
+    public int Vp;
     public Text scoreText;
     public sceneman s;
     public ParticleSystem ps;
+    public ParticleSystem ps1;
     public int score;
     public AudioSource ad1;
     public AudioSource ad2;
@@ -76,7 +78,8 @@ public class ScoreCounter : MonoBehaviour
         "Наблюдаю Луну на горизонте",
         "Супер облепиха",
         "военный мёд",
-        "грусный мёд"
+        "грусный мёд",
+        "Луна впереди"
     };
 
 
@@ -93,6 +96,13 @@ public class ScoreCounter : MonoBehaviour
 
         ach1 = PlayerPrefs.GetInt("1.5kscore", 0);
         ach2 = PlayerPrefs.GetInt("450score", 0);
+
+        Vp = PlayerPrefs.GetInt("maxParticles", 31);
+        var main = ps1.main;
+        main.maxParticles = Vp;
+        ps1.Clear();
+        ps1.Play();
+
 
         anim.Play("anim6");
 
@@ -126,7 +136,7 @@ public class ScoreCounter : MonoBehaviour
         ad6.volume = audios / 3;
         ad7.volume = audios / 3;
         ad8.volume = audios / 14;
-        ad9.volume = audios * 1.2f;
+        ad9.volume = audios / 1.25f;
 
 
         if ((int)(player.position.z / 3) >= 890 && !isend2)
@@ -290,13 +300,13 @@ public class ScoreCounter : MonoBehaviour
         {
             spawner.SetObstacleCount(3);
         }
-        else if (spawn < 720)
+        else if (spawn < 650)
         {
-            spawner.SetObstacleCount(2);
+            spawner.SetObstacleCount(4);
         }
         else if (spawn < 800)
         {
-            spawner.SetObstacleCount(1);
+            spawner.SetObstacleCount(3);
         }
         else
         {

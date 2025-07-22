@@ -22,39 +22,41 @@ public class CameraFollowAndShake : MonoBehaviour
     void Start()
     {
         // Выбираем активного игрока (скин)
-        if (s1 && s1.activeInHierarchy) target = s1.transform;
-        else if (s2 && s2.activeInHierarchy) target = s2.transform;
-        else if (s3 && s3.activeInHierarchy) target = s3.transform;
-        else if (s4 && s4.activeInHierarchy) target = s4.transform;
+        UpdateActiveTarget();
 
         if (target != null)
         {
             lastTargetPosition = target.position;
         }
 
-        TriggerShake(99999999, 0.010f);
+        TriggerShake(99999999, 0.010f); // постоянная легкая вибрация
     }
 
     void LateUpdate()
     {
-        // Повторно проверяем активного игрока
-        if (s1 && s1.activeInHierarchy) target = s1.transform;
-        else if (s2 && s2.activeInHierarchy) target = s2.transform;
-        else if (s3 && s3.activeInHierarchy) target = s3.transform;
-        else if (s4 && s4.activeInHierarchy) target = s4.transform;
+        UpdateActiveTarget();
 
         if (target != null)
         {
             float targetSpeed = Mathf.Abs(target.position.z - lastTargetPosition.z) / Time.deltaTime;
             dynamicSmoothSpeed = baseSmoothSpeed + targetSpeed * speedMultiplier;
 
-            Vector3 desiredPosition = new Vector3(transform.position.x, transform.position.y, target.position.z) + offset;
+            // Камера теперь не следует за Y
+            Vector3 desiredPosition = new Vector3(transform.position.x, offset.y, target.position.z) + offset;
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, dynamicSmoothSpeed);
 
             transform.position = smoothedPosition + shakeOffset;
 
             lastTargetPosition = target.position;
         }
+    }
+
+    private void UpdateActiveTarget()
+    {
+        if (s1 && s1.activeInHierarchy) target = s1.transform;
+        else if (s2 && s2.activeInHierarchy) target = s2.transform;
+        else if (s3 && s3.activeInHierarchy) target = s3.transform;
+        else if (s4 && s4.activeInHierarchy) target = s4.transform;
     }
 
     public IEnumerator Shake(float duration, float magnitude)

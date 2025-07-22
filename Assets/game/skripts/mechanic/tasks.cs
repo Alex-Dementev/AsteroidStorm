@@ -39,41 +39,45 @@ public class tasks : MonoBehaviour
 {
     if (istask == 0)
     {
-        if (ability >= 10)
-        {
-            alltask++;
-            PlayerPrefs.SetInt("alltask", alltask);
-            istask = 1;
-            PlayerPrefs.SetInt("istask", 1);
+            if (ability >= 10)
+            {
+                alltask++;
+                PlayerPrefs.SetInt("alltask", alltask);
+                istask = 1;
+                PlayerPrefs.SetInt("istask", 1);
 
-            PlayerPrefs.SetInt("abilityt", 0);
-            PlayerPrefs.SetFloat("tasktimet", 0);
+                PlayerPrefs.SetInt("abilityt", 0);
+                PlayerPrefs.SetFloat("tasktimet", 0);
 
-            s.maxValue = 900;
-            coins = PlayerPrefs.GetInt("coins", 0);
-            coins += 700;
-            PlayerPrefs.SetInt("coins", coins);
-            allcoins = PlayerPrefs.GetInt("allcoins", 0);
-            allcoins += 700;
-            PlayerPrefs.SetInt("allcoins", allcoins);
+                s.maxValue = 900;
+                coins = PlayerPrefs.GetInt("coins", 0);
+                coins += 700;
+                PlayerPrefs.SetInt("coins", coins);
+                allcoins = PlayerPrefs.GetInt("allcoins", 0);
+                allcoins += 700;
+                PlayerPrefs.SetInt("allcoins", allcoins);
+
+                PlayerPrefs.SetInt("is10", 0);
         }
     }
     else if (istask == 1)
     {
-        if (time >= 600)
-        {
-            alltask++;
-            PlayerPrefs.SetInt("alltask", alltask);
-            istask = 0;
-            PlayerPrefs.SetInt("istask", 0);
+            if (time >= 600)
+            {
+                alltask++;
+                PlayerPrefs.SetInt("alltask", alltask);
+                istask = 0;
+                PlayerPrefs.SetInt("istask", 0);
 
-            PlayerPrefs.SetFloat("tasktimet", 0);
-            PlayerPrefs.SetInt("abilityt", 0);
+                PlayerPrefs.SetFloat("tasktimet", 0);
+                PlayerPrefs.SetInt("abilityt", 0);
 
-            s.maxValue = 10;
-            coins = PlayerPrefs.GetInt("coins", 0);
-            coins += 700;
-            PlayerPrefs.SetInt("coins", coins);
+                s.maxValue = 10;
+                coins = PlayerPrefs.GetInt("coins", 0);
+                coins += 700;
+                PlayerPrefs.SetInt("coins", coins);
+
+                PlayerPrefs.SetInt("is600", 0);
         }
     }
 }

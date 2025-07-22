@@ -57,6 +57,7 @@ public class menu : MonoBehaviour
     public Animator anim16;
     public Animator anim17;
     public Animator anim18;
+    public Animator anim19;
 
     public ParticleSystem ps;
     public ParticleSystem ps1;
@@ -67,7 +68,6 @@ public class menu : MonoBehaviour
     public ParticleSystem ps6;
     public ParticleSystem ps7;
     public ParticleSystem ps8;
-    public ParticleSystem ps10;
     public ParticleSystem ps11;
     public ParticleSystem ps12;
     public ParticleSystem ps13;
@@ -91,6 +91,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps31;
     public ParticleSystem ps32;
     public ParticleSystem ps33;
+    public ParticleSystem ps34;
 
     public bool ison;
     public bool ison1;
@@ -115,9 +116,11 @@ public class menu : MonoBehaviour
     public int maxcoins;
 
     public float RR;
+    public int Vp;
     public Slider S;
     public Slider Sm;
     public Slider Sa;
+    public Slider Sp;
     public float musics;
     public float audios;
 
@@ -181,7 +184,6 @@ public class menu : MonoBehaviour
         ps6.Stop();
         ps7.Stop();
         ps8.Stop();
-        ps10.Stop();
         ps11.Stop();
         ps12.Stop();
         ps13.Stop();
@@ -205,9 +207,12 @@ public class menu : MonoBehaviour
         ps31.Stop();
         ps32.Stop();
         ps33.Stop();
+        ps34.Stop();
 
         RR = PlayerPrefs.GetFloat("R Rotate Speed", 100);
         S.value = RR;
+        Vp = PlayerPrefs.GetInt("maxParticles", 30);
+        Sp.value = Vp;
 
         anim5.Play("anim 2 0");
         anim6.Play("anim 18");
@@ -222,6 +227,7 @@ public class menu : MonoBehaviour
         anim16.Play("anim 24");
         anim17.Play("anim 26");
         anim18.Play("audio 0");
+        anim19.Play("anim30");
     }
 
 
@@ -246,6 +252,9 @@ public class menu : MonoBehaviour
         ad2.volume = audios;
         ad3.volume = audios / 18;
 
+
+        Vp = (int)Sp.value;
+        PlayerPrefs.SetInt("maxParticles", Vp);
 
 
         if (pref <= 0)
@@ -297,16 +306,6 @@ public class menu : MonoBehaviour
 
 
 
-        if (PlayerPrefs.GetInt("partic") == 0)
-        {
-            ison3 = true;
-            but3.GetComponent<Image>().color = new Color(255, 0, 0, 255);
-        }
-        else if(PlayerPrefs.GetInt("partic") == 1)
-        {
-            ison3 = false;
-            but3.GetComponent<Image>().color = new Color(255, 0, 255, 255);
-        }
         if (PlayerPrefs.GetInt("music") == 0)
         {
             ison = true;
@@ -379,7 +378,6 @@ public class menu : MonoBehaviour
         ps6.Stop();
         ps7.Stop();
         ps8.Stop();
-        ps10.Stop();
         ps11.Stop();
         ps12.Stop();
         ps13.Stop();
@@ -403,6 +401,7 @@ public class menu : MonoBehaviour
         ps31.Stop();
         ps32.Stop();
         ps33.Stop();
+        ps34.Stop();
 
         ad2.Play();
     }
@@ -422,13 +421,14 @@ public class menu : MonoBehaviour
         {
             is12 = 1;
             PlayerPrefs.SetInt("tis12", 1);
+            controller2.GetComponent<Image>().color = new Color(0, 255, 0, 255);
             coins = PlayerPrefs.GetInt("coins", 0);
             coins += 500;
             PlayerPrefs.SetInt("coins", coins);
             maxcoins = PlayerPrefs.GetInt("allcoins", 0);
             maxcoins += 500;
             PlayerPrefs.SetInt("allcoins", maxcoins);
-            controller2.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+            
         }
     }
 
@@ -485,10 +485,6 @@ public class menu : MonoBehaviour
     public void isps8()
     {
         ps8.Play();
-    }
-    public void isps10()
-    {
-        ps10.Play();
     }
     public void isps11()
     {
@@ -547,9 +543,12 @@ public class menu : MonoBehaviour
     {
         ps33.Play();
     }
+    public void isps22()
+    {
+        ps34.Play();
+    }
 
 
-    public void offpartic(){PlayerPrefs.SetInt("partic", ison3 ? 1 : 0);}
 
     public void offsound(){PlayerPrefs.SetInt("music", ison ? 1 : 0);}
 

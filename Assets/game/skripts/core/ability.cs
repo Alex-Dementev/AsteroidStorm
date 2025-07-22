@@ -7,6 +7,7 @@ public class DoubleTapHandler : MonoBehaviour
 {
     private bool isAbilityReady = false;
     public Animator abilityIconAnimator;
+    public completetasks c;
 
     public float doubleTapThreshold = 0.5f;
     private float speed;
@@ -34,10 +35,18 @@ public class DoubleTapHandler : MonoBehaviour
         s.value = otkat;
         isdelay1 -= Time.deltaTime;
 
-        if (isdelay1 >= 0)
+
+        if (abilityt >= 10 && PlayerPrefs.GetInt("is10", 0) == 0)
         {
-            ps.Stop();
+            PlayerPrefs.SetInt("is10", 1);
+            c.voidcompletetasks();
         }
+
+
+        if (isdelay1 >= 0)
+            {
+                ps.Stop();
+            }
 
         if (b == true)
         {
