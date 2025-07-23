@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class next : MonoBehaviour
 {
+    public AudioSource ad;
     public Animator anim;
 
     public void nextscene()
@@ -23,5 +24,9 @@ public class next : MonoBehaviour
     public void nextscenesed()
     {
         anim.Play("nexts");
+    }
+    public void sound()
+    {
+        ad.Play();
     }
 }

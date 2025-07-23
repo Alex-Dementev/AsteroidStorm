@@ -24,6 +24,7 @@ public class ScoreCounter : MonoBehaviour
     public sceneman s;
     public ParticleSystem ps;
     public ParticleSystem ps1;
+    public ParticleSystem ps2;
     public int score;
     public AudioSource ad1;
     public AudioSource ad2;
@@ -318,10 +319,15 @@ public class ScoreCounter : MonoBehaviour
     {
         ps.Play();
     }
+    public void startps2()
+    {
+        ps2.Play();
+    }
 
     public void stopps()
     {
         ps.Stop();
+        ps2.Stop();
     }
 
     public void isvibration()
