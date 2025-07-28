@@ -8,6 +8,9 @@ using System.Net.Mail;
 
 public class menu : MonoBehaviour
 {
+    private int one;
+    public bool Bbackstarted;
+    public float Dbackstarted;
     public Image but;
     public Image but1;
     public Image but2;
@@ -19,6 +22,8 @@ public class menu : MonoBehaviour
     public GameObject panel3;
     public GameObject panel4;
     public GameObject panel5;
+    public GameObject panel6;
+    public GameObject panel7;
     public GameObject achp1;
     public GameObject achp2;
     public GameObject image;
@@ -30,11 +35,13 @@ public class menu : MonoBehaviour
     public float isdelay;
     private float isdelay1 = 1.5f;
     private float isdelay2 = 2f;
+    private float isdelay5;
     public bool isanim1;
     public bool isanim2;
     public bool isanim3;
     public bool isanim4;
     public bool isanim5;
+    public bool isanim6;
     public RocketBehavior r;
     public RocketBehavior r2;
     [SerializeField]private int coins;
@@ -58,6 +65,8 @@ public class menu : MonoBehaviour
     public Animator anim17;
     public Animator anim18;
     public Animator anim19;
+    public Animator anim20;
+    public Animator anim21;
 
     public ParticleSystem ps;
     public ParticleSystem ps1;
@@ -123,6 +132,7 @@ public class menu : MonoBehaviour
     public Slider Sp;
     public float musics;
     public float audios;
+    public bool is6;
 
 
 
@@ -241,6 +251,8 @@ public class menu : MonoBehaviour
         shop -= Time.deltaTime;
         stat -= Time.deltaTime;
         task -= Time.deltaTime;
+        isdelay5 -= Time.deltaTime;
+        Dbackstarted -= Time.deltaTime;
 
 
 
@@ -298,10 +310,22 @@ public class menu : MonoBehaviour
             }
         }
         
+        if(Dbackstarted <= 0 && Bbackstarted)
+        {
+            panel7.SetActive(!panel7.activeSelf);
+            Bbackstarted = false;
+        }
+
         if(isdelay1 <= 0)
         {
             image.SetActive(!image.activeSelf);
             isdelay1 = 99999;
+        }
+
+        if(isdelay5 <= 0 && is6 == true)
+        {
+            is6 = false;
+            panel6.SetActive(!panel6.activeSelf);
         }
 
 
@@ -559,6 +583,25 @@ public class menu : MonoBehaviour
 
     public void started()
     {
+        if(isdelay2 <= 2)
+        {
+        panel7.SetActive(!panel7.activeSelf);
+        anim21.Play("anim 32");
+        isdelay2 = 3.4f;
+        }
+    }
+    public void backstarted()
+    {
+        if(isdelay2 <= 2)
+        {
+        anim21.Play("anim 32 1");
+        Dbackstarted = 0.8f;
+        Bbackstarted = true;
+        isdelay2 = 0.8f;
+        }
+    }
+    public void is1g()
+    {
         if (r.isdelayb == true)
         {
             isdelay = 1.33f;
@@ -576,6 +619,18 @@ public class menu : MonoBehaviour
             isdelay = 1.33f;
             isstart = true;
         }
+    }
+    public void is2g()
+    {
+        
+    }
+    public void is3g()
+    {
+        
+    }
+    public void is4g()
+    {
+
     }
 
     public void activatepanel1()
@@ -859,6 +914,10 @@ ad2end();
 
     public void activatepanel2()
     {
+        one++;
+        if(one >= 5)
+        activatepanel6();
+
         if (isdelay2 <= 0)
         {
             if (isanim2 == false)
@@ -867,6 +926,7 @@ ad2end();
                 anim2.Play("anim12 1");
                 isanim2 = true;
                 anim5.Play("2");
+                one = 0;
             }
             else
             {
@@ -874,6 +934,7 @@ ad2end();
                 isanim2 = false;
                 shop = 1.1f;
                 isshop = true;
+                one = 0;
             }
 
             isdelay2 = 2f;
@@ -934,5 +995,25 @@ ad2end();
 
             ad2end();
         }
+    }
+    public void activatepanel6()
+    {
+        one = 0;
+            if (isanim6 == false)
+            {
+                panel6.SetActive(!panel6.activeSelf);
+                anim20.Play("anim 45 1");
+                isanim6 = true;
+                isdelay2 = 2;
+            }
+            else if(isdelay2 <= 0)
+            {
+                anim20.Play("anim 45 0");
+                isanim6 = false;
+                isdelay5 = 1;
+                is6 = true;
+            }
+
+            ad2end();
     }
 }
