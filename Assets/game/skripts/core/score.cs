@@ -68,6 +68,14 @@ public class ScoreCounter : MonoBehaviour
     private float baseSpawnInterval = 1.3f;
     private float spawnVariance = 0.5f;
     private float audios = 0.5f;
+    
+    IEnumerator LoadParticlesWithDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ps1.Play();
+        Debug.Log("ps1 запущен!");
+    }
+
 
 
     private string[] phrases = new string[]
@@ -87,6 +95,7 @@ public class ScoreCounter : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(LoadParticlesWithDelay());
         stopps();
         isminus = 25;
 

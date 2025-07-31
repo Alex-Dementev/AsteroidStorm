@@ -7,6 +7,8 @@ public class updated : MonoBehaviour
 {
     public AudioSource ad;
     public AudioSource ad2;
+    public Image o;
+    public Image e;
     public Text text;
     public Text text2;
     public Text text3;
@@ -24,29 +26,32 @@ public class updated : MonoBehaviour
 
     public void isEnergy()
     {
-        if(isdelay <= 0)
+        if(energy <= 5)
         {
-        if(coins >= allE)
-        {
-            ad.Play();
-            coins -= allE;
-            allE += 10;
-            energy = PlayerPrefs.GetFloat("energy", 0f);
-            energy = energy + 0.013f;
-            PlayerPrefs.SetFloat("energy", energy);
-            lvlE++;
-            PlayerPrefs.SetInt("coins", coins);
-            PlayerPrefs.SetInt("lvlE", lvlE);
-            PlayerPrefs.SetInt("allE", allE);
+            if(isdelay <= 0)
+            {
+                if(coins >= allE)
+                {
+                    ad.Play();
+                    coins -= allE;
+                    allE += 10;
+                    energy = PlayerPrefs.GetFloat("energy", 0f);
+                    energy = energy + 0.013f;
+                    PlayerPrefs.SetFloat("energy", energy);
+                    lvlE++;
+                    PlayerPrefs.SetInt("coins", coins);
+                    PlayerPrefs.SetInt("lvlE", lvlE);
+                    PlayerPrefs.SetInt("allE", allE);
+                    isdelay = 0.5f;
+                    if(energy >= 5) e.color = Color.red;
+                }
+                else
+                {
+                    ad2.Play();
+                }
+            }
         }
-        else
-        {
-            ad2.Play();
-        }
-
-        isdelay = 0.5f;
-
-        }
+        else ad2.Play();
     }
     public void Otkat()
     {
@@ -66,14 +71,13 @@ public class updated : MonoBehaviour
                     PlayerPrefs.SetInt("coins", coins);
                     PlayerPrefs.SetInt("lvlO", lvlO);
                     PlayerPrefs.SetInt("allO", allO);
+                    isdelay = 0.5f;
+                    if(otkat <= 5) o.color = Color.red;
                 }
                 else
                 {
                     ad2.Play();
                 }
-
-                isdelay = 0.5f;
-
             }
         }
         else
@@ -90,6 +94,8 @@ public class updated : MonoBehaviour
         otkat = PlayerPrefs.GetFloat("isotkat", 30);
         lvlO = PlayerPrefs.GetInt("lvlO", 0);
         allO = PlayerPrefs.GetInt("allO", 200);
+        if(energy >= 5) e.color = Color.red;
+        if(otkat <= 5) o.color = Color.red;
     }
 
     void Update()
