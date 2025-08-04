@@ -68,7 +68,7 @@ public class ScoreCounter : MonoBehaviour
     private float baseSpawnInterval = 1.3f;
     private float spawnVariance = 0.5f;
     private float audios = 0.5f;
-    
+
     IEnumerator LoadParticlesWithDelay()
     {
         yield return new WaitForSeconds(0.1f);
@@ -181,7 +181,7 @@ public class ScoreCounter : MonoBehaviour
         if ((int)(player.position.z / 3) >= 750 && !is750)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Большое количество остеоидов: " + selected;
+            text.text = "Большое количество остеридов: " + selected;
             anim2.Play("anim 26 1");
             is750 = true;
             ad9.Play();

@@ -13,7 +13,7 @@ public class next : MonoBehaviour
     }
     public void nextscenes()
     {
-        SceneManager.LoadScene("main");
+        SceneManager.LoadScene("final glav 1");
     }
     public void nextscenep()
     {

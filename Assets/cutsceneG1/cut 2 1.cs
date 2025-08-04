@@ -26,7 +26,7 @@ public class cutsceneg2 : MonoBehaviour
 
     public void nextScene()
     {
-        SceneManager.LoadScene("main");
+        SceneManager.LoadScene("final glav 1");
     }
 
     public void humanoid()
@@ -43,7 +43,7 @@ public class cutsceneg2 : MonoBehaviour
     // Нарастание ad2 за 1 секунду (до текущей сохранённой громкости)
     public void FadeInAd2()
     {
-        StartCoroutine(FadeVolume(ad2, ad2.volume, currentVolume, 1.5f));
+        StartCoroutine(FadeVolume(ad2, ad2.volume, currentVolume / 14, 1.5f));
     }
 
     // Длинное затухание ad2 за 3 секунды
@@ -66,9 +66,5 @@ public class cutsceneg2 : MonoBehaviour
         source.volume = to;
 
         // Сохраняем новую громкость, если нужно
-        if (source == ad2)
-        {
-            PlayerPrefs.SetFloat("ad2_volume", to);
-        }
     }
 }

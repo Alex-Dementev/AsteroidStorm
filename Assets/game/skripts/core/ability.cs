@@ -52,7 +52,7 @@ public class DoubleTapHandler : MonoBehaviour
         {
             if (bb == true)
             {
-                if (delay <= 0)
+                if (delay <= -0.05)
                 {
                     r.zSpeed = speed;
                     r.zSpeed += 1;
@@ -60,12 +60,12 @@ public class DoubleTapHandler : MonoBehaviour
                 }
             }
 
-            if (delay <= -0.15)
+            if (delay <= -0.2)
             {
                 ps.Stop();
             }
 
-            if (delay <= -0.4)
+            if (delay <= -0.5)
             {
                 b = false;
             }
@@ -106,7 +106,7 @@ public class DoubleTapHandler : MonoBehaviour
                         abilityt++;
                         PlayerPrefs.SetInt("abilityt", abilityt);
                         speed = r.zSpeed;
-                        r.zSpeed = 650;
+                        r.zSpeed = 750;
                         delay = isdelay;
                         otkat = isotkat;
                         bb = true;
@@ -119,11 +119,6 @@ public class DoubleTapHandler : MonoBehaviour
                         ps.Play();
                         AS.Play();
                     }
-                }
-                else
-                {
-                    // Слишком долго — считаем это новым первым тапом
-                    lastTapTime = currentTime;
                 }
             }
             else
