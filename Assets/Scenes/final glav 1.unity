@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0, g: 0, b: 0, a: 0.7607843}
   m_FogMode: 2
   m_FogDensity: 0.05
@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 28995411}
   - component: {fileID: 28995410}
   - component: {fileID: 28995409}
+  - component: {fileID: 28995412}
   m_Layer: 5
   m_Name: score
   m_TagString: Untagged
@@ -471,6 +472,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28995407}
   m_CullTransparentMesh: 1
+--- !u!82 &28995412
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28995407}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1e950419774ca1148b6e1b7256a6c9a3, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &110001193
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +907,8 @@ MonoBehaviour:
   ad8: {fileID: 1154910856}
   ad9: {fileID: 1049145394}
   ad10: {fileID: 1592378834}
+  ad11: {fileID: 1350524496}
+  ad12: {fileID: 28995412}
   o: {fileID: 401635279}
   spawn: 0
   function: 0
@@ -831,6 +930,7 @@ MonoBehaviour:
   anim2: {fileID: 1813674733}
   is340: 0
   is550: 0
+  rocketfall: 0
 --- !u!1 &169053673
 GameObject:
   m_ObjectHideFlags: 0
@@ -6389,9 +6489,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
-          m_MethodName: isvibration1
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
+          m_MethodName: ad2in
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6401,9 +6501,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
-          m_MethodName: ad2in
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
+          m_MethodName: isvibration
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6417,8 +6517,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
           m_MethodName: ad3end
           m_Mode: 1
           m_Arguments:
@@ -18496,6 +18596,7 @@ GameObject:
   - component: {fileID: 1350524493}
   - component: {fileID: 1350524492}
   - component: {fileID: 1350524491}
+  - component: {fileID: 1350524496}
   m_Layer: 5
   m_Name: home
   m_TagString: Untagged
@@ -18724,6 +18825,102 @@ RectTransform:
   m_AnchoredPosition: {x: 82, y: -92}
   m_SizeDelta: {x: 89.3, y: 89.3}
   m_Pivot: {x: 0.50000006, y: 0.5}
+--- !u!82 &1350524496
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350524489}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 15ca8b43378d82742ae8555dbdbb5f2b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1418224552
 GameObject:
   m_ObjectHideFlags: 0
@@ -40827,9 +41024,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
-          m_MethodName: isvibration1
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
+          m_MethodName: ad2in
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -40839,9 +41036,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
-          m_MethodName: ad2in
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
+          m_MethodName: isvibration
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -40855,8 +41052,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
           m_MethodName: ad3end
           m_Mode: 1
           m_Arguments:

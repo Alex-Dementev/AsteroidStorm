@@ -36,6 +36,8 @@ public class ScoreCounterFinal : MonoBehaviour
     public AudioSource ad8;
     public AudioSource ad9;
     public AudioSource ad10;
+    public AudioSource ad11;
+    public AudioSource ad12;
     public ObstacleSpawner o;
     public int spawn;
     public float function;
@@ -59,7 +61,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public Animator anim2;
     public bool is340;
     public bool is550;
-    private float currentVolume;
+    public bool rocketfall;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
@@ -77,15 +79,14 @@ public class ScoreCounterFinal : MonoBehaviour
 
     private string[] phrases = new string[]
     {
-        "Чтото не так",
+        "Что-то не так",
         "ОПАСНОСТЬ",
         "Сканирование",
-        "Б*я скоро Р*ЗЪЁБ"
+        "Сегодня без цензуры"
     };
 
     void Start()
     {
-        currentVolume = PlayerPrefs.GetFloat("audios", 0.5f);
         RenderSettings.fog = false;
         StartCoroutine(LoadParticlesWithDelay());
         stopps();
@@ -101,6 +102,9 @@ public class ScoreCounterFinal : MonoBehaviour
         main.maxParticles = Vp;
         ps1.Clear();
         ps1.Play();
+
+        if(PlayerPrefs.GetInt("fall") == 1)
+        rocketfall = true;
 
         anim.Play("anim6");
 
@@ -134,6 +138,9 @@ public class ScoreCounterFinal : MonoBehaviour
         ad7.volume = audios / 3;
         ad8.volume = audios / 14;
         ad9.volume = audios / 1.25f;
+        ad10.volume = audios / 4f;
+        ad11.volume = audios;
+        ad12.volume = audios;
 
         if ((int)(player.position.z / 3) >= 340 && !is340)
         {
@@ -149,7 +156,6 @@ public class ScoreCounterFinal : MonoBehaviour
             anim2.Play("anim 26 1");
             is550 = true;
             ad9.Play();
-            StartCoroutine(FadeVolume(ad10, ad10.volume, 0f, 2f));
             if (!fogCoroutineStarted) StartCoroutine(EnableFogWithDelay());
         }
 
@@ -213,6 +219,8 @@ public class ScoreCounterFinal : MonoBehaviour
             ad8.enabled = true;
             ad9.enabled = true;
             ad10.enabled = true;
+            ad11.enabled = true;
+            ad12.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -226,6 +234,8 @@ public class ScoreCounterFinal : MonoBehaviour
             ad8.enabled = false;
             ad9.enabled = false;
             ad10.enabled = false;
+            ad11.enabled = false;
+            ad12.enabled = false;
         }
     }
 
@@ -238,7 +248,9 @@ public class ScoreCounterFinal : MonoBehaviour
         float duration = 3f;
         float elapsed = 0f;
         RenderSettings.fogDensity = 0f;
+
         ad10.Play();
+        StartCoroutine(FadeVolume(ad10, ad10.volume, 0f, 2f));
 
         while (elapsed < duration)
         {
@@ -247,6 +259,7 @@ public class ScoreCounterFinal : MonoBehaviour
             yield return null;
         }
     }
+
     private IEnumerator FadeVolume(AudioSource source, float from, float to, float duration)
     {
         float time = 0f;
@@ -310,11 +323,17 @@ public class ScoreCounterFinal : MonoBehaviour
 
     public void ad2in()
     {
+        if(!rocketfall)
         ad2.Play();
+        else
+        ad11.Play();
     }
 
     public void ad3end()
     {
+        if(!rocketfall)
         ad3.Play();
+        else
+        ad12.Play();
     }
 }

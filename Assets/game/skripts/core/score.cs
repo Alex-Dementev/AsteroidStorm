@@ -35,6 +35,8 @@ public class ScoreCounter : MonoBehaviour
     public AudioSource ad7;
     public AudioSource ad8;
     public AudioSource ad9;
+    public AudioSource ad10;
+    public AudioSource ad11;
     public ObstacleSpawner o;
     public ObstaclearSpawner oar;
     public int spawn;
@@ -68,6 +70,7 @@ public class ScoreCounter : MonoBehaviour
     private float baseSpawnInterval = 1.3f;
     private float spawnVariance = 0.5f;
     private float audios = 0.5f;
+    public bool rocketfall;
 
     IEnumerator LoadParticlesWithDelay()
     {
@@ -113,6 +116,9 @@ public class ScoreCounter : MonoBehaviour
         ps1.Clear();
         ps1.Play();
 
+        if(PlayerPrefs.GetInt("fall") == 1)
+        rocketfall = true;
+
 
         anim.Play("anim6");
 
@@ -147,6 +153,8 @@ public class ScoreCounter : MonoBehaviour
         ad7.volume = audios / 3;
         ad8.volume = audios / 14;
         ad9.volume = audios / 1.25f;
+        ad10.volume = audios;
+        ad11.volume = audios;
 
 
         if ((int)(player.position.z / 3) >= 890 && !isend2)
@@ -358,11 +366,17 @@ public class ScoreCounter : MonoBehaviour
 
     public void ad2in()
     {
+        if(!rocketfall)
         ad2.Play();
+        else
+        ad10.Play();
     }
 
     public void ad3end()
     {
+        if(!rocketfall)
         ad3.Play();
+        else
+        ad11.Play();
     }
 }

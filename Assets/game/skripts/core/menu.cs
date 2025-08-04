@@ -9,6 +9,9 @@ using System.Net.Mail;
 public class menu : MonoBehaviour
 {
     private int one;
+    public int prefs;
+    public bool isprolog;
+    public bool rocketfall;
     public bool Bbackstarted;
     public float Dbackstarted;
     public Image but;
@@ -17,6 +20,7 @@ public class menu : MonoBehaviour
     public Image but3;
     public Image controller;
     public Image controller2;
+    public GameObject butfall;
     public GameObject panel1;
     public GameObject panel2;
     public GameObject panel3;
@@ -32,9 +36,11 @@ public class menu : MonoBehaviour
     public AudioSource ad3;
     public AudioSource ad4;
     public AudioSource ad5;
+    public AudioSource ad6;
+    public AudioSource ad7;
     public float isdelay;
     private float isdelay1 = 1.5f;
-    private float isdelay2 = 2f;
+    private float isdelay2 = 1f;
     private float isdelay5;
     public bool isanim1;
     public bool isanim2;
@@ -133,6 +139,13 @@ public class menu : MonoBehaviour
     public float musics;
     public float audios;
     public bool is6;
+    public Text logo;
+    public Text t1;
+    public Text t2;
+    public Text t3;
+    public Text t4;
+    public bool isfall;
+    public GameObject m;
 
 
 
@@ -140,6 +153,7 @@ public class menu : MonoBehaviour
 
     void Start()
     {   
+        PlayerPrefs.SetInt("prolog", 1);
         PlayerPrefs.GetFloat("isstartmusic", 1f);
         PlayerPrefs.SetInt("isstopmusictocutscene", 0);
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
@@ -150,6 +164,10 @@ public class menu : MonoBehaviour
         is12 = PlayerPrefs.GetInt("tis12", 0);
 
 
+        if(PlayerPrefs.GetInt("fall") == 1)
+        rocketfall = true;
+
+
         Sm.value = musics;
         Sa.value = audios;
         ad1.volume = audios / 2;
@@ -157,6 +175,8 @@ public class menu : MonoBehaviour
         ad3.volume = audios / 2.5f;
         ad4.volume = audios / 1.2f;
         ad5.volume = audios / 1.2f;
+        ad6.volume = audios;
+        ad7.volume = audios;
 
 
         if (is11 == 0)
@@ -219,8 +239,17 @@ public class menu : MonoBehaviour
         ps33.Stop();
         ps34.Stop();
 
+        if(!rocketfall)
+        {
         RR = PlayerPrefs.GetFloat("R Rotate Speed", 100);
         S.value = RR;
+        }
+        else
+        {
+            RR = 1000;
+            PlayerPrefs.SetFloat("R Rotate Speed", 1000);
+        }
+
         Vp = PlayerPrefs.GetInt("maxParticles", 30);
         Sp.value = Vp;
 
@@ -263,6 +292,22 @@ public class menu : MonoBehaviour
         ad1.volume = audios;
         ad2.volume = audios;
         ad3.volume = audios / 18;
+        ad4.volume = audios;
+        ad5.volume = audios;
+        ad6.volume = audios;
+        ad7.volume = audios;
+
+        if(rocketfall && !isfall)
+        {
+            isfall = true;
+            logo.text = "ШОК Контент!";
+            t1.text = "Чёрный рынок";
+            t2.text = "Список твоих понтов";
+            t3.text = "График страданий";
+            t4.text = "Сделай или забудь";
+            butfall.SetActive(true);
+            PlayerPrefs.SetInt("fall", 1);
+        }
 
 
         Vp = (int)Sp.value;
@@ -377,18 +422,34 @@ public class menu : MonoBehaviour
                 isstart = false;
                 SceneManager.LoadScene("scenestart");
             }
+            if(isprolog == true)
+            {
+                isprolog = false;
+                SceneManager.LoadScene("scenetoproblem");
+            }
         }
 
-        Debug.Log(RR);
+
+        if(!rocketfall)
+        {
         RR = S.value;
         PlayerPrefs.SetFloat("R Rotate Speed", RR);
+        }
+        else
+        {
+            RR = 1000;
+            PlayerPrefs.SetFloat("R Rotate Speed", 1000);
+        }
     }
 
 
 
     public void ad1in()
     {
+        if(!rocketfall)
         ad1.Play();
+        else
+        ad6.Play();
     }
 
     public void ad2end()
@@ -427,7 +488,24 @@ public class menu : MonoBehaviour
         ps33.Stop();
         ps34.Stop();
 
+        if(!rocketfall)
         ad2.Play();
+        else
+        ad7.Play();
+
+    }
+
+    public void isclocefall()
+    {
+        rocketfall = false;
+        isfall = false;
+        logo.text = "Астероидный Шторм";
+        butfall.SetActive(false);
+        PlayerPrefs.SetInt("fall", 0);
+        t1.text = "Магазин";
+        t2.text = "Достижения";
+        t3.text = "Статистика";
+        t4.text = "Задания";
     }
 
 
@@ -573,6 +651,17 @@ public class menu : MonoBehaviour
     }
 
 
+    public void ViewProlog()
+    {
+        m.SetActive(false);
+        isdelay = 1.33f;
+        isprolog = true;
+        image.SetActive(!image.activeSelf);
+        anim.Play("anim9 0");
+        PlayerPrefs.SetInt("prolog", 0);
+    }
+
+
 
     public void offsound(){PlayerPrefs.SetInt("music", ison ? 1 : 0);}
 
@@ -635,6 +724,10 @@ public class menu : MonoBehaviour
 
     public void activatepanel1()
     {
+        prefs++;
+        if(prefs >= 4 && rocketfall == false)
+        rocketfall = true;
+
         if(isdelay2 <= 0)
         {
             if (isanim1 == false)
@@ -643,6 +736,7 @@ public class menu : MonoBehaviour
                 anim1.Play("anim13 0");
                 anim7.Play("anim 1 0");
                 isanim1 = true;
+                prefs = 0;
             }
             else
             {
@@ -650,9 +744,10 @@ public class menu : MonoBehaviour
                 pref = 1.1f;
                 ispref = true;
                 isanim1 = false;
+                prefs = 0;
             }
 
-        isdelay2 = 1.5f;
+        isdelay2 = 1.3f;
         
         ad2end();
         }
@@ -679,7 +774,7 @@ public class menu : MonoBehaviour
                 isanim3 = false;
             }
 
-        isdelay2 = 2f;
+        isdelay2 = 1f;
         ad2end();
 
         }
@@ -719,7 +814,7 @@ public class menu : MonoBehaviour
                 isanim3 = false;
             }
             ad2end();
-            isdelay2 = 2f;
+            isdelay2 = 1f;
         }
     }
     public void activatepanel24()
@@ -756,7 +851,7 @@ public class menu : MonoBehaviour
                 isstat = true;
             }
             ad2end();
-            isdelay2 = 2f;
+            isdelay2 = 1f;
         }
     }
     public void activatepanel54()
@@ -794,7 +889,7 @@ public class menu : MonoBehaviour
             isstat = true;
         }
 ad2end();
-            isdelay2 = 2f;
+            isdelay2 = 1f;
         }
     }
     public void activatepanel34()
@@ -832,7 +927,7 @@ ad2end();
                 isstat = true;
             }
             ad2end();
-            isdelay2 = 2f;
+            isdelay2 = 1f;
         }
     }
     public void activatepanel25()
@@ -869,7 +964,7 @@ ad2end();
                 istask = true;
             }
             ad2end();
-            isdelay2 = 2f;
+            isdelay2 = 1f;
         }
     }
     public void activatepanel35()
@@ -907,7 +1002,7 @@ ad2end();
                 istask = true;
             }
             ad2end();
-            isdelay2 = 2f;
+            isdelay2 = 1f;
         }
     }
     
@@ -937,7 +1032,7 @@ ad2end();
                 one = 0;
             }
 
-            isdelay2 = 2f;
+            isdelay2 = 1f;
 
             ad2end();
         }
@@ -964,7 +1059,7 @@ ad2end();
                 isstat = true;
             }
 
-            isdelay2 = 2f;
+            isdelay2 = 1f;
 
             ad2end();
         }

@@ -7,13 +7,21 @@ public class next : MonoBehaviour
     public AudioSource ad;
     public Animator anim;
 
+
+    private void Start() 
+    {
+        if(PlayerPrefs.GetInt("prolog") == 1)
+        SceneManager.LoadScene("logos");
+    }
+
+
     public void nextscene()
     {
         SceneManager.LoadScene("logos");
     }
     public void nextscenes()
     {
-        SceneManager.LoadScene("final glav 1");
+        SceneManager.LoadScene("main");
     }
     public void nextscenep()
     {
