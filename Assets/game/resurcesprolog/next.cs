@@ -8,13 +8,6 @@ public class next : MonoBehaviour
     public Animator anim;
 
 
-    private void Start() 
-    {
-        if(PlayerPrefs.GetInt("prolog") == 1)
-        SceneManager.LoadScene("logos");
-    }
-
-
     public void nextscene()
     {
         SceneManager.LoadScene("logos");

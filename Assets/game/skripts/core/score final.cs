@@ -25,6 +25,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public ParticleSystem ps;
     public ParticleSystem ps1;
     public ParticleSystem ps2;
+    public ParticleSystem ps3;
     public int score;
     public AudioSource ad1;
     public AudioSource ad2;
@@ -52,13 +53,15 @@ public class ScoreCounterFinal : MonoBehaviour
     public Animator achanim1;
     public Animator achanim2;
     public Animator anim;
+    public Animator anim2;
     public bool isbtonext;
     public float isdelay3;
     public bool isend;
     public bool isend2;
     public float isdelay4 = 2f;
     public Text text;
-    public Animator anim2;
+    public Animator anim3;
+    public Animator anim4;
     public bool is340;
     public bool is550;
     public bool rocketfall;
@@ -87,6 +90,8 @@ public class ScoreCounterFinal : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("isfinal1g", 1);
+
         RenderSettings.fog = false;
         StartCoroutine(LoadParticlesWithDelay());
         stopps();
@@ -184,7 +189,7 @@ public class ScoreCounterFinal : MonoBehaviour
             }
         }
 
-        score = ((int)(player.position.z / 3));
+        score = (int)(player.position.z / 3) + 1000;
         scoreText.text = (score.ToString());
         spawn = ((int)(player.position.z) / 3);
 
@@ -240,25 +245,38 @@ public class ScoreCounterFinal : MonoBehaviour
     }
 
     IEnumerator EnableFogWithDelay()
+{
+    fogCoroutineStarted = true;
+
+    yield return new WaitForSeconds(7f);
+
+    RenderSettings.fog = true;
+    float duration = 3f;
+    float elapsed = 0f;
+    RenderSettings.fogDensity = 0f;
+    ps3.playbackSpeed = 45f;
+
+    ad10.Play();
+    StartCoroutine(FadeVolume(ad10, ad10.volume, 0f, 2f));
+
+    while (elapsed < duration)
     {
-        fogCoroutineStarted = true;
-        yield return new WaitForSeconds(7f);
-
-        RenderSettings.fog = true;
-        float duration = 3f;
-        float elapsed = 0f;
-        RenderSettings.fogDensity = 0f;
-
-        ad10.Play();
-        StartCoroutine(FadeVolume(ad10, ad10.volume, 0f, 2f));
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            RenderSettings.fogDensity = Mathf.Lerp(0f, 0.03f, elapsed / duration);
-            yield return null;
-        }
+        elapsed += Time.deltaTime;
+        RenderSettings.fogDensity = Mathf.Lerp(0f, 0.03f, elapsed / duration);
+        yield return null;
     }
+
+    yield return new WaitForSeconds(14f);
+
+    anim3.Play("smerch");
+    image.SetActive(true);
+    anim4.Play("blackscreen");
+
+    yield return new WaitForSeconds(12f);
+
+    SceneManager.LoadScene("final g1");
+}
+
 
     private IEnumerator FadeVolume(AudioSource source, float from, float to, float duration)
     {

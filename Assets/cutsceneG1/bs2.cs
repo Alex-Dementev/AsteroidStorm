@@ -9,6 +9,6 @@ public class bs2 : MonoBehaviour
     }
     public void nextScene()
     {
-        SceneManager.LoadScene("main");
+        SceneManager.LoadScene("final glav 1");
     }
 }

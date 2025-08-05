@@ -27,6 +27,7 @@ public class death : MonoBehaviour
     public AudioSource explosionSound1;
     public AudioSource explosionSound2;
 
+
     string[] deathQuotes = {
     "Ну вот и всё, капитан кефир.",
     "Покойся с фпс.",
@@ -273,9 +274,26 @@ public class death : MonoBehaviour
             }
             else if (b == false)
             {
+                if(PlayerPrefs.GetInt("yousurwive", 0) == 0)
+                {
                 losePanel.SetActive(true);
                 anim1.Play("anim11");
 
+                if(PlayerPrefs.GetInt("isfinal1g", 0) == 1)
+                {
+                    Debug.Log("ты во второй части");
+                    coins = PlayerPrefs.GetInt("coins");
+                    allcoins = PlayerPrefs.GetInt("allcoins");
+                    score = PlayerPrefs.GetInt("allscore");
+                    coins += ((int)(player.position.z / 7) + 400);
+                    score += ((int)(player.position.z / 3) + 1000);
+                    allcoins += ((int)(player.position.z / 7) + 400);
+                    PlayerPrefs.SetInt("coins", coins);
+                    PlayerPrefs.SetInt("allcoins", allcoins);
+                    PlayerPrefs.SetInt("allscore", score);
+                }
+                else
+                {
                 coins = PlayerPrefs.GetInt("coins");
                 allcoins = PlayerPrefs.GetInt("allcoins");
                 score = PlayerPrefs.GetInt("allscore");
@@ -285,6 +303,7 @@ public class death : MonoBehaviour
                 PlayerPrefs.SetInt("coins", coins);
                 PlayerPrefs.SetInt("allcoins", allcoins);
                 PlayerPrefs.SetInt("allscore", score);
+                }
 
                 if (PlayerPrefs.GetInt("vibration") == 0)
                 {
@@ -294,6 +313,7 @@ public class death : MonoBehaviour
                 ad.Play();
                 b = true;
                 f = 11;
+                }
             }
         }
     }

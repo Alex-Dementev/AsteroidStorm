@@ -107,6 +107,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps32;
     public ParticleSystem ps33;
     public ParticleSystem ps34;
+    public ParticleSystem ps35;
 
     public bool ison;
     public bool ison1;
@@ -146,6 +147,9 @@ public class menu : MonoBehaviour
     public Text t4;
     public bool isfall;
     public GameObject m;
+    public GameObject surwive;
+    public int intsurwive;
+    public bool isbsurwive;
 
 
 
@@ -153,7 +157,6 @@ public class menu : MonoBehaviour
 
     void Start()
     {   
-        PlayerPrefs.SetInt("prolog", 1);
         PlayerPrefs.GetFloat("isstartmusic", 1f);
         PlayerPrefs.SetInt("isstopmusictocutscene", 0);
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
@@ -162,6 +165,7 @@ public class menu : MonoBehaviour
         ach2 = PlayerPrefs.GetInt("450score", 0);
         is11 = PlayerPrefs.GetInt("tis11", 0);
         is12 = PlayerPrefs.GetInt("tis12", 0);
+        PlayerPrefs.SetInt("isfinal1g", 0);
 
 
         if(PlayerPrefs.GetInt("fall") == 1)
@@ -238,6 +242,7 @@ public class menu : MonoBehaviour
         ps32.Stop();
         ps33.Stop();
         ps34.Stop();
+        ps35.Stop();
 
         if(!rocketfall)
         {
@@ -252,6 +257,12 @@ public class menu : MonoBehaviour
 
         Vp = PlayerPrefs.GetInt("maxParticles", 30);
         Sp.value = Vp;
+
+        if(PlayerPrefs.GetInt("yousurwive", 0) == 1)
+        {
+            intsurwive = 30;
+            ps35.Stop();
+        }
 
         anim5.Play("anim 2 0");
         anim6.Play("anim 18");
@@ -373,6 +384,14 @@ public class menu : MonoBehaviour
             panel6.SetActive(!panel6.activeSelf);
         }
 
+        if(intsurwive >= 30 && !isbsurwive)
+        {
+            PlayerPrefs.SetInt("yousurwive", 1);
+            isbsurwive = true;
+            surwive.SetActive(true);
+        }
+
+
 
 
         if (PlayerPrefs.GetInt("music") == 0)
@@ -487,12 +506,26 @@ public class menu : MonoBehaviour
         ps32.Stop();
         ps33.Stop();
         ps34.Stop();
+        ps35.Stop();
 
         if(!rocketfall)
         ad2.Play();
         else
         ad7.Play();
 
+    }
+
+    public void voidclosesurwive()
+    {
+        surwive.SetActive(false);
+        intsurwive = 0;
+        isbsurwive = false;
+        PlayerPrefs.SetInt("yousurwive", 0);
+        ps35.Stop();
+    }
+    public void voidintclosesurwive()
+    {
+        intsurwive++;
     }
 
     public void isclocefall()
@@ -648,6 +681,10 @@ public class menu : MonoBehaviour
     public void isps22()
     {
         ps34.Play();
+    }
+    public void isps23()
+    {
+        ps35.Play();
     }
 
 

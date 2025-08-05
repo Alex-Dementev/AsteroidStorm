@@ -98,6 +98,8 @@ public class ScoreCounter : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("isfinal1g", 0);
+        
         StartCoroutine(LoadParticlesWithDelay());
         stopps();
         isminus = 25;
