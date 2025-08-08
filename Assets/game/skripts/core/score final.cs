@@ -39,6 +39,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public AudioSource ad10;
     public AudioSource ad11;
     public AudioSource ad12;
+    public AudioSource ad13;
     public ObstacleSpawner o;
     public int spawn;
     public float function;
@@ -65,6 +66,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public bool is340;
     public bool is550;
     public bool rocketfall;
+    public Animator anim5;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
@@ -145,7 +147,8 @@ public class ScoreCounterFinal : MonoBehaviour
         ad9.volume = audios / 1.25f;
         ad10.volume = audios / 4f;
         ad11.volume = audios;
-        ad12.volume = audios;
+        ad12.volume = audios / 1.5f;
+        ad13.volume = audios / 1.25f;
 
         if ((int)(player.position.z / 3) >= 340 && !is340)
         {
@@ -162,11 +165,6 @@ public class ScoreCounterFinal : MonoBehaviour
             is550 = true;
             ad9.Play();
             if (!fogCoroutineStarted) StartCoroutine(EnableFogWithDelay());
-        }
-
-        if (isdelay3 <= 0 && isend)
-        {
-            SceneManager.LoadScene("cutsceneG1");
         }
 
         if (spawn > 840)
@@ -205,9 +203,9 @@ public class ScoreCounterFinal : MonoBehaviour
             }
         }
 
-        if (score >= s.maxScore)
+        if (score >= PlayerPrefs.GetInt("maxScore") + 1000 && PlayerPrefs.GetInt("isfinal1g") == 0)
         {
-            s.maxScore = ((int)(player.position.z / 3));
+            PlayerPrefs.SetInt("maxScore", ((int)(player.position.z / 3)) + 1000);
         }
 
         scoreText.text = "" + score;
@@ -226,6 +224,7 @@ public class ScoreCounterFinal : MonoBehaviour
             ad10.enabled = true;
             ad11.enabled = true;
             ad12.enabled = true;
+            ad13.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -241,6 +240,7 @@ public class ScoreCounterFinal : MonoBehaviour
             ad10.enabled = false;
             ad11.enabled = false;
             ad12.enabled = false;
+            ad13.enabled = false;
         }
     }
 
@@ -271,9 +271,16 @@ public class ScoreCounterFinal : MonoBehaviour
     anim3.Play("smerch");
     image.SetActive(true);
     anim4.Play("blackscreen");
+    anim5.Play("shake");
+    Destroy(FindObjectOfType<ObstacleSpawner>());
 
-    yield return new WaitForSeconds(12f);
+    yield return new WaitForSeconds(7f);
 
+    ad13.Play();    
+
+    yield return new WaitForSeconds(4.5f);
+
+    if(PlayerPrefs.GetInt("youdead", 0) == 0)
     SceneManager.LoadScene("final g1");
 }
 

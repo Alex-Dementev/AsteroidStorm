@@ -21,7 +21,6 @@ public class ScoreCounter : MonoBehaviour
     public GameObject image;
     public int Vp;
     public Text scoreText;
-    public sceneman s;
     public ParticleSystem ps;
     public ParticleSystem ps1;
     public ParticleSystem ps2;
@@ -159,7 +158,7 @@ public class ScoreCounter : MonoBehaviour
         ad11.volume = audios;
 
 
-        if ((int)(player.position.z / 3) >= 890 && !isend2)
+        if ((int)(player.position.z / 3) >= 890 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
             image.SetActive(true);
             anim1.Play("anim10 0");
@@ -187,6 +186,7 @@ public class ScoreCounter : MonoBehaviour
             anim2.Play("anim 26 1");
             is440 = true;
             ad9.Play();
+            PlayerPrefs.SetInt("youcheat", 0);
             }
         if ((int)(player.position.z / 3) >= 750 && !is750)
         {
@@ -261,9 +261,9 @@ public class ScoreCounter : MonoBehaviour
             }
         }
 
-        if (score >= s.maxScore)
+        if (score >= PlayerPrefs.GetInt("maxScore"))
         {
-            s.maxScore = ((int)(player.position.z / 3));
+            PlayerPrefs.SetInt("maxScore", ((int)(player.position.z / 3)));
         }
 
         scoreText.text = "" + score;

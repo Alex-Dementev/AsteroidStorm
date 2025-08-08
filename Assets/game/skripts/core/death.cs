@@ -291,6 +291,7 @@ public class death : MonoBehaviour
                     PlayerPrefs.SetInt("coins", coins);
                     PlayerPrefs.SetInt("allcoins", allcoins);
                     PlayerPrefs.SetInt("allscore", score);
+                    PlayerPrefs.SetInt("youdead", 1);
                 }
                 else
                 {
@@ -303,6 +304,7 @@ public class death : MonoBehaviour
                 PlayerPrefs.SetInt("coins", coins);
                 PlayerPrefs.SetInt("allcoins", allcoins);
                 PlayerPrefs.SetInt("allscore", score);
+                PlayerPrefs.SetInt("youdead", 1);
                 }
 
                 if (PlayerPrefs.GetInt("vibration") == 0)
