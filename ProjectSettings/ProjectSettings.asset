@@ -140,7 +140,10 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.12
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: -491431455474435347, guid: ff9337cdf1365124aa5d977e6dac2207, type: 2}
+  - {fileID: 11400000, guid: 707752dd7068c6d40b05ee3b986fb8f3, type: 2}
+  - {fileID: 11400000, guid: 69c1f7bdad671dd4e9c6fd68835a8c0e, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -161,7 +164,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.MrGameDragon2011.OsteroidStorm
+    Android: com.MrGameDragon2011.AsteroidStorm
     Standalone: com.DefaultCompany.run-ilya
   buildNumber:
     Standalone: 0
@@ -170,7 +173,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 30
+  AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 1
   aotOptions: 

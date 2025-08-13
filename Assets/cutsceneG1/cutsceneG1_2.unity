@@ -289,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5e7b34911162545ab2c7951db05d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  t: {fileID: 0}
 --- !u!1 &328863990
 GameObject:
   m_ObjectHideFlags: 0
@@ -6211,6 +6212,7 @@ GameObject:
   - component: {fileID: 1534505758}
   - component: {fileID: 1534505760}
   - component: {fileID: 1534505761}
+  - component: {fileID: 1534505762}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -6407,6 +6409,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1534505762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534505757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5699276d76d93e448a1a654316c0e8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 2084174282}
+  - {fileID: 1931563970}
+  - {fileID: 969681642}
+  - {fileID: 1935046586}
 --- !u!1001 &1580864916
 PrefabInstance:
   m_ObjectHideFlags: 0

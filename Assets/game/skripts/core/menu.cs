@@ -8,6 +8,14 @@ using System.Net.Mail;
 
 public class menu : MonoBehaviour
 {
+    public Text n1;
+    public Text n2;
+    public Text n3;
+    public Text n4;
+    public Text d1;
+    public Text d2;
+    public Text d3;
+    public Text d4;
     private int one;
     public int prefs;
     public bool isprolog;
@@ -29,6 +37,7 @@ public class menu : MonoBehaviour
     public GameObject panel6;
     public GameObject panel7;
     public GameObject panel8;
+    public GameObject panelCustomizate;
     public GameObject achp1;
     public GameObject achp2;
     public GameObject image;
@@ -74,6 +83,8 @@ public class menu : MonoBehaviour
     public Animator anim19;
     public Animator anim20;
     public Animator anim21;
+    public Animator skins;
+    public Animator skinspanel;
     public Animator components;
     public Animator componentsp;
 
@@ -84,6 +95,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps4;
     public ParticleSystem ps5;
     public ParticleSystem ps6;
+    public ParticleSystem ps7;
     public ParticleSystem ps8;
     public ParticleSystem ps11;
     public ParticleSystem ps12;
@@ -107,11 +119,24 @@ public class menu : MonoBehaviour
     public ParticleSystem ps33;
     public ParticleSystem ps34;
     public ParticleSystem ps35;
+    public ParticleSystem ps36;
+    public ParticleSystem ps37;
+    public ParticleSystem ps38;
+    public ParticleSystem ps39;
+    public ParticleSystem ps40;
+    public ParticleSystem ps41;
+    public ParticleSystem ps42;
+
+    public ParticleSystem rocketstart1;
+    public ParticleSystem rocketstart2;
+    public ParticleSystem rocketstart3;
+    public ParticleSystem rocketstart4;
 
     public bool ison;
     public bool ison1;
     public bool ison2;
     public bool ison3;
+    public bool isCustomPanel;
     public bool isshop;
     public bool ispref;
     public bool isachi;
@@ -131,6 +156,7 @@ public class menu : MonoBehaviour
     public int is11;
     public int is12;
     public int maxcoins;
+    public float customFloatPanel;
 
     public float RR;
     public int Vp;
@@ -146,10 +172,12 @@ public class menu : MonoBehaviour
     public Text t2;
     public Text t3;
     public Text t4;
+    public Text t5;
     public bool isfall;
     public GameObject surwive;
     public int intsurwive;
     public bool isbsurwive;
+    public bool isCloseCustomPanel;
 
 
 
@@ -217,6 +245,7 @@ public class menu : MonoBehaviour
         ps4.Stop();
         ps5.Stop();
         ps6.Stop();
+        ps7.Stop();
         ps8.Stop();
         ps11.Stop();
         ps12.Stop();
@@ -292,6 +321,7 @@ public class menu : MonoBehaviour
         isdelay5 -= Time.deltaTime;
         Dbackstarted -= Time.deltaTime;
         compopf -= Time.deltaTime;
+        customFloatPanel -= Time.deltaTime;
 
 
 
@@ -315,6 +345,16 @@ public class menu : MonoBehaviour
             t2.text = "Список твоих понтов";
             t3.text = "График страданий";
             t4.text = "Сделай или забудь";
+            t5.text = "Говно, но моё";
+            n1.text = "SUS-1";
+            n2.text = "Ёлки-Палки 3000";
+            n3.text = "Лунный Порношутер";
+            n4.text = "Обычная Ракета";
+            d1.text = "Её выгнали за импостерство, и теперь она просто летает по космосу, подозревая всех вокруг.";
+            d2.text = "Нового года не будет, Дед Мороз принял… обернись.";
+            d3.text = "Иногда путает Луну с гиганским порно-партнёром и думает, что астероиды — это просто реквизит для свиданий.";
+            d4.text = "Эта ракета слишком обычная, чтобы быть необычной, и слишком необычная, чтобы быть скучной… поэтому она просто обычная.";
+            
             butfall.SetActive(true);
             PlayerPrefs.SetInt("fall", 1);
         }
@@ -330,6 +370,11 @@ public class menu : MonoBehaviour
                 is7 = false;
                 panel8.SetActive(!panel8.activeSelf);
             }
+        }
+        if(customFloatPanel <= 0 && isCloseCustomPanel == true)
+        {
+            isCloseCustomPanel = false;
+            panelCustomizate.SetActive(!panelCustomizate.activeSelf);
         }
         if (pref <= 0)
         {
@@ -485,6 +530,7 @@ public class menu : MonoBehaviour
         ps4.Stop();
         ps5.Stop();
         ps6.Stop();
+        ps7.Stop();
         ps8.Stop();
         ps11.Stop();
         ps12.Stop();
@@ -508,6 +554,13 @@ public class menu : MonoBehaviour
         ps33.Stop();
         ps34.Stop();
         ps35.Stop();
+        ps36.Stop();
+        ps37.Stop();
+        ps38.Stop();
+        ps39.Stop();
+        ps40.Stop();
+        ps41.Stop();
+        ps42.Stop();
 
         if(!rocketfall)
         ad2.Play();
@@ -540,6 +593,16 @@ public class menu : MonoBehaviour
         t2.text = "Достижения";
         t3.text = "Статистика";
         t4.text = "Задания";
+        t5.text = "Кастомизация";
+        n1.text = "SUS";
+        n2.text = "Ёлки-Палки";
+        n3.text = "Лунолет";
+        n4.text = "Ракета";
+        d1.text = "Постоянно подозревает все астероиды в саботаже, а её главный двигатель работает на чистом «эх, импостор, ну ты и…». Красная, быстрая и всегда готова нажать на кнопку. просто сделай чтоб было норм";
+        d2.text = "Эта ракета — как новогоднее чудо: горит, летит и иногда взрывается так, что Санта нервно курит в сторонке. Игрушки держатся на честном слове, гирлянда питается от ядерного реактора, а запах хвои — это, возможно, дым.";
+        d3.text = "Долетел до Луны, плюнул в кратер и вернулся. Теперь уверен, что Земля круглая, а сыр всё-таки твёрдый.";
+        d4.text = "Обычная ракета для необычных ситуаций. Летит прямо… пока не решит, что прямо — это в стену.";
+        
     }
 
 
@@ -567,6 +630,24 @@ public class menu : MonoBehaviour
             
         }
     }
+
+
+    public void startedrocketps()
+{
+    var m1 = rocketstart1.main; m1.startLifetime = 14f; m1.simulationSpeed = 30f;
+    var m2 = rocketstart2.main; m2.startLifetime = 14f; m2.simulationSpeed = 30f;
+    var m3 = rocketstart3.main; m3.startLifetime = 14f; m3.simulationSpeed = 30f;
+    var m4 = rocketstart4.main; m4.startLifetime = 14f; m4.simulationSpeed = 30f;
+}
+
+public void destartedrocketps()
+{
+    var m1 = rocketstart1.main; m1.startLifetime = 7f; m1.simulationSpeed = 20f;
+    var m2 = rocketstart2.main; m2.startLifetime = 7f; m2.simulationSpeed = 20f;
+    var m3 = rocketstart3.main; m3.startLifetime = 7f; m3.simulationSpeed = 20f;
+    var m4 = rocketstart4.main; m4.startLifetime = 7f; m4.simulationSpeed = 20f;
+}
+
 
 
     public void isvibration()
@@ -614,6 +695,10 @@ public class menu : MonoBehaviour
     {
         ps6.Play();
     }
+    public void isps7()
+    {
+        ps7.Play();
+    }
     public void isps8()
     {
         ps8.Play();
@@ -641,6 +726,7 @@ public class menu : MonoBehaviour
         ps17.Play();
         ps18.Play();
         ps19.Play();
+        ps40.Play();
     }
     public void isps16()
     {
@@ -649,12 +735,21 @@ public class menu : MonoBehaviour
         ps22.Play();
         ps23.Play();
         ps24.Play();
+        ps41.Play();
     }
     public void isps17()
     {
         ps25.Play();
         ps26.Play();
         ps27.Play();
+        ps42.Play();
+    }
+    public void isps18()
+    {
+        ps36.Play();
+        ps37.Play();
+        ps38.Play();
+        ps39.Play();
     }
     public void isps19()
     {
@@ -1028,6 +1123,43 @@ ad2end();
             isdelay2 = 0.85f;
         }
     }
+    public void activatepanel29()
+    {
+        if (isdelay2 <= 0)
+        {
+            if (isanim2 == false)
+            {
+                panel2.SetActive(!panel2.activeSelf);
+                anim2.Play("anim12 1");
+                isanim2 = true;
+                anim5.Play("2");
+            }
+            else
+            {
+                anim2.Play("anim12 0");
+                isanim2 = false;
+                shop = 1.1f;
+                isshop = true;
+            }
+            if (isCustomPanel == false)
+            {
+                panelCustomizate.SetActive(!panelCustomizate.activeSelf);
+                skins.Play("anim 17 0");
+                skinspanel.Play("customization");
+                isCustomPanel = true;
+                isdelay2 = 2;
+            }
+            else if(isdelay2 <= 0)
+            {
+                skinspanel.Play("customization 0");
+                isCustomPanel = false;
+                customFloatPanel = 1;
+                isCloseCustomPanel = true;
+            }
+            ad2end();
+            isdelay2 = 0.85f;
+        }
+    }
     public void activatepanel35()
     {
         if (isdelay2 <= 0)
@@ -1084,6 +1216,82 @@ ad2end();
                 isanim7 = false;
                 compopf = 1;
                 is7 = true;
+            }
+            if (isanim5 == false)
+            {
+                panel5.SetActive(!panel5.activeSelf);
+                anim16.Play("anim 24 1");
+                isanim5 = true;
+                anim17.Play("anim 25");
+            }
+            else
+            {
+                anim17.Play("anim 25 0");
+                anim16.Play("anim 24 1");
+                isanim5 = false;
+                task = 1.1f;
+                istask = true;
+            }
+            ad2end();
+            isdelay2 = 0.85f;
+        }
+    }
+    public void activatepanel89()
+    {
+        if (isdelay2 <= 0)
+        {
+            if (isCustomPanel == false)
+            {
+                panelCustomizate.SetActive(!panelCustomizate.activeSelf);
+                skins.Play("anim 17 0");
+                skinspanel.Play("customization");
+                isCustomPanel = true;
+                isdelay2 = 2;
+            }
+            else if(isdelay2 <= 0)
+            {
+                skinspanel.Play("customization 0");
+                isCustomPanel = false;
+                customFloatPanel = 1;
+                isCloseCustomPanel = true;
+            }
+            if (isanim7 == false)
+            {
+                panel8.SetActive(!panel8.activeSelf);
+                isanim7 = true;
+                isdelay2 = 2;
+                componentsp.Play("componentsp");
+                components.Play("componclick");
+            }
+            else if (isanim7 == true)
+            {
+                isanim7 = false;
+                compopf = 1;
+                is7 = true;
+                componentsp.Play("componentsp1");
+            }
+            ad2end();
+            isdelay2 = 0.85f;
+        }
+    }
+    public void activatepanel95()
+    {
+        if (isdelay2 <= 0)
+        {
+            if (isCustomPanel == false)
+            {
+                panelCustomizate.SetActive(!panelCustomizate.activeSelf);
+                skins.Play("anim 17 0");
+                skinspanel.Play("customization");
+                isCustomPanel = true;
+                isdelay2 = 2;
+            }
+            else if(isdelay2 <= 0)
+            {
+                skinspanel.Play("customization 0");
+                isCustomPanel = false;
+                customFloatPanel = 1;
+                isCloseCustomPanel = true;
             }
             if (isanim5 == false)
             {
@@ -1226,6 +1434,26 @@ ad2end();
                 isanim7 = false;
                 compopf = 1;
                 is7 = true;
+            }
+
+            ad2end();
+    }
+    public void activateCustomizatePanel()
+    {
+            if (isCustomPanel == false)
+            {
+                panelCustomizate.SetActive(!panelCustomizate.activeSelf);
+                skins.Play("anim 17 0");
+                skinspanel.Play("customization");
+                isCustomPanel = true;
+                isdelay2 = 1;
+            }
+            else if(isdelay2 <= 0)
+            {
+                skinspanel.Play("customization 0");
+                isCustomPanel = false;
+                customFloatPanel = 1;
+                isCloseCustomPanel = true;
             }
 
             ad2end();

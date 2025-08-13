@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 2
-  m_FogDensity: 0.022
+  m_FogDensity: 0.02
   m_LinearFogStart: 0
   m_LinearFogEnd: 50.01
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -5778,6 +5778,7 @@ GameObject:
   - component: {fileID: 907994750}
   - component: {fileID: 907994749}
   - component: {fileID: 907994748}
+  - component: {fileID: 907994754}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -5968,6 +5969,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907994754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907994747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5699276d76d93e448a1a654316c0e8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 2055681048}
+  - {fileID: 583812126}
+  - {fileID: 1103833352}
+  - {fileID: 1838426153}
 --- !u!1 &923668841
 GameObject:
   m_ObjectHideFlags: 0

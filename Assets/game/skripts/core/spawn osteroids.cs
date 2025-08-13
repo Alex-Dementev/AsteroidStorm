@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    public GameObject[] obstaclePrefabs;
+    public GameObject[] obstaclePrefabs;   // Обычные препятствия
+    public GameObject[] specialPrefabs;    // Пасхалка (амогусы)
 
     public GameObject s1;
     public GameObject s2;
@@ -11,18 +12,25 @@ public class ObstacleSpawner : MonoBehaviour
 
     private Transform player;
 
+    [Header("Общие настройки")]
     public float spawnDistance = 6f;
-    public float obstacleSpeed = 2f;
     public float rotationSpeedRange = 50f;
     public float spawnHeightOffset = -1f;
-    public float towardPlayerProbability = 0.15f; // Снижено до 15%
-    public Vector2 sizeRange = new Vector2(0.5f, 2f);
-    public int obstaclesCount = 3;
-    public float minDistanceBetweenObstacles = 1f;
-    public float maxDistanceBetweenObstacles = 3f;
     public float xCalibrationOffset = 0f;
+    public Vector3 manualCenterOffset = Vector3.zero;
+    public int obstaclesCount = 3; // одно значение для всех режимов
 
-    public Vector3 manualCenterOffset = Vector3.zero; // Центр рассеивания задаётся вручную
+    [Header("Обычные препятствия")]
+    public float normalSpeed = 2f;
+    public Vector2 normalSizeRange = new Vector2(0.5f, 2f);
+    public float normalTowardPlayerProbability = 0.15f;
+    public float normalMaxDistance = 3f;
+
+    [Header("Амогусы (пасхалка)")]
+    public float amogusSpeed = 3f;
+    public Vector2 amogusSizeRange = new Vector2(1f, 2.5f);
+    public float amogusTowardPlayerProbability = 0.3f;
+    public float amogusMaxDistance = 2f;
 
     private void Start()
     {
@@ -44,33 +52,42 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void SpawnObstacles()
     {
-        if (obstaclePrefabs.Length == 0 || player == null) return;
+        if (player == null) return;
+
+        bool isAmogusMode = PlayerPrefs.GetInt("fall") == 1;
+        GameObject[] currentPrefabs = isAmogusMode ? specialPrefabs : obstaclePrefabs;
+        if (currentPrefabs.Length == 0) return;
+
+        float speed = isAmogusMode ? amogusSpeed : normalSpeed;
+        Vector2 sizeRange = isAmogusMode ? amogusSizeRange : normalSizeRange;
+        float towardProb = isAmogusMode ? amogusTowardPlayerProbability : normalTowardPlayerProbability;
+        float maxDist = isAmogusMode ? amogusMaxDistance : normalMaxDistance;
 
         for (int i = 0; i < obstaclesCount; i++)
         {
-            GameObject prefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+            GameObject prefab = currentPrefabs[Random.Range(0, currentPrefabs.Length)];
             Vector3 spawnPosition = player.position + Vector3.forward * spawnDistance + manualCenterOffset;
 
-            Vector2 randomOffset = Random.insideUnitCircle * maxDistanceBetweenObstacles;
+            Vector2 randomOffset = Random.insideUnitCircle * maxDist;
             spawnPosition += new Vector3(randomOffset.x + xCalibrationOffset, spawnHeightOffset, randomOffset.y);
 
             GameObject obstacle = Instantiate(prefab, spawnPosition, Quaternion.identity);
             obstacle.transform.localScale *= Random.Range(sizeRange.x, sizeRange.y);
 
             ObstacleMovement movement = obstacle.AddComponent<ObstacleMovement>();
-            movement.speed = obstacleSpeed;
+            movement.speed = speed;
             movement.rotationSpeed = Random.Range(-rotationSpeedRange, rotationSpeedRange);
-            movement.direction = DetermineMovementDirection();
+            movement.direction = DetermineMovementDirection(towardProb);
 
             Destroy(obstacle, 21f);
         }
     }
 
-    private Vector3 DetermineMovementDirection()
+    private Vector3 DetermineMovementDirection(float towardProb)
     {
         if (player == null) return Vector3.back;
 
-        if (Random.value < towardPlayerProbability)
+        if (Random.value < towardProb)
         {
             return (player.position - transform.position).normalized;
         }
@@ -85,12 +102,6 @@ public class ObstacleSpawner : MonoBehaviour
     public void SetObstacleCount(int count)
     {
         obstaclesCount = Mathf.Max(0, count);
-    }
-
-    public int ObstacleCount
-    {
-        get => obstaclesCount;
-        set => obstaclesCount = Mathf.Max(0, value);
     }
 }
 
