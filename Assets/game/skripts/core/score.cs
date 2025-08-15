@@ -98,7 +98,7 @@ public class ScoreCounter : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("isfinal1g", 0);
-        
+
         StartCoroutine(LoadParticlesWithDelay());
         stopps();
         isminus = 25;
@@ -117,8 +117,8 @@ public class ScoreCounter : MonoBehaviour
         ps1.Clear();
         ps1.Play();
 
-        if(PlayerPrefs.GetInt("fall") == 1)
-        rocketfall = true;
+        if (PlayerPrefs.GetInt("fall") == 1)
+            rocketfall = true;
 
 
         anim.Play("anim6");
@@ -126,6 +126,8 @@ public class ScoreCounter : MonoBehaviour
         UpdateObstacleCount();
 
         ScheduleNextSpawn();
+
+        PlayerPrefs.SetInt("live", 3);
     }
 
     void Update()
@@ -246,7 +248,7 @@ public class ScoreCounter : MonoBehaviour
         }
 
         score = ((int)(player.position.z / 3));
-        scoreText.text = (score.ToString());
+        scoreText.text = (score.ToString() + " очков");
         spawn = ((int)(player.position.z) / 3);
 
         UpdateObstacleCount();
