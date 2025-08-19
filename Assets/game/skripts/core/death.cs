@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using RDG;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using Unity.Burst.Intrinsics;
 
 public class death : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class death : MonoBehaviour
     public DoubleTapHandler d;
     private float isdelay = 9999999;
     public Animator anim;
+    public Animator anim3;
     public Animator anim1;
     public GameObject image;
     public AudioSource ad;
@@ -26,6 +28,7 @@ public class death : MonoBehaviour
     public int score;
     public int allcoins;
     public Text livet;
+    public Animator anim2;
 
     public GameObject explosionEffect;
     public AudioSource explosionSound1;
@@ -211,6 +214,24 @@ public class death : MonoBehaviour
 
     void Update()
     {
+        isdelay -= Time.deltaTime;
+        f -= Time.deltaTime;
+
+        if (isdelay <= 0)
+        {
+            isdelay = 100;
+            SceneManager.LoadScene("main");
+        }
+
+        if (b == true)
+        {
+            if (f <= 0)
+            {
+                restart();
+                f = 9999999;
+            }
+        }
+
         if (live == 3)
         {
             liveimage.color = new Color(1f, 0f, 0.3f);
@@ -231,45 +252,27 @@ public class death : MonoBehaviour
             liveimage.color = new Color(0.322f, 0.322f, 0.322f);
             livet.color = new Color(0.322f, 0.322f, 0.322f);
         }
-
-        isdelay -= Time.deltaTime;
-        f -= Time.deltaTime;
-
-        if (isdelay <= 0)
-        {
-            isdelay = 99999999;
-            SceneManager.LoadScene("main");
-        }
-
-        if (b == true)
-        {
-            if (f <= 0)
-            {
-                restart();
-                f = 9999999;
-            }
-        }
     }
 
     public void restart()
     {
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 0");
-        isdelay = 1.2f;
+        isdelay = 2f;
     }
 
     public void restart2()
     {
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 0");
-        StartCoroutine(RestartAfterDelay(1.2f));
+        StartCoroutine(RestartAfterDelay(2f));
     }
 
     public void restart3()
     {
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 0");
-        StartCoroutine(RestartAfterDelay2(1.2f));
+        StartCoroutine(RestartAfterDelay2(2f));
     }
 
     private IEnumerator RestartAfterDelay(float delay)
@@ -285,8 +288,12 @@ public class death : MonoBehaviour
 
     [SerializeField] private Text fineText;
     [SerializeField] private Animator fineAnim;
-    private string[] secretMessages = { "Забей, это просто заранее приготовленные фразы", "ЛОЛ это какието 25 монет", "ВОУ ТЫ НУБ!", "52" };
-    private string[] fineMessages = { "Отлично!", "Хорошо!", "Неплохо!", "Класс!", "Есть попадание!" };
+    private string[] secretMessages = { "Забей, это просто заранее приготовленные фразы", "ЛОЛ это какие-то 25 монет", "ВОУ, ТЫ НУБ!", "52" };
+    private string[] fallfineMessages = { "Ракета 1 : 0 Камень", "Астероид проиграл в PvP.", "Ну всё, камень теперь обижен.", "УФ"};
+    private string[] fineMessages = { "Отлично!", "Хорошо!", "Неплохо!", "Класс!", "Есть попадание!", "Харошь" };
+    private string[] lifeMessages = { "Осторожней!", "Аб-т-т-на!", "Дела не очень.", "Ужас.", "О-нет.", "ЛОЛ!" };
+    private string[] falllifeMessages = { "Жизни улетучиваются быстрее зарплаты.", "Хочешь жизнь? А ЖИЗНЬ ТЕБЯ НЕ ХОЧЕТ!!! (смех за кадром)", "Я ГЕРКУНУ! скафандер мо...", "Супер облепиха!"};
+
 
     private void OnCollisionEnter(Collision Collision)
     {
@@ -294,6 +301,13 @@ public class death : MonoBehaviour
         {
             if (d.b == true)
             {
+                if (PlayerPrefs.GetInt("fall") == 1)
+                            fineText.text = falllifeMessages[Random.Range(0, lifeMessages.Length)];
+                        else
+                            fineText.text = lifeMessages[Random.Range(0, lifeMessages.Length)];
+
+                        fineAnim.Play("textFine", -1, 0f);
+
                 if (explosionEffect != null)
                     Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
 
@@ -308,53 +322,91 @@ public class death : MonoBehaviour
                 allcoins += reward;
                 PlayerPrefs.SetInt("coins", coins);
                 PlayerPrefs.SetInt("allcoins", allcoins);
-
-                // 5% шанс показать секретную фразу
-                if (Random.Range(0f, 100f) < 5f)
+                
+                if (PlayerPrefs.GetInt("fall") == 1)
                 {
-                    fineText.text = secretMessages[Random.Range(0, secretMessages.Length)];
+                    fineText.text = fallfineMessages[Random.Range(0, fallfineMessages.Length)];
                 }
-                else
+                else if (PlayerPrefs.GetInt("fall") == 0)
                 {
-                    fineText.text = fineMessages[Random.Range(0, fineMessages.Length)];
+                    if (Random.Range(0f, 100f) < 5f)
+                    {
+                        fineText.text = secretMessages[Random.Range(0, secretMessages.Length)];
+                    }
+                    else
+                    {
+                        fineText.text = fineMessages[Random.Range(0, fineMessages.Length)];
+                    }
                 }
 
+                fineText.color = new Color (0.698f, 0.0f, 0.608f);
                 fineAnim.Play("textFine", -1, 0f);
 
-                Destroy(Collision.gameObject);
+                if (!Collision.gameObject.name.StartsWith("T"))
+                {
+                    Destroy(Collision.gameObject);
+                }
             }
             else if (b == false)
             {
                 if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
                 {
-                    if (live >= 2)
+                    anim2.Play("oneshake");
+                    fineText.color = new Color (0.698f, 0.0f, 0.608f);  
+                    PlayerPrefs.SetInt("live", live);
+                    lifeLostSound.Play();
+                    live -= 1;
+                    livet.text = live.ToString();
+
+                    anim3.Play("anim");
+
+
+                    if (live >= 1)
                     {
-                        live -= 1;
-                        livet.text = live.ToString();
-                        PlayerPrefs.SetInt("live", live);
-                        lifeLostSound.Play();
+                    
+
+                        if (live == 3)
+                        {
+                            fineText.color = new Color(1f, 0f, 0.3f);
+                        }
+                        else if (live == 2)
+                        {
+                            fineText.color = new Color(0.749f, 0.223f, 0.478f);
+                        }
+                        else
+                        {
+                            fineText.color = new Color(0.671f, 0.376f, 0.522f);
+                        }
+                        
                         if (PlayerPrefs.GetInt("vibration") == 0)
                         {
                             Vibration.Vibrate(200, 70);
                         }
                         if (explosionEffect != null)
-                        Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
+                            Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
 
-                        Destroy(Collision.gameObject);
+                        if (!Collision.gameObject.name.StartsWith("T"))
+                        {
+                            Destroy(Collision.gameObject);
+                        }
                     }
                     else
                     {
-                         if (explosionEffect != null)
-                        Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
+                        if (explosionEffect != null)
+                            Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
 
-                        Destroy(Collision.gameObject);
+                        if (!Collision.gameObject.name.StartsWith("T"))
+                        {
+                            Destroy(Collision.gameObject);
+                        }
+
                         losePanel.SetActive(true);
                         anim1.Play("anim11");
                         live -= 1;
                         livet.text = live.ToString();
                         PlayerPrefs.SetInt("live", live);
 
-                    if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
+                        if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                         {
                             coins = PlayerPrefs.GetInt("coins");
                             allcoins = PlayerPrefs.GetInt("allcoins");
@@ -389,7 +441,7 @@ public class death : MonoBehaviour
                     ad.Play();
                     b = true;
                     f = 11;
-                }
+                    }
                 }
             }
         }

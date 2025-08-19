@@ -15,6 +15,7 @@ public class DoubleTapHandler : MonoBehaviour
     private float isdelay;
     private float otkat;
     private float isotkat = 30;
+    public float lightintens;
     public energy e;
     public RocketUniversalControl r;
     public bool b;
@@ -24,7 +25,10 @@ public class DoubleTapHandler : MonoBehaviour
     public ParticleSystem ps;
     public ParticleSystem p;
     public float isdelay1 = 2;
+    public Animator anim;
     public int abilityt;
+    public Light l;
+    public bool bbb;
 
     private float lastTapTime = 0;
     private bool isWaitingForSecondTap = false;
@@ -59,6 +63,13 @@ public class DoubleTapHandler : MonoBehaviour
                     bb = false;
                 }
             }
+
+            if (delay <= -0.2 && bbb)
+                {
+                    bbb = false;
+                    l.intensity = lightintens;
+                    l.color = Color.white;
+                }
 
             if (delay <= -0.2)
             {
@@ -110,6 +121,11 @@ public class DoubleTapHandler : MonoBehaviour
                         delay = isdelay;
                         otkat = isotkat;
                         bb = true;
+                        lightintens = l.intensity;
+                        l.intensity = 2;
+                        bbb = true;
+                        l.color = new Color(1f, 1f, 0.95f);
+                        anim.Play("blue");
 
                         if (PlayerPrefs.GetInt("vibration") == 0)
                         {

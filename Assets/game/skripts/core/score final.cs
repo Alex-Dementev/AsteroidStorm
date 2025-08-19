@@ -40,6 +40,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public AudioSource ad11;
     public AudioSource ad12;
     public AudioSource ad13;
+    public AudioSource ad14;
     public ObstacleSpawner o;
     public int spawn;
     public float function;
@@ -49,10 +50,8 @@ public class ScoreCounterFinal : MonoBehaviour
     public float isminus;
     public bool isbportal;
     private int ars = 300;
-    public int ach1;
-    public int ach2;
+    public int ach3;
     public Animator achanim1;
-    public Animator achanim2;
     public Animator anim;
     public Animator anim2;
     public bool isbtonext;
@@ -92,6 +91,7 @@ public class ScoreCounterFinal : MonoBehaviour
 
     void Start()
     {
+        ach3 = PlayerPrefs.GetInt("ach3");
         PlayerPrefs.SetInt("isfinal1g", 1);
 
         RenderSettings.fog = false;
@@ -149,6 +149,7 @@ public class ScoreCounterFinal : MonoBehaviour
         ad11.volume = audios;
         ad12.volume = audios / 1.5f;
         ad13.volume = audios / 1.25f;
+        ad14.volume = audios;
 
         if ((int)(player.position.z / 3) >= 340 && !is340)
         {
@@ -156,6 +157,13 @@ public class ScoreCounterFinal : MonoBehaviour
             anim2.Play("anim 26 1");
             is340 = true;
             ad9.Play();
+        }
+        if ((int)(player.position.z / 3) >= 720 && ach3 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        {
+            ach3 = 1;
+            PlayerPrefs.SetInt("ach3", 1);
+            achanim1.Play("anim20");
+            ad5.Play();
         }
         if ((int)(player.position.z / 3) >= 550 && !is550)
         {
@@ -225,6 +233,7 @@ public class ScoreCounterFinal : MonoBehaviour
             ad11.enabled = true;
             ad12.enabled = true;
             ad13.enabled = true;
+            ad14.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -241,6 +250,7 @@ public class ScoreCounterFinal : MonoBehaviour
             ad11.enabled = false;
             ad12.enabled = false;
             ad13.enabled = false;
+            ad14.enabled = false;
         }
     }
 
@@ -254,7 +264,9 @@ public class ScoreCounterFinal : MonoBehaviour
     float duration = 3f;
     float elapsed = 0f;
     RenderSettings.fogDensity = 0f;
-    ps3.playbackSpeed = 45f;
+    var main = ps3.main;
+    main.simulationSpeed = 45f;
+
 
     ad10.Play();
     StartCoroutine(FadeVolume(ad10, ad10.volume, 0f, 2f));

@@ -36,6 +36,7 @@ public class ScoreCounter : MonoBehaviour
     public AudioSource ad9;
     public AudioSource ad10;
     public AudioSource ad11;
+    public AudioSource ad12;
     public ObstacleSpawner o;
     public ObstaclearSpawner oar;
     public int spawn;
@@ -158,6 +159,7 @@ public class ScoreCounter : MonoBehaviour
         ad9.volume = audios / 1.25f;
         ad10.volume = audios;
         ad11.volume = audios;
+        ad12.volume = audios;
 
 
         if ((int)(player.position.z / 3) >= 890 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
@@ -232,14 +234,14 @@ public class ScoreCounter : MonoBehaviour
             }
         }
 
-        if (ach1 == 0 && spawn >= 850)
+        if (ach1 == 0 && spawn >= 850 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
             PlayerPrefs.SetInt("1.5kscore", 1);
             ach1 = 1;
             achanim2.Play("anim 21");
             ad5.Play();
         }
-        if (ach2 == 0 && spawn >= 500)
+        if (ach2 == 0 && spawn >= 500 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
             PlayerPrefs.SetInt("450score", 1);
             ach2 = 1;
@@ -281,6 +283,9 @@ public class ScoreCounter : MonoBehaviour
             ad7.enabled = true;
             ad8.enabled = true;
             ad9.enabled = true;
+            ad10.enabled = true;
+            ad11.enabled = true;
+            ad12.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -293,6 +298,9 @@ public class ScoreCounter : MonoBehaviour
             ad7.enabled = false;
             ad8.enabled = false;
             ad9.enabled = false;
+            ad10.enabled = false;
+            ad11.enabled = false;
+            ad12.enabled = false;
         }
 
         if (spawn >= ars)

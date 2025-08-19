@@ -12,7 +12,11 @@ public class cut3 : MonoBehaviour
     public AudioSource ad1;
     public AudioSource ad2;
     public AudioSource ad3;
+    public AudioSource ad4;
     public float audios;
+    public Animator anim;
+    public Animator anim2;
+    public int sus;
 
     void Start()
     {
@@ -20,18 +24,28 @@ public class cut3 : MonoBehaviour
         ad1.volume = audios / 14f;
         ad2.volume = audios / 1.25f;
         ad3.volume = audios / 1.5f;
+        ad4.volume = audios;
+
+        if(PlayerPrefs.GetInt("ach4", 0) == 0)
+        {
+        anim.Play("anim20");
+        ad4.Play();
+        PlayerPrefs.SetInt("ach4", 1);
+        }
 
         if (PlayerPrefs.GetInt("audio") == 0)
         {
             ad1.enabled = true;
             ad2.enabled = true;
             ad3.enabled = true;
+            ad4.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
             ad1.enabled = false;
             ad2.enabled = false;
             ad3.enabled = false;
+            ad4.enabled = false;
         }
 
         if (PlayerPrefs.GetInt("youcheat", 1) == 1)
@@ -104,5 +118,16 @@ public class cut3 : MonoBehaviour
     public void LoadNextScene()
     {
         SceneManager.LoadScene("main");
+    }
+
+    public void issus()
+    {
+        sus++;
+        if(PlayerPrefs.GetInt("ach5", 0) == 0 && sus == 100 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        {
+        PlayerPrefs.SetInt("ach5", 1);
+        anim2.Play("anim20");
+        ad4.Play();
+        }
     }
 }

@@ -28,6 +28,9 @@ public class menu : MonoBehaviour
     public Image but3;
     public Image controller;
     public Image controller2;
+    public Image controller3;
+    public Image controller4;
+    public Image controller5;
     public GameObject butfall;
     public GameObject panel1;
     public GameObject panel2;
@@ -40,6 +43,9 @@ public class menu : MonoBehaviour
     public GameObject panelCustomizate;
     public GameObject achp1;
     public GameObject achp2;
+    public GameObject achp3;
+    public GameObject achp4;
+    public GameObject achp5;
     public GameObject image;
     public AudioSource ad1;
     public AudioSource ad2;
@@ -149,12 +155,18 @@ public class menu : MonoBehaviour
     public float task;
     public float ach1;
     public float ach2;
+    public float ach3;
+    public float ach4;
+    public float ach5;
     public float stat;
     public float compopf;
     public int allgames;
     public bool is7;
     public int is11;
     public int is12;
+    public int is13;
+    public int is14;
+    public int is15;
     public int maxcoins;
     public float customFloatPanel;
 
@@ -191,8 +203,14 @@ public class menu : MonoBehaviour
         musics = PlayerPrefs.GetFloat("musics", 0.5f);
         ach1 = PlayerPrefs.GetInt("1.5kscore", 0);
         ach2 = PlayerPrefs.GetInt("450score", 0);
+        ach3 = PlayerPrefs.GetInt("ach3", 0);
+        ach4 = PlayerPrefs.GetInt("ach4", 0);
+        ach5 = PlayerPrefs.GetInt("ach5", 0);
         is11 = PlayerPrefs.GetInt("tis11", 0);
         is12 = PlayerPrefs.GetInt("tis12", 0);
+        is13 = PlayerPrefs.GetInt("tis13", 0);
+        is14 = PlayerPrefs.GetInt("tis14", 0);
+        is15 = PlayerPrefs.GetInt("tis15", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
         PlayerPrefs.SetInt("youcheat", 1);
         PlayerPrefs.SetInt("youdead", 0);
@@ -228,6 +246,30 @@ public class menu : MonoBehaviour
         {
             controller2.GetComponent<Image>().color = new Color(0, 255, 0, 255);
         }
+        if (is13 == 0)
+        {
+            controller3.GetComponent<Image>().color = new Color(255, 0, 0, 255);
+        }
+        else
+        {
+            controller3.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+        }
+        if (is14 == 0)
+        {
+            controller4.GetComponent<Image>().color = new Color(255, 0, 0, 255);
+        }
+        else
+        {
+            controller4.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+        }
+        if (is15 == 0)
+        {
+            controller5.GetComponent<Image>().color = new Color(255, 0, 0, 255);
+        }
+        else
+        {
+            controller5.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+        }
 
         if (ach1 == 1)
         {
@@ -236,6 +278,18 @@ public class menu : MonoBehaviour
         if(ach2 == 1)
         {
             achp2.SetActive(true);
+        }
+        if(ach3 == 1)
+        {
+            achp3.SetActive(true);
+        }
+        if(ach4 == 1)
+        {
+            achp4.SetActive(true);
+        }
+        if(ach5 == 1)
+        {
+            achp5.SetActive(true);
         }
 
         ps.Stop();
@@ -615,6 +669,13 @@ public class menu : MonoBehaviour
             PlayerPrefs.SetInt("Skin3", 1);
             controller.GetComponent<Image>().color = new Color(0, 255, 0, 255);
         }
+        if (is15 == 0 && ach5 == 1)
+        {
+            is15 = 1;
+            PlayerPrefs.SetInt("tis15", 1);
+            PlayerPrefs.SetInt("Skin1", 1);
+            controller5.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+        }
 
         if (is12 == 0 && ach2 == 1)
         {
@@ -627,7 +688,31 @@ public class menu : MonoBehaviour
             maxcoins = PlayerPrefs.GetInt("allcoins", 0);
             maxcoins += 500;
             PlayerPrefs.SetInt("allcoins", maxcoins);
-            
+        }
+
+        if (is13 == 0 && ach3 == 1)
+        {
+            is13 = 1;
+            PlayerPrefs.SetInt("tis13", 1);
+            controller3.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+            coins = PlayerPrefs.GetInt("coins", 0);
+            coins += 2000;
+            PlayerPrefs.SetInt("coins", coins);
+            maxcoins = PlayerPrefs.GetInt("allcoins", 0);
+            maxcoins += 2000;
+            PlayerPrefs.SetInt("allcoins", maxcoins);
+        }
+        if (is14 == 0 && ach4 == 1)
+        {
+            is14 = 1;
+            PlayerPrefs.SetInt("tis14", 1);
+            controller4.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+            coins = PlayerPrefs.GetInt("coins", 0);
+            coins += 5000;
+            PlayerPrefs.SetInt("coins", coins);
+            maxcoins = PlayerPrefs.GetInt("allcoins", 0);
+            maxcoins += 5000;
+            PlayerPrefs.SetInt("allcoins", maxcoins);
         }
     }
 

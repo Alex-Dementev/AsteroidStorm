@@ -5485,6 +5485,7 @@ MonoBehaviour:
   ad9: {fileID: 1329748433}
   ad10: {fileID: 1824364258}
   ad11: {fileID: 946596077}
+  ad12: {fileID: 1038827540}
   o: {fileID: 1122586438}
   oar: {fileID: 1122586440}
   spawn: 0
@@ -5599,6 +5600,7 @@ MonoBehaviour:
   b: 0
   d: {fileID: 0}
   anim: {fileID: 590422739}
+  anim3: {fileID: 0}
   anim1: {fileID: 1620318956}
   image: {fileID: 590422737}
   ad: {fileID: 1620318958}
@@ -5606,6 +5608,7 @@ MonoBehaviour:
   score: 0
   allcoins: 0
   livet: {fileID: 0}
+  anim2: {fileID: 0}
   explosionEffect: {fileID: 0}
   explosionSound1: {fileID: 0}
   explosionSound2: {fileID: 0}
@@ -6127,14 +6130,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 20
-  zSpeedIncrement: 0.25
-  zSpeedUpdateInterval: 1.5
+  initialZSpeed: 15
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 2
   xRange: 9
   sensitivity: 3.5
   smoothFactor: 0.8
   calibrationOffset: {x: -3.25, y: 0, z: 0}
-  zSpeed: 0
+  zSpeed: 15
 --- !u!4 &207934569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 51268198bc0d3b346b2a28743bb91ca4,
@@ -6217,6 +6220,7 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1034468416}
   c: {fileID: 298196377}
   doubleTapThreshold: 0.3
+  lightintens: 0
   e: {fileID: 104172367}
   r: {fileID: 207934568}
   b: 0
@@ -6226,7 +6230,10 @@ MonoBehaviour:
   ps: {fileID: 648876191}
   p: {fileID: 985067552}
   isdelay1: 2
+  anim: {fileID: 559780589}
   abilityt: 0
+  l: {fileID: 365593942}
+  bbb: 0
 --- !u!114 &207934575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6261,6 +6268,7 @@ MonoBehaviour:
   b: 0
   d: {fileID: 207934574}
   anim: {fileID: 590422739}
+  anim3: {fileID: 559780589}
   anim1: {fileID: 1620318956}
   image: {fileID: 590422737}
   ad: {fileID: 1620318958}
@@ -6268,6 +6276,7 @@ MonoBehaviour:
   score: 0
   allcoins: 0
   livet: {fileID: 1137274105}
+  anim2: {fileID: 963194232}
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -6307,8 +6316,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 32.950195}
-  m_SizeDelta: {x: 0, y: 65.899864}
+  m_AnchoredPosition: {x: 0, y: 125}
+  m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228502141
 MonoBehaviour:
@@ -11916,6 +11925,7 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1034468416}
   c: {fileID: 298196377}
   doubleTapThreshold: 0.3
+  lightintens: 0
   e: {fileID: 104172367}
   r: {fileID: 310942073}
   b: 0
@@ -11925,7 +11935,10 @@ MonoBehaviour:
   ps: {fileID: 369444326}
   p: {fileID: 985067552}
   isdelay1: 2
+  anim: {fileID: 559780589}
   abilityt: 0
+  l: {fileID: 365593942}
+  bbb: 0
 --- !u!114 &310942073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11938,14 +11951,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 20
-  zSpeedIncrement: 0.25
-  zSpeedUpdateInterval: 1.5
+  initialZSpeed: 15
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 2
   xRange: 11
   sensitivity: 3.5
   smoothFactor: 0.5
   calibrationOffset: {x: -4, y: 0, z: 0}
-  zSpeed: 0
+  zSpeed: 15
 --- !u!114 &310942076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11966,6 +11979,7 @@ MonoBehaviour:
   b: 0
   d: {fileID: 310942072}
   anim: {fileID: 590422739}
+  anim3: {fileID: 559780589}
   anim1: {fileID: 1620318956}
   image: {fileID: 590422737}
   ad: {fileID: 1620318958}
@@ -11973,6 +11987,7 @@ MonoBehaviour:
   score: 0
   allcoins: 0
   livet: {fileID: 1137274105}
+  anim2: {fileID: 963194232}
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -17604,6 +17619,103 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &559780587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 559780588}
+  - component: {fileID: 559780591}
+  - component: {fileID: 559780590}
+  - component: {fileID: 559780589}
+  m_Layer: 5
+  m_Name: UIheals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &559780588
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559780587}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1498}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1038827536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 75, y: 164}
+  m_SizeDelta: {x: 1500, y: 4000}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &559780589
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559780587}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 818005e92493a0b44abb51c3c181c045, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &559780590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559780587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &559780591
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559780587}
+  m_CullTransparentMesh: 1
 --- !u!1 &590422737
 GameObject:
   m_ObjectHideFlags: 0
@@ -28248,6 +28360,7 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1034468416}
   c: {fileID: 298196377}
   doubleTapThreshold: 0.3
+  lightintens: 0
   e: {fileID: 104172367}
   r: {fileID: 814676267}
   b: 0
@@ -28257,7 +28370,10 @@ MonoBehaviour:
   ps: {fileID: 1763670354}
   p: {fileID: 985067552}
   isdelay1: 2
+  anim: {fileID: 559780589}
   abilityt: 0
+  l: {fileID: 365593942}
+  bbb: 0
 --- !u!114 &814676267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28270,14 +28386,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 20
-  zSpeedIncrement: 0.25
-  zSpeedUpdateInterval: 1.5
+  initialZSpeed: 15
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 2
   xRange: 9
   sensitivity: 3.5
   smoothFactor: 0.5
   calibrationOffset: {x: -4, y: 0, z: 0}
-  zSpeed: 0
+  zSpeed: 15
 --- !u!114 &814676270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28298,6 +28414,7 @@ MonoBehaviour:
   b: 0
   d: {fileID: 814676266}
   anim: {fileID: 590422739}
+  anim3: {fileID: 559780589}
   anim1: {fileID: 1620318956}
   image: {fileID: 590422737}
   ad: {fileID: 1620318958}
@@ -28305,6 +28422,7 @@ MonoBehaviour:
   score: 0
   allcoins: 0
   livet: {fileID: 1137274105}
+  anim2: {fileID: 963194232}
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -38900,6 +39018,7 @@ RectTransform:
   - {fileID: 1543253748}
   - {fileID: 350642952}
   - {fileID: 1584350827}
+  - {fileID: 559780588}
   - {fileID: 1620318952}
   - {fileID: 590422738}
   m_Father: {fileID: 279589487}
@@ -66493,6 +66612,7 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1034468416}
   c: {fileID: 298196377}
   doubleTapThreshold: 0.3
+  lightintens: 0
   e: {fileID: 104172367}
   r: {fileID: 1950506763}
   b: 0
@@ -66502,7 +66622,10 @@ MonoBehaviour:
   ps: {fileID: 1651265365}
   p: {fileID: 985067552}
   isdelay1: 2
+  anim: {fileID: 559780589}
   abilityt: 0
+  l: {fileID: 365593942}
+  bbb: 0
 --- !u!114 &1950506763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66515,14 +66638,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 20
-  zSpeedIncrement: 0.25
-  zSpeedUpdateInterval: 1.5
+  initialZSpeed: 15
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 2
   xRange: 9
   sensitivity: 3.5
   smoothFactor: 0.5
   calibrationOffset: {x: -4, y: 0, z: 0}
-  zSpeed: 0
+  zSpeed: 15
 --- !u!114 &1950506764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66543,6 +66666,7 @@ MonoBehaviour:
   b: 0
   d: {fileID: 1950506762}
   anim: {fileID: 590422739}
+  anim3: {fileID: 559780589}
   anim1: {fileID: 1620318956}
   image: {fileID: 590422737}
   ad: {fileID: 1620318958}
@@ -66550,6 +66674,7 @@ MonoBehaviour:
   score: 0
   allcoins: 0
   livet: {fileID: 1137274105}
+  anim2: {fileID: 963194232}
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
