@@ -13,6 +13,7 @@ public class death : MonoBehaviour
     [SerializeField] public GameObject losePanel;
     [SerializeField] public Transform player;
     public int coins;
+    public float isdelay2;
     public Image liveimage;
     private int live = 3;
     public bool b;
@@ -29,6 +30,8 @@ public class death : MonoBehaviour
     public int allcoins;
     public Text livet;
     public Animator anim2;
+    public bool isstarttask;
+    public int is2;
 
     public GameObject explosionEffect;
     public AudioSource explosionSound1;
@@ -215,6 +218,7 @@ public class death : MonoBehaviour
     void Update()
     {
         isdelay -= Time.deltaTime;
+        isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
 
         if (isdelay <= 0)
@@ -251,6 +255,18 @@ public class death : MonoBehaviour
         {
             liveimage.color = new Color(0.322f, 0.322f, 0.322f);
             livet.color = new Color(0.322f, 0.322f, 0.322f);
+        }
+
+        if(isdelay2 <= 0 && is2 >= 2)
+        {
+            is2 = 0;
+            PlayerPrefs.SetInt("breakObstacles", 2);
+        }
+        else if(isdelay2 <= 0 && is2 == 1)
+        {
+            isstarttask = false;
+            is2 = 0;
+            PlayerPrefs.SetInt("breakObstacles", 1);
         }
     }
 
@@ -301,6 +317,17 @@ public class death : MonoBehaviour
         {
             if (d.b == true)
             {
+                if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
+                {
+                    is2++;
+                    if(!isstarttask)
+                    {
+                    isstarttask = true;
+                    isdelay2 = 3;
+                    }
+                }
+
+
                 if (PlayerPrefs.GetInt("fall") == 1)
                             fineText.text = falllifeMessages[Random.Range(0, lifeMessages.Length)];
                         else
@@ -358,13 +385,17 @@ public class death : MonoBehaviour
                     live -= 1;
                     livet.text = live.ToString();
 
-                    anim3.Play("anim");
+                    if (PlayerPrefs.GetInt("currentTask2", -1) == 2)
+                    {
+                        int current = PlayerPrefs.GetInt("loseLife", 0);
+                        current += 1;
+                        PlayerPrefs.SetInt("loseLife", current);
+                    }
 
+                    anim3.Play("anim");
 
                     if (live >= 1)
                     {
-                    
-
                         if (live == 3)
                         {
                             fineText.color = new Color(1f, 0f, 0.3f);

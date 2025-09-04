@@ -18,6 +18,8 @@ public class ScoreCounter : MonoBehaviour
 
     public Animator anim1;
 
+    public bool isbtotask;
+
     public GameObject image;
     public int Vp;
     public Text scoreText;
@@ -99,6 +101,10 @@ public class ScoreCounter : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("isfinal1g", 0);
+        if(PlayerPrefs.GetInt("isbtotask") == 1)
+        {
+            isbtotask = true;
+        }
 
         StartCoroutine(LoadParticlesWithDelay());
         stopps();
@@ -192,6 +198,37 @@ public class ScoreCounter : MonoBehaviour
             ad9.Play();
             PlayerPrefs.SetInt("youcheat", 0);
             }
+
+        if ((int)(player.position.z / 3) >= 700)
+        {   
+            if(!isbtotask)
+            {
+                if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == 3)
+                {
+                    isbtotask = true;
+                    PlayerPrefs.SetInt("scoreNoDamage", 700);
+                    PlayerPrefs.SetInt("isbtotask", 1); 
+                }
+                else if (PlayerPrefs.GetInt("currentTask1", -1) == 3 && PlayerPrefs.GetInt("isabilityuse") == 0)
+                {
+                    isbtotask = true;
+                    PlayerPrefs.SetInt("scoreNoAbility", 700);
+                    PlayerPrefs.SetInt("isbtotask", 1);
+                }
+            }
+            }
+        if(!isbtotask)
+        {
+            if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == 3)
+            {
+                PlayerPrefs.SetInt("scoreNoDamage", (int)(player.position.z / 3));
+            }
+            else if (PlayerPrefs.GetInt("currentTask1", -1) == 3 && PlayerPrefs.GetInt("isabilityuse") == 0)
+            {
+                PlayerPrefs.SetInt("scoreNoAbility", (int)(player.position.z / 3));
+            }
+        }
+
         if ((int)(player.position.z / 3) >= 750 && !is750)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];

@@ -5408,6 +5408,200 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &67334518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 67334519}
+  - component: {fileID: 67334522}
+  - component: {fileID: 67334521}
+  - component: {fileID: 67334520}
+  - component: {fileID: 67334523}
+  m_Layer: 5
+  m_Name: green screen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &67334519
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67334518}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -40212.758}
+  m_LocalScale: {x: 2.9210196, y: 2.9210198, z: 2.9210193}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1960535840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -6294.579, y: -13654.699}
+  m_SizeDelta: {x: 1500, y: 4000}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &67334520
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67334518}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e15214a2f51c63c4db87ff1c2d24c82d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &67334521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67334518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &67334522
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67334518}
+  m_CullTransparentMesh: 1
+--- !u!82 &67334523
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67334518}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &93879496
 GameObject:
   m_ObjectHideFlags: 0
@@ -10630,6 +10824,7 @@ MonoBehaviour:
   losePanel: {fileID: 346243015}
   player: {fileID: 144783069}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 0}
   b: 0
   d: {fileID: 0}
@@ -10643,6 +10838,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 0}
   anim2: {fileID: 0}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 0}
   explosionSound1: {fileID: 0}
   explosionSound2: {fileID: 0}
@@ -37997,6 +38194,7 @@ MonoBehaviour:
   losePanel: {fileID: 346243015}
   player: {fileID: 1258039496}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 2054539713}
   b: 0
   d: {fileID: 1258039499}
@@ -38010,6 +38208,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 1001231539}
   anim2: {fileID: 1979058719}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -38058,6 +38258,9 @@ MonoBehaviour:
   abilityt: 0
   l: {fileID: 2131777373}
   bbb: 0
+  is80: 0
+  ad: {fileID: 67334523}
+  anim1: {fileID: 67334520}
 --- !u!54 &1258039500
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -53591,6 +53794,7 @@ MonoBehaviour:
   losePanel: {fileID: 346243015}
   player: {fileID: 1582142835}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 2054539713}
   b: 0
   d: {fileID: 1582142841}
@@ -53604,6 +53808,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 1001231539}
   anim2: {fileID: 1979058719}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -53700,6 +53906,9 @@ MonoBehaviour:
   abilityt: 0
   l: {fileID: 2131777373}
   bbb: 0
+  is80: 0
+  ad: {fileID: 67334523}
+  anim1: {fileID: 67334520}
 --- !u!114 &1582142842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54572,6 +54781,7 @@ MonoBehaviour:
   losePanel: {fileID: 346243015}
   player: {fileID: 1693977089}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 2054539713}
   b: 0
   d: {fileID: 1693977095}
@@ -54585,6 +54795,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 1001231539}
   anim2: {fileID: 1979058719}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -54651,7 +54863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   s: {fileID: 0}
-  a: {fileID: 0}
+  a: {fileID: 67334520}
 --- !u!114 &1693977095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54681,6 +54893,9 @@ MonoBehaviour:
   abilityt: 0
   l: {fileID: 2131777373}
   bbb: 0
+  is80: 0
+  ad: {fileID: 67334523}
+  anim1: {fileID: 67334520}
 --- !u!114 &1693977096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64866,6 +65081,7 @@ MonoBehaviour:
   losePanel: {fileID: 346243015}
   player: {fileID: 1936518564}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 2054539713}
   b: 0
   d: {fileID: 1936518570}
@@ -64879,6 +65095,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 1001231539}
   anim2: {fileID: 1979058719}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -64975,6 +65193,9 @@ MonoBehaviour:
   abilityt: 0
   l: {fileID: 2131777373}
   bbb: 0
+  is80: 0
+  ad: {fileID: 67334523}
+  anim1: {fileID: 67334520}
 --- !u!114 &1936518571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65061,6 +65282,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 67334519}
+  - {fileID: 1328146609}
   - {fileID: 1049145393}
   - {fileID: 1350524495}
   - {fileID: 28995408}
@@ -65071,7 +65294,6 @@ RectTransform:
   - {fileID: 612056729}
   - {fileID: 217384051}
   - {fileID: 1221031986}
-  - {fileID: 1328146609}
   - {fileID: 346243016}
   - {fileID: 540669387}
   m_Father: {fileID: 1592378833}

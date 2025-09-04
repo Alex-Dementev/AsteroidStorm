@@ -29,6 +29,10 @@ public class DoubleTapHandler : MonoBehaviour
     public int abilityt;
     public Light l;
     public bool bbb;
+    public bool is80;
+    public AudioSource ad;
+    public Animator anim1;
+    public int cb;
 
     private float lastTapTime = 0;
     private bool isWaitingForSecondTap = false;
@@ -112,6 +116,9 @@ public class DoubleTapHandler : MonoBehaviour
 
                     if (otkat <= 0 && e.energyint >= 20)
                     {
+                        if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80) PlayerPrefs.SetInt("abilityOver80", 1);
+
+                        PlayerPrefs.SetInt("isabilityuse", 1);
                         b = true;
                         e.energyint -= 20;
                         abilityt++;
@@ -122,9 +129,9 @@ public class DoubleTapHandler : MonoBehaviour
                         otkat = isotkat;
                         bb = true;
                         lightintens = l.intensity;
-                        l.intensity = 2;
+                        l.intensity = 1.5f;
                         bbb = true;
-                        l.color = new Color(1f, 1f, 0.95f);
+                        l.color = new Color(1f, 1f, 0.85f);
                         anim.Play("blue");
 
                         if (PlayerPrefs.GetInt("vibration") == 0)
@@ -173,11 +180,33 @@ if (nowReady != isAbilityReady)
     {
         if (Collision.gameObject.CompareTag("br"))
         {
-            otkat -= 20;
+            if(PlayerPrefs.GetInt("live") <= 2) 
+            {
+                int life; 
+                life = PlayerPrefs.GetInt("live", 3); 
+                life++; 
+                PlayerPrefs.SetInt("life", life);
+                ad.Play();
+                anim1.Play("green");
+                if(PlayerPrefs.GetInt("currentTask2", -1) == 1)
+                {
+                cb = PlayerPrefs.GetInt("collectBonus", 0);
+                cb++;
+                PlayerPrefs.SetInt("collectBonus", cb);
+                }
+            }
         }
         if (Collision.gameObject.CompareTag("bb"))
         {
             e.energyint += 25;
+            ad.Play();
+            anim1.Play("green");
+            if(PlayerPrefs.GetInt("currentTask2", -1) == 1)
+            {
+            cb = PlayerPrefs.GetInt("collectBonus", 0);
+            cb++;
+            PlayerPrefs.SetInt("collectBonus", cb);
+            }
         }
     }
 
@@ -186,6 +215,13 @@ if (nowReady != isAbilityReady)
         abilityt = PlayerPrefs.GetInt("abilityt", 0);
         isdelay = PlayerPrefs.GetFloat("isdelay");
         isotkat = PlayerPrefs.GetFloat("isotkat");
+        PlayerPrefs.SetInt("isabilityuse", 0);
+
+        if (PlayerPrefs.GetInt("audio") == 0) ad.enabled = true;
+        else if (PlayerPrefs.GetInt("audio") == 1) ad.enabled = false;
+
+        float audios = PlayerPrefs.GetFloat("audios", 0.5f);
+        ad.volume = audios;
 
         if (PlayerPrefs.GetInt("partic") == 0)
         {

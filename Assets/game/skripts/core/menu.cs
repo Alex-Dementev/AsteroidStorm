@@ -132,6 +132,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps40;
     public ParticleSystem ps41;
     public ParticleSystem ps42;
+    public ParticleSystem ps43;
 
     public ParticleSystem rocketstart1;
     public ParticleSystem rocketstart2;
@@ -615,6 +616,7 @@ public class menu : MonoBehaviour
         ps40.Stop();
         ps41.Stop();
         ps42.Stop();
+        ps43.Stop();
 
         if(!rocketfall)
         ad2.Play();
@@ -855,6 +857,10 @@ public void destartedrocketps()
     public void isps23()
     {
         ps35.Play();
+    }
+    public void isps24()
+    {
+        ps43.Play();
     }
 
 

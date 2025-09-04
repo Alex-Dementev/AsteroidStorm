@@ -46597,6 +46597,7 @@ MonoBehaviour:
   ps40: {fileID: 2019338198}
   ps41: {fileID: 1399673758}
   ps42: {fileID: 283107790}
+  ps43: {fileID: 1345485727}
   rocketstart1: {fileID: 976364347}
   rocketstart2: {fileID: 1183503380}
   rocketstart3: {fileID: 1875386604}
@@ -77424,7 +77425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &874554176
 RectTransform:
   m_ObjectHideFlags: 0
@@ -77491,7 +77492,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 455307801}
           m_TargetAssemblyTypeName: menu, Assembly-CSharp
-          m_MethodName: isps20
+          m_MethodName: isps24
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -77579,7 +77580,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1771000407}
         m_TargetAssemblyTypeName: tasks, Assembly-CSharp
-        m_MethodName: click
+        m_MethodName: CheckTask2Completion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -93186,7 +93187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.721, y: 0.02847166}
   m_AnchorMax: {x: 1, y: 0.10782355}
-  m_AnchoredPosition: {x: 4, y: -12.499268}
+  m_AnchoredPosition: {x: 4, y: -12.499023}
   m_SizeDelta: {x: 41.010014, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &956723081
@@ -124731,9 +124732,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 32
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 52
+    m_BestFit: 1
+    m_MinSize: 20
+    m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -151509,7 +151510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1, y: 0.06784948}
   m_AnchorMax: {x: 0.45, y: 0.3057742}
-  m_AnchoredPosition: {x: 40, y: 71}
+  m_AnchoredPosition: {x: 40, y: 71.00049}
   m_SizeDelta: {x: -220, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1334263284
@@ -188366,9 +188367,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 32
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 52
+    m_BestFit: 1
+    m_MinSize: 20
+    m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -206658,14 +206659,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52e095ecc976554786908b1798f0e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  task: {fileID: 1503427863}
-  s: {fileID: 1509425967}
-  time: 0
-  ability: 0
-  alltask: 0
-  istask: 0
-  coins: 0
-  allcoins: 0
+  task1Text: {fileID: 1503427863}
+  task1Slider: {fileID: 1509425967}
+  task2Text: {fileID: 1119772163}
+  task2Slider: {fileID: 204099845}
 --- !u!1 &1777379374
 GameObject:
   m_ObjectHideFlags: 0
@@ -211796,7 +211793,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1771000407}
         m_TargetAssemblyTypeName: tasks, Assembly-CSharp
-        m_MethodName: click
+        m_MethodName: CheckTask1Completion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -212149,7 +212146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 216.49982, y: 0.3391657}
+  m_AnchoredPosition: {x: 216.49985, y: 0.3391657}
   m_SizeDelta: {x: 423.7398, y: 89.93346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1866336016

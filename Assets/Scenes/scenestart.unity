@@ -383,6 +383,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 985067551}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 691b27d8a72964c4a9495c4d6c13ad4a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 985067553}
   m_SourcePrefab: {fileID: 100100000, guid: 691b27d8a72964c4a9495c4d6c13ad4a, type: 3}
 --- !u!1 &89193586
 GameObject:
@@ -5467,6 +5471,7 @@ MonoBehaviour:
   s3: {fileID: 1950506757}
   s4: {fileID: 207934567}
   anim1: {fileID: 590422739}
+  isbtotask: 0
   image: {fileID: 590422737}
   Vp: 0
   scoreText: {fileID: 946596074}
@@ -5596,6 +5601,7 @@ MonoBehaviour:
   losePanel: {fileID: 1620318951}
   player: {fileID: 104172361}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 0}
   b: 0
   d: {fileID: 0}
@@ -5609,6 +5615,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 0}
   anim2: {fileID: 0}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 0}
   explosionSound1: {fileID: 0}
   explosionSound2: {fileID: 0}
@@ -6234,6 +6242,10 @@ MonoBehaviour:
   abilityt: 0
   l: {fileID: 365593942}
   bbb: 0
+  is80: 0
+  ad: {fileID: 985067553}
+  anim1: {fileID: 973839480}
+  cb: 0
 --- !u!114 &207934575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6264,6 +6276,7 @@ MonoBehaviour:
   losePanel: {fileID: 1620318951}
   player: {fileID: 207934569}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 545735398}
   b: 0
   d: {fileID: 207934574}
@@ -6277,6 +6290,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 1137274105}
   anim2: {fileID: 963194232}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -11939,6 +11954,10 @@ MonoBehaviour:
   abilityt: 0
   l: {fileID: 365593942}
   bbb: 0
+  is80: 0
+  ad: {fileID: 985067553}
+  anim1: {fileID: 973839480}
+  cb: 0
 --- !u!114 &310942073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11975,6 +11994,7 @@ MonoBehaviour:
   losePanel: {fileID: 1620318951}
   player: {fileID: 310942066}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 545735398}
   b: 0
   d: {fileID: 310942072}
@@ -11988,6 +12008,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 1137274105}
   anim2: {fileID: 963194232}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -28374,6 +28396,10 @@ MonoBehaviour:
   abilityt: 0
   l: {fileID: 365593942}
   bbb: 0
+  is80: 0
+  ad: {fileID: 985067553}
+  anim1: {fileID: 973839480}
+  cb: 0
 --- !u!114 &814676267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28410,6 +28436,7 @@ MonoBehaviour:
   losePanel: {fileID: 1620318951}
   player: {fileID: 814676260}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 545735398}
   b: 0
   d: {fileID: 814676266}
@@ -28423,6 +28450,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 1137274105}
   anim2: {fileID: 963194232}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -33898,6 +33927,103 @@ AudioReverbFilter:
   m_LFReference: 250
   m_ReflectionsDelay: 0
   m_ReverbPreset: 10
+--- !u!1 &973839479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 973839483}
+  - component: {fileID: 973839482}
+  - component: {fileID: 973839481}
+  - component: {fileID: 973839480}
+  m_Layer: 5
+  m_Name: green screen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &973839480
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973839479}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e15214a2f51c63c4db87ff1c2d24c82d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &973839481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973839479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &973839482
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973839479}
+  m_CullTransparentMesh: 1
+--- !u!224 &973839483
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973839479}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1498}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1038827536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 75, y: 164}
+  m_SizeDelta: {x: 1500, y: 4000}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &985067549 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 691b27d8a72964c4a9495c4d6c13ad4a,
@@ -38707,6 +38833,102 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!82 &985067553
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985067549}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &998705924
 GameObject:
   m_ObjectHideFlags: 0
@@ -39006,6 +39228,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1329748432}
+  - {fileID: 559780588}
+  - {fileID: 973839483}
   - {fileID: 1824364252}
   - {fileID: 946596073}
   - {fileID: 298196372}
@@ -39018,7 +39242,6 @@ RectTransform:
   - {fileID: 1543253748}
   - {fileID: 350642952}
   - {fileID: 1584350827}
-  - {fileID: 559780588}
   - {fileID: 1620318952}
   - {fileID: 590422738}
   m_Father: {fileID: 279589487}
@@ -66626,6 +66849,10 @@ MonoBehaviour:
   abilityt: 0
   l: {fileID: 365593942}
   bbb: 0
+  is80: 0
+  ad: {fileID: 985067553}
+  anim1: {fileID: 973839480}
+  cb: 0
 --- !u!114 &1950506763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66662,6 +66889,7 @@ MonoBehaviour:
   losePanel: {fileID: 1620318951}
   player: {fileID: 1950506756}
   coins: 0
+  isdelay2: 0
   liveimage: {fileID: 545735398}
   b: 0
   d: {fileID: 1950506762}
@@ -66675,6 +66903,8 @@ MonoBehaviour:
   allcoins: 0
   livet: {fileID: 1137274105}
   anim2: {fileID: 963194232}
+  isstarttask: 0
+  is2: 0
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}

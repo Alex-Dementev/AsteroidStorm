@@ -5,97 +5,184 @@ using UnityEngine.UI;
 
 public class tasks : MonoBehaviour
 {
-    public Text task;
-    public Slider s;
-    public float time;
-    public int ability;
-    public int alltask;
-    public int istask;
-    public int coins;
-    public int allcoins;
+    public Text task1Text;
+    public Slider task1Slider;
+    public Text task2Text;
+    public Slider task2Slider;
 
+    private int[] block1 = { 0, 1, 2, 3 }; // индексы заданий блока 1
+    private int[] block2 = { 0, 1, 2, 3 }; // индексы заданий блока 2
+
+    private int currentTask1 = -1;
+    private int currentTask2 = -1;
 
     void Start()
     {
-        alltask = PlayerPrefs.GetInt("alltask", 0);
-        istask = PlayerPrefs.GetInt("istask", 0);
-
-        if (istask == 0)
-        {
-            ability = PlayerPrefs.GetInt("abilityt", 0);
-            task.text = "используй способность 10 раз";
-            s.value = ability;
-            s.maxValue = 10;
-
-        }
-        if (istask == 1)
-        {
-            task.text = "проведи в игре 10 минут";
-            s.maxValue = 900;
-        }
+        LoadTasks();
+        UpdateUI();
     }
 
-    public void click()
-{
-    if (istask == 0)
+    void LoadTasks()
     {
-            if (ability >= 10)
-            {
-                alltask++;
-                PlayerPrefs.SetInt("alltask", alltask);
-                istask = 1;
-                PlayerPrefs.SetInt("istask", 1);
+        currentTask1 = PlayerPrefs.GetInt("currentTask1", -1);
+        currentTask2 = PlayerPrefs.GetInt("currentTask2", -1);
 
-                PlayerPrefs.SetInt("abilityt", 0);
-                PlayerPrefs.SetFloat("tasktimet", 0);
+        if (currentTask1 == -1) currentTask1 = RandomTask(block1);
+        if (currentTask2 == -1) currentTask2 = RandomTask(block2);
 
-                s.maxValue = 900;
-                coins = PlayerPrefs.GetInt("coins", 0);
-                coins += 700;
-                PlayerPrefs.SetInt("coins", coins);
-                allcoins = PlayerPrefs.GetInt("allcoins", 0);
-                allcoins += 700;
-                PlayerPrefs.SetInt("allcoins", allcoins);
-
-                PlayerPrefs.SetInt("is10", 0);
-        }
+        PlayerPrefs.SetInt("currentTask1", currentTask1);
+        PlayerPrefs.SetInt("currentTask2", currentTask2);
     }
-    else if (istask == 1)
+
+    int RandomTask(int[] block)
     {
-            if (time >= 600)
-            {
-                alltask++;
-                PlayerPrefs.SetInt("alltask", alltask);
-                istask = 0;
-                PlayerPrefs.SetInt("istask", 0);
+        List<int> remaining = new List<int>(block);
+        return remaining[Random.Range(0, remaining.Count)];
+    }
 
-                PlayerPrefs.SetFloat("tasktimet", 0);
-                PlayerPrefs.SetInt("abilityt", 0);
+    void UpdateUI()
+    {
+        // Блок 1
+        switch (currentTask1)
+        {
+            case 0:
+                task1Text.text = "Использовать способность 10 раз";
+                task1Slider.maxValue = 10;
+                task1Slider.value = PlayerPrefs.GetInt("abilityt", 0);
+                break;
+            case 1:
+                task1Text.text = "Провести в игре 10 минут";
+                task1Slider.maxValue = 600; // 10 минут = 600 секунд
+                task1Slider.value = PlayerPrefs.GetFloat("taskTime", 0);
+                break;
+            case 2:
+                task1Text.text = "Набрать 700 очков с начала главы без повреждений";
+                task1Slider.maxValue = 700;
+                task1Slider.value = PlayerPrefs.GetInt("scoreNoDamage", 0);
+                break;
+            case 3:
+                task1Text.text = "Набрать 700 очков с начала главы без использования способности";
+                task1Slider.maxValue = 700;
+                task1Slider.value = PlayerPrefs.GetInt("scoreNoAbility", 0);
+                break;
+        }
 
-                s.maxValue = 10;
-                coins = PlayerPrefs.GetInt("coins", 0);
-                coins += 700;
-                PlayerPrefs.SetInt("coins", coins);
-
-                PlayerPrefs.SetInt("is600", 0);
+        // Блок 2
+        switch (currentTask2)
+        {
+            case 0:
+                task2Text.text = "Пробить 2 препятствия способностью за один раз";
+                task2Slider.maxValue = 2;
+                task2Slider.value = PlayerPrefs.GetInt("breakObstacles", 0);
+                break;
+            case 1:
+                task2Text.text = "Собрать бонус 3 раза";
+                task2Slider.maxValue = 5;
+                task2Slider.value = PlayerPrefs.GetInt("collectBonus", 0);
+                break;
+            case 2:
+                task2Text.text = "Потерять жизнь 15 раз";
+                task2Slider.maxValue = 15;
+                task2Slider.value = PlayerPrefs.GetInt("loseLife", 0);
+                break;
+            case 3:
+                task2Text.text = "Использовать способность при >80% энергии";
+                task2Slider.maxValue = 1;
+                task2Slider.value = PlayerPrefs.GetInt("abilityOver80", 0);
+                break;
         }
     }
-}
 
+    public void CheckTask1Completion()
+    {
+        bool completed = false;
+        switch (currentTask1)
+        {
+            case 0:
+                if (PlayerPrefs.GetInt("abilityt", 0) >= 10) completed = true;
+                break;
+            case 1:
+                if (PlayerPrefs.GetFloat("taskTime", 0) >= 600) completed = true;
+                break;
+            case 2:
+                if (PlayerPrefs.GetInt("scoreNoDamage", 0) >= 600 && PlayerPrefs.GetInt("isbtotask") == 1) completed = true; PlayerPrefs.SetInt("isbtotask", 0);
+                break;
+            case 3:
+                if (PlayerPrefs.GetInt("scoreNoAbility", 0) >= 600) completed = true;
+                break;
+        }
+
+        if (completed)
+        {
+            int[] remaining = RemainingTasks(block1, currentTask1);
+            currentTask1 = remaining[Random.Range(0, remaining.Length)];
+            PlayerPrefs.SetInt("currentTask1", currentTask1);
+            ResetTask1Progress();
+            UpdateUI();
+        }
+    }
+
+    public void CheckTask2Completion()
+    {
+        bool completed = false;
+        switch (currentTask2)
+        {
+            case 0:
+                if (PlayerPrefs.GetInt("breakObstacles", 0) >= 2) completed = true;
+                break;
+            case 1:
+                if (PlayerPrefs.GetInt("collectBonus", 0) >= 5) completed = true;
+                break;
+            case 2:
+                if (PlayerPrefs.GetInt("loseLife", 0) >= 15) completed = true;
+                break;
+            case 3:
+                if (PlayerPrefs.GetInt("abilityOver80", 0) >= 1) completed = true;
+                break;
+        }
+
+        if (completed)
+        {
+            int[] remaining = RemainingTasks(block2, currentTask2);
+            currentTask2 = remaining[Random.Range(0, remaining.Length)];
+            PlayerPrefs.SetInt("currentTask2", currentTask2);
+            ResetTask2Progress();
+            UpdateUI();
+        }
+    }
+
+    int[] RemainingTasks(int[] block, int done)
+    {
+        List<int> rem = new List<int>();
+        foreach (var t in block)
+            if (t != done) rem.Add(t);
+        return rem.ToArray();
+    }
+
+    void ResetTask1Progress()
+    {
+        switch (currentTask1)
+        {
+            case 0: PlayerPrefs.SetInt("abilityt", 0); break;
+            case 1: PlayerPrefs.SetFloat("taskTime", 0); break;
+            case 2: PlayerPrefs.SetInt("scoreNoDamage", 0); break;
+            case 3: PlayerPrefs.SetInt("scoreNoAbility", 0); break;
+        }
+    }
+
+    void ResetTask2Progress()
+    {
+        switch (currentTask2)
+        {
+            case 0: PlayerPrefs.SetInt("breakObstacles", 0); break;
+            case 1: PlayerPrefs.SetInt("collectBonus", 0); break;
+            case 2: PlayerPrefs.SetInt("loseLife", 0); break;
+            case 3: PlayerPrefs.SetInt("abilityOver80", 0); break;
+        }
+    }
 
     void Update()
     {
-        ability = PlayerPrefs.GetInt("abilityt", 0);
-        time = PlayerPrefs.GetFloat("tasktimet", 0);
-        if (istask == 1)
-        {
-            task.text = "проведи в игре 10 минут";
-            s.value = time;
-        }
-        if (istask == 0)
-        {
-            task.text = "используй способность 10 раз";
-            s.value = ability;
-        }
+        UpdateUI();
     }
 }
