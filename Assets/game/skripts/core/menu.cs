@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RDG;
 using System.Net.Mail;
+using JetBrains.Annotations;
 
 public class menu : MonoBehaviour
 {
+    public Animator lombard;
     public Text n1;
     public Text n2;
     public Text n3;
@@ -16,6 +18,8 @@ public class menu : MonoBehaviour
     public Text d2;
     public Text d3;
     public Text d4;
+    public float sliderlightfloat;
+    public Slider lightgameplay;
     private int one;
     public int prefs;
     public bool isprolog;
@@ -41,6 +45,8 @@ public class menu : MonoBehaviour
     public GameObject panel7;
     public GameObject panel8;
     public GameObject panelCustomizate;
+    public GameObject panelLom;
+    public GameObject panelBank;
     public GameObject achp1;
     public GameObject achp2;
     public GameObject achp3;
@@ -65,6 +71,8 @@ public class menu : MonoBehaviour
     public bool isanim5;
     public bool isanim6;
     public bool isanim7;
+    public bool isBankPanel;
+    public bool isLomPanel;
     public Animator header;
     public RocketBehavior r;
     public RocketBehavior r2;
@@ -93,6 +101,9 @@ public class menu : MonoBehaviour
     public Animator skinspanel;
     public Animator components;
     public Animator componentsp;
+    public Animator lompanel;
+    public Animator Bank;
+    public Animator bankpanel;
 
     public ParticleSystem ps;
     public ParticleSystem ps1;
@@ -133,6 +144,12 @@ public class menu : MonoBehaviour
     public ParticleSystem ps41;
     public ParticleSystem ps42;
     public ParticleSystem ps43;
+    public ParticleSystem ps44;
+    public ParticleSystem ps45;
+    public ParticleSystem ps46;
+    public ParticleSystem ps47;
+    public ParticleSystem ps48;
+    public ParticleSystem ps49;
 
     public ParticleSystem rocketstart1;
     public ParticleSystem rocketstart2;
@@ -154,6 +171,9 @@ public class menu : MonoBehaviour
     public float pref;
     public float achi;
     public float task;
+    public bool isCloseBankPanel;
+    public float BankFloatPanel;
+    public float LomFloatPanel;
     public float ach1;
     public float ach2;
     public float ach3;
@@ -191,6 +211,8 @@ public class menu : MonoBehaviour
     public int intsurwive;
     public bool isbsurwive;
     public bool isCloseCustomPanel;
+    public bool isCloseBankmPanel;
+    public bool isCloseLomPanel;
 
 
 
@@ -219,6 +241,8 @@ public class menu : MonoBehaviour
 
         if(PlayerPrefs.GetInt("fall") == 1)
         rocketfall = true;
+
+        lightgameplay.value = PlayerPrefs.GetFloat("lightgameplay");
 
         Sm.value = musics;
         Sa.value = audios;
@@ -324,6 +348,12 @@ public class menu : MonoBehaviour
         ps33.Stop();
         ps34.Stop();
         ps35.Stop();
+        ps44.Stop();
+        ps45.Stop();
+        ps46.Stop();
+        ps47.Stop();
+        ps48.Stop();
+        ps49.Stop();
 
         if(!rocketfall)
         {
@@ -377,7 +407,8 @@ public class menu : MonoBehaviour
         Dbackstarted -= Time.deltaTime;
         compopf -= Time.deltaTime;
         customFloatPanel -= Time.deltaTime;
-
+        LomFloatPanel -= Time.deltaTime;
+        BankFloatPanel -= Time.deltaTime;
 
 
         musics = Sm.value;
@@ -430,6 +461,16 @@ public class menu : MonoBehaviour
         {
             isCloseCustomPanel = false;
             panelCustomizate.SetActive(!panelCustomizate.activeSelf);
+        }
+        if(BankFloatPanel <= 0 && isCloseBankPanel == true)
+        {
+            isCloseBankPanel = false;
+            panelBank.SetActive(!panelBank.activeSelf);
+        }
+        if(LomFloatPanel <= 0 && isCloseLomPanel == true)
+        {
+            isCloseLomPanel = false;
+            panelLom.SetActive(!panelLom.activeSelf);
         }
         if (pref <= 0)
         {
@@ -498,13 +539,17 @@ public class menu : MonoBehaviour
 
 
 
+        sliderlightfloat = lightgameplay.value;
+        PlayerPrefs.SetFloat("lightgameplay", sliderlightfloat);
+        
+
 
         if (PlayerPrefs.GetInt("music") == 0)
         {
             ison = true;
             but.GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
-        else if(PlayerPrefs.GetInt("music") == 1)
+        else if (PlayerPrefs.GetInt("music") == 1)
         {
             ison = false;
             but.GetComponent<Image>().color = new Color(255, 0, 0, 255);
@@ -617,6 +662,12 @@ public class menu : MonoBehaviour
         ps41.Stop();
         ps42.Stop();
         ps43.Stop();
+        ps44.Stop();
+        ps45.Stop();
+        ps46.Stop();
+        ps47.Stop();
+        ps48.Stop();
+        ps49.Stop();
 
         if(!rocketfall)
         ad2.Play();
@@ -814,6 +865,8 @@ public void destartedrocketps()
         ps18.Play();
         ps19.Play();
         ps40.Play();
+        ps46.Play();
+        ps47.Play();
     }
     public void isps16()
     {
@@ -823,6 +876,8 @@ public void destartedrocketps()
         ps23.Play();
         ps24.Play();
         ps41.Play();
+        ps48.Play();
+        ps49.Play();
     }
     public void isps17()
     {
@@ -861,6 +916,14 @@ public void destartedrocketps()
     public void isps24()
     {
         ps43.Play();
+    }
+    public void isps25()
+    {
+        ps44.Play();
+    }
+    public void isps26()
+    {
+        ps45.Play();
     }
 
 
@@ -1403,6 +1466,44 @@ ad2end();
             isdelay2 = 0.85f;
         }
     }
+    public void activatepanelbl()
+    {
+        if (isdelay2 <= 0)
+        {
+            if (isBankPanel == false)
+            {
+                panelBank.SetActive(!panelBank.activeSelf);
+                Bank.Play("Bankclick");
+                bankpanel.Play("Bank");
+                isBankPanel = true;
+            }
+            else if(isdelay2 <= 0)
+            {
+                bankpanel.Play("Bank 0");
+                isBankPanel = false;
+                BankFloatPanel = 1;
+                isCloseBankPanel = true;
+            }
+            
+             if (isLomPanel == false)
+            {
+                panelLom.SetActive(!panelLom.activeSelf);
+                lombard.Play("lombardclick");
+                lompanel.Play("Lombard");
+                isLomPanel = true;
+                isdelay2 = 1;
+            }
+            else if (isdelay2 <= 0)
+            {
+                lompanel.Play("Lombard 0");
+                isLomPanel = false;
+                LomFloatPanel = 1;
+                isCloseLomPanel = true;
+            }
+            ad2end();
+            isdelay2 = 0.85f;
+        }
+    }
     
 
     public void activatepanel2()
@@ -1545,6 +1646,46 @@ ad2end();
                 isCustomPanel = false;
                 customFloatPanel = 1;
                 isCloseCustomPanel = true;
+            }
+
+            ad2end();
+    }
+    public void activateLombardPanel()
+    {
+            if (isLomPanel == false)
+            {
+                panelLom.SetActive(!panelLom.activeSelf);
+                lombard.Play("lombardclick");
+                lompanel.Play("Lombard");
+                isLomPanel = true;
+                isdelay2 = 1;
+            }
+            else if(isdelay2 <= 0)
+            {
+                lompanel.Play("Lombard 0");
+                isLomPanel = false;
+                LomFloatPanel = 1;
+                isCloseLomPanel = true;
+            }
+
+            ad2end();
+    }
+    public void activateBankPanel()
+    {
+            if (isBankPanel == false)
+            {
+                panelBank.SetActive(!panelBank.activeSelf);
+                Bank.Play("Bankclick");
+                bankpanel.Play("Bank");
+                isBankPanel = true;
+                isdelay2 = 1;
+            }
+            else if(isdelay2 <= 0)
+            {
+                bankpanel.Play("Bank 0");
+                isBankPanel = false;
+                BankFloatPanel = 1;
+                isCloseBankPanel = true;
             }
 
             ad2end();

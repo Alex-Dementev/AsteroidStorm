@@ -9,8 +9,13 @@ public class ScoreCounter : MonoBehaviour
 {
     [SerializeField] public Transform player;
 
+    public float isdelay5;
     public ObstacleSpawner spawner;
-
+    public bool isCloseHomePanel;
+    public float homeFloatPanel;
+    public bool isHomePanel;
+    public Animator homepanel;
+    public GameObject panelHome;
     public GameObject s1;
     public GameObject s2;
     public GameObject s3;
@@ -23,6 +28,7 @@ public class ScoreCounter : MonoBehaviour
     public GameObject image;
     public int Vp;
     public Text scoreText;
+    public Light l;
     public ParticleSystem ps;
     public ParticleSystem ps1;
     public ParticleSystem ps2;
@@ -101,10 +107,12 @@ public class ScoreCounter : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("isfinal1g", 0);
-        if(PlayerPrefs.GetInt("isbtotask") == 1)
+        if (PlayerPrefs.GetInt("isbtotask") == 1)
         {
             isbtotask = true;
         }
+
+        l.intensity = PlayerPrefs.GetFloat("lightgameplay");
 
         StartCoroutine(LoadParticlesWithDelay());
         stopps();
@@ -139,6 +147,8 @@ public class ScoreCounter : MonoBehaviour
 
     void Update()
     {
+        isdelay5 -= Time.deltaTime;
+
         if (s1 && s1.activeInHierarchy) player = s1.transform;
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
@@ -151,6 +161,18 @@ public class ScoreCounter : MonoBehaviour
         isdelay2 -= Time.deltaTime;
         isdelay3 -= Time.deltaTime;
         isdelay4 -= Time.deltaTime;
+
+
+        if(homeFloatPanel <= 0)
+        {
+            if(isCloseHomePanel == true)
+            {
+                isCloseHomePanel = false;
+                panelHome.SetActive(!panelHome.activeSelf);
+            }
+        }
+
+        homeFloatPanel -= Time.deltaTime;
 
 
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
@@ -181,14 +203,14 @@ public class ScoreCounter : MonoBehaviour
             anim2.Play("anim 26 1");
             is100 = true;
             ad9.Play();
-            }
+        }
         if ((int)(player.position.z / 3) >= 825 && !is825)
         {
             text.text = "выход на высокую арбиту луны";
             anim2.Play("anim 26 1");
             is825 = true;
             ad9.Play();
-            }
+        }
         if ((int)(player.position.z / 3) >= 440 && !is440)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
@@ -197,17 +219,17 @@ public class ScoreCounter : MonoBehaviour
             is440 = true;
             ad9.Play();
             PlayerPrefs.SetInt("youcheat", 0);
-            }
+        }
 
         if ((int)(player.position.z / 3) >= 700)
-        {   
-            if(!isbtotask)
+        {
+            if (!isbtotask)
             {
                 if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == 3)
                 {
                     isbtotask = true;
                     PlayerPrefs.SetInt("scoreNoDamage", 700);
-                    PlayerPrefs.SetInt("isbtotask", 1); 
+                    PlayerPrefs.SetInt("isbtotask", 1);
                 }
                 else if (PlayerPrefs.GetInt("currentTask1", -1) == 3 && PlayerPrefs.GetInt("isabilityuse") == 0)
                 {
@@ -216,8 +238,8 @@ public class ScoreCounter : MonoBehaviour
                     PlayerPrefs.SetInt("isbtotask", 1);
                 }
             }
-            }
-        if(!isbtotask)
+        }
+        if (!isbtotask)
         {
             if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == 3)
             {
@@ -236,24 +258,24 @@ public class ScoreCounter : MonoBehaviour
             anim2.Play("anim 26 1");
             is750 = true;
             ad9.Play();
-            }
+        }
         if ((int)(player.position.z / 3) >= 250 && !is250)
         {
             text.text = "курс стабилен";
             anim2.Play("anim 26 1");
             is250 = true;
             ad9.Play();
-            }
+        }
 
         if (isdelay3 <= 0 && isend)
-            {
-                SceneManager.LoadScene("cutsceneG1");
-            }
+        {
+            SceneManager.LoadScene("cutsceneG1");
+        }
 
         if (spawn > 840)
-            {
-                isbtonext = true;
-            }
+        {
+            isbtonext = true;
+        }
 
 
         if (isdelay1 <= 0)
@@ -415,17 +437,35 @@ public class ScoreCounter : MonoBehaviour
 
     public void ad2in()
     {
-        if(!rocketfall)
-        ad2.Play();
+        if (!rocketfall)
+            ad2.Play();
         else
-        ad10.Play();
+            ad10.Play();
     }
 
     public void ad3end()
     {
-        if(!rocketfall)
-        ad3.Play();
+        if (!rocketfall)
+            ad3.Play();
         else
-        ad11.Play();
+            ad11.Play();
+    }
+    
+        public void activateHomePanel()
+    {
+            if (isHomePanel == false)
+            {
+                panelHome.SetActive(!panelHome.activeSelf);
+                homepanel.Play("animat");
+                isHomePanel = true;
+                isdelay5 = 1;
+            }
+            else if(isdelay2 <= 0)
+            {
+                homepanel.Play("animat 0");
+                isHomePanel = false;
+                homeFloatPanel = 1;
+                isCloseHomePanel = true;
+            }
     }
 }

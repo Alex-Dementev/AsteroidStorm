@@ -10,6 +10,13 @@ public class tasks : MonoBehaviour
     public Text task2Text;
     public Slider task2Slider;
 
+    // 👉 новые элементы
+    public Text task1RewardText;
+    public Text task2RewardText;
+
+    public int[] rewardsBlock1 = new int[8]; // награды для блока 1
+    public int[] rewardsBlock2 = new int[8]; // награды для блока 2
+
     private int[] block1 = { 0, 1, 2, 3 }; // индексы заданий блока 1
     private int[] block2 = { 0, 1, 2, 3 }; // индексы заданий блока 2
 
@@ -52,20 +59,21 @@ public class tasks : MonoBehaviour
                 break;
             case 1:
                 task1Text.text = "Провести в игре 10 минут";
-                task1Slider.maxValue = 600; // 10 минут = 600 секунд
+                task1Slider.maxValue = 600;
                 task1Slider.value = PlayerPrefs.GetFloat("taskTime", 0);
                 break;
             case 2:
-                task1Text.text = "Набрать 700 очков с начала главы без повреждений";
+                task1Text.text = "Набрать 700 очков без повреждений";
                 task1Slider.maxValue = 700;
                 task1Slider.value = PlayerPrefs.GetInt("scoreNoDamage", 0);
                 break;
             case 3:
-                task1Text.text = "Набрать 700 очков с начала главы без использования способности";
+                task1Text.text = "Набрать 700 очков без использования способности";
                 task1Slider.maxValue = 700;
                 task1Slider.value = PlayerPrefs.GetInt("scoreNoAbility", 0);
                 break;
         }
+        task1RewardText.text = "Награда: " + rewardsBlock1[currentTask1] + " монет";
 
         // Блок 2
         switch (currentTask2)
@@ -76,7 +84,7 @@ public class tasks : MonoBehaviour
                 task2Slider.value = PlayerPrefs.GetInt("breakObstacles", 0);
                 break;
             case 1:
-                task2Text.text = "Собрать бонус 3 раза";
+                task2Text.text = "Собрать бонус 5 раз";
                 task2Slider.maxValue = 5;
                 task2Slider.value = PlayerPrefs.GetInt("collectBonus", 0);
                 break;
@@ -91,6 +99,7 @@ public class tasks : MonoBehaviour
                 task2Slider.value = PlayerPrefs.GetInt("abilityOver80", 0);
                 break;
         }
+        task2RewardText.text = "Награда: " + rewardsBlock2[currentTask2] + " монет";
     }
 
     public void CheckTask1Completion()
@@ -98,22 +107,21 @@ public class tasks : MonoBehaviour
         bool completed = false;
         switch (currentTask1)
         {
-            case 0:
-                if (PlayerPrefs.GetInt("abilityt", 0) >= 10) completed = true;
-                break;
-            case 1:
-                if (PlayerPrefs.GetFloat("taskTime", 0) >= 600) completed = true;
-                break;
+            case 0: if (PlayerPrefs.GetInt("abilityt", 0) >= 10) completed = true; break;
+            case 1: if (PlayerPrefs.GetFloat("taskTime", 0) >= 600) completed = true; break;
             case 2:
-                if (PlayerPrefs.GetInt("scoreNoDamage", 0) >= 600 && PlayerPrefs.GetInt("isbtotask") == 1) completed = true; PlayerPrefs.SetInt("isbtotask", 0);
+                if (PlayerPrefs.GetInt("scoreNoDamage", 0) >= 700 && PlayerPrefs.GetInt("isbtotask") == 1)
+                {
+                    completed = true;
+                    PlayerPrefs.SetInt("isbtotask", 0);
+                }
                 break;
-            case 3:
-                if (PlayerPrefs.GetInt("scoreNoAbility", 0) >= 600) completed = true;
-                break;
+            case 3: if (PlayerPrefs.GetInt("scoreNoAbility", 0) >= 700) completed = true; break;
         }
 
         if (completed)
         {
+            GiveReward(rewardsBlock1[currentTask1]);
             int[] remaining = RemainingTasks(block1, currentTask1);
             currentTask1 = remaining[Random.Range(0, remaining.Length)];
             PlayerPrefs.SetInt("currentTask1", currentTask1);
@@ -127,28 +135,35 @@ public class tasks : MonoBehaviour
         bool completed = false;
         switch (currentTask2)
         {
-            case 0:
-                if (PlayerPrefs.GetInt("breakObstacles", 0) >= 2) completed = true;
-                break;
-            case 1:
-                if (PlayerPrefs.GetInt("collectBonus", 0) >= 5) completed = true;
-                break;
-            case 2:
-                if (PlayerPrefs.GetInt("loseLife", 0) >= 15) completed = true;
-                break;
-            case 3:
-                if (PlayerPrefs.GetInt("abilityOver80", 0) >= 1) completed = true;
-                break;
+            case 0: if (PlayerPrefs.GetInt("breakObstacles", 0) >= 2) completed = true; break;
+            case 1: if (PlayerPrefs.GetInt("collectBonus", 0) >= 5) completed = true; break;
+            case 2: if (PlayerPrefs.GetInt("loseLife", 0) >= 15) completed = true; break;
+            case 3: if (PlayerPrefs.GetInt("abilityOver80", 0) >= 1) completed = true; break;
         }
 
         if (completed)
         {
+            GiveReward(rewardsBlock2[currentTask2]);
             int[] remaining = RemainingTasks(block2, currentTask2);
             currentTask2 = remaining[Random.Range(0, remaining.Length)];
             PlayerPrefs.SetInt("currentTask2", currentTask2);
             ResetTask2Progress();
             UpdateUI();
         }
+    }
+
+    void GiveReward(int rewardAmount)
+    {
+        int coins = PlayerPrefs.GetInt("coins", 0);
+        int allcoins = PlayerPrefs.GetInt("allcoins", 0);
+
+        coins += rewardAmount;
+        allcoins += rewardAmount;
+
+        PlayerPrefs.SetInt("coins", coins);
+        PlayerPrefs.SetInt("allcoins", allcoins);
+
+        Debug.Log("🎉 Игрок получил " + rewardAmount + " монет!");
     }
 
     int[] RemainingTasks(int[] block, int done)

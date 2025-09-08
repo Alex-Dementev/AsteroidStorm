@@ -10,7 +10,12 @@ public class ScoreCounterFinal : MonoBehaviour
     [SerializeField] public Transform player;
 
     public ObstacleSpawner spawner;
-
+    public float isdelay5;
+    public bool isCloseHomePanel;
+    public float homeFloatPanel;
+    public bool isHomePanel;
+    public Animator homepanel;
+    public GameObject panelHome;
     public GameObject s1;
     public GameObject s2;
     public GameObject s3;
@@ -66,6 +71,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public bool is550;
     public bool rocketfall;
     public Animator anim5;
+    public Light l;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
@@ -94,6 +100,8 @@ public class ScoreCounterFinal : MonoBehaviour
         ach3 = PlayerPrefs.GetInt("ach3");
         PlayerPrefs.SetInt("isfinal1g", 1);
 
+        l.intensity = PlayerPrefs.GetFloat("lightgameplay");
+
         RenderSettings.fog = false;
         StartCoroutine(LoadParticlesWithDelay());
         stopps();
@@ -110,8 +118,8 @@ public class ScoreCounterFinal : MonoBehaviour
         ps1.Clear();
         ps1.Play();
 
-        if(PlayerPrefs.GetInt("fall") == 1)
-        rocketfall = true;
+        if (PlayerPrefs.GetInt("fall") == 1)
+            rocketfall = true;
 
         anim.Play("anim6");
 
@@ -134,6 +142,19 @@ public class ScoreCounterFinal : MonoBehaviour
         isdelay2 -= Time.deltaTime;
         isdelay3 -= Time.deltaTime;
         isdelay4 -= Time.deltaTime;
+
+
+        if(homeFloatPanel <= 0)
+        {
+            if(isCloseHomePanel == true)
+            {
+                isCloseHomePanel = false;
+                panelHome.SetActive(!panelHome.activeSelf);
+            }
+        }
+
+        homeFloatPanel -= Time.deltaTime;
+
 
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
         ad1.volume = audios / 3.5f;
@@ -255,46 +276,46 @@ public class ScoreCounterFinal : MonoBehaviour
     }
 
     IEnumerator EnableFogWithDelay()
-{
-    fogCoroutineStarted = true;
-
-    yield return new WaitForSeconds(7f);
-
-    RenderSettings.fog = true;
-    float duration = 3f;
-    float elapsed = 0f;
-    RenderSettings.fogDensity = 0f;
-    var main = ps3.main;
-    main.simulationSpeed = 45f;
-
-
-    ad10.Play();
-    StartCoroutine(FadeVolume(ad10, ad10.volume, 0f, 2f));
-
-    while (elapsed < duration)
     {
-        elapsed += Time.deltaTime;
-        RenderSettings.fogDensity = Mathf.Lerp(0f, 0.03f, elapsed / duration);
-        yield return null;
+        fogCoroutineStarted = true;
+
+        yield return new WaitForSeconds(7f);
+
+        RenderSettings.fog = true;
+        float duration = 3f;
+        float elapsed = 0f;
+        RenderSettings.fogDensity = 0f;
+        var main = ps3.main;
+        main.simulationSpeed = 45f;
+
+
+        ad10.Play();
+        StartCoroutine(FadeVolume(ad10, ad10.volume, 0f, 2f));
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            RenderSettings.fogDensity = Mathf.Lerp(0f, 0.03f, elapsed / duration);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(14f);
+
+        anim3.Play("smerch");
+        image.SetActive(true);
+        anim4.Play("blackscreen");
+        anim5.Play("shake");
+        Destroy(FindObjectOfType<ObstacleSpawner>());
+
+        yield return new WaitForSeconds(7f);
+
+        ad13.Play();
+
+        yield return new WaitForSeconds(4.5f);
+
+        if (PlayerPrefs.GetInt("youdead", 0) == 0)
+            SceneManager.LoadScene("final g1");
     }
-
-    yield return new WaitForSeconds(14f);
-
-    anim3.Play("smerch");
-    image.SetActive(true);
-    anim4.Play("blackscreen");
-    anim5.Play("shake");
-    Destroy(FindObjectOfType<ObstacleSpawner>());
-
-    yield return new WaitForSeconds(7f);
-
-    ad13.Play();    
-
-    yield return new WaitForSeconds(4.5f);
-
-    if(PlayerPrefs.GetInt("youdead", 0) == 0)
-    SceneManager.LoadScene("final g1");
-}
 
 
     private IEnumerator FadeVolume(AudioSource source, float from, float to, float duration)
@@ -360,17 +381,36 @@ public class ScoreCounterFinal : MonoBehaviour
 
     public void ad2in()
     {
-        if(!rocketfall)
-        ad2.Play();
+        if (!rocketfall)
+            ad2.Play();
         else
-        ad11.Play();
+            ad11.Play();
     }
 
     public void ad3end()
     {
-        if(!rocketfall)
-        ad3.Play();
+        if (!rocketfall)
+            ad3.Play();
         else
-        ad12.Play();
+            ad12.Play();
+    }
+    
+
+          public void activateHomePanel()
+    {
+        if (isHomePanel == false)
+        {
+            panelHome.SetActive(!panelHome.activeSelf);
+            homepanel.Play("animat");
+            isHomePanel = true;
+            isdelay5 = 1;
+        }
+        else if (isdelay2 <= 0)
+        {
+            homepanel.Play("animat 0");
+            isHomePanel = false;
+            homeFloatPanel = 1;
+            isCloseHomePanel = true;
+        }
     }
 }
