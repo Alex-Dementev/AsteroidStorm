@@ -60,6 +60,8 @@ public class menu : MonoBehaviour
     public AudioSource ad5;
     public AudioSource ad6;
     public AudioSource ad7;
+    public AudioSource ad8;
+    public AudioSource ad9;
     public float isdelay;
     private float isdelay1 = 1.5f;
     private float isdelay2 = 0.85f;
@@ -150,6 +152,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps47;
     public ParticleSystem ps48;
     public ParticleSystem ps49;
+    public ParticleSystem ps50;
 
     public ParticleSystem rocketstart1;
     public ParticleSystem rocketstart2;
@@ -253,6 +256,8 @@ public class menu : MonoBehaviour
         ad5.volume = audios / 1.2f;
         ad6.volume = audios;
         ad7.volume = audios;
+        ad8.volume = audios / 1.5f;
+        ad9.volume = audios;
 
 
         if (is11 == 0)
@@ -354,6 +359,7 @@ public class menu : MonoBehaviour
         ps47.Stop();
         ps48.Stop();
         ps49.Stop();
+        ps50.Stop();
 
         if(!rocketfall)
         {
@@ -422,6 +428,8 @@ public class menu : MonoBehaviour
         ad5.volume = audios;
         ad6.volume = audios;
         ad7.volume = audios;
+        ad8.volume = audios / 1.5f;
+        ad9.volume = audios;
 
         if(rocketfall && !isfall)
         {
@@ -560,6 +568,12 @@ public class menu : MonoBehaviour
             ad1.enabled = true;
             ad2.enabled = true;
             ad3.enabled = true;
+            ad4.enabled = true;
+            ad5.enabled = true;
+            ad6.enabled = true;
+            ad7.enabled = true;
+            ad8.enabled = true;
+            ad9.enabled = true;
             ison1 = true;
             but1.GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
@@ -568,6 +582,12 @@ public class menu : MonoBehaviour
             ad1.enabled = false;
             ad2.enabled = false;
             ad3.enabled = false;
+            ad4.enabled = false;
+            ad5.enabled = false;
+            ad6.enabled = false;
+            ad7.enabled = false;
+            ad8.enabled = false;
+            ad9.enabled = false;
             ison1 = false;
             but1.GetComponent<Image>().color = new Color(255, 0, 0, 255);
         }
@@ -668,6 +688,7 @@ public class menu : MonoBehaviour
         ps47.Stop();
         ps48.Stop();
         ps49.Stop();
+        ps50.Stop();
 
         if(!rocketfall)
         ad2.Play();
@@ -925,6 +946,10 @@ public void destartedrocketps()
     {
         ps45.Play();
     }
+    public void isps27()
+    {
+        ps50.Play();
+    }
 
 
     public void ViewProlog()
@@ -965,8 +990,15 @@ public void destartedrocketps()
     }
     public void is1g()
     {
-        if (r.isdelayb == true)
+        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 3 && PlayerPrefs.GetInt("fueltostart", 0) >= 1)
         {
+            int fuel = PlayerPrefs.GetInt("fuel");
+            int fuelstart = PlayerPrefs.GetInt("fueltostart");
+            fuel -= fuelstart;
+            PlayerPrefs.SetInt("fuel", fuel);
+            coins = PlayerPrefs.GetInt("coins");
+            coins -= 3;
+            PlayerPrefs.SetInt("coins", coins);
             isdelay = 1.33f;
             isstart = true;
             image.SetActive(!image.activeSelf);

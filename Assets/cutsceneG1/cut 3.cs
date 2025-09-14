@@ -26,7 +26,7 @@ public class cut3 : MonoBehaviour
         ad3.volume = audios / 1.5f;
         ad4.volume = audios;
 
-        if(PlayerPrefs.GetInt("ach4", 0) == 0)
+        if(PlayerPrefs.GetInt("ach4", 0) == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
         anim.Play("anim20");
         ad4.Play();
@@ -70,7 +70,7 @@ public class cut3 : MonoBehaviour
             PlayerPrefs.SetInt("allscore", score);
             PlayerPrefs.SetInt("g1passed", 1);
         }
-        if (PlayerPrefs.GetInt("youcheat", 1) == 0 && PlayerPrefs.GetInt("yousurwive") == 1)
+        if (PlayerPrefs.GetInt("youcheat", 1) == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 1)
         {
             coins = PlayerPrefs.GetInt("coins");
             allcoins = PlayerPrefs.GetInt("allcoins");

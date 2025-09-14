@@ -14,8 +14,11 @@ public class tasks : MonoBehaviour
     public Text task1RewardText;
     public Text task2RewardText;
 
-    public int[] rewardsBlock1 = new int[8]; // награды для блока 1
-    public int[] rewardsBlock2 = new int[8]; // награды для блока 2
+    public int[] rewardsBlock1 = new int[4]; // награды для блока 1
+    public int[] rewardsBlock2 = new int[4]; // награды для блока 2
+
+    // 👉 звук
+    public AudioSource rewardSound;
 
     private int[] block1 = { 0, 1, 2, 3 }; // индексы заданий блока 1
     private int[] block2 = { 0, 1, 2, 3 }; // индексы заданий блока 2
@@ -164,6 +167,12 @@ public class tasks : MonoBehaviour
         PlayerPrefs.SetInt("allcoins", allcoins);
 
         Debug.Log("🎉 Игрок получил " + rewardAmount + " монет!");
+
+        // 👉 звук награды
+        if (rewardSound != null)
+        {
+            rewardSound.Play();
+        }
     }
 
     int[] RemainingTasks(int[] block, int done)
