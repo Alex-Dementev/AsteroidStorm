@@ -77,7 +77,7 @@ public class RocketBehavior : MonoBehaviour
     // Метод для запуска ракеты (связывается с кнопкой)
     public void LaunchRocket()
     {
-        if(isdelayb == true)
+        if(isdelayb == true && PlayerPrefs.GetInt("start", 0) == 1)
         {
         isHovering = false; // Отключаем покачивание
         isLaunching = true; // Включаем запуск

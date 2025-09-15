@@ -240,10 +240,11 @@ public class menu : MonoBehaviour
         PlayerPrefs.SetInt("isfinal1g", 0);
         PlayerPrefs.SetInt("youcheat", 1);
         PlayerPrefs.SetInt("youdead", 0);
+        PlayerPrefs.SetInt("GoToFinalGlav", 0);
 
 
-        if(PlayerPrefs.GetInt("fall") == 1)
-        rocketfall = true;
+        if (PlayerPrefs.GetInt("fall") == 1)
+            rocketfall = true;
 
         lightgameplay.value = PlayerPrefs.GetFloat("lightgameplay");
 
@@ -604,7 +605,7 @@ public class menu : MonoBehaviour
         }
 
 
-        if(isdelay <= 0)
+        if(isdelay <= 0 && PlayerPrefs.GetInt("start", 0) == 1)
         {
             if(isstart == true)
             {
@@ -992,6 +993,7 @@ public void destartedrocketps()
     {
         if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 3 && PlayerPrefs.GetInt("fueltostart", 0) >= 1)
         {
+            PlayerPrefs.SetInt("start", 1);
             int fuel = PlayerPrefs.GetInt("fuel");
             int fuelstart = PlayerPrefs.GetInt("fueltostart");
             fuel -= fuelstart;

@@ -6,6 +6,7 @@ using RDG;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using Unity.Burst.Intrinsics;
+using System.Security.Cryptography.X509Certificates;
 
 public class death : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class death : MonoBehaviour
     [SerializeField] public GameObject losePanel;
     [SerializeField] public Transform player;
     public int coins;
+    public Text fuelzero;
     public float isdelay2;
     public Image liveimage;
     private int live = 3;
@@ -28,10 +30,13 @@ public class death : MonoBehaviour
     private float f = 9999999;
     public int score;
     public int allcoins;
+    public int GoToFinalGlav;
     public Text livet;
     public Animator anim2;
     public bool isstarttask;
     public int is2;
+    public float fuel;
+    public Slider SliderFuel;
 
     public GameObject explosionEffect;
     public AudioSource explosionSound1;
@@ -197,10 +202,26 @@ public class death : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.GetInt("isfinal1g", 0) == 0)
+        {
+            fuel = PlayerPrefs.GetInt("fueltostart", 0);
+            fuel = fuel * 10;
+            SliderFuel.maxValue = fuel;
+        }
+        else
+        {
+            fuel = PlayerPrefs.GetInt("fueltostart", 0);
+            fuel = fuel * 10;
+            SliderFuel.maxValue = fuel;
+            fuel = PlayerPrefs.GetFloat("fueltofinalglav", 0);
+        }
+
         live = PlayerPrefs.GetInt("live");
         livet.text = live.ToString();
         b = false;
         isdelay = 9999999;
+
+        GoToFinalGlav = PlayerPrefs.GetInt("GoToFinalGlav", 1);
 
         int chance = Random.Range(1, 501);
         if (chance == 1)
@@ -225,6 +246,16 @@ public class death : MonoBehaviour
         {
             isdelay = 100;
             SceneManager.LoadScene("main");
+        }
+
+        fuel -= Time.deltaTime;
+        SliderFuel.value = fuel;
+
+        if (GoToFinalGlav == 1)
+        {
+            PlayerPrefs.SetFloat("fueltofinalglav", fuel);
+            GoToFinalGlav = 0;
+            PlayerPrefs.SetInt("GoToFinalGlav", 0);
         }
 
         if (b == true)
@@ -257,16 +288,66 @@ public class death : MonoBehaviour
             livet.color = new Color(0.322f, 0.322f, 0.322f);
         }
 
-        if(isdelay2 <= 0 && is2 >= 2)
+        if (isdelay2 <= 0 && is2 >= 2)
         {
             is2 = 0;
             PlayerPrefs.SetInt("breakObstacles", 2);
         }
-        else if(isdelay2 <= 0 && is2 == 1)
+        else if (isdelay2 <= 0 && is2 == 1)
         {
             isstarttask = false;
             is2 = 0;
             PlayerPrefs.SetInt("breakObstacles", 1);
+        }
+        
+
+
+
+        if (b == false && fuel <= -1)
+        {
+            if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
+            {
+                losePanel.SetActive(true);
+                anim1.Play("anim11");
+                fuelzero.text = "Топливо закончилось";
+                fuel = 100;
+
+                if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
+                {
+                    coins = PlayerPrefs.GetInt("coins");
+                    allcoins = PlayerPrefs.GetInt("allcoins");
+                    score = PlayerPrefs.GetInt("allscore");
+                    coins += ((int)(player.position.z / 7) + 400);
+                    score += ((int)(player.position.z / 3) + 1000);
+                    allcoins += ((int)(player.position.z / 7) + 400);
+                    PlayerPrefs.SetInt("coins", coins);
+                    PlayerPrefs.SetInt("allcoins", allcoins);
+                    PlayerPrefs.SetInt("allscore", score);
+                    PlayerPrefs.SetInt("youdead", 1);
+                }
+                else
+                {
+                    coins = PlayerPrefs.GetInt("coins");
+                    allcoins = PlayerPrefs.GetInt("allcoins");
+                    score = PlayerPrefs.GetInt("allscore");
+                    coins += ((int)(player.position.z / 10));
+                    score += ((int)(player.position.z / 3));
+                    allcoins += ((int)(player.position.z / 10));
+                    PlayerPrefs.SetInt("coins", coins);
+                    PlayerPrefs.SetInt("allcoins", allcoins);
+                    PlayerPrefs.SetInt("allscore", score);
+                    PlayerPrefs.SetInt("youdead", 1);
+                }
+
+                if (PlayerPrefs.GetInt("vibration") == 0)
+                {
+                    Vibration.Vibrate(800, 120);
+                }
+
+                ad.Play();
+                b = true;
+                f = 11;
+            }
         }
     }
 
@@ -279,16 +360,24 @@ public class death : MonoBehaviour
 
     public void restart2()
     {
+        if(PlayerPrefs.GetInt("restart", 0) == 1)
+        {
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 0");
         StartCoroutine(RestartAfterDelay(2f));
+        PlayerPrefs.SetInt("restart", 0);
+        }
     }
 
     public void restart3()
     {
+        if(PlayerPrefs.GetInt("restart", 0) == 1)
+        {
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 0");
         StartCoroutine(RestartAfterDelay2(2f));
+        PlayerPrefs.SetInt("restart", 0);
+        }
     }
 
     private IEnumerator RestartAfterDelay(float delay)
@@ -438,31 +527,31 @@ public class death : MonoBehaviour
                         PlayerPrefs.SetInt("live", live);
 
                         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
-                        {
-                            coins = PlayerPrefs.GetInt("coins");
-                            allcoins = PlayerPrefs.GetInt("allcoins");
-                            score = PlayerPrefs.GetInt("allscore");
-                            coins += ((int)(player.position.z / 7) + 400);
-                            score += ((int)(player.position.z / 3) + 1000);
-                            allcoins += ((int)(player.position.z / 7) + 400);
-                            PlayerPrefs.SetInt("coins", coins);
-                            PlayerPrefs.SetInt("allcoins", allcoins);
-                            PlayerPrefs.SetInt("allscore", score);
-                            PlayerPrefs.SetInt("youdead", 1);
-                        }
-                        else
-                        {
-                            coins = PlayerPrefs.GetInt("coins");
-                            allcoins = PlayerPrefs.GetInt("allcoins");
-                            score = PlayerPrefs.GetInt("allscore");
-                            coins += ((int)(player.position.z / 10));
-                            score += ((int)(player.position.z / 3));
-                            allcoins += ((int)(player.position.z / 10));
-                            PlayerPrefs.SetInt("coins", coins);
-                            PlayerPrefs.SetInt("allcoins", allcoins);
-                            PlayerPrefs.SetInt("allscore", score);
-                            PlayerPrefs.SetInt("youdead", 1);
-                        }
+                            {
+                                coins = PlayerPrefs.GetInt("coins");
+                                allcoins = PlayerPrefs.GetInt("allcoins");
+                                score = PlayerPrefs.GetInt("allscore");
+                                coins += ((int)(player.position.z / 7) + 400);
+                                score += ((int)(player.position.z / 3) + 1000);
+                                allcoins += ((int)(player.position.z / 7) + 400);
+                                PlayerPrefs.SetInt("coins", coins);
+                                PlayerPrefs.SetInt("allcoins", allcoins);
+                                PlayerPrefs.SetInt("allscore", score);
+                                PlayerPrefs.SetInt("youdead", 1);
+                            }
+                            else
+                            {
+                                coins = PlayerPrefs.GetInt("coins");
+                                allcoins = PlayerPrefs.GetInt("allcoins");
+                                score = PlayerPrefs.GetInt("allscore");
+                                coins += ((int)(player.position.z / 10));
+                                score += ((int)(player.position.z / 3));
+                                allcoins += ((int)(player.position.z / 10));
+                                PlayerPrefs.SetInt("coins", coins);
+                                PlayerPrefs.SetInt("allcoins", allcoins);
+                                PlayerPrefs.SetInt("allscore", score);
+                                PlayerPrefs.SetInt("youdead", 1);
+                            }
 
                     if (PlayerPrefs.GetInt("vibration") == 0)
                     {

@@ -133,6 +133,7 @@ public class DoubleTapHandler : MonoBehaviour
                         bbb = true;
                         l.color = new Color(1f, 1f, 0.85f);
                         anim.Play("blue");
+                        s.maxValue = isotkat;
 
                         if (PlayerPrefs.GetInt("vibration") == 0)
                         {

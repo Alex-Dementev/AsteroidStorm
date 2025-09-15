@@ -106,6 +106,7 @@ public class ScoreCounter : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
         if (PlayerPrefs.GetInt("isbtotask") == 1)
         {
@@ -197,6 +198,7 @@ public class ScoreCounter : MonoBehaviour
             isdelay3 = 1f;
             isend = true;
             isend2 = true;
+            PlayerPrefs.SetInt("gotofinalglav", 1);
         }
         if ((int)(player.position.z / 3) >= 100 && !is100)
         {

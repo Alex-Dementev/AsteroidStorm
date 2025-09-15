@@ -93,7 +93,7 @@ public class Casino : MonoBehaviour
     public void randomwin()
     {
         float roll = Random.Range(0f, 100f);
-        bool isWin = false;
+        bool isWin;
 
         if (roll <= 44f)
         {

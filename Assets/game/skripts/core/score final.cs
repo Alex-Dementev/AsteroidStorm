@@ -100,7 +100,7 @@ public class ScoreCounterFinal : MonoBehaviour
         ach3 = PlayerPrefs.GetInt("ach3");
         PlayerPrefs.SetInt("isfinal1g", 1);
 
-        l.intensity = PlayerPrefs.GetFloat("lightgameplay");
+        l.intensity = PlayerPrefs.GetFloat("lightgameplay") / 2;
 
         RenderSettings.fog = false;
         StartCoroutine(LoadParticlesWithDelay());

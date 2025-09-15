@@ -5105,7 +5105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.9457681, y: 0.5}
   m_AnchorMax: {x: 0.9457681, y: 0.5}
-  m_AnchoredPosition: {x: 214.99988, y: 0.3391657}
+  m_AnchoredPosition: {x: 214.99982, y: 0.3391657}
   m_SizeDelta: {x: 423.7398, y: 89.93346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21659224
@@ -24382,6 +24382,7 @@ GameObject:
   - component: {fileID: 248218785}
   - component: {fileID: 248218784}
   - component: {fileID: 248218786}
+  - component: {fileID: 248218787}
   m_Layer: 5
   m_Name: glavs
   m_TagString: Untagged
@@ -24476,6 +24477,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &248218787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248218782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5714df584a97dfd4aa172104f91053b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuelSlider: {fileID: 1938511808}
+  fuel: 0
+  fuel2: 0
+  fueled: 0
+  text: {fileID: 205707539}
 --- !u!1 &264206242
 GameObject:
   m_ObjectHideFlags: 0
@@ -145538,6 +145556,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 455307801}
+        m_TargetAssemblyTypeName: menu, Assembly-CSharp
+        m_MethodName: is1g
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1692901666}
         m_TargetAssemblyTypeName: RocketBehavior, Assembly-CSharp
         m_MethodName: LaunchRocket
@@ -145577,18 +145607,6 @@ MonoBehaviour:
       - m_Target: {fileID: 265474894}
         m_TargetAssemblyTypeName: RocketBehavior, Assembly-CSharp
         m_MethodName: LaunchRocket
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 455307801}
-        m_TargetAssemblyTypeName: menu, Assembly-CSharp
-        m_MethodName: is1g
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -172439,7 +172457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1, y: 0.06784948}
   m_AnchorMax: {x: 0.45, y: 0.3057742}
-  m_AnchoredPosition: {x: 40.000244, y: 71.00073}
+  m_AnchoredPosition: {x: 40.000244, y: 71.00098}
   m_SizeDelta: {x: -220, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1334263284
@@ -239960,7 +239978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 216.49988, y: 0.3391657}
+  m_AnchoredPosition: {x: 216.49985, y: 0.3391657}
   m_SizeDelta: {x: 423.7398, y: 89.93346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1866336016
@@ -245222,16 +245240,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889139809}
   m_LocalRotation: {x: -0, y: -0, z: 0.082219295, w: 0.9966143}
-  m_LocalPosition: {x: 0, y: 0, z: 808}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1212562435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.432}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -519, y: 35}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchoredPosition: {x: -323, y: 8}
+  m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1889139811
 MonoBehaviour:
@@ -251465,9 +251483,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 884233646}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 30
   m_WholeNumbers: 0
-  m_Value: 0.229
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
