@@ -106,6 +106,7 @@ public class ScoreCounter : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("youdead", 0);
         PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
         if (PlayerPrefs.GetInt("isbtotask") == 1)
@@ -193,12 +194,12 @@ public class ScoreCounter : MonoBehaviour
 
         if ((int)(player.position.z / 3) >= 890 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
+            PlayerPrefs.SetInt("GoToFinalGlav", 1);
             image.SetActive(true);
             anim1.Play("anim10 0");
             isdelay3 = 1f;
             isend = true;
             isend2 = true;
-            PlayerPrefs.SetInt("gotofinalglav", 1);
         }
         if ((int)(player.position.z / 3) >= 100 && !is100)
         {

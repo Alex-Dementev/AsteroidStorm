@@ -30,7 +30,6 @@ public class RestartFuel : MonoBehaviour
             is1 = true;
             allfuel -= fuelused;
             coins -= 3;
-            PlayerPrefs.SetInt("restart", 1);
             d1.restart3();
             d2.restart3();
             d3.restart3();
@@ -46,13 +45,11 @@ public class RestartFuel : MonoBehaviour
                 coins -= fuelused;
                 PlayerPrefs.SetInt("coins", coins);
                 PlayerPrefs.SetInt("fuel", 0);
-                PlayerPrefs.SetInt("restart", 1);
+                d1.restart3();
+                d2.restart3();
+                d3.restart3();
+                d4.restart3();
             }
-            
-            d1.restart3();
-            d2.restart3();
-            d3.restart3();
-            d4.restart3();
         }
     }
 }

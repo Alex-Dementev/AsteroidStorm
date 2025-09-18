@@ -65,14 +65,14 @@ public class DoubleTapHandler : MonoBehaviour
                     r.zSpeed = speed;
                     r.zSpeed += 1;
                     bb = false;
+                    l.intensity = lightintens;
+                    l.color = new Color(169f/255f, 132f/255f, 132f/255f);
                 }
             }
 
             if (delay <= -0.2 && bbb)
                 {
                     bbb = false;
-                    l.intensity = lightintens;
-                    l.color = Color.white;
                 }
 
             if (delay <= -0.2)

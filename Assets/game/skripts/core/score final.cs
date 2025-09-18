@@ -97,9 +97,9 @@ public class ScoreCounterFinal : MonoBehaviour
 
     void Start()
     {
-        ach3 = PlayerPrefs.GetInt("ach3");
         PlayerPrefs.SetInt("isfinal1g", 1);
-
+        ach3 = PlayerPrefs.GetInt("ach3");
+        
         l.intensity = PlayerPrefs.GetFloat("lightgameplay") / 2;
 
         RenderSettings.fog = false;
@@ -232,7 +232,7 @@ public class ScoreCounterFinal : MonoBehaviour
             }
         }
 
-        if (score >= PlayerPrefs.GetInt("maxScore") + 1000 && PlayerPrefs.GetInt("isfinal1g") == 0)
+        if (score >= PlayerPrefs.GetInt("maxScore") + 1000)
         {
             PlayerPrefs.SetInt("maxScore", ((int)(player.position.z / 3)) + 1000);
         }

@@ -30,7 +30,6 @@ public class death : MonoBehaviour
     private float f = 9999999;
     public int score;
     public int allcoins;
-    public int GoToFinalGlav;
     public Text livet;
     public Animator anim2;
     public bool isstarttask;
@@ -208,25 +207,24 @@ public class death : MonoBehaviour
             fuel = fuel * 10;
             SliderFuel.maxValue = fuel;
         }
-        else
+        
+        if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
         {
             fuel = PlayerPrefs.GetInt("fueltostart", 0);
             fuel = fuel * 10;
             SliderFuel.maxValue = fuel;
             fuel = PlayerPrefs.GetFloat("fueltofinalglav", 0);
         }
-
+        
         live = PlayerPrefs.GetInt("live");
         livet.text = live.ToString();
         b = false;
         isdelay = 9999999;
 
-        GoToFinalGlav = PlayerPrefs.GetInt("GoToFinalGlav", 1);
-
         int chance = Random.Range(1, 501);
         if (chance == 1)
         {
-            quoteText.text = "MrGameDragon тоже не смог(";
+            quoteText.text = "ТЫ НИЧТОЖЕСТВО";
             quoteText.color = Color.red;
         }
         else
@@ -242,20 +240,19 @@ public class death : MonoBehaviour
         isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
 
+        fuel -= Time.deltaTime;
+        SliderFuel.value = fuel;
+
+        if (PlayerPrefs.GetInt("GoToFinalGlav", 0) == 1)
+        {
+            PlayerPrefs.SetFloat("fueltofinalglav", fuel);
+            PlayerPrefs.SetInt("GoToFinalGlav", 0);
+        }
+
         if (isdelay <= 0)
         {
             isdelay = 100;
             SceneManager.LoadScene("main");
-        }
-
-        fuel -= Time.deltaTime;
-        SliderFuel.value = fuel;
-
-        if (GoToFinalGlav == 1)
-        {
-            PlayerPrefs.SetFloat("fueltofinalglav", fuel);
-            GoToFinalGlav = 0;
-            PlayerPrefs.SetInt("GoToFinalGlav", 0);
         }
 
         if (b == true)
@@ -360,24 +357,16 @@ public class death : MonoBehaviour
 
     public void restart2()
     {
-        if(PlayerPrefs.GetInt("restart", 0) == 1)
-        {
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 0");
         StartCoroutine(RestartAfterDelay(2f));
-        PlayerPrefs.SetInt("restart", 0);
-        }
     }
 
     public void restart3()
     {
-        if(PlayerPrefs.GetInt("restart", 0) == 1)
-        {
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 0");
         StartCoroutine(RestartAfterDelay2(2f));
-        PlayerPrefs.SetInt("restart", 0);
-        }
     }
 
     private IEnumerator RestartAfterDelay(float delay)

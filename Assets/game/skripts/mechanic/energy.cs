@@ -9,6 +9,7 @@ public class energy : MonoBehaviour
     public float energyint;
     public Slider s;
     public float floatt;
+    public bool isfinal1g;
 
 
 
@@ -17,19 +18,36 @@ public class energy : MonoBehaviour
         s.value = energyint;
 
         energyfloat -= Time.deltaTime;
+
+        if(!isfinal1g)
+        {
+            if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
+            {
+                energyint = PlayerPrefs.GetFloat("energytofinalglav");
+                isfinal1g = true;
+            }
+        }
+
         if(energyfloat <= 0)
         {
             if(energyint <= 100)
             {
-                energyint += floatt;
-                energyfloat = 0.25f;
+                energyint = energyint + floatt;
+                energyfloat = 0.025f;
             }
+        }
+
+        if (PlayerPrefs.GetInt("GoToFinalGlav", 0) == 1)
+        {
+            PlayerPrefs.SetFloat("energytofinalglav", energyint);
+            PlayerPrefs.SetInt("GoToFinalGlav", 0);
         }
     }
 
     void Start()
     {
+        energyfloat = 0.1f;
         floatt = PlayerPrefs.GetFloat("energy", 0f);
-        Debug.Log(floatt + " в сек");
+        floatt = floatt / 10;
     }
 }

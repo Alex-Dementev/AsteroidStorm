@@ -605,14 +605,14 @@ public class menu : MonoBehaviour
         }
 
 
-        if(isdelay <= 0 && PlayerPrefs.GetInt("start", 0) == 1)
+        if(isdelay <= 0)
         {
-            if(isstart == true)
+            if(isstart && PlayerPrefs.GetInt("start", 0) == 1)
             {
                 isstart = false;
                 SceneManager.LoadScene("scenestart");
             }
-            if(isprolog == true)
+            if(isprolog)
             {
                 isprolog = false;
                 SceneManager.LoadScene("scenetoproblem");
@@ -1001,7 +1001,6 @@ public void destartedrocketps()
             coins = PlayerPrefs.GetInt("coins");
             coins -= 3;
             PlayerPrefs.SetInt("coins", coins);
-            isdelay = 1.33f;
             isstart = true;
             image.SetActive(!image.activeSelf);
             anim.Play("anim9 0");
