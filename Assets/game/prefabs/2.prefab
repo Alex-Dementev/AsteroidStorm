@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 069e32d887cfbfc4ebbc39d077848d4d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.374016
+      value: -16.407461
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 069e32d887cfbfc4ebbc39d077848d4d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.22638
+      value: 1.2964662
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 069e32d887cfbfc4ebbc39d077848d4d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 381.51123
+      value: 31.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 069e32d887cfbfc4ebbc39d077848d4d,
         type: 3}
@@ -85,6 +85,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 747397513958335763}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 069e32d887cfbfc4ebbc39d077848d4d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6251514122494301922}
   m_SourcePrefab: {fileID: 100100000, guid: 069e32d887cfbfc4ebbc39d077848d4d, type: 3}
 --- !u!1 &926517399891271197 stripped
 GameObject:
@@ -141,3 +145,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6251514122494301922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926517399891271197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d651eadd67694ca93a062f4f6ee21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstChance: 22
+  bronzeMaterial: {fileID: 2100000, guid: 8a775cc71a9c9c34caa85fde7d4ba3d4, type: 2}
+  silverMaterial: {fileID: 2100000, guid: 66ea5e947bf1b404b93c9fb1498871f2, type: 2}
+  goldMaterial: {fileID: 2100000, guid: 8d3d5e7318aa1b84db5ef0063e8b29d6, type: 2}
+  diamondMaterial: {fileID: 2100000, guid: d21c4df5e9b3e8d4e9563c45fba311fc, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: f728d6d7cad90c248baa2a51e19e10ee, type: 2}
+  baseMass: 2.4
+  happened: 0
+  asteroidType: 0
+  mass: 0

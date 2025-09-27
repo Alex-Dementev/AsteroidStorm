@@ -319,7 +319,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 691b27d8a72964c4a9495c4d6c13ad4a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 74
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 691b27d8a72964c4a9495c4d6c13ad4a,
         type: 3}
@@ -5583,7 +5583,7 @@ MonoBehaviour:
   spawn: 0
   function: 0
   isdelay: 0
-  isdelay1: 1.5
+  isdelay1: 5
   isminus: 0
   ss: {fileID: 104172368}
   isbportal: 0
@@ -5604,6 +5604,7 @@ MonoBehaviour:
   is440: 0
   is250: 0
   is750: 0
+  isstart: 0
   rocketfall: 0
 --- !u!114 &104172366
 MonoBehaviour:
@@ -5694,6 +5695,7 @@ MonoBehaviour:
   liveimage: {fileID: 0}
   b: 0
   d: {fileID: 0}
+  isgotohome: 0
   anim: {fileID: 590422739}
   anim3: {fileID: 0}
   anim1: {fileID: 1620318956}
@@ -6182,7 +6184,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
@@ -6326,14 +6328,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 15
-  zSpeedIncrement: 1
-  zSpeedUpdateInterval: 2
-  xRange: 9
-  sensitivity: 3.5
-  smoothFactor: 0.8
-  calibrationOffset: {x: -3.25, y: 0, z: 0}
-  zSpeed: 15
+  initialZSpeed: 12
+  zSpeedIncrement: 12
+  zSpeedUpdateInterval: 12
+  xRange: 10
+  sensitivity: 1
+  intensityMultiplier: 1
+  gravityFactor: 0.85
+  calibrationOffset: {x: -1, y: 0, z: 0}
+  zSpeed: 20
 --- !u!4 &207934569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 51268198bc0d3b346b2a28743bb91ca4,
@@ -6469,6 +6472,7 @@ MonoBehaviour:
   liveimage: {fileID: 545735398}
   b: 0
   d: {fileID: 207934574}
+  isgotohome: 0
   anim: {fileID: 590422739}
   anim3: {fileID: 559780589}
   anim1: {fileID: 1620318956}
@@ -11640,6 +11644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 279589487}
   - component: {fileID: 279589488}
+  - component: {fileID: 279589489}
   m_Layer: 0
   m_Name: === UI ===
   m_TagString: Untagged
@@ -11656,7 +11661,7 @@ Transform:
   m_GameObject: {fileID: 279589486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.940792, y: -5.0481358, z: -14.350924}
+  m_LocalPosition: {x: 0, y: -5.0481358, z: -14.350924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11665,6 +11670,7 @@ Transform:
   - {fileID: 1950506756}
   - {fileID: 814676260}
   - {fileID: 1038827536}
+  - {fileID: 395424833}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &279589488
@@ -11683,6 +11689,27 @@ MonoBehaviour:
   s2: {fileID: 814676261}
   s3: {fileID: 1950506757}
   s4: {fileID: 207934567}
+--- !u!95 &279589489
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279589486}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6727552cb3892a44bbc5bcd6bbd1d615, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &298196371
 GameObject:
   m_ObjectHideFlags: 0
@@ -11918,7 +11945,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b79e86830eeb4b64da64c6b23cf079fa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b79e86830eeb4b64da64c6b23cf079fa,
         type: 3}
@@ -12161,14 +12188,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 15
-  zSpeedIncrement: 1
-  zSpeedUpdateInterval: 2
-  xRange: 11
-  sensitivity: 3.5
-  smoothFactor: 0.5
-  calibrationOffset: {x: -4, y: 0, z: 0}
-  zSpeed: 15
+  initialZSpeed: 12
+  zSpeedIncrement: 12
+  zSpeedUpdateInterval: 12
+  xRange: 10
+  sensitivity: 1
+  intensityMultiplier: 1
+  gravityFactor: 0.85
+  calibrationOffset: {x: -1, y: 0, z: 0}
+  zSpeed: 20
 --- !u!114 &310942076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12190,6 +12218,7 @@ MonoBehaviour:
   liveimage: {fileID: 545735398}
   b: 0
   d: {fileID: 310942072}
+  isgotohome: 0
   anim: {fileID: 590422739}
   anim3: {fileID: 559780589}
   anim1: {fileID: 1620318956}
@@ -17641,6 +17670,205 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &395424832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 395424833}
+  - component: {fileID: 395424837}
+  - component: {fileID: 395424836}
+  - component: {fileID: 395424835}
+  - component: {fileID: 395424834}
+  m_Layer: 5
+  m_Name: Canvas (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &395424833
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395424832}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 590422738}
+  m_Father: {fileID: 279589487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!82 &395424834
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395424832}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e27473b6755057c4ca369f4b28079c2e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &395424835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395424832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &395424836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395424832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1080, y: 2400}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0.5
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &395424837
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395424832}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 1
+  m_Camera: {fileID: 963194227}
+  m_PlaneDistance: 29.22
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &433290489
 GameObject:
   m_ObjectHideFlags: 0
@@ -17940,7 +18168,7 @@ Transform:
   m_GameObject: {fileID: 499092804}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.940792, y: -5.0481358, z: -14.350924}
+  m_LocalPosition: {x: 5, y: -5.0481358, z: -14.350924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18331,17 +18559,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590422737}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1498}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1497.9999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1038827536}
+  m_Father: {fileID: 395424833}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 75, y: 164}
-  m_SizeDelta: {x: 1500, y: 4000}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &590422739
 Animator:
@@ -28837,7 +29065,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cd4d7b672404adf41a6985a99779200a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67.41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd4d7b672404adf41a6985a99779200a,
         type: 3}
@@ -29080,14 +29308,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 15
-  zSpeedIncrement: 1
-  zSpeedUpdateInterval: 2
-  xRange: 9
-  sensitivity: 3.5
-  smoothFactor: 0.5
-  calibrationOffset: {x: -4, y: 0, z: 0}
-  zSpeed: 15
+  initialZSpeed: 12
+  zSpeedIncrement: 12
+  zSpeedUpdateInterval: 12
+  xRange: 10
+  sensitivity: 1
+  intensityMultiplier: 1
+  gravityFactor: 0.85
+  calibrationOffset: {x: -1, y: 0, z: 0}
+  zSpeed: 20
 --- !u!114 &814676270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29109,6 +29338,7 @@ MonoBehaviour:
   liveimage: {fileID: 545735398}
   b: 0
   d: {fileID: 814676266}
+  isgotohome: 0
   anim: {fileID: 590422739}
   anim3: {fileID: 559780589}
   anim1: {fileID: 1620318956}
@@ -33993,7 +34223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: 99.99997}
   m_SizeDelta: {x: 60, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &821548569
@@ -34721,7 +34951,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17111284, y: -0.06995482, z: 0.04298999, w: 0.98182416}
-  m_LocalPosition: {x: -56.12, y: 25.37, z: -20}
+  m_LocalPosition: {x: 1, y: 25.37, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40345,7 +40575,6 @@ RectTransform:
   - {fileID: 1584350827}
   - {fileID: 1620318952}
   - {fileID: 594198457}
-  - {fileID: 590422738}
   m_Father: {fileID: 279589487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -67922,7 +68151,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
@@ -68165,14 +68394,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 15
-  zSpeedIncrement: 1
-  zSpeedUpdateInterval: 2
-  xRange: 9
-  sensitivity: 3.5
-  smoothFactor: 0.5
-  calibrationOffset: {x: -4, y: 0, z: 0}
-  zSpeed: 15
+  initialZSpeed: 12
+  zSpeedIncrement: 12
+  zSpeedUpdateInterval: 12
+  xRange: 10
+  sensitivity: 1
+  intensityMultiplier: 1
+  gravityFactor: 0.85
+  calibrationOffset: {x: -1, y: 0, z: 0}
+  zSpeed: 20
 --- !u!114 &1950506764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68194,6 +68424,7 @@ MonoBehaviour:
   liveimage: {fileID: 545735398}
   b: 0
   d: {fileID: 1950506762}
+  isgotohome: 0
   anim: {fileID: 590422739}
   anim3: {fileID: 559780589}
   anim1: {fileID: 1620318956}

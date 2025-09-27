@@ -73,6 +73,7 @@ public class ScoreCounter : MonoBehaviour
     public bool is440;
     public bool is250;
     public bool is750;
+    public bool isstart;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
@@ -164,6 +165,17 @@ public class ScoreCounter : MonoBehaviour
         isdelay3 -= Time.deltaTime;
         isdelay4 -= Time.deltaTime;
 
+
+        if(isdelay1 >= 0 && !isstart)
+        {
+            ps.Stop();
+            ps1.Stop();
+            ps2.Stop();
+        }
+        else
+        {
+            isstart = true;
+        }
 
         if(homeFloatPanel <= 0)
         {

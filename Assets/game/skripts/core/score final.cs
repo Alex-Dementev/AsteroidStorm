@@ -72,6 +72,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public bool rocketfall;
     public Animator anim5;
     public Light l;
+    public bool isstart;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
@@ -143,6 +144,18 @@ public class ScoreCounterFinal : MonoBehaviour
         isdelay3 -= Time.deltaTime;
         isdelay4 -= Time.deltaTime;
 
+
+        if(isdelay1 >= 0 && !isstart)
+        {
+            ps.Stop();
+            ps1.Stop();
+            ps2.Stop();
+            ps3.Stop();
+        }
+        else
+        {
+            isstart = true;
+        }
 
         if(homeFloatPanel <= 0)
         {

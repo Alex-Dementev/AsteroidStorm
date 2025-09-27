@@ -66,7 +66,14 @@ public class DoubleTapHandler : MonoBehaviour
                     r.zSpeed += 1;
                     bb = false;
                     l.intensity = lightintens;
-                    l.color = new Color(169f/255f, 132f/255f, 132f/255f);
+                    if(PlayerPrefs.GetInt("isfinal1g", 0) == 0)
+                    {
+                        l.color = Color.white;
+                    }
+                    else
+                    {
+                        l.color = new Color(169f/255f, 132f/255f, 132f/255f);
+                    }
                 }
             }
 

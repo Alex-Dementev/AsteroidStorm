@@ -21,6 +21,7 @@ public class death : MonoBehaviour
     public bool b;
     public DoubleTapHandler d;
     private float isdelay = 9999999;
+    public bool isgotohome;
     public Animator anim;
     public Animator anim3;
     public Animator anim1;
@@ -240,6 +241,13 @@ public class death : MonoBehaviour
         isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
 
+        if (isdelay <= 0 && isgotohome)
+        {
+            isdelay = 100;
+            SceneManager.LoadScene("main");
+            isgotohome = false;
+        }
+
         fuel -= Time.deltaTime;
         SliderFuel.value = fuel;
 
@@ -247,12 +255,6 @@ public class death : MonoBehaviour
         {
             PlayerPrefs.SetFloat("fueltofinalglav", fuel);
             PlayerPrefs.SetInt("GoToFinalGlav", 0);
-        }
-
-        if (isdelay <= 0)
-        {
-            isdelay = 100;
-            SceneManager.LoadScene("main");
         }
 
         if (b == true)
@@ -353,6 +355,7 @@ public class death : MonoBehaviour
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 0");
         isdelay = 2f;
+        isgotohome = true;
     }
 
     public void restart2()
@@ -393,6 +396,11 @@ public class death : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("obstacle"))
         {
+            if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
+            {
+            AsteroidScript AS = collision.gameObject.GetComponent<AsteroidScript>();
+            AS.asvoid();
+
             if (d.b == true)
             {
                 if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
@@ -454,8 +462,6 @@ public class death : MonoBehaviour
             }
             else if (b == false)
             {
-                if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
-                {
                     anim2.Play("oneshake");
                     fineText.color = new Color (0.698f, 0.0f, 0.608f);  
                     PlayerPrefs.SetInt("live", live);
@@ -550,8 +556,8 @@ public class death : MonoBehaviour
                     ad.Play();
                     b = true;
                     f = 11;
-                    }
                 }
+            }
             }
         }
     }
