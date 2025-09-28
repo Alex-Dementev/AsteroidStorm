@@ -54,7 +54,6 @@ public class ScoreCounterFinal : MonoBehaviour
     private float isdelay2 = 1;
     public float isminus;
     public bool isbportal;
-    private int ars = 300;
     public int ach3;
     public Animator achanim1;
     public Animator anim;
@@ -350,13 +349,13 @@ public class ScoreCounterFinal : MonoBehaviour
 
     void UpdateObstacleCount()
     {
-        if (spawn < 1750)
-        {
-            spawner.SetObstacleCount(1);
-        }
-        else if (spawn < 2200)
+        if (spawn < 1250)
         {
             spawner.SetObstacleCount(2);
+        }
+        else if (spawn < 1500)
+        {
+            spawner.SetObstacleCount(3);
         }
     }
 

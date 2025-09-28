@@ -11138,6 +11138,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 0}
+  isfuelzero: 0
   explosionEffect: {fileID: 0}
   explosionSound1: {fileID: 0}
   explosionSound2: {fileID: 0}
@@ -39474,6 +39475,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 573620534}
+  isfuelzero: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -39600,14 +39602,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialZSpeed: 12
-  zSpeedIncrement: 12
-  zSpeedUpdateInterval: 12
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 5
   xRange: 10
   sensitivity: 1
   intensityMultiplier: 1
   gravityFactor: 0.85
   calibrationOffset: {x: -1, y: 0, z: 0}
-  zSpeed: 20
+  zSpeed: 25
 --- !u!95 &1258039504
 Animator:
   serializedVersion: 5
@@ -55159,6 +55161,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 573620534}
+  isfuelzero: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -55272,14 +55275,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialZSpeed: 12
-  zSpeedIncrement: 12
-  zSpeedUpdateInterval: 12
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 5
   xRange: 10
   sensitivity: 1
   intensityMultiplier: 1
   gravityFactor: 0.85
   calibrationOffset: {x: -1, y: 0, z: 0}
-  zSpeed: 20
+  zSpeed: 25
 --- !u!114 &1582142843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56175,6 +56178,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 573620534}
+  isfuelzero: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -56288,14 +56292,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialZSpeed: 12
-  zSpeedIncrement: 12
-  zSpeedUpdateInterval: 12
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 5
   xRange: 10
   sensitivity: 1
   intensityMultiplier: 1
   gravityFactor: 0.85
   calibrationOffset: {x: -1, y: 0, z: 0}
-  zSpeed: 20
+  zSpeed: 25
 --- !u!114 &1693977097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66596,6 +66600,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 573620534}
+  isfuelzero: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -66709,14 +66714,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialZSpeed: 12
-  zSpeedIncrement: 12
-  zSpeedUpdateInterval: 12
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 5
   xRange: 10
   sensitivity: 1
   intensityMultiplier: 1
   gravityFactor: 0.85
   calibrationOffset: {x: -1, y: 0, z: 0}
-  zSpeed: 20
+  zSpeed: 25
 --- !u!114 &1936518572
 MonoBehaviour:
   m_ObjectHideFlags: 0

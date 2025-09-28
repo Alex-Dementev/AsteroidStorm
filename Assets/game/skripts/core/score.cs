@@ -55,7 +55,7 @@ public class ScoreCounter : MonoBehaviour
     public float isminus;
     public SmoothSkyboxSwitcher ss;
     public bool isbportal;
-    private int ars = 300;
+    private int ars = 150;
     public int ach1;
     public int ach2;
     public Animator achanim1;
@@ -379,7 +379,7 @@ public class ScoreCounter : MonoBehaviour
 
         if (spawn >= ars)
         {
-            ars += 250;
+            ars += 800;
             oar.SpawnObstaclesar();
         }
     }
@@ -392,29 +392,29 @@ public class ScoreCounter : MonoBehaviour
 
     void UpdateObstacleCount()
     {
-        if (spawn < 300)
+        if (spawn < 150)
         {
             spawner.SetObstacleCount(1);
         }
-        else if (spawn < 400)
+        else if (spawn < 300)
         {
             spawner.SetObstacleCount(2);
         }
-        else if (spawn < 550)
-        {
-            spawner.SetObstacleCount(3);
-        }
-        else if (spawn < 650)
+        else if (spawn < 450)
         {
             spawner.SetObstacleCount(4);
         }
-        else if (spawn < 800)
+        else if (spawn < 600)
         {
-            spawner.SetObstacleCount(3);
+            spawner.SetObstacleCount(5);
+        }
+        else if (spawn < 765)
+        {
+            spawner.SetObstacleCount(4);
         }
         else
         {
-            spawner.SetObstacleCount(2);
+            spawner.SetObstacleCount(3);
         }
     }
 

@@ -37,6 +37,7 @@ public class death : MonoBehaviour
     public int is2;
     public float fuel;
     public Slider SliderFuel;
+    public bool isfuelzero;
 
     public GameObject explosionEffect;
     public AudioSource explosionSound1;
@@ -205,7 +206,7 @@ public class death : MonoBehaviour
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 0)
         {
             fuel = PlayerPrefs.GetInt("fueltostart", 0);
-            fuel = fuel * 10;
+            fuel = fuel * 10 + 10;
             SliderFuel.maxValue = fuel;
         }
         
@@ -213,6 +214,10 @@ public class death : MonoBehaviour
         {
             fuel = PlayerPrefs.GetInt("fueltostart", 0);
             fuel = fuel * 10;
+
+            if(fuel >= 10)
+            fuel -= 10;
+
             SliderFuel.maxValue = fuel;
             fuel = PlayerPrefs.GetFloat("fueltofinalglav", 0);
         }
@@ -302,14 +307,14 @@ public class death : MonoBehaviour
 
 
 
-        if (b == false && fuel <= -1)
+        if (b == false && fuel <= -1 && isfuelzero == false)
         {
             if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
                 losePanel.SetActive(true);
                 anim1.Play("anim11");
                 fuelzero.text = "Топливо закончилось";
-                fuel = 100;
+                isfuelzero = true;
 
                 if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                 {
@@ -398,8 +403,11 @@ public class death : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
-            AsteroidScript AS = collision.gameObject.GetComponent<AsteroidScript>();
-            AS.asvoid();
+            AsteroidSkript AS = Collision.gameObject.GetComponent<AsteroidSkript>();
+            if (AS != null)
+            {
+                AS.asvoid();
+            }
 
             if (d.b == true)
             {

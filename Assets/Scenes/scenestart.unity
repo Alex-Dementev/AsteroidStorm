@@ -5710,6 +5710,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 0}
+  isfuelzero: 0
   explosionEffect: {fileID: 0}
   explosionSound1: {fileID: 0}
   explosionSound2: {fileID: 0}
@@ -6329,8 +6330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialZSpeed: 12
-  zSpeedIncrement: 12
-  zSpeedUpdateInterval: 12
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 5
   xRange: 10
   sensitivity: 1
   intensityMultiplier: 1
@@ -6487,6 +6488,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 1037392187}
+  isfuelzero: 0
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -12189,8 +12191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialZSpeed: 12
-  zSpeedIncrement: 12
-  zSpeedUpdateInterval: 12
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 5
   xRange: 10
   sensitivity: 1
   intensityMultiplier: 1
@@ -12233,6 +12235,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 1037392187}
+  isfuelzero: 0
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -29309,8 +29312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialZSpeed: 12
-  zSpeedIncrement: 12
-  zSpeedUpdateInterval: 12
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 5
   xRange: 10
   sensitivity: 1
   intensityMultiplier: 1
@@ -29353,6 +29356,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 1037392187}
+  isfuelzero: 0
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -68395,8 +68399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialZSpeed: 12
-  zSpeedIncrement: 12
-  zSpeedUpdateInterval: 12
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 5
   xRange: 10
   sensitivity: 1
   intensityMultiplier: 1
@@ -68439,6 +68443,7 @@ MonoBehaviour:
   is2: 0
   fuel: 0
   SliderFuel: {fileID: 1037392187}
+  isfuelzero: 0
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}

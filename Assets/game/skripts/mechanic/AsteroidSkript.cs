@@ -3,7 +3,7 @@ using UnityEngine;
 public class AsteroidSkript : MonoBehaviour
 {
     [Range(0f, 100f)]
-    public float firstChance = 22f;
+    private float firstChance = 40f;
 
     public Material bronzeMaterial;
     public Material silverMaterial;
