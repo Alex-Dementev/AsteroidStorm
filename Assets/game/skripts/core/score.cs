@@ -45,6 +45,7 @@ public class ScoreCounter : MonoBehaviour
     public AudioSource ad10;
     public AudioSource ad11;
     public AudioSource ad12;
+    public AudioSource ad13;
     public ObstacleSpawner o;
     public ObstaclearSpawner oar;
     public int spawn;
@@ -55,7 +56,7 @@ public class ScoreCounter : MonoBehaviour
     public float isminus;
     public SmoothSkyboxSwitcher ss;
     public bool isbportal;
-    private int ars = 150;
+    private int ars = 300;
     public int ach1;
     public int ach2;
     public Animator achanim1;
@@ -99,7 +100,7 @@ public class ScoreCounter : MonoBehaviour
         "Наблюдаю Луну на горизонте",
         "Супер облепиха",
         "военный мёд",
-        "грусный мёд",
+        "грустный мёд",
         "Луна впереди"
     };
 
@@ -202,6 +203,7 @@ public class ScoreCounter : MonoBehaviour
         ad10.volume = audios;
         ad11.volume = audios;
         ad12.volume = audios;
+        ad13.volume = audios / 1.3f;
 
 
         if ((int)(player.position.z / 3) >= 890 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
@@ -375,11 +377,12 @@ public class ScoreCounter : MonoBehaviour
             ad10.enabled = false;
             ad11.enabled = false;
             ad12.enabled = false;
+            ad13.volume = 0;
         }
 
         if (spawn >= ars)
         {
-            ars += 800;
+            ars += 150;
             oar.SpawnObstaclesar();
         }
     }

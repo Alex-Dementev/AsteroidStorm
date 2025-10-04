@@ -5578,6 +5578,7 @@ MonoBehaviour:
   ad10: {fileID: 1824364258}
   ad11: {fileID: 946596077}
   ad12: {fileID: 1038827540}
+  ad13: {fileID: 1447584852}
   o: {fileID: 1122586438}
   oar: {fileID: 1122586440}
   spawn: 0
@@ -5694,6 +5695,9 @@ MonoBehaviour:
   isdelay2: 0
   liveimage: {fileID: 0}
   b: 0
+  cb: 0
+  adbonus: {fileID: 0}
+  animbonus: {fileID: 0}
   d: {fileID: 0}
   isgotohome: 0
   anim: {fileID: 590422739}
@@ -5711,6 +5715,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 0}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 0}
   explosionEffect: {fileID: 0}
   explosionSound1: {fileID: 0}
   explosionSound2: {fileID: 0}
@@ -6412,7 +6418,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207934567}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b3ae9695b58db41aad48793d4b983b, type: 3}
   m_Name: 
@@ -6420,10 +6426,13 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1034468416}
   c: {fileID: 298196377}
   doubleTapThreshold: 0.3
+  livet: {fileID: 1137274105}
+  otkat: 0
   lightintens: 0
   e: {fileID: 104172367}
   r: {fileID: 207934568}
   b: 0
+  life: 0
   bb: 0
   s: {fileID: 1754099357}
   AS: {fileID: 963194230}
@@ -6438,6 +6447,9 @@ MonoBehaviour:
   ad: {fileID: 985067553}
   anim1: {fileID: 973839480}
   cb: 0
+  isactivateicon: 0
+  isdisactivateicon: 0
+  liveimage: {fileID: 0}
 --- !u!114 &207934575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6472,6 +6484,9 @@ MonoBehaviour:
   isdelay2: 0
   liveimage: {fileID: 545735398}
   b: 0
+  cb: 0
+  adbonus: {fileID: 985067553}
+  animbonus: {fileID: 973839480}
   d: {fileID: 207934574}
   isgotohome: 0
   anim: {fileID: 590422739}
@@ -6489,6 +6504,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 1037392187}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 1447584851}
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -11530,6 +11547,7 @@ MonoBehaviour:
   boostPrefabs:
   - {fileID: 1435325039621379700, guid: 61a0bb3454fb747409abc31bd27284ea, type: 3}
   - {fileID: 1162753757707940735, guid: 67d0155c7bc4b7c4c93349a0929a52fc, type: 3}
+  - {fileID: 5533667344706977844, guid: b4bac4ba161a09c458870deb6ffea604, type: 3}
   s1: {fileID: 310942067}
   s2: {fileID: 814676261}
   s3: {fileID: 1950506757}
@@ -11538,7 +11556,7 @@ MonoBehaviour:
   spawnHeightOffset: -6
   minDistanceBetweenBoosts: 5
   maxDistanceBetweenBoosts: 10
-  spawnInterval: 45
+  spawnInterval: 10
   obstaclePositions: []
 --- !u!82 &254614247
 AudioSource:
@@ -12152,7 +12170,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310942067}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b3ae9695b58db41aad48793d4b983b, type: 3}
   m_Name: 
@@ -12160,10 +12178,13 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1034468416}
   c: {fileID: 298196377}
   doubleTapThreshold: 0.3
+  livet: {fileID: 1137274105}
+  otkat: 0
   lightintens: 0
   e: {fileID: 104172367}
   r: {fileID: 310942073}
   b: 0
+  life: 0
   bb: 0
   s: {fileID: 1754099357}
   AS: {fileID: 963194230}
@@ -12178,6 +12199,9 @@ MonoBehaviour:
   ad: {fileID: 985067553}
   anim1: {fileID: 973839480}
   cb: 0
+  isactivateicon: 0
+  isdisactivateicon: 0
+  liveimage: {fileID: 0}
 --- !u!114 &310942073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12219,6 +12243,9 @@ MonoBehaviour:
   isdelay2: 0
   liveimage: {fileID: 545735398}
   b: 0
+  cb: 0
+  adbonus: {fileID: 985067553}
+  animbonus: {fileID: 973839480}
   d: {fileID: 310942072}
   isgotohome: 0
   anim: {fileID: 590422739}
@@ -12236,6 +12263,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 1037392187}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 1447584851}
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -12958,7 +12987,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -18858,7 +18887,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -29273,7 +29302,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814676261}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b3ae9695b58db41aad48793d4b983b, type: 3}
   m_Name: 
@@ -29281,10 +29310,13 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1034468416}
   c: {fileID: 298196377}
   doubleTapThreshold: 0.3
+  livet: {fileID: 1137274105}
+  otkat: 0
   lightintens: 0
   e: {fileID: 104172367}
   r: {fileID: 814676267}
   b: 0
+  life: 0
   bb: 0
   s: {fileID: 1754099357}
   AS: {fileID: 963194230}
@@ -29299,6 +29331,9 @@ MonoBehaviour:
   ad: {fileID: 985067553}
   anim1: {fileID: 973839480}
   cb: 0
+  isactivateicon: 0
+  isdisactivateicon: 0
+  liveimage: {fileID: 0}
 --- !u!114 &814676267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29340,6 +29375,9 @@ MonoBehaviour:
   isdelay2: 0
   liveimage: {fileID: 545735398}
   b: 0
+  cb: 0
+  adbonus: {fileID: 985067553}
+  animbonus: {fileID: 973839480}
   d: {fileID: 814676266}
   isgotohome: 0
   anim: {fileID: 590422739}
@@ -29357,6 +29395,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 1037392187}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 1447584851}
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -40575,6 +40615,7 @@ RectTransform:
   - {fileID: 1034468413}
   - {fileID: 1543253748}
   - {fileID: 1037392186}
+  - {fileID: 1447584848}
   - {fileID: 350642952}
   - {fileID: 1584350827}
   - {fileID: 1620318952}
@@ -51655,6 +51696,99 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &1403635730
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 622294353003295702, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162753757707940735, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_Name
+      value: Cube l
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162753757707940735, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: bonus
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 271.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891989139268813498, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724990297761334826, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5720841343069688058, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 67d0155c7bc4b7c4c93349a0929a52fc, type: 3}
 --- !u!1 &1413977268
 GameObject:
   m_ObjectHideFlags: 0
@@ -51734,6 +51868,200 @@ RectTransform:
   m_AnchoredPosition: {x: 4, y: -193.8252}
   m_SizeDelta: {x: 148, y: -387.65005}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1447584847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1447584848}
+  - component: {fileID: 1447584850}
+  - component: {fileID: 1447584849}
+  - component: {fileID: 1447584851}
+  - component: {fileID: 1447584852}
+  m_Layer: 5
+  m_Name: fuelzero
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1447584848
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447584847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1038827536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -650}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1447584849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447584847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c26b8788c3969af4abc87543027a6d55, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1447584850
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447584847}
+  m_CullTransparentMesh: 1
+--- !u!95 &1447584851
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447584847}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bfe2a6027e04574389b2b056df7a90a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &1447584852
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447584847}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8b3fbf61588a87c4f81c8bff9d0fa9f6, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1486732949
 GameObject:
   m_ObjectHideFlags: 0
@@ -52710,7 +53038,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -62697,7 +63025,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -68360,7 +68688,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950506757}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b3ae9695b58db41aad48793d4b983b, type: 3}
   m_Name: 
@@ -68368,10 +68696,13 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1034468416}
   c: {fileID: 298196377}
   doubleTapThreshold: 0.3
+  livet: {fileID: 1137274105}
+  otkat: 0
   lightintens: 0
   e: {fileID: 104172367}
   r: {fileID: 1950506763}
   b: 0
+  life: 0
   bb: 0
   s: {fileID: 1754099357}
   AS: {fileID: 963194230}
@@ -68386,6 +68717,9 @@ MonoBehaviour:
   ad: {fileID: 985067553}
   anim1: {fileID: 973839480}
   cb: 0
+  isactivateicon: 0
+  isdisactivateicon: 0
+  liveimage: {fileID: 0}
 --- !u!114 &1950506763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68427,6 +68761,9 @@ MonoBehaviour:
   isdelay2: 0
   liveimage: {fileID: 545735398}
   b: 0
+  cb: 0
+  adbonus: {fileID: 985067553}
+  animbonus: {fileID: 973839480}
   d: {fileID: 1950506762}
   isgotohome: 0
   anim: {fileID: 590422739}
@@ -68444,6 +68781,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 1037392187}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 1447584851}
   explosionEffect: {fileID: 819479952}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
@@ -68705,3 +69044,4 @@ SceneRoots:
   - {fileID: 499092805}
   - {fileID: 279589487}
   - {fileID: 496637154}
+  - {fileID: 1403635730}

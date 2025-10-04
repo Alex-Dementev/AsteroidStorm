@@ -19,6 +19,9 @@ public class death : MonoBehaviour
     public Image liveimage;
     private int live = 3;
     public bool b;
+    public int cb;
+    public AudioSource adbonus;
+    public Animator animbonus;
     public DoubleTapHandler d;
     private float isdelay = 9999999;
     public bool isgotohome;
@@ -38,6 +41,8 @@ public class death : MonoBehaviour
     public float fuel;
     public Slider SliderFuel;
     public bool isfuelzero;
+    public bool isfuel5;
+    public Animator fuel5;
 
     public GameObject explosionEffect;
     public AudioSource explosionSound1;
@@ -246,6 +251,12 @@ public class death : MonoBehaviour
         isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
 
+        if(fuel <= 5 && !isfuel5)
+        {
+            fuel5.Play("fuelzerostart");
+            isfuel5 = true;
+        }
+
         if (isdelay <= 0 && isgotohome)
         {
             isdelay = 100;
@@ -399,6 +410,37 @@ public class death : MonoBehaviour
 
     private void OnCollisionEnter(Collision Collision)
     {
+        if (Collision.gameObject.CompareTag("bo"))
+        {
+            fuel = fuel + 8;
+            adbonus.Play();
+            animbonus.Play("green");
+            Destroy(Collision.gameObject);
+
+            if(PlayerPrefs.GetInt("currentTask2", -1) == 1)
+            {
+            cb = PlayerPrefs.GetInt("collectBonus", 0);
+            cb++;
+            PlayerPrefs.SetInt("collectBonus", cb);
+            }
+        }
+        if (Collision.gameObject.CompareTag("bonus") && live <= 2)
+        {
+            Destroy(Collision.gameObject);
+            ad.Play();
+            anim1.Play("green");
+            live += 1;
+            livet.text = live.ToString();
+            PlayerPrefs.SetInt("live", live);
+
+            if(PlayerPrefs.GetInt("currentTask2", -1) == 1)
+            {
+            cb = PlayerPrefs.GetInt("collectBonus", 0);
+            cb++;
+            PlayerPrefs.SetInt("collectBonus", cb);
+            }
+        }
+
         if (Collision.gameObject.CompareTag("obstacle"))
         {
             if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
@@ -472,10 +514,10 @@ public class death : MonoBehaviour
             {
                     anim2.Play("oneshake");
                     fineText.color = new Color (0.698f, 0.0f, 0.608f);  
-                    PlayerPrefs.SetInt("live", live);
                     lifeLostSound.Play();
                     live -= 1;
                     livet.text = live.ToString();
+                    PlayerPrefs.SetInt("live", live);
 
                     if (PlayerPrefs.GetInt("currentTask2", -1) == 2)
                     {

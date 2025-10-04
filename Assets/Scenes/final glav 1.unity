@@ -232,7 +232,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -11139,6 +11139,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 0}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 0}
   explosionEffect: {fileID: 0}
   explosionSound1: {fileID: 0}
   explosionSound2: {fileID: 0}
@@ -11200,6 +11202,7 @@ MonoBehaviour:
   s3: {fileID: 1582142836}
   s4: {fileID: 1258039495}
   anim1: {fileID: 540669390}
+  oar: {fileID: 0}
   image: {fileID: 540669386}
   Vp: 0
   scoreText: {fileID: 28995410}
@@ -11223,6 +11226,7 @@ MonoBehaviour:
   ad12: {fileID: 28995412}
   ad13: {fileID: 1960535844}
   ad14: {fileID: 93879502}
+  ad15: {fileID: 1883183358}
   o: {fileID: 401635279}
   spawn: 0
   function: 0
@@ -11248,6 +11252,7 @@ MonoBehaviour:
   anim5: {fileID: 1979058719}
   l: {fileID: 2131777373}
   isstart: 0
+  ars: 20
 --- !u!114 &144783078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11420,7 +11425,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -32649,7 +32654,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -39422,10 +39427,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1258039497}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1258039504}
   m_SourcePrefab: {fileID: 100100000, guid: 51268198bc0d3b346b2a28743bb91ca4, type: 3}
 --- !u!1 &1258039495 stripped
 GameObject:
@@ -39476,6 +39477,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 573620534}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 1883183355}
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -39502,7 +39505,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258039495}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b3ae9695b58db41aad48793d4b983b, type: 3}
   m_Name: 
@@ -39510,6 +39513,7 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1221031987}
   c: {fileID: 1103207266}
   doubleTapThreshold: 0.3
+  otkat: -1
   lightintens: 0
   e: {fileID: 144783074}
   r: {fileID: 1258039503}
@@ -39528,6 +39532,8 @@ MonoBehaviour:
   ad: {fileID: 67334523}
   anim1: {fileID: 67334520}
   cb: 0
+  isactivateicon: 0
+  isdisactivateicon: 0
 --- !u!54 &1258039500
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -39610,27 +39616,6 @@ MonoBehaviour:
   gravityFactor: 0.85
   calibrationOffset: {x: -1, y: 0, z: 0}
   zSpeed: 25
---- !u!95 &1258039504
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258039495}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4dab6131dba5c2449bd98224da5cc69b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1259312341
 GameObject:
   m_ObjectHideFlags: 0
@@ -50168,7 +50153,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -55108,10 +55093,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1582142837}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 01b5a8571b318de4c8529d2dcbdffb76,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1582142844}
   m_SourcePrefab: {fileID: 100100000, guid: 01b5a8571b318de4c8529d2dcbdffb76, type: 3}
 --- !u!4 &1582142835 stripped
 Transform:
@@ -55162,6 +55143,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 573620534}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 1883183355}
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -55236,7 +55219,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582142836}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b3ae9695b58db41aad48793d4b983b, type: 3}
   m_Name: 
@@ -55244,6 +55227,7 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1221031987}
   c: {fileID: 1103207266}
   doubleTapThreshold: 0.3
+  otkat: -1
   lightintens: 0
   e: {fileID: 144783074}
   r: {fileID: 1582142842}
@@ -55262,6 +55246,8 @@ MonoBehaviour:
   ad: {fileID: 67334523}
   anim1: {fileID: 67334520}
   cb: 0
+  isactivateicon: 0
+  isdisactivateicon: 0
 --- !u!114 &1582142842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55296,27 +55282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
---- !u!95 &1582142844
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582142836}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1dc76273b7e189140bce446940190173, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1588405525
 GameObject:
   m_ObjectHideFlags: 0
@@ -56125,10 +56090,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1693977091}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1693977100}
   m_SourcePrefab: {fileID: 100100000, guid: b79e86830eeb4b64da64c6b23cf079fa, type: 3}
 --- !u!4 &1693977089 stripped
 Transform:
@@ -56179,6 +56140,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 573620534}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 1883183355}
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -56253,7 +56216,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693977090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b3ae9695b58db41aad48793d4b983b, type: 3}
   m_Name: 
@@ -56261,6 +56224,7 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1221031987}
   c: {fileID: 1103207266}
   doubleTapThreshold: 0.3
+  otkat: -1
   lightintens: 0
   e: {fileID: 144783074}
   r: {fileID: 1693977096}
@@ -56279,6 +56243,8 @@ MonoBehaviour:
   ad: {fileID: 67334523}
   anim1: {fileID: 67334520}
   cb: 0
+  isactivateicon: 0
+  isdisactivateicon: 0
 --- !u!114 &1693977096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56313,27 +56279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: -100
---- !u!95 &1693977100
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693977090}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fbad8e100d685d54d9ff9a931db6d6b7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1716155051
 GameObject:
   m_ObjectHideFlags: 0
@@ -61545,6 +61490,200 @@ Transform:
   m_Children: []
   m_Father: {fileID: 476913502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1883183353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1883183354}
+  - component: {fileID: 1883183357}
+  - component: {fileID: 1883183356}
+  - component: {fileID: 1883183355}
+  - component: {fileID: 1883183358}
+  m_Layer: 5
+  m_Name: fuelzero
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1883183354
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883183353}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1960535840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -650}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1883183355
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883183353}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bfe2a6027e04574389b2b056df7a90a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1883183356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883183353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c26b8788c3969af4abc87543027a6d55, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1883183357
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883183353}
+  m_CullTransparentMesh: 1
+--- !u!82 &1883183358
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883183353}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8b3fbf61588a87c4f81c8bff9d0fa9f6, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1910617515
 GameObject:
   m_ObjectHideFlags: 0
@@ -66547,10 +66686,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1936518566}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cd4d7b672404adf41a6985a99779200a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1936518575}
   m_SourcePrefab: {fileID: 100100000, guid: cd4d7b672404adf41a6985a99779200a, type: 3}
 --- !u!4 &1936518564 stripped
 Transform:
@@ -66601,6 +66736,8 @@ MonoBehaviour:
   fuel: 0
   SliderFuel: {fileID: 573620534}
   isfuelzero: 0
+  isfuel5: 0
+  fuel5: {fileID: 1883183355}
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 230863818}
@@ -66675,7 +66812,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936518565}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82b3ae9695b58db41aad48793d4b983b, type: 3}
   m_Name: 
@@ -66683,6 +66820,7 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1221031987}
   c: {fileID: 1103207266}
   doubleTapThreshold: 0.3
+  otkat: -1
   lightintens: 0
   e: {fileID: 144783074}
   r: {fileID: 1936518571}
@@ -66701,6 +66839,8 @@ MonoBehaviour:
   ad: {fileID: 67334523}
   anim1: {fileID: 67334520}
   cb: 0
+  isactivateicon: 0
+  isdisactivateicon: 0
 --- !u!114 &1936518571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66735,27 +66875,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: -100
---- !u!95 &1936518575
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936518565}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dc03a531f0bca1d45b28857fd478dc7d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1960535839
 GameObject:
   m_ObjectHideFlags: 0
@@ -66803,6 +66922,7 @@ RectTransform:
   - {fileID: 612056729}
   - {fileID: 573620532}
   - {fileID: 1221031986}
+  - {fileID: 1883183354}
   - {fileID: 346243016}
   - {fileID: 2130700145}
   m_Father: {fileID: 1592378833}

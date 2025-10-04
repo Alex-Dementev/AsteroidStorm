@@ -20,9 +20,8 @@ public class ScoreCounterFinal : MonoBehaviour
     public GameObject s2;
     public GameObject s3;
     public GameObject s4;
-
     public Animator anim1;
-
+    public ObstaclearSpawner oar;
     public GameObject image;
     public int Vp;
     public Text scoreText;
@@ -46,6 +45,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public AudioSource ad12;
     public AudioSource ad13;
     public AudioSource ad14;
+    public AudioSource ad15;
     public ObstacleSpawner o;
     public int spawn;
     public float function;
@@ -72,6 +72,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public Animator anim5;
     public Light l;
     public bool isstart;
+    public int ars = 20;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
@@ -183,6 +184,13 @@ public class ScoreCounterFinal : MonoBehaviour
         ad12.volume = audios / 1.5f;
         ad13.volume = audios / 1.25f;
         ad14.volume = audios;
+        ad15.volume = audios / 1.3f;
+
+        if (spawn >= ars)
+        {
+            ars += 50;
+            oar.SpawnObstaclesar();
+        }
 
         if ((int)(player.position.z / 3) >= 340 && !is340)
         {
@@ -284,6 +292,7 @@ public class ScoreCounterFinal : MonoBehaviour
             ad12.enabled = false;
             ad13.enabled = false;
             ad14.enabled = false;
+            ad15.volume = 0;
         }
     }
 
@@ -349,11 +358,11 @@ public class ScoreCounterFinal : MonoBehaviour
 
     void UpdateObstacleCount()
     {
-        if (spawn < 1250)
+        if (spawn < 250)
         {
             spawner.SetObstacleCount(2);
         }
-        else if (spawn < 1500)
+        else if (spawn < 500)
         {
             spawner.SetObstacleCount(3);
         }

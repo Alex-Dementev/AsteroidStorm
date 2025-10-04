@@ -1,24 +1,25 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using RDG;
 
 public class DoubleTapHandler : MonoBehaviour
 {
-    private bool isAbilityReady = false;
     public Animator abilityIconAnimator;
     public completetasks c;
-
     public float doubleTapThreshold = 0.5f;
     private float speed;
     private float delay;
     private float isdelay;
-    private float otkat;
+    public Text livet;
+    public float otkat = -1;
     private float isotkat = 30;
     public float lightintens;
     public energy e;
     public RocketUniversalControl r;
     public bool b;
+    public int life;
     public bool bb;
     public Slider s;
     public AudioSource AS;
@@ -33,6 +34,9 @@ public class DoubleTapHandler : MonoBehaviour
     public AudioSource ad;
     public Animator anim1;
     public int cb;
+    public bool isactivateicon;
+    public bool isdisactivateicon;
+    public Image liveimage;
 
     private float lastTapTime = 0;
     private bool isWaitingForSecondTap = false;
@@ -52,9 +56,9 @@ public class DoubleTapHandler : MonoBehaviour
 
 
         if (isdelay1 >= 0)
-            {
-                ps.Stop();
-            }
+        {
+            ps.Stop();
+        }
 
         if (b == true)
         {
@@ -141,6 +145,8 @@ public class DoubleTapHandler : MonoBehaviour
                         l.color = new Color(1f, 1f, 0.85f);
                         anim.Play("blue");
                         s.maxValue = isotkat;
+                        isactivateicon = false;
+                        isdisactivateicon = false;
 
                         if (PlayerPrefs.GetInt("vibration") == 0)
                         {
@@ -166,47 +172,26 @@ public class DoubleTapHandler : MonoBehaviour
             isWaitingForSecondTap = false;
         }
 
-    bool nowReady = otkat <= 0 && e.energyint >= 20;
+        bool nowReady = otkat <= 0 && e.energyint >= 20;
 
-if (nowReady != isAbilityReady)
-{
-    isAbilityReady = nowReady;
-
-    if (isAbilityReady)
-    {
-        abilityIconAnimator.Play("anim 28 0");
-    }
-    else
-    {
-        abilityIconAnimator.Play("anim 28");
-    }
-}
+        if (nowReady == true && !isactivateicon)
+        {
+            abilityIconAnimator.Play("anim 28 0");
+            isactivateicon = true;
+        }
+        else if(!isdisactivateicon)
+        {
+            abilityIconAnimator.Play("anim 28");
+            isdisactivateicon = true;
+        }
 
     }
 
     private void OnCollisionEnter(Collision Collision)
     {
-        if (Collision.gameObject.CompareTag("br"))
-        {
-            if(PlayerPrefs.GetInt("live") <= 2) 
-            {
-                int life; 
-                life = PlayerPrefs.GetInt("live", 3); 
-                life++; 
-                PlayerPrefs.SetInt("life", life);
-                ad.Play();
-                anim1.Play("green");
-                if(PlayerPrefs.GetInt("currentTask2", -1) == 1)
-                {
-                cb = PlayerPrefs.GetInt("collectBonus", 0);
-                cb++;
-                PlayerPrefs.SetInt("collectBonus", cb);
-                }
-            }
-        }
         if (Collision.gameObject.CompareTag("bb"))
         {
-            e.energyint += 25;
+            e.energyint += 15;
             ad.Play();
             anim1.Play("green");
             if(PlayerPrefs.GetInt("currentTask2", -1) == 1)
