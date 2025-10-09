@@ -6449,7 +6449,7 @@ MonoBehaviour:
   cb: 0
   isactivateicon: 0
   isdisactivateicon: 0
-  liveimage: {fileID: 0}
+  liveimage: {fileID: 545735398}
 --- !u!114 &207934575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12201,7 +12201,7 @@ MonoBehaviour:
   cb: 0
   isactivateicon: 0
   isdisactivateicon: 0
-  liveimage: {fileID: 0}
+  liveimage: {fileID: 545735398}
 --- !u!114 &310942073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12716,7 +12716,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8773585, g: 0.7852693, b: 0.6580189, a: 1}
   m_Intensity: 0.75
   m_Range: 10
   m_SpotAngle: 30
@@ -29333,7 +29333,7 @@ MonoBehaviour:
   cb: 0
   isactivateicon: 0
   isdisactivateicon: 0
-  liveimage: {fileID: 0}
+  liveimage: {fileID: 545735398}
 --- !u!114 &814676267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40976,6 +40976,7 @@ GameObject:
   - component: {fileID: 1122586438}
   - component: {fileID: 1122586440}
   - component: {fileID: 1122586441}
+  - component: {fileID: 1122586442}
   m_Layer: 0
   m_Name: spawn osteroids
   m_TagString: Untagged
@@ -41166,6 +41167,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1122586442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122586437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1c761d53feb7d44a70c37c659142ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefabs:
+  - {fileID: 1829399009914271401, guid: a5fac4ff20f5e194bb332b69a505b895, type: 3}
+  - {fileID: 1626036605808647128, guid: a0e63a08b5fd3494ba1203de8997e465, type: 3}
+  specialPrefabs:
+  - {fileID: 1829399009914271401, guid: a5fac4ff20f5e194bb332b69a505b895, type: 3}
+  - {fileID: 1626036605808647128, guid: a0e63a08b5fd3494ba1203de8997e465, type: 3}
+  s1: {fileID: 310942067}
+  s2: {fileID: 814676261}
+  s3: {fileID: 1950506757}
+  s4: {fileID: 207934567}
+  spawnDistance: 165
+  rotationSpeedRange: 60
+  spawnHeightOffset: 0.5
+  xCalibrationOffset: -1
+  manualCenterOffset: {x: 0, y: 0, z: 0}
+  obstaclesCount: 1
+  normalSpeed: 2
+  normalSizeRange: {x: 0.5, y: 2}
+  normalTowardPlayerProbability: 0.15
+  normalMaxDistance: 3
+  amogusSpeed: 2
+  amogusSizeRange: {x: 0.8, y: 1.5}
+  amogusTowardPlayerProbability: 0.3
+  amogusMaxDistance: 2
 --- !u!1 &1137274101
 GameObject:
   m_ObjectHideFlags: 0
@@ -51696,99 +51733,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &1403635730
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 622294353003295702, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 1162753757707940735, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_Name
-      value: Cube l
-      objectReference: {fileID: 0}
-    - target: {fileID: 1162753757707940735, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_TagString
-      value: bonus
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -5.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 271.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413600786460866499, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1891989139268813498, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 2724990297761334826, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720841343069688058, guid: 67d0155c7bc4b7c4c93349a0929a52fc,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 67d0155c7bc4b7c4c93349a0929a52fc, type: 3}
 --- !u!1 &1413977268
 GameObject:
   m_ObjectHideFlags: 0
@@ -68719,7 +68663,7 @@ MonoBehaviour:
   cb: 0
   isactivateicon: 0
   isdisactivateicon: 0
-  liveimage: {fileID: 0}
+  liveimage: {fileID: 545735398}
 --- !u!114 &1950506763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69044,4 +68988,3 @@ SceneRoots:
   - {fileID: 499092805}
   - {fileID: 279589487}
   - {fileID: 496637154}
-  - {fileID: 1403635730}

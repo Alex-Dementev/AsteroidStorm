@@ -72,11 +72,11 @@ public class DoubleTapHandler : MonoBehaviour
                     l.intensity = lightintens;
                     if(PlayerPrefs.GetInt("isfinal1g", 0) == 0)
                     {
-                        l.color = Color.white;
+                        l.color = new Color(0.878f, 0.788f, 0.659f);
                     }
                     else
                     {
-                        l.color = new Color(169f/255f, 132f/255f, 132f/255f);
+                        l.color = new Color(185f/255f, 155f/255f, 120f/255f);
                     }
                 }
             }
@@ -191,7 +191,7 @@ public class DoubleTapHandler : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("bb"))
         {
-            e.energyint += 15;
+            e.energyint += 20;
             ad.Play();
             anim1.Play("green");
             if(PlayerPrefs.GetInt("currentTask2", -1) == 1)

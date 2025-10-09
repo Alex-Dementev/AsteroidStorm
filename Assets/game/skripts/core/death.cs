@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using RDG;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using Unity.Burst.Intrinsics;
 using System.Security.Cryptography.X509Certificates;
 
 public class death : MonoBehaviour
@@ -412,33 +411,35 @@ public class death : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("bo"))
         {
-            fuel = fuel + 8;
             adbonus.Play();
             animbonus.Play("green");
-            Destroy(Collision.gameObject);
+            fuel = fuel + 8;
 
-            if(PlayerPrefs.GetInt("currentTask2", -1) == 1)
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
             {
-            cb = PlayerPrefs.GetInt("collectBonus", 0);
-            cb++;
-            PlayerPrefs.SetInt("collectBonus", cb);
+                cb = PlayerPrefs.GetInt("collectBonus", 0);
+                cb++;
+                PlayerPrefs.SetInt("collectBonus", cb);
             }
-        }
-        if (Collision.gameObject.CompareTag("bonus") && live <= 2)
-        {
+            
             Destroy(Collision.gameObject);
-            ad.Play();
-            anim1.Play("green");
+        }
+        if (Collision.gameObject.CompareTag("br") && live <= 2)
+        {
             live += 1;
+            adbonus.Play();
+            animbonus.Play("green");
             livet.text = live.ToString();
             PlayerPrefs.SetInt("live", live);
 
-            if(PlayerPrefs.GetInt("currentTask2", -1) == 1)
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
             {
-            cb = PlayerPrefs.GetInt("collectBonus", 0);
-            cb++;
-            PlayerPrefs.SetInt("collectBonus", cb);
+                cb = PlayerPrefs.GetInt("collectBonus", 0);
+                cb++;
+                PlayerPrefs.SetInt("collectBonus", cb);
             }
+
+            Destroy(Collision.gameObject);
         }
 
         if (Collision.gameObject.CompareTag("obstacle"))
