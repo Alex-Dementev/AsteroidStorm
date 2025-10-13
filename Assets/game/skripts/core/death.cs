@@ -409,207 +409,223 @@ public class death : MonoBehaviour
 
     private void OnCollisionEnter(Collision Collision)
     {
-        if (Collision.gameObject.CompareTag("bo"))
+        if (Collision.gameObject.CompareTag("obstraclemini"))
         {
-            adbonus.Play();
-            animbonus.Play("green");
-            fuel = fuel + 8;
-
-            if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
-            {
-                cb = PlayerPrefs.GetInt("collectBonus", 0);
-                cb++;
-                PlayerPrefs.SetInt("collectBonus", cb);
-            }
-            
             Destroy(Collision.gameObject);
-        }
-        if (Collision.gameObject.CompareTag("br") && live <= 2)
-        {
-            live += 1;
-            adbonus.Play();
-            animbonus.Play("green");
-            livet.text = live.ToString();
-            PlayerPrefs.SetInt("live", live);
 
-            if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
-            {
-                cb = PlayerPrefs.GetInt("collectBonus", 0);
-                cb++;
-                PlayerPrefs.SetInt("collectBonus", cb);
-            }
-
-            Destroy(Collision.gameObject);
-        }
-
-        if (Collision.gameObject.CompareTag("obstacle"))
-        {
             if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
-            AsteroidSkript AS = Collision.gameObject.GetComponent<AsteroidSkript>();
-            if (AS != null)
-            {
-                AS.asvoid();
+                AsteroidSkript AS = Collision.gameObject.GetComponent<AsteroidSkript>();
+                if (AS != null)
+                {
+                    AS.asvoid();
+                }
             }
-
-            if (d.b == true)
+        }
+            else
             {
-                if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
+                if (Collision.gameObject.CompareTag("bo"))
                 {
-                    is2++;
-                    if(!isstarttask)
+                    adbonus.Play();
+                    animbonus.Play("green");
+                    fuel = fuel + 8;
+
+                    if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
                     {
-                    isstarttask = true;
-                    isdelay2 = 3;
+                        cb = PlayerPrefs.GetInt("collectBonus", 0);
+                        cb++;
+                        PlayerPrefs.SetInt("collectBonus", cb);
                     }
-                }
 
-
-                if (PlayerPrefs.GetInt("fall") == 1)
-                            fineText.text = falllifeMessages[Random.Range(0, lifeMessages.Length)];
-                        else
-                            fineText.text = lifeMessages[Random.Range(0, lifeMessages.Length)];
-
-                        fineAnim.Play("textFine", -1, 0f);
-
-                if (explosionEffect != null)
-                    Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
-
-                int rand = Random.Range(0, 2);
-                if (rand == 0 && explosionSound1 != null) explosionSound1.Play();
-                else if (rand == 1 && explosionSound2 != null) explosionSound2.Play();
-
-                coins = PlayerPrefs.GetInt("coins");
-                allcoins = PlayerPrefs.GetInt("allcoins");
-                int reward = 25;
-                coins += reward;
-                allcoins += reward;
-                PlayerPrefs.SetInt("coins", coins);
-                PlayerPrefs.SetInt("allcoins", allcoins);
-                
-                if (PlayerPrefs.GetInt("fall") == 1)
-                {
-                    fineText.text = fallfineMessages[Random.Range(0, fallfineMessages.Length)];
-                }
-                else if (PlayerPrefs.GetInt("fall") == 0)
-                {
-                    if (Random.Range(0f, 100f) < 5f)
-                    {
-                        fineText.text = secretMessages[Random.Range(0, secretMessages.Length)];
-                    }
-                    else
-                    {
-                        fineText.text = fineMessages[Random.Range(0, fineMessages.Length)];
-                    }
-                }
-
-                fineText.color = new Color (0.698f, 0.0f, 0.608f);
-                fineAnim.Play("textFine", -1, 0f);
-
-                if (!Collision.gameObject.name.StartsWith("T"))
-                {
                     Destroy(Collision.gameObject);
                 }
-            }
-            else if (b == false)
-            {
-                    anim2.Play("oneshake");
-                    fineText.color = new Color (0.698f, 0.0f, 0.608f);  
-                    lifeLostSound.Play();
-                    live -= 1;
+                if (Collision.gameObject.CompareTag("br") && live <= 2)
+                {
+                    live += 1;
+                    adbonus.Play();
+                    animbonus.Play("green");
                     livet.text = live.ToString();
                     PlayerPrefs.SetInt("live", live);
 
-                    if (PlayerPrefs.GetInt("currentTask2", -1) == 2)
+                    if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
                     {
-                        int current = PlayerPrefs.GetInt("loseLife", 0);
-                        current += 1;
-                        PlayerPrefs.SetInt("loseLife", current);
+                        cb = PlayerPrefs.GetInt("collectBonus", 0);
+                        cb++;
+                        PlayerPrefs.SetInt("collectBonus", cb);
                     }
 
-                    anim3.Play("anim");
+                    Destroy(Collision.gameObject);
+                }
 
-                    if (live >= 1)
+                if (Collision.gameObject.CompareTag("obstacle"))
+                {
+                    if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
                     {
-                        if (live == 3)
+                        AsteroidSkript AS = Collision.gameObject.GetComponent<AsteroidSkript>();
+                        if (AS != null)
                         {
-                            fineText.color = new Color(1f, 0f, 0.3f);
-                        }
-                        else if (live == 2)
-                        {
-                            fineText.color = new Color(0.749f, 0.223f, 0.478f);
-                        }
-                        else
-                        {
-                            fineText.color = new Color(0.671f, 0.376f, 0.522f);
-                        }
-                        
-                        if (PlayerPrefs.GetInt("vibration") == 0)
-                        {
-                            Vibration.Vibrate(200, 70);
-                        }
-                        if (explosionEffect != null)
-                            Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
-
-                        if (!Collision.gameObject.name.StartsWith("T"))
-                        {
-                            Destroy(Collision.gameObject);
-                        }
-                    }
-                    else
-                    {
-                        if (explosionEffect != null)
-                            Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
-
-                        if (!Collision.gameObject.name.StartsWith("T"))
-                        {
-                            Destroy(Collision.gameObject);
+                            AS.asvoid();
                         }
 
-                        losePanel.SetActive(true);
-                        anim1.Play("anim11");
-                        live -= 1;
-                        livet.text = live.ToString();
-                        PlayerPrefs.SetInt("live", live);
-
-                        if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
+                        if (d.b == true)
+                        {
+                            if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
                             {
-                                coins = PlayerPrefs.GetInt("coins");
-                                allcoins = PlayerPrefs.GetInt("allcoins");
-                                score = PlayerPrefs.GetInt("allscore");
-                                coins += ((int)(player.position.z / 7) + 400);
-                                score += ((int)(player.position.z / 3) + 1000);
-                                allcoins += ((int)(player.position.z / 7) + 400);
-                                PlayerPrefs.SetInt("coins", coins);
-                                PlayerPrefs.SetInt("allcoins", allcoins);
-                                PlayerPrefs.SetInt("allscore", score);
-                                PlayerPrefs.SetInt("youdead", 1);
+                                is2++;
+                                if (!isstarttask)
+                                {
+                                    isstarttask = true;
+                                    isdelay2 = 3;
+                                }
+                            }
+
+
+                            if (PlayerPrefs.GetInt("fall") == 1)
+                                fineText.text = falllifeMessages[Random.Range(0, lifeMessages.Length)];
+                            else
+                                fineText.text = lifeMessages[Random.Range(0, lifeMessages.Length)];
+
+                            fineAnim.Play("textFine", -1, 0f);
+
+                            if (explosionEffect != null)
+                                Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
+
+                            int rand = Random.Range(0, 2);
+                            if (rand == 0 && explosionSound1 != null) explosionSound1.Play();
+                            else if (rand == 1 && explosionSound2 != null) explosionSound2.Play();
+
+                            coins = PlayerPrefs.GetInt("coins");
+                            allcoins = PlayerPrefs.GetInt("allcoins");
+                            int reward = 25;
+                            coins += reward;
+                            allcoins += reward;
+                            PlayerPrefs.SetInt("coins", coins);
+                            PlayerPrefs.SetInt("allcoins", allcoins);
+
+                            if (PlayerPrefs.GetInt("fall") == 1)
+                            {
+                                fineText.text = fallfineMessages[Random.Range(0, fallfineMessages.Length)];
+                            }
+                            else if (PlayerPrefs.GetInt("fall") == 0)
+                            {
+                                if (Random.Range(0f, 100f) < 5f)
+                                {
+                                    fineText.text = secretMessages[Random.Range(0, secretMessages.Length)];
+                                }
+                                else
+                                {
+                                    fineText.text = fineMessages[Random.Range(0, fineMessages.Length)];
+                                }
+                            }
+
+                            fineText.color = new Color(0.698f, 0.0f, 0.608f);
+                            fineAnim.Play("textFine", -1, 0f);
+
+                            if (!Collision.gameObject.name.StartsWith("T"))
+                            {
+                                Destroy(Collision.gameObject);
+                            }
+                        }
+                        else if (b == false)
+                        {
+                            anim2.Play("oneshake");
+                            fineText.color = new Color(0.698f, 0.0f, 0.608f);
+                            lifeLostSound.Play();
+                            live -= 1;
+                            livet.text = live.ToString();
+                            PlayerPrefs.SetInt("live", live);
+
+                            if (PlayerPrefs.GetInt("currentTask2", -1) == 2)
+                            {
+                                int current = PlayerPrefs.GetInt("loseLife", 0);
+                                current += 1;
+                                PlayerPrefs.SetInt("loseLife", current);
+                            }
+
+                            anim3.Play("anim");
+
+                            if (live >= 1)
+                            {
+                                if (live == 3)
+                                {
+                                    fineText.color = new Color(1f, 0f, 0.3f);
+                                }
+                                else if (live == 2)
+                                {
+                                    fineText.color = new Color(0.749f, 0.223f, 0.478f);
+                                }
+                                else
+                                {
+                                    fineText.color = new Color(0.671f, 0.376f, 0.522f);
+                                }
+
+                                if (PlayerPrefs.GetInt("vibration") == 0)
+                                {
+                                    Vibration.Vibrate(200, 70);
+                                }
+                                if (explosionEffect != null)
+                                    Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
+
+                                if (!Collision.gameObject.name.StartsWith("T"))
+                                {
+                                    Destroy(Collision.gameObject);
+                                }
                             }
                             else
                             {
-                                coins = PlayerPrefs.GetInt("coins");
-                                allcoins = PlayerPrefs.GetInt("allcoins");
-                                score = PlayerPrefs.GetInt("allscore");
-                                coins += ((int)(player.position.z / 10));
-                                score += ((int)(player.position.z / 3));
-                                allcoins += ((int)(player.position.z / 10));
-                                PlayerPrefs.SetInt("coins", coins);
-                                PlayerPrefs.SetInt("allcoins", allcoins);
-                                PlayerPrefs.SetInt("allscore", score);
-                                PlayerPrefs.SetInt("youdead", 1);
+                                if (explosionEffect != null)
+                                    Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
+
+                                if (!Collision.gameObject.name.StartsWith("T"))
+                                {
+                                    Destroy(Collision.gameObject);
+                                }
+
+                                losePanel.SetActive(true);
+                                anim1.Play("anim11");
+                                live -= 1;
+                                livet.text = live.ToString();
+                                PlayerPrefs.SetInt("live", live);
+
+                                if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
+                                {
+                                    coins = PlayerPrefs.GetInt("coins");
+                                    allcoins = PlayerPrefs.GetInt("allcoins");
+                                    score = PlayerPrefs.GetInt("allscore");
+                                    coins += ((int)(player.position.z / 7) + 400);
+                                    score += ((int)(player.position.z / 3) + 1000);
+                                    allcoins += ((int)(player.position.z / 7) + 400);
+                                    PlayerPrefs.SetInt("coins", coins);
+                                    PlayerPrefs.SetInt("allcoins", allcoins);
+                                    PlayerPrefs.SetInt("allscore", score);
+                                    PlayerPrefs.SetInt("youdead", 1);
+                                }
+                                else
+                                {
+                                    coins = PlayerPrefs.GetInt("coins");
+                                    allcoins = PlayerPrefs.GetInt("allcoins");
+                                    score = PlayerPrefs.GetInt("allscore");
+                                    coins += ((int)(player.position.z / 10));
+                                    score += ((int)(player.position.z / 3));
+                                    allcoins += ((int)(player.position.z / 10));
+                                    PlayerPrefs.SetInt("coins", coins);
+                                    PlayerPrefs.SetInt("allcoins", allcoins);
+                                    PlayerPrefs.SetInt("allscore", score);
+                                    PlayerPrefs.SetInt("youdead", 1);
+                                }
+
+                                if (PlayerPrefs.GetInt("vibration") == 0)
+                                {
+                                    Vibration.Vibrate(800, 120);
+                                }
+
+                                ad.Play();
+                                b = true;
+                                f = 11;
                             }
-
-                    if (PlayerPrefs.GetInt("vibration") == 0)
-                    {
-                        Vibration.Vibrate(800, 120);
+                        }
                     }
-
-                    ad.Play();
-                    b = true;
-                    f = 11;
                 }
             }
-            }
-        }
     }
 }

@@ -37,6 +37,8 @@ public class DoubleTapHandler : MonoBehaviour
     public bool isactivateicon;
     public bool isdisactivateicon;
     public Image liveimage;
+    public Animator effect;
+    public ParticleSystem Skanner;
 
     private float lastTapTime = 0;
     private bool isWaitingForSecondTap = false;
@@ -76,7 +78,7 @@ public class DoubleTapHandler : MonoBehaviour
                     }
                     else
                     {
-                        l.color = new Color(185f/255f, 155f/255f, 120f/255f);
+                        l.color = new Color(238f/255f, 211f/255f, 179f/255f);
                     }
                 }
             }
@@ -130,6 +132,7 @@ public class DoubleTapHandler : MonoBehaviour
                         if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80) PlayerPrefs.SetInt("abilityOver80", 1);
 
                         PlayerPrefs.SetInt("isabilityuse", 1);
+                        Skanner.Play();
                         b = true;
                         e.energyint -= 20;
                         abilityt++;
@@ -147,6 +150,7 @@ public class DoubleTapHandler : MonoBehaviour
                         s.maxValue = isotkat;
                         isactivateicon = false;
                         isdisactivateicon = false;
+                        effect.Play("slide lr");
 
                         if (PlayerPrefs.GetInt("vibration") == 0)
                         {

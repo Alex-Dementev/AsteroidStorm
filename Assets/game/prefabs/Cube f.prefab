@@ -73,6 +73,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2508dc32467339845bef6740e73071e7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f6ac5ead105f9f448f1c22b42e5681f, type: 2}
     - target: {fileID: 919132149155446097, guid: 2508dc32467339845bef6740e73071e7,
         type: 3}
       propertyPath: m_Name
@@ -120,7 +125,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.02293036, y: 0.01101729, z: 0.024631545}
@@ -166,17 +171,17 @@ PrefabInstance:
     - target: {fileID: 5811740936744800856, guid: 61a0bb3454fb747409abc31bd27284ea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.52759
+      value: 0.57328844
       objectReference: {fileID: 0}
     - target: {fileID: 5811740936744800856, guid: 61a0bb3454fb747409abc31bd27284ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.412628
+      value: 0.9808711
       objectReference: {fileID: 0}
     - target: {fileID: 5811740936744800856, guid: 61a0bb3454fb747409abc31bd27284ea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 235.78458
+      value: 190.60756
       objectReference: {fileID: 0}
     - target: {fileID: 5811740936744800856, guid: 61a0bb3454fb747409abc31bd27284ea,
         type: 3}

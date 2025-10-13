@@ -46,6 +46,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public AudioSource ad14;
     public AudioSource ad15;
     public ObstacleSpawner o;
+    public ObstacleSpawner omini;
     public int spawn;
     public float function;
     public float isdelay;
@@ -217,6 +218,7 @@ public class ScoreCounterFinal : MonoBehaviour
         {
             image.SetActive(!image.activeSelf);
             isdelay1 = 99999;
+            ps1.Play();
         }
 
         if (isdelay <= 0)
@@ -240,6 +242,7 @@ public class ScoreCounterFinal : MonoBehaviour
             {
                 function += isminus;
                 o.SpawnObstacles();
+                omini.SpawnObstacles();
                 ScheduleNextSpawn();
             }
         }
@@ -357,6 +360,14 @@ public class ScoreCounterFinal : MonoBehaviour
         else if (spawn < 500)
         {
             spawner.SetObstacleCount(3);
+        }
+        if (spawn < 250)
+        {
+            omini.SetObstacleCount(4);
+        }
+        else if (spawn < 500)
+        {
+            omini.SetObstacleCount(6);
         }
     }
 

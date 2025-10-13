@@ -11,6 +11,7 @@ public class ScoreCounter : MonoBehaviour
 
     public float isdelay5;
     public ObstacleSpawner spawner;
+    public ObstacleSpawner spawnermini;
     public bool isCloseHomePanel;
     public float homeFloatPanel;
     public bool isHomePanel;
@@ -295,10 +296,11 @@ public class ScoreCounter : MonoBehaviour
         }
 
 
-        if (isdelay1 <= 0)
+        if (isdelay1 <= -1)
         {
             image.SetActive(!image.activeSelf);
             isdelay1 = 99999;
+            ps1.Play();
         }
 
         if (isdelay <= 0)
@@ -338,6 +340,7 @@ public class ScoreCounter : MonoBehaviour
                 function += isminus;
                 o.SpawnObstacles();
                 ScheduleNextSpawn();
+                spawnermini.SpawnObstacles();
             }
         }
 
@@ -418,6 +421,30 @@ public class ScoreCounter : MonoBehaviour
         else
         {
             spawner.SetObstacleCount(3);
+        }
+        if (spawn < 150)
+        {
+            spawnermini.SetObstacleCount(3);
+        }
+        else if (spawn < 300)
+        {
+            spawnermini.SetObstacleCount(4);
+        }
+        else if (spawn < 450)
+        {
+            spawnermini.SetObstacleCount(5);
+        }
+        else if (spawn < 600)
+        {
+            spawnermini.SetObstacleCount(6);
+        }
+        else if (spawn < 765)
+        {
+            spawnermini.SetObstacleCount(5);
+        }
+        else
+        {
+            spawnermini.SetObstacleCount(4);
         }
     }
 

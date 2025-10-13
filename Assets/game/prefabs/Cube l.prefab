@@ -102,7 +102,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1.3715811, z: 2.723318}
@@ -199,6 +199,16 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1461304994638716399, guid: 5e1cbd51da9c37548a8574ce911bc28f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f6ac5ead105f9f448f1c22b42e5681f, type: 2}
+    - target: {fileID: -1461304994638716399, guid: 5e1cbd51da9c37548a8574ce911bc28f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f6ac5ead105f9f448f1c22b42e5681f, type: 2}
     - target: {fileID: 919132149155446097, guid: 5e1cbd51da9c37548a8574ce911bc28f,
         type: 3}
       propertyPath: m_Name
@@ -209,6 +219,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: br
       objectReference: {fileID: 0}
+    - target: {fileID: 2869344807088711131, guid: 5e1cbd51da9c37548a8574ce911bc28f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a7bdbb0ed1c71b4995a893db2a1fc4e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

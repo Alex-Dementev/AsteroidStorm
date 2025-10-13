@@ -79,7 +79,7 @@ public class ObstacleSpawner : MonoBehaviour
             movement.rotationSpeed = Random.Range(-rotationSpeedRange, rotationSpeedRange);
             movement.direction = DetermineMovementDirection(towardProb);
 
-            Destroy(obstacle, 21f);
+            Destroy(obstacle, 16f);
         }
     }
 

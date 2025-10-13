@@ -11,6 +11,8 @@ public class AsteroidSkript : MonoBehaviour
     public Material diamondMaterial;
     public Material defaultMaterial;
 
+    public Texture normalMap; // твоя нормалка
+
     public float baseMass = 1f; // масса, задаваемая вручную в инспекторе
 
     private Renderer rend;
@@ -53,6 +55,13 @@ public class AsteroidSkript : MonoBehaviour
             }
         }
 
+        // **Применяем нормалку сразу после выбора материала**
+        if (normalMap != null)
+        {
+            rend.material.SetTexture("_BumpMap", normalMap);
+            rend.material.SetFloat("_BumpScale", 1f);
+        }
+
         // итоговая масса с разбросом ±0.2 и округлением до сотых
         float rawMass = baseMass + Random.Range(-0.2f, 0.2f);
         mass = Mathf.Round(rawMass * 100f) / 100f;
@@ -60,12 +69,10 @@ public class AsteroidSkript : MonoBehaviour
 
     public void asvoid()
     {
-        // 1. Общая масса всех астероидов (всегда добавляем)
         float totalMass = PlayerPrefs.GetFloat("totalMass", 0f);
         totalMass += mass;
         PlayerPrefs.SetFloat("totalMass", totalMass);
 
-        // 2. Категории для продажи (кроме обычного камня)
         string key = "";
         switch (asteroidType)
         {
@@ -82,8 +89,6 @@ public class AsteroidSkript : MonoBehaviour
             PlayerPrefs.SetFloat(key, currentMass);
         }
 
-        // 3. Сохраняем
         PlayerPrefs.Save();
     }
-
 }
