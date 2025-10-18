@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 27e3dac1b0eb07b4381635fa0c1b1f50, type: 2}
+  - {fileID: 2100000, guid: 6c76cd7487441f04a98fbdba93a219ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -243,17 +243,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 74e42a9d35d392e42912a3a0ef5e9d28,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.5426006
+      value: -132.58035
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74e42a9d35d392e42912a3a0ef5e9d28,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.1904721
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74e42a9d35d392e42912a3a0ef5e9d28,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 188.26556
+      value: 88.32316
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74e42a9d35d392e42912a3a0ef5e9d28,
         type: 3}
@@ -421,3 +421,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToEnable: {fileID: 190118420115116592}
+  spawnChance: 0.02

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 27e3dac1b0eb07b4381635fa0c1b1f50, type: 2}
+  - {fileID: 2100000, guid: 6c76cd7487441f04a98fbdba93a219ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -228,17 +228,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 691b27d8a72964c4a9495c4d6c13ad4a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.908743
+      value: -137.01155
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 691b27d8a72964c4a9495c4d6c13ad4a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.2148124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 691b27d8a72964c4a9495c4d6c13ad4a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 188.6809
+      value: 93.90511
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 691b27d8a72964c4a9495c4d6c13ad4a,
         type: 3}
@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToEnable: {fileID: 1716224027018067921}
+  spawnChance: 0.02
 --- !u!4 &4139303357274239611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 691b27d8a72964c4a9495c4d6c13ad4a,

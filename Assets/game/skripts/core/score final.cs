@@ -317,7 +317,7 @@ public class ScoreCounterFinal : MonoBehaviour
 
         yield return new WaitForSeconds(14f);
 
-        anim3.Play("smerch");
+        anim3.Play("smerchStart");
         image.SetActive(true);
         anim4.Play("blackscreen");
         anim5.Play("shake");
