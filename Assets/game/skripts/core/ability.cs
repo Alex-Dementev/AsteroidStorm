@@ -15,22 +15,22 @@ public class DoubleTapHandler : MonoBehaviour
     public Animator abilityIconAnimator;
     public completetasks c;
     public float doubleTapThreshold = 0.5f;
-    private float speed;
-    private float delay;
-    private float isdelay;
+    public float speed;
+    public float delay;
+    public float isdelay;
     public Text livet;
 
     public float otkat = -1;
-    private float isotkat = 20;
+    public float isotkat = 20;
 
     public float otkat2 = -1;
-    private float isotkat2 = 8;
+    public float isotkat2 = 8;
 
     public float otkat3 = -1;
-    private float isotkat3 = 13;
+    public float isotkat3 = 13;
 
     public float otkat4 = -1;
-    private float isotkat4 = 32;
+    public float isotkat4 = 32;
 
     public float lightintens;
     public energy e;
@@ -59,15 +59,15 @@ public class DoubleTapHandler : MonoBehaviour
     public Animator effect;
     public ParticleSystem Skanner;
 
-    private float lastTapTime = 0;
-    private bool isWaitingForSecondTap = false;
+    public float lastTapTime = 0;
+    public bool isWaitingForSecondTap = false;
 
     // --- Для свайпов ---
-    private Vector2 startTouchPos;
-    private Vector2 endTouchPos;
-    private float lastSwipeUpTime = 0f;
-    private bool waitingSecondSwipeUp = false;
-    public float swipeThreshold = 100f;
+    public Vector2 startTouchPos;
+    public Vector2 endTouchPos;
+    public float lastSwipeUpTime = 0f;
+    public bool waitingSecondSwipeUp = false;
+    public float swipeThreshold = 180f; // чувствительность свайпа
 
     void Update()
     {
@@ -117,13 +117,23 @@ public class DoubleTapHandler : MonoBehaviour
 
         delay -= Time.deltaTime;
 
+        // --- Проверка свайпов ---
+        DetectSwipe();
+
+        // --- Проверка на клик ---
         bool isTapDetected = false;
 
-        // --- ТАП ---
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-            isTapDetected = true;
+        // Проверяем, был ли свайп — если был, не считаем это кликом
+        bool wasSwipe = Mathf.Abs(endTouchPos.y - startTouchPos.y) > swipeThreshold ||
+                        Mathf.Abs(endTouchPos.x - startTouchPos.x) > swipeThreshold;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            if (!wasSwipe)
+                isTapDetected = true;
+        }
+
+        if (Application.isEditor && Input.GetMouseButtonDown(0))
             isTapDetected = true;
 
         if (isTapDetected)
@@ -148,9 +158,7 @@ public class DoubleTapHandler : MonoBehaviour
         if (isWaitingForSecondTap && Time.time - lastTapTime > doubleTapThreshold)
             isWaitingForSecondTap = false;
 
-        // --- Свайпы ---
-        DetectSwipe();
-
+        // --- Иконка готовности ---
         bool nowReady = otkat <= 0 && e.energyint >= costAbility1;
 
         if (nowReady && !isactivateicon)
@@ -165,10 +173,9 @@ public class DoubleTapHandler : MonoBehaviour
         }
     }
 
-    // --- Универсальный свайп (работает и на мышке, и на телефоне) ---
+    // --- Универсальный свайп ---
     void DetectSwipe()
     {
-        // --- Тач ---
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -183,7 +190,7 @@ public class DoubleTapHandler : MonoBehaviour
             }
         }
 
-        // --- Мышка (для отладки в редакторе) ---
+        // --- Для редактора ---
         if (Application.isEditor)
         {
             if (Input.GetMouseButtonDown(0))
@@ -244,8 +251,8 @@ public class DoubleTapHandler : MonoBehaviour
             ActivateDoubleSwipeUpAbility(); // способность 4
     }
 
-    // --- СПОСОБНОСТЬ 1: Двойной тап ---
-    void ActivateAbilityGiperAttack()
+    // --- СПОСОБНОСТЬ 1 ---
+    public void ActivateAbilityGiperAttack()
     {
         if (otkat > 0 || e.energyint < costAbility1) return;
 
@@ -270,8 +277,7 @@ public class DoubleTapHandler : MonoBehaviour
         Debug.Log("СПОСОБНОСТЬ 1: Гиператака активирована!");
     }
 
-    // --- СПОСОБНОСТЬ 2: Свайп вверх ---
-    void ActivateSwipeUpAbility()
+    public void ActivateSwipeUpAbility()
     {
         if (otkat2 > 0 || e.energyint < costAbility2) return;
 
@@ -288,8 +294,7 @@ public class DoubleTapHandler : MonoBehaviour
         Debug.Log("СПОСОБНОСТЬ 2: Свайп вверх активирован!");
     }
 
-    // --- СПОСОБНОСТЬ 3: Свайп вниз ---
-    void ActivateSwipeDownAbility()
+    public void ActivateSwipeDownAbility()
     {
         if (otkat3 > 0 || e.energyint < costAbility3) return;
 
@@ -305,8 +310,7 @@ public class DoubleTapHandler : MonoBehaviour
         Debug.Log("СПОСОБНОСТЬ 3: Свайп вниз активирован!");
     }
 
-    // --- СПОСОБНОСТЬ 4: Двойной свайп вверх ---
-    void ActivateDoubleSwipeUpAbility()
+    public void ActivateDoubleSwipeUpAbility()
     {
         if (otkat4 > 0 || e.energyint < costAbility4) return;
 
@@ -329,6 +333,7 @@ public class DoubleTapHandler : MonoBehaviour
             e.energyint += 20;
             ad.Play();
             anim1.Play("green");
+            Destroy(Collision.gameObject);
             if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
             {
                 cb = PlayerPrefs.GetInt("collectBonus", 0);

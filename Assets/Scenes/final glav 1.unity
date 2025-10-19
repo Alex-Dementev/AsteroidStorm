@@ -469,7 +469,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6258,10 +6258,10 @@ MonoBehaviour:
   liveimage: {fileID: 0}
   b: 0
   cb: 0
+  Distortion: {fileID: 0}
   adbonus: {fileID: 0}
   animbonus: {fileID: 0}
   d: {fileID: 0}
-  isgotohome: 0
   anim: {fileID: 540669390}
   anim3: {fileID: 0}
   anim1: {fileID: 346243018}
@@ -6433,6 +6433,122 @@ MonoBehaviour:
   d2: {fileID: 1936518566}
   d3: {fileID: 1582142837}
   d4: {fileID: 1258039497}
+--- !u!1 &168598284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 168598285}
+  - component: {fileID: 168598289}
+  - component: {fileID: 168598288}
+  - component: {fileID: 168598287}
+  - component: {fileID: 168598286}
+  m_Layer: 5
+  m_Name: Distortion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &168598285
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168598284}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -335243.88}
+  m_LocalScale: {x: 29.216742, y: 29.216742, z: 29.216745}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1960535840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -96411.16, y: -137829.75}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &168598286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168598284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e64f34934fc4bc43a094bd1029a1feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 2be22d29be5577c44b25034d5e9f7ef4, type: 2}
+  propertyName: _animAlpha
+  durationUp: 0.5
+  durationDown: 0.5
+  minValue: 0
+  peakValue: 0.5
+--- !u!95 &168598287
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168598284}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 358093a4a59520945bf155599cc51ac0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &168598288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168598284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 2be22d29be5577c44b25034d5e9f7ef4, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &168598289
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168598284}
+  m_CullTransparentMesh: 1
 --- !u!1 &169053673
 GameObject:
   m_ObjectHideFlags: 0
@@ -6823,7 +6939,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -11751,7 +11867,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.24
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -28231,7 +28347,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -35227,10 +35343,10 @@ MonoBehaviour:
   liveimage: {fileID: 2054539713}
   b: 0
   cb: 0
+  Distortion: {fileID: 168598286}
   adbonus: {fileID: 67334523}
   animbonus: {fileID: 67334520}
   d: {fileID: 1258039499}
-  isgotohome: 0
   anim: {fileID: 540669390}
   anim3: {fileID: 1328146606}
   anim1: {fileID: 346243018}
@@ -35286,11 +35402,18 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1221031987}
   c: {fileID: 1103207266}
   doubleTapThreshold: 0.3
+  speed: 0
+  delay: 0
+  isdelay: 0
   livet: {fileID: 1001231539}
   otkat: -1
+  isotkat: 20
   otkat2: -1
+  isotkat2: 8
   otkat3: -1
+  isotkat3: 13
   otkat4: -1
+  isotkat4: 32
   lightintens: 0
   e: {fileID: 144783074}
   r: {fileID: 1258039503}
@@ -35317,7 +35440,13 @@ MonoBehaviour:
   liveimage: {fileID: 2054539713}
   effect: {fileID: 913455536}
   Skanner: {fileID: 1474089567}
-  swipeThreshold: 100
+  lastTapTime: 0
+  isWaitingForSecondTap: 0
+  startTouchPos: {x: 0, y: 0}
+  endTouchPos: {x: 0, y: 0}
+  lastSwipeUpTime: 0
+  waitingSecondSwipeUp: 0
+  swipeThreshold: 250
 --- !u!54 &1258039500
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -46416,7 +46545,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.24
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -51157,7 +51286,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -55894,10 +56023,10 @@ MonoBehaviour:
   liveimage: {fileID: 2054539713}
   b: 0
   cb: 0
+  Distortion: {fileID: 168598286}
   adbonus: {fileID: 1001231537}
   animbonus: {fileID: 67334520}
   d: {fileID: 1582142841}
-  isgotohome: 0
   anim: {fileID: 540669390}
   anim3: {fileID: 1328146606}
   anim1: {fileID: 346243018}
@@ -56001,11 +56130,18 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1221031987}
   c: {fileID: 1103207266}
   doubleTapThreshold: 0.3
+  speed: 0
+  delay: 0
+  isdelay: 0
   livet: {fileID: 1001231539}
   otkat: -1
+  isotkat: 20
   otkat2: -1
+  isotkat2: 8
   otkat3: -1
+  isotkat3: 13
   otkat4: -1
+  isotkat4: 32
   lightintens: 0
   e: {fileID: 144783074}
   r: {fileID: 1582142842}
@@ -56032,7 +56168,13 @@ MonoBehaviour:
   liveimage: {fileID: 2054539713}
   effect: {fileID: 913455536}
   Skanner: {fileID: 1474089567}
-  swipeThreshold: 100
+  lastTapTime: 0
+  isWaitingForSecondTap: 0
+  startTouchPos: {x: 0, y: 0}
+  endTouchPos: {x: 0, y: 0}
+  lastSwipeUpTime: 0
+  waitingSecondSwipeUp: 0
+  swipeThreshold: 250
 --- !u!114 &1582142842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57349,10 +57491,10 @@ MonoBehaviour:
   liveimage: {fileID: 2054539713}
   b: 0
   cb: 0
+  Distortion: {fileID: 168598286}
   adbonus: {fileID: 67334523}
   animbonus: {fileID: 67334520}
   d: {fileID: 1693977095}
-  isgotohome: 0
   anim: {fileID: 540669390}
   anim3: {fileID: 1328146606}
   anim1: {fileID: 346243018}
@@ -57456,11 +57598,18 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1221031987}
   c: {fileID: 1103207266}
   doubleTapThreshold: 0.3
+  speed: 0
+  delay: 0
+  isdelay: 0
   livet: {fileID: 1001231539}
   otkat: -1
+  isotkat: 20
   otkat2: -1
+  isotkat2: 8
   otkat3: -1
+  isotkat3: 13
   otkat4: -1
+  isotkat4: 32
   lightintens: 0
   e: {fileID: 144783074}
   r: {fileID: 1693977096}
@@ -57487,7 +57636,13 @@ MonoBehaviour:
   liveimage: {fileID: 2054539713}
   effect: {fileID: 913455536}
   Skanner: {fileID: 1474089567}
-  swipeThreshold: 100
+  lastTapTime: 0
+  isWaitingForSecondTap: 0
+  startTouchPos: {x: 0, y: 0}
+  endTouchPos: {x: 0, y: 0}
+  lastSwipeUpTime: 0
+  waitingSecondSwipeUp: 0
+  swipeThreshold: 250
 --- !u!114 &1693977096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63938,7 +64093,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.24
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -68613,10 +68768,10 @@ MonoBehaviour:
   liveimage: {fileID: 2054539713}
   b: 0
   cb: 0
+  Distortion: {fileID: 168598286}
   adbonus: {fileID: 1001231537}
   animbonus: {fileID: 67334520}
   d: {fileID: 1936518570}
-  isgotohome: 0
   anim: {fileID: 540669390}
   anim3: {fileID: 1328146606}
   anim1: {fileID: 346243018}
@@ -68720,11 +68875,18 @@ MonoBehaviour:
   abilityIconAnimator: {fileID: 1221031987}
   c: {fileID: 1103207266}
   doubleTapThreshold: 0.3
+  speed: 0
+  delay: 0
+  isdelay: 0
   livet: {fileID: 1001231539}
   otkat: -1
+  isotkat: 20
   otkat2: -1
+  isotkat2: 8
   otkat3: -1
+  isotkat3: 13
   otkat4: -1
+  isotkat4: 32
   lightintens: 0
   e: {fileID: 144783074}
   r: {fileID: 1936518571}
@@ -68751,7 +68913,13 @@ MonoBehaviour:
   liveimage: {fileID: 2054539713}
   effect: {fileID: 913455536}
   Skanner: {fileID: 1474089567}
-  swipeThreshold: 100
+  lastTapTime: 0
+  isWaitingForSecondTap: 0
+  startTouchPos: {x: 0, y: 0}
+  endTouchPos: {x: 0, y: 0}
+  lastSwipeUpTime: 0
+  waitingSecondSwipeUp: 0
+  swipeThreshold: 250
 --- !u!114 &1936518571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68946,8 +69114,9 @@ RectTransform:
   - {fileID: 573620532}
   - {fileID: 1221031986}
   - {fileID: 1883183354}
-  - {fileID: 346243016}
   - {fileID: 2130700145}
+  - {fileID: 168598285}
+  - {fileID: 346243016}
   m_Father: {fileID: 1592378833}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -75162,7 +75331,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.24
       minScalar: 1
       maxCurve:
         serializedVersion: 2

@@ -19,11 +19,10 @@ public class death : MonoBehaviour
     private int live = 3;
     public bool b;
     public int cb;
+    public Distortion Distortion;
     public AudioSource adbonus;
     public Animator animbonus;
     public DoubleTapHandler d;
-    private float isdelay = 9999999;
-    public bool isgotohome;
     public Animator anim;
     public Animator anim3;
     public Animator anim1;
@@ -229,7 +228,6 @@ public class death : MonoBehaviour
         live = PlayerPrefs.GetInt("live");
         livet.text = live.ToString();
         b = false;
-        isdelay = 9999999;
 
         int chance = Random.Range(1, 501);
         if (chance == 1)
@@ -246,7 +244,6 @@ public class death : MonoBehaviour
 
     void Update()
     {
-        isdelay -= Time.deltaTime;
         isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
 
@@ -254,13 +251,6 @@ public class death : MonoBehaviour
         {
             fuel5.Play("fuelzerostart");
             isfuel5 = true;
-        }
-
-        if (isdelay <= 0 && isgotohome)
-        {
-            isdelay = 100;
-            SceneManager.LoadScene("main");
-            isgotohome = false;
         }
 
         fuel -= Time.deltaTime;
@@ -322,6 +312,7 @@ public class death : MonoBehaviour
             if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
                 losePanel.SetActive(true);
+                Distortion.PlayAlphaPulse();
                 anim1.Play("anim11");
                 fuelzero.text = "Топливо закончилось";
                 isfuelzero = true;
@@ -368,34 +359,19 @@ public class death : MonoBehaviour
     public void restart()
     {
         image.SetActive(!image.activeSelf);
-        anim.Play("anim10 0");
-        isdelay = 2f;
-        isgotohome = true;
+        anim.Play("anim10 1");
     }
 
     public void restart2()
     {
         image.SetActive(!image.activeSelf);
-        anim.Play("anim10 0");
-        StartCoroutine(RestartAfterDelay(2f));
+        anim.Play("anim10 2");
     }
 
     public void restart3()
     {
         image.SetActive(!image.activeSelf);
-        anim.Play("anim10 0");
-        StartCoroutine(RestartAfterDelay2(2f));
-    }
-
-    private IEnumerator RestartAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    private IEnumerator RestartAfterDelay2(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("scenestart");
+        anim.Play("anim10 3");
     }
 
     [SerializeField] private Text fineText;
@@ -532,6 +508,7 @@ public class death : MonoBehaviour
                             fineText.color = new Color(0.698f, 0.0f, 0.608f);
                             lifeLostSound.Play();
                             live -= 1;
+                            Distortion.PlayAlphaPulse();
                             livet.text = live.ToString();
                             PlayerPrefs.SetInt("live", live);
 
@@ -584,6 +561,7 @@ public class death : MonoBehaviour
                                 losePanel.SetActive(true);
                                 anim1.Play("anim11");
                                 live -= 1;
+
                                 livet.text = live.ToString();
                                 PlayerPrefs.SetInt("live", live);
 
