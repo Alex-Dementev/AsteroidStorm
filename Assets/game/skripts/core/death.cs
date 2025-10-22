@@ -41,6 +41,8 @@ public class death : MonoBehaviour
     public bool isfuelzero;
     public bool isfuel5;
     public Animator fuel5;
+    public AudioSource ShieldEndAS;
+    public Animator shield;
 
     public GameObject explosionEffect;
     public AudioSource explosionSound1;
@@ -319,27 +321,16 @@ public class death : MonoBehaviour
 
                 if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                 {
-                    coins = PlayerPrefs.GetInt("coins");
-                    allcoins = PlayerPrefs.GetInt("allcoins");
                     score = PlayerPrefs.GetInt("allscore");
-                    coins += ((int)(player.position.z / 7) + 400);
                     score += ((int)(player.position.z / 3) + 1000);
                     allcoins += ((int)(player.position.z / 7) + 400);
-                    PlayerPrefs.SetInt("coins", coins);
-                    PlayerPrefs.SetInt("allcoins", allcoins);
                     PlayerPrefs.SetInt("allscore", score);
                     PlayerPrefs.SetInt("youdead", 1);
                 }
                 else
                 {
-                    coins = PlayerPrefs.GetInt("coins");
-                    allcoins = PlayerPrefs.GetInt("allcoins");
                     score = PlayerPrefs.GetInt("allscore");
-                    coins += ((int)(player.position.z / 10));
                     score += ((int)(player.position.z / 3));
-                    allcoins += ((int)(player.position.z / 10));
-                    PlayerPrefs.SetInt("coins", coins);
-                    PlayerPrefs.SetInt("allcoins", allcoins);
                     PlayerPrefs.SetInt("allscore", score);
                     PlayerPrefs.SetInt("youdead", 1);
                 }
@@ -443,8 +434,15 @@ public class death : MonoBehaviour
                             AS.asvoid();
                         }
 
-                        if (d.b == true)
+                        if (d.b == true || PlayerPrefs.GetInt("activeShield", 0) == 1)
                         {
+                            if(PlayerPrefs.GetInt("activeShield", 0) == 1)
+                            {
+                                ShieldEndAS.Play();
+                                PlayerPrefs.SetInt("activeShield", 0);
+                                shield.Play("endShield");
+                            }
+
                             if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
                             {
                                 is2++;
@@ -567,27 +565,15 @@ public class death : MonoBehaviour
 
                                 if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                                 {
-                                    coins = PlayerPrefs.GetInt("coins");
-                                    allcoins = PlayerPrefs.GetInt("allcoins");
                                     score = PlayerPrefs.GetInt("allscore");
-                                    coins += ((int)(player.position.z / 7) + 400);
                                     score += ((int)(player.position.z / 3) + 1000);
-                                    allcoins += ((int)(player.position.z / 7) + 400);
-                                    PlayerPrefs.SetInt("coins", coins);
-                                    PlayerPrefs.SetInt("allcoins", allcoins);
                                     PlayerPrefs.SetInt("allscore", score);
                                     PlayerPrefs.SetInt("youdead", 1);
                                 }
                                 else
                                 {
-                                    coins = PlayerPrefs.GetInt("coins");
-                                    allcoins = PlayerPrefs.GetInt("allcoins");
                                     score = PlayerPrefs.GetInt("allscore");
-                                    coins += ((int)(player.position.z / 10));
                                     score += ((int)(player.position.z / 3));
-                                    allcoins += ((int)(player.position.z / 10));
-                                    PlayerPrefs.SetInt("coins", coins);
-                                    PlayerPrefs.SetInt("allcoins", allcoins);
                                     PlayerPrefs.SetInt("allscore", score);
                                     PlayerPrefs.SetInt("youdead", 1);
                                 }

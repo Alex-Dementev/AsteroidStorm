@@ -42,7 +42,10 @@ public class DoubleTapHandler : MonoBehaviour
     public Slider s2;
     public Slider s3;
     public Slider s4;
-    public AudioSource AS;
+    public AudioSource GiperAttackAS;
+    public AudioSource SkanerAS;
+    public AudioSource ShieldAS;
+    public AudioSource AttackAS;
     public ParticleSystem ps;
     public ParticleSystem p;
     public float isdelay1 = 2;
@@ -58,6 +61,11 @@ public class DoubleTapHandler : MonoBehaviour
     public Image liveimage;
     public Animator effect;
     public ParticleSystem Skanner;
+    public float isdelayShield;
+    public bool isActiveShield;
+    public bool isActiveShield2;
+    public AudioSource ShieldEndAS;
+    public Animator ShieldAnim;
 
     public float lastTapTime = 0;
     public bool isWaitingForSecondTap = false;
@@ -75,12 +83,26 @@ public class DoubleTapHandler : MonoBehaviour
         otkat2 -= Time.deltaTime;
         otkat3 -= Time.deltaTime;
         otkat4 -= Time.deltaTime;
+        isdelayShield -= Time.deltaTime;
 
         s.value = otkat;
         s2.value = otkat2;
         s3.value = otkat3;
         s4.value = otkat4;
         isdelay1 -= Time.deltaTime;
+
+        if(isActiveShield && isdelayShield <= 0 && PlayerPrefs.GetInt("activeShield") == 1)
+        {
+            isActiveShield = false;
+            ShieldEndAS.Play();
+            ShieldAnim.Play("endShield");
+            isActiveShield2 = true;
+        }
+        if(isActiveShield && isdelayShield <= -0.3f && isActiveShield2)
+        {
+            isActiveShield2 = false;
+            PlayerPrefs.SetInt("activeShield", 0);
+        }
 
         if (abilityt >= 10 && PlayerPrefs.GetInt("is10", 0) == 0)
         {
@@ -118,23 +140,25 @@ public class DoubleTapHandler : MonoBehaviour
         delay -= Time.deltaTime;
 
         // --- Проверка свайпов ---
-        DetectSwipe();
+        bool wasSwipe = DetectSwipe(); // теперь возвращает bool
 
         // --- Проверка на клик ---
         bool isTapDetected = false;
 
-        // Проверяем, был ли свайп — если был, не считаем это кликом
-        bool wasSwipe = Mathf.Abs(endTouchPos.y - startTouchPos.y) > swipeThreshold ||
-                        Mathf.Abs(endTouchPos.x - startTouchPos.x) > swipeThreshold;
-
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (!wasSwipe) // если свайпа не было — считаем тап
         {
-            if (!wasSwipe)
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+                isTapDetected = true;
+
+            if (Application.isEditor && Input.GetMouseButtonDown(0))
                 isTapDetected = true;
         }
-
-        if (Application.isEditor && Input.GetMouseButtonDown(0))
-            isTapDetected = true;
+        else
+        {
+            // если был свайп — сбрасываем возможный первый тап
+            isWaitingForSecondTap = false;
+            lastTapTime = -1f;
+        }
 
         if (isTapDetected)
         {
@@ -174,8 +198,10 @@ public class DoubleTapHandler : MonoBehaviour
     }
 
     // --- Универсальный свайп ---
-    void DetectSwipe()
+    bool DetectSwipe()
     {
+        bool didSwipe = false;
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -186,7 +212,18 @@ public class DoubleTapHandler : MonoBehaviour
             else if (touch.phase == TouchPhase.Ended)
             {
                 endTouchPos = touch.position;
-                CheckSwipe(endTouchPos - startTouchPos);
+                Vector2 swipeDelta = endTouchPos - startTouchPos;
+
+                if (Mathf.Abs(swipeDelta.y) > Mathf.Abs(swipeDelta.x) && Mathf.Abs(swipeDelta.y) > swipeThreshold)
+                {
+                    didSwipe = true;
+                    isWaitingForSecondTap = false; // сброс клика
+                    lastTapTime = -1f; // обнуление
+                    if (swipeDelta.y > 0)
+                        OnSwipeUp();
+                    else
+                        OnSwipeDown();
+                }
             }
         }
 
@@ -199,20 +236,22 @@ public class DoubleTapHandler : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 endTouchPos = Input.mousePosition;
-                CheckSwipe(endTouchPos - startTouchPos);
+                Vector2 swipeDelta = endTouchPos - startTouchPos;
+
+                if (Mathf.Abs(swipeDelta.y) > Mathf.Abs(swipeDelta.x) && Mathf.Abs(swipeDelta.y) > swipeThreshold)
+                {
+                    didSwipe = true;
+                    isWaitingForSecondTap = false;
+                    lastTapTime = -1f;
+                    if (swipeDelta.y > 0)
+                        OnSwipeUp();
+                    else
+                        OnSwipeDown();
+                }
             }
         }
-    }
 
-    void CheckSwipe(Vector2 swipeDelta)
-    {
-        if (Mathf.Abs(swipeDelta.y) > Mathf.Abs(swipeDelta.x) && Mathf.Abs(swipeDelta.y) > swipeThreshold)
-        {
-            if (swipeDelta.y > 0)
-                OnSwipeUp();
-            else
-                OnSwipeDown();
-        }
+        return didSwipe;
     }
 
     void OnSwipeUp()
@@ -221,23 +260,55 @@ public class DoubleTapHandler : MonoBehaviour
 
         if (waitingSecondSwipeUp)
         {
+            // Второй свайп — активируем способность 4
             if (currentTime - lastSwipeUpTime <= doubleTapThreshold)
             {
                 waitingSecondSwipeUp = false;
-                OnDoubleSwipeUp(); // способность 4
+
+                if (waitSecondSwipeCoroutine != null)
+                    StopCoroutine(waitSecondSwipeCoroutine);
+
+                if (otkat4 <= 0 && e.energyint >= costAbility4)
+                    ActivateDoubleSwipeUpAbility(); // способность 4
             }
         }
         else
         {
+            // Первый свайп — ждём второй
             waitingSecondSwipeUp = true;
             lastSwipeUpTime = currentTime;
-            if (otkat2 <= 0 && e.energyint >= costAbility2)
-                ActivateSwipeUpAbility(); // способность 2
+
+            if (waitSecondSwipeCoroutine != null)
+                StopCoroutine(waitSecondSwipeCoroutine);
+
+            waitSecondSwipeCoroutine = StartCoroutine(WaitForSecondSwipeUp());
+        }
+    }
+
+    private Coroutine waitSecondSwipeCoroutine;
+
+    IEnumerator WaitForSecondSwipeUp()
+    {
+        float timer = 0f;
+        waitingSecondSwipeUp = true;
+
+        while (timer < doubleTapThreshold)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+
+            if (!waitingSecondSwipeUp)
+                yield break; // если был второй свайп — выходим
         }
 
-        if (waitingSecondSwipeUp && Time.time - lastSwipeUpTime > doubleTapThreshold)
-            waitingSecondSwipeUp = false;
+        // если второго свайпа не было — запускаем способность 2
+        waitingSecondSwipeUp = false;
+
+        if (otkat2 <= 0 && e.energyint >= costAbility2)
+            ActivateSwipeUpAbility(); // способность 2
     }
+
+
 
     void OnSwipeDown()
     {
@@ -273,8 +344,7 @@ public class DoubleTapHandler : MonoBehaviour
         s.maxValue = isotkat;
         effect.Play("slide lr");
         ps.Play();
-        AS.Play();
-        Debug.Log("СПОСОБНОСТЬ 1: Гиператака активирована!");
+        GiperAttackAS.Play();
     }
 
     public void ActivateSwipeUpAbility()
@@ -290,8 +360,7 @@ public class DoubleTapHandler : MonoBehaviour
         anim.Play("blue");
         s2.maxValue = isotkat2;
         effect.Play("slide lr");
-        AS.Play();
-        Debug.Log("СПОСОБНОСТЬ 2: Свайп вверх активирован!");
+        SkanerAS.Play();
     }
 
     public void ActivateSwipeDownAbility()
@@ -301,13 +370,16 @@ public class DoubleTapHandler : MonoBehaviour
         PlayerPrefs.SetInt("isabilityuse", 1);
         e.energyint -= costAbility3;
         abilityt++;
+        PlayerPrefs.SetInt("activeShield", 1);
+        isdelayShield = 5;
+        isActiveShield = true;
         PlayerPrefs.SetInt("abilityt", abilityt);
         otkat3 = isotkat3;
         anim.Play("blue");
         s3.maxValue = isotkat3;
         effect.Play("slide lr");
-        AS.Play();
-        Debug.Log("СПОСОБНОСТЬ 3: Свайп вниз активирован!");
+        ShieldAS.Play();
+        ShieldAnim.Play("startShield");
     }
 
     public void ActivateDoubleSwipeUpAbility()
@@ -322,8 +394,7 @@ public class DoubleTapHandler : MonoBehaviour
         anim.Play("blue");
         s4.maxValue = isotkat4;
         effect.Play("slide lr");
-        AS.Play();
-        Debug.Log("СПОСОБНОСТЬ 4: Двойной свайп вверх активирован!");
+        AttackAS.Play();
     }
 
     private void OnCollisionEnter(Collision Collision)
