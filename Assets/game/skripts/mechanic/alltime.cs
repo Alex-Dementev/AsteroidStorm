@@ -4,38 +4,52 @@ using UnityEngine;
 
 public class alltime : MonoBehaviour
 {
+    private static alltime instance; // Добавляем Singleton-защиту
+
     public float alltimes;
     public Animator anim;
     public AudioSource ad;
     public float time;
     public int istask;
-    // Start is called before the first frame update
+
+    void Awake()
+    {
+        // Защита от дубликатов
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Не уничтожать при смене сцены
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
     void Start()
     {
         alltimes = PlayerPrefs.GetFloat("alltimes", 0);
-
         istask = PlayerPrefs.GetInt("istask", 0);
+
         if (istask == 1)
         {
             time = PlayerPrefs.GetFloat("tasktimet", 0);
         }
-        
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        istask = PlayerPrefs.GetInt("istask", 0); // Сначала получаем текущую задачу
+        istask = PlayerPrefs.GetInt("istask", 0);
         alltimes += Time.deltaTime;
         PlayerPrefs.SetFloat("alltimes", alltimes);
-
 
         if (istask == 1)
         {
             time = PlayerPrefs.GetFloat("tasktimet", 0);
-            time += Time.deltaTime; // Прибавляем дельту
-            PlayerPrefs.SetFloat("tasktimet", time); // Сохраняем обновлённое время
+            time += Time.deltaTime;
+            PlayerPrefs.SetFloat("tasktimet", time);
+
             if (time >= 600 && PlayerPrefs.GetInt("is600") == 0)
             {
                 anim.Play("anim31");
@@ -43,7 +57,7 @@ public class alltime : MonoBehaviour
                 ad.Play();
             }
         }
-        
+
         if (PlayerPrefs.GetInt("audio") == 0)
         {
             ad.enabled = true;
@@ -52,6 +66,5 @@ public class alltime : MonoBehaviour
         {
             ad.enabled = false;
         }
-}
-
+    }
 }

@@ -10,23 +10,25 @@ public class SkinsPanel : MonoBehaviour
     public ParticleSystem ps3;
     public ParticleSystem ps4;
 
+    public Material mat; // 🔹 Материал, которому меняем цвет, не трогая яркость
+
     public Slider R;
     public Slider G;
     public Slider B;
-    public Slider Speed; // новый слайдер скорости
+    public Slider Speed; // Слайдер скорости
 
     public Image outImage;
     public float iR;
     public float iG;
     public float iB;
-    public float iSpeed; // значение скорости
+    public float iSpeed;
 
     void Start()
     {
         iR = PlayerPrefs.GetFloat("Red", 0.85f);
         iG = PlayerPrefs.GetFloat("Green", 0);
         iB = PlayerPrefs.GetFloat("Blue", 0);
-        iSpeed = PlayerPrefs.GetFloat("PartSpeed", 5f); // дефолтная скорость
+        iSpeed = PlayerPrefs.GetFloat("PartSpeed", 5f);
 
         R.value = iR;
         G.value = iG;
@@ -46,12 +48,39 @@ public class SkinsPanel : MonoBehaviour
         outImage.color = new Color(iR, iG, iB);
 
         var c = new Color(iR, iG, iB);
+
+        // Применяем цвет к частицам
         ps1.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", c);
         ps2.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", c);
         ps3.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", c);
         ps4.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", c);
 
-        // Скорость
+        // 🔹 Применяем цвет к материалу, сохраняя интенсивность (если есть)
+        if (mat != null)
+        {
+            float intensity = 1f;
+
+            // Попробуем считать разные свойства, если они есть
+            if (mat.HasProperty("_Intensity"))
+                intensity = mat.GetFloat("_Intensity");
+            else if (mat.HasProperty("_EmissionStrength"))
+                intensity = mat.GetFloat("_EmissionStrength");
+            else if (mat.HasProperty("_EmissionMultiplier"))
+                intensity = mat.GetFloat("_EmissionMultiplier");
+
+            // Меняем цвет
+            mat.SetColor("_Color", c);
+
+            // Возвращаем старую интенсивность
+            if (mat.HasProperty("_Intensity"))
+                mat.SetFloat("_Intensity", intensity);
+            else if (mat.HasProperty("_EmissionStrength"))
+                mat.SetFloat("_EmissionStrength", intensity);
+            else if (mat.HasProperty("_EmissionMultiplier"))
+                mat.SetFloat("_EmissionMultiplier", intensity);
+        }
+
+        // Скорость частиц
         iSpeed = Speed.value;
         PlayerPrefs.SetFloat("PartSpeed", iSpeed);
 

@@ -2,23 +2,9 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    private static MusicManager instance;
     public AudioSource ad1;     // Первая музыка
     public AudioSource ad1_2;   // Вторая музыка
     public float musics;
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Не уничтожать объект при смене сцены
-        }
-        else
-        {
-            Destroy(gameObject); // Удалить дубликат
-        }
-    }
 
     void Update()
     {
@@ -51,18 +37,15 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    // 👇 Эту функцию можно вызвать с кнопки
     public void NextMusicManual()
     {
         if (PlayerPrefs.GetInt("music") == 1) return;
 
         int next = PlayerPrefs.GetInt("musicint", 0);
 
-        // Останавливаем текущую
         ad1.Stop();
         ad1_2.Stop();
 
-        // Переключаем и включаем
         if (next == 0)
         {
             ad1.Play();
