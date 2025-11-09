@@ -104,3 +104,4 @@ public class SkinsPanel : MonoBehaviour
     public void speedWhite() { R.value = 1; G.value = 1; B.value = 1; }
     public void speedGreen() { R.value = 0; G.value = 1; B.value = 0; }
 }
+    

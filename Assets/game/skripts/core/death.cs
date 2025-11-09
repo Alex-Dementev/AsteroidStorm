@@ -217,14 +217,12 @@ public class death : MonoBehaviour
         
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
         {
-            fuel = PlayerPrefs.GetInt("fueltostart", 0);
-            fuel = fuel * 10;
-
-            if(fuel >= 10)
-            fuel -= 10;
-
-            SliderFuel.maxValue = fuel;
             fuel = PlayerPrefs.GetFloat("fueltofinalglav", 0);
+
+            if (fuel >= 10)
+                fuel -= 10;
+            
+            SliderFuel.maxValue = fuel;
         }
         
         live = PlayerPrefs.GetInt("live");

@@ -71,6 +71,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public Text text;
     public Animator anim3;
     public Animator anim4;
+    public Animator Lightning;
     public bool is340;
     public bool is550;
     public bool rocketfall;
@@ -280,7 +281,6 @@ public class ScoreCounterFinal : MonoBehaviour
             ad12.enabled = true;
             ad13.enabled = true;
             ad14.enabled = true;
-            ad15.volume = 0;
             ad16.enabled = true;
             ad17.enabled = true;
             ad18.enabled = true;
@@ -303,6 +303,7 @@ public class ScoreCounterFinal : MonoBehaviour
             ad12.enabled = false;
             ad13.enabled = false;
             ad14.enabled = false;
+            ad15.volume = 0;
             ad16.enabled = false;
             ad17.enabled = false;
             ad18.enabled = false;
@@ -332,25 +333,16 @@ public class ScoreCounterFinal : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             RenderSettings.fogDensity = Mathf.Lerp(0f, 0.03f, elapsed / duration);
+            Lightning.Play("Lightning");
             yield return null;
         }
+
 
         yield return new WaitForSeconds(14f);
 
         anim3.Play("smerchStart");
-        image.SetActive(true);
-        anim4.Play("blackscreen");
         anim5.Play("shake");
         Destroy(FindObjectOfType<ObstacleSpawner>());
-
-        yield return new WaitForSeconds(7f);
-
-        ad13.Play();
-
-        yield return new WaitForSeconds(4.5f);
-
-        if (PlayerPrefs.GetInt("youdead", 0) == 0)
-            SceneManager.LoadScene("final g1");
     }
 
 

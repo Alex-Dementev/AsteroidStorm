@@ -6726,7 +6726,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!114 &207934574
 MonoBehaviour:
@@ -12735,7 +12735,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!114 &310942071
 MonoBehaviour:
@@ -36067,7 +36067,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!114 &814676265
 MonoBehaviour:
@@ -60217,6 +60217,7 @@ GameObject:
   - component: {fileID: 1447584849}
   - component: {fileID: 1447584851}
   - component: {fileID: 1447584852}
+  - component: {fileID: 1447584853}
   m_Layer: 5
   m_Name: fuelzero
   m_TagString: Untagged
@@ -60398,6 +60399,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1447584853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447584847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dacbea1de2d79e14db9693d1f1cd75e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuelzero: {fileID: 1447584847}
+  ad: {fileID: 0}
 --- !u!1 &1486732949
 GameObject:
   m_ObjectHideFlags: 0
@@ -77511,7 +77526,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!65 &1950506760
 BoxCollider:
