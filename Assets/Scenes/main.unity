@@ -13228,7 +13228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 3c5daf1da63a0d24fb0418ae52630dac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13785,7 +13785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.912344}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: 49.99994}
   m_SizeDelta: {x: 20, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &156947069
@@ -44882,7 +44882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 216.49979, y: 0.3391657}
+  m_AnchoredPosition: {x: 216.4998, y: 0.3391657}
   m_SizeDelta: {x: 423.7398, y: 89.93346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &443644259
@@ -55624,7 +55624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15, y: 0}
   m_AnchorMax: {x: 0.35, y: 0.2135715}
-  m_AnchoredPosition: {x: 0, y: -112.49994}
+  m_AnchoredPosition: {x: 0, y: -112.49988}
   m_SizeDelta: {x: 130, y: -425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485773957
@@ -94411,7 +94411,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1771000407}
         m_TargetAssemblyTypeName: tasks, Assembly-CSharp
-        m_MethodName: CheckTask2Completion
+        m_MethodName: CollectTask2Reward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -110819,7 +110819,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.721, y: 0.02847166}
   m_AnchorMax: {x: 1, y: 0.10782355}
-  m_AnchoredPosition: {x: 4, y: -12.497437}
+  m_AnchoredPosition: {x: 4, y: -12.497314}
   m_SizeDelta: {x: 41.010014, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &956723081
@@ -116252,7 +116252,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.6016025}
-  m_AnchoredPosition: {x: 0, y: -1500.0007}
+  m_AnchoredPosition: {x: 0, y: -1500.0015}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &979075891
@@ -118209,7 +118209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 3c5daf1da63a0d24fb0418ae52630dac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -177332,7 +177332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1, y: 0.06784948}
   m_AnchorMax: {x: 0.45, y: 0.3057742}
-  m_AnchoredPosition: {x: 40.000244, y: 71.00159}
+  m_AnchoredPosition: {x: 40.000244, y: 71.001465}
   m_SizeDelta: {x: -220, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1334263284
@@ -240751,6 +240751,7 @@ MonoBehaviour:
   rewardsBlock1: 050000000a0000000f00000014000000190000001e0000002300000028000000
   rewardsBlock2: 0000000000000000000000000000000000000000000000000000000000000000
   rewardSound: {fileID: 1027592731}
+  TaskAttract: {fileID: 1771000404}
 --- !u!1 &1772261049
 GameObject:
   m_ObjectHideFlags: 0
@@ -246146,7 +246147,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1771000407}
         m_TargetAssemblyTypeName: tasks, Assembly-CSharp
-        m_MethodName: CheckTask1Completion
+        m_MethodName: CollectTask1Reward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -246895,7 +246896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 216.49983, y: 0.3391657}
+  m_AnchoredPosition: {x: 216.49982, y: 0.3391657}
   m_SizeDelta: {x: 423.7398, y: 89.93346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1866336016
@@ -252433,7 +252434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 280.9997, y: -0.068573}
+  m_AnchoredPosition: {x: 280.99963, y: -0.068573}
   m_SizeDelta: {x: 549.892, y: 68.09872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1903523048

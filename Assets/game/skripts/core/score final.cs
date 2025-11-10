@@ -50,6 +50,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public AudioSource ad18;
     public AudioSource ad19;
     public AudioSource ad20;
+    public AudioSource LightningAudio;
     public ObstacleSpawner o;
     public ObstacleSpawner omini;
     public int spawn;
@@ -195,6 +196,7 @@ public class ScoreCounterFinal : MonoBehaviour
         ad18.volume = audios;
         ad19.volume = audios;
         ad20.volume = audios;
+        LightningAudio.volume = audios;
 
         if ((int)(player.position.z / 3) >= 340 && !is340)
         {
@@ -286,6 +288,7 @@ public class ScoreCounterFinal : MonoBehaviour
             ad18.enabled = true;
             ad19.enabled = true;
             ad20.enabled = true;
+            LightningAudio.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -309,6 +312,7 @@ public class ScoreCounterFinal : MonoBehaviour
             ad18.enabled = false;
             ad19.enabled = false;
             ad20.enabled = false;
+            LightningAudio.enabled = false;
         }
     }
 

@@ -362,6 +362,31 @@ public class menu : MonoBehaviour
         ps49.Stop();
         ps50.Stop();
 
+
+        if (is11 == 0 && ach1 == 1)
+        {
+            anim6.SetBool("IsTrue", true);
+        }
+        if (is15 == 0 && ach5 == 1)
+        {
+            anim6.SetBool("IsTrue", true);
+        }
+
+        if (is12 == 0 && ach2 == 1)
+        {
+            anim6.SetBool("IsTrue", true);
+        }
+
+        if (is13 == 0 && ach3 == 1)
+        {
+            anim6.SetBool("IsTrue", true);
+        }
+        if (is14 == 0 && ach4 == 1)
+        {
+            anim6.SetBool("IsTrue", true);
+        }
+
+
         if(!rocketfall)
         {
         RR = PlayerPrefs.GetFloat("R Rotate Speed", 100);
@@ -743,6 +768,7 @@ public class menu : MonoBehaviour
             PlayerPrefs.SetInt("tis11", 1);
             PlayerPrefs.SetInt("Skin3", 1);
             controller.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+            anim6.SetBool("IsTrue", false);
         }
         if (is15 == 0 && ach5 == 1)
         {
@@ -750,6 +776,7 @@ public class menu : MonoBehaviour
             PlayerPrefs.SetInt("tis15", 1);
             PlayerPrefs.SetInt("Skin1", 1);
             controller5.GetComponent<Image>().color = new Color(0, 255, 0, 255);
+            anim6.SetBool("IsTrue", false);
         }
 
         if (is12 == 0 && ach2 == 1)
@@ -763,6 +790,7 @@ public class menu : MonoBehaviour
             maxcoins = PlayerPrefs.GetInt("allcoins", 0);
             maxcoins += 500;
             PlayerPrefs.SetInt("allcoins", maxcoins);
+            anim6.SetBool("IsTrue", false);
         }
 
         if (is13 == 0 && ach3 == 1)
@@ -776,6 +804,7 @@ public class menu : MonoBehaviour
             maxcoins = PlayerPrefs.GetInt("allcoins", 0);
             maxcoins += 2000;
             PlayerPrefs.SetInt("allcoins", maxcoins);
+            anim6.SetBool("IsTrue", false);
         }
         if (is14 == 0 && ach4 == 1)
         {
@@ -788,6 +817,7 @@ public class menu : MonoBehaviour
             maxcoins = PlayerPrefs.GetInt("allcoins", 0);
             maxcoins += 5000;
             PlayerPrefs.SetInt("allcoins", maxcoins);
+            anim6.SetBool("IsTrue", false);
         }
     }
 

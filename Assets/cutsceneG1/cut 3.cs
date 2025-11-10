@@ -13,6 +13,7 @@ public class cut3 : MonoBehaviour
     public AudioSource ad2;
     public AudioSource ad3;
     public AudioSource ad4;
+    public AudioSource Lightning;
     public float audios;
     public Animator anim;
     public Animator anim2;
@@ -25,6 +26,7 @@ public class cut3 : MonoBehaviour
         ad2.volume = audios / 1.25f;
         ad3.volume = audios / 1.5f;
         ad4.volume = audios;
+        Lightning.volume = audios;
 
         if(PlayerPrefs.GetInt("ach4", 0) == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
@@ -39,6 +41,7 @@ public class cut3 : MonoBehaviour
             ad2.enabled = true;
             ad3.enabled = true;
             ad4.enabled = true;
+            Lightning.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -46,6 +49,7 @@ public class cut3 : MonoBehaviour
             ad2.enabled = false;
             ad3.enabled = false;
             ad4.enabled = false;
+            Lightning.enabled = false;
         }
 
         if (PlayerPrefs.GetInt("youcheat", 1) == 1)

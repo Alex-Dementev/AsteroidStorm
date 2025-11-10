@@ -10,29 +10,36 @@ public class Lightning : MonoBehaviour
     public ParticleSystem ps4;
     public ParticleSystem ps5;
     public ParticleSystem ps6;
+    public AudioSource LightningAS;
 
     public void psStart1()
     {
         ps1.Play();
+        LightningAS.Play();
     }
     public void psStart2()
     {
         ps2.Play();
+        LightningAS.Play();
     }
     public void psStart3()
     {
         ps3.Play();
+        LightningAS.Play();
     }
     public void psStart4()
     {
         ps4.Play();
+        LightningAS.Play();
     }
     public void psStart5()
     {
         ps5.Play();
+        LightningAS.Play();
     }
     public void psStart6()
     {
         ps6.Play();
+        LightningAS.Play();
     }
 }

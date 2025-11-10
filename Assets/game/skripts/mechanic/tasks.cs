@@ -10,21 +10,23 @@ public class tasks : MonoBehaviour
     public Text task2Text;
     public Slider task2Slider;
 
-    // 👉 новые элементы
     public Text task1RewardText;
     public Text task2RewardText;
 
-    public int[] rewardsBlock1 = new int[4]; // награды для блока 1
-    public int[] rewardsBlock2 = new int[4]; // награды для блока 2
+    public int[] rewardsBlock1 = new int[4];
+    public int[] rewardsBlock2 = new int[4];
 
-    // 👉 звук
     public AudioSource rewardSound;
+    public Animator TaskAttract;
 
-    private int[] block1 = { 0, 1, 2, 3 }; // индексы заданий блока 1
-    private int[] block2 = { 0, 1, 2, 3 }; // индексы заданий блока 2
+    private int[] block1 = { 0, 1, 2, 3 };
+    private int[] block2 = { 0, 1, 2, 3 };
 
     private int currentTask1 = -1;
     private int currentTask2 = -1;
+
+    private bool task1Completed = false;
+    private bool task2Completed = false;
 
     void Start()
     {
@@ -46,8 +48,7 @@ public class tasks : MonoBehaviour
 
     int RandomTask(int[] block)
     {
-        List<int> remaining = new List<int>(block);
-        return remaining[Random.Range(0, remaining.Count)];
+        return block[Random.Range(0, block.Length)];
     }
 
     void UpdateUI()
@@ -105,36 +106,35 @@ public class tasks : MonoBehaviour
         task2RewardText.text = "Награда: " + rewardsBlock2[currentTask2] + " монет";
     }
 
-    public void CheckTask1Completion()
+    void Update()
     {
+        UpdateUI();
+        CheckTask1Completion();
+        CheckTask2Completion();
+        HandleAnimation();
+    }
+
+    void CheckTask1Completion()
+    {
+        if (task1Completed) return; // уже выполнено, ждем сбор
+
         bool completed = false;
         switch (currentTask1)
         {
             case 0: if (PlayerPrefs.GetInt("abilityt", 0) >= 10) completed = true; break;
             case 1: if (PlayerPrefs.GetFloat("taskTime", 0) >= 600) completed = true; break;
-            case 2:
-                if (PlayerPrefs.GetInt("scoreNoDamage", 0) >= 700 && PlayerPrefs.GetInt("isbtotask") == 1)
-                {
-                    completed = true;
-                    PlayerPrefs.SetInt("isbtotask", 0);
-                }
-                break;
+            case 2: if (PlayerPrefs.GetInt("scoreNoDamage", 0) >= 700 && PlayerPrefs.GetInt("isbtotask") == 1)
+                    { completed = true; PlayerPrefs.SetInt("isbtotask", 0); } break;
             case 3: if (PlayerPrefs.GetInt("scoreNoAbility", 0) >= 700) completed = true; break;
         }
 
-        if (completed)
-        {
-            GiveReward(rewardsBlock1[currentTask1]);
-            int[] remaining = RemainingTasks(block1, currentTask1);
-            currentTask1 = remaining[Random.Range(0, remaining.Length)];
-            PlayerPrefs.SetInt("currentTask1", currentTask1);
-            ResetTask1Progress();
-            UpdateUI();
-        }
+        if (completed) task1Completed = true;
     }
 
-    public void CheckTask2Completion()
+    void CheckTask2Completion()
     {
+        if (task2Completed) return; // уже выполнено, ждем сбор
+
         bool completed = false;
         switch (currentTask2)
         {
@@ -144,42 +144,61 @@ public class tasks : MonoBehaviour
             case 3: if (PlayerPrefs.GetInt("abilityOver80", 0) >= 1) completed = true; break;
         }
 
-        if (completed)
-        {
-            GiveReward(rewardsBlock2[currentTask2]);
-            int[] remaining = RemainingTasks(block2, currentTask2);
-            currentTask2 = remaining[Random.Range(0, remaining.Length)];
-            PlayerPrefs.SetInt("currentTask2", currentTask2);
-            ResetTask2Progress();
-            UpdateUI();
-        }
+        if (completed) task2Completed = true;
+    }
+
+    void HandleAnimation()
+    {
+        TaskAttract.SetBool("IsTrue", task1Completed || task2Completed);
+    }
+
+    public void CollectTask1Reward()
+    {
+        if (!task1Completed) return;
+
+        GiveReward(rewardsBlock1[currentTask1]);
+        task1Completed = false;
+        TaskAttract.SetBool("IsTrue", false);
+
+        int[] remaining = RemainingTasks(block1, currentTask1);
+        currentTask1 = remaining[Random.Range(0, remaining.Length)];
+        PlayerPrefs.SetInt("currentTask1", currentTask1);
+        ResetTask1Progress();
+        UpdateUI();
+    }
+
+    public void CollectTask2Reward()
+    {
+        if (!task2Completed) return;
+
+        GiveReward(rewardsBlock2[currentTask2]);
+        task2Completed = false;
+        TaskAttract.SetBool("IsTrue", false);
+
+        int[] remaining = RemainingTasks(block2, currentTask2);
+        currentTask2 = remaining[Random.Range(0, remaining.Length)];
+        PlayerPrefs.SetInt("currentTask2", currentTask2);
+        ResetTask2Progress();
+        UpdateUI();
     }
 
     void GiveReward(int rewardAmount)
     {
         int coins = PlayerPrefs.GetInt("coins", 0);
         int allcoins = PlayerPrefs.GetInt("allcoins", 0);
-
         coins += rewardAmount;
         allcoins += rewardAmount;
-
         PlayerPrefs.SetInt("coins", coins);
         PlayerPrefs.SetInt("allcoins", allcoins);
 
         Debug.Log("🎉 Игрок получил " + rewardAmount + " монет!");
-
-        // 👉 звук награды
-        if (rewardSound != null)
-        {
-            rewardSound.Play();
-        }
+        if (rewardSound != null) rewardSound.Play();
     }
 
     int[] RemainingTasks(int[] block, int done)
     {
         List<int> rem = new List<int>();
-        foreach (var t in block)
-            if (t != done) rem.Add(t);
+        foreach (var t in block) if (t != done) rem.Add(t);
         return rem.ToArray();
     }
 
@@ -203,10 +222,5 @@ public class tasks : MonoBehaviour
             case 2: PlayerPrefs.SetInt("loseLife", 0); break;
             case 3: PlayerPrefs.SetInt("abilityOver80", 0); break;
         }
-    }
-
-    void Update()
-    {
-        UpdateUI();
     }
 }
