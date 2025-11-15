@@ -10938,8 +10938,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
           m_MethodName: isvibration1
           m_Mode: 1
           m_Arguments:
@@ -10950,21 +10950,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
           m_MethodName: ad2in
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
-          m_MethodName: startps
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10978,8 +10966,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
           m_MethodName: ad3end
           m_Mode: 1
           m_Arguments:
@@ -10993,19 +10981,7 @@ MonoBehaviour:
   - eventID: 3
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
-          m_MethodName: stopps
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &113812773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33078,6 +33054,7 @@ GameObject:
   - component: {fileID: 540669388}
   - component: {fileID: 540669390}
   - component: {fileID: 540669391}
+  - component: {fileID: 540669392}
   m_Layer: 5
   m_Name: black screen
   m_TagString: Untagged
@@ -33178,6 +33155,18 @@ MonoBehaviour:
   ad: {fileID: 1960535844}
   BS: {fileID: 540669386}
   ABS: {fileID: 540669390}
+--- !u!114 &540669392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540669386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abaacc6413f95d4f8fa275c9d9ac0e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &544277822
 GameObject:
   m_ObjectHideFlags: 0
@@ -38283,8 +38272,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
           m_MethodName: isvibration1
           m_Mode: 1
           m_Arguments:
@@ -38295,21 +38284,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
           m_MethodName: ad2in
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
-          m_MethodName: startps
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -38323,8 +38300,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
+        - m_Target: {fileID: 144783077}
+          m_TargetAssemblyTypeName: ScoreCounterFinal, Assembly-CSharp
           m_MethodName: ad3end
           m_Mode: 1
           m_Arguments:
@@ -38338,19 +38315,7 @@ MonoBehaviour:
   - eventID: 3
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScoreCounter, Assembly-CSharp
-          m_MethodName: stopps
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &579213447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56255,7 +56220,7 @@ MonoBehaviour:
   endTouchPos: {x: 0, y: 0}
   lastSwipeUpTime: 0
   waitingSecondSwipeUp: 0
-  swipeThreshold: 525
+  swipeThreshold: 400
 --- !u!54 &1258039500
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77148,7 +77113,7 @@ MonoBehaviour:
   endTouchPos: {x: 0, y: 0}
   lastSwipeUpTime: 0
   waitingSecondSwipeUp: 0
-  swipeThreshold: 525
+  swipeThreshold: 400
 --- !u!114 &1582142842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78570,7 +78535,7 @@ MonoBehaviour:
   endTouchPos: {x: 0, y: 0}
   lastSwipeUpTime: 0
   waitingSecondSwipeUp: 0
-  swipeThreshold: 525
+  swipeThreshold: 400
 --- !u!114 &1693977096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95462,7 +95427,7 @@ MonoBehaviour:
   endTouchPos: {x: 0, y: 0}
   lastSwipeUpTime: 0
   waitingSecondSwipeUp: 0
-  swipeThreshold: 525
+  swipeThreshold: 400
 --- !u!114 &1936518571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95770,6 +95735,7 @@ RectTransform:
   - {fileID: 1328146609}
   - {fileID: 1001231536}
   - {fileID: 51455681}
+  - {fileID: 168598285}
   - {fileID: 1350524495}
   - {fileID: 1049145393}
   - {fileID: 28995408}
@@ -95781,7 +95747,6 @@ RectTransform:
   - {fileID: 1221031986}
   - {fileID: 1883183354}
   - {fileID: 2130700145}
-  - {fileID: 168598285}
   - {fileID: 346243016}
   m_Father: {fileID: 1592378833}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

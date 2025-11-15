@@ -6,6 +6,9 @@ public class MusicManager : MonoBehaviour
     public AudioSource ad1_2;   // Вторая музыка
     public float musics;
 
+    [Header("Определяет, используется ли музыка для игровой сцены")]
+    public bool isGameScene = false;
+
     void Update()
     {
         musics = PlayerPrefs.GetFloat("musics", 0.5f);
@@ -17,17 +20,19 @@ public class MusicManager : MonoBehaviour
             ad1.enabled = true;
             ad1_2.enabled = true;
 
-            int next = PlayerPrefs.GetInt("musicint", 0);
+            // Определяем, какое сохранение использовать
+            string key = isGameScene ? "musicint_game" : "musicint_menu";
+            int next = PlayerPrefs.GetInt(key, 0);
 
             if (next == 0 && !ad1.isPlaying && !ad1_2.isPlaying)
             {
                 ad1.Play();
-                PlayerPrefs.SetInt("musicint", 1);
+                PlayerPrefs.SetInt(key, 1);
             }
             else if (next == 1 && !ad1.isPlaying && !ad1_2.isPlaying)
             {
                 ad1_2.Play();
-                PlayerPrefs.SetInt("musicint", 0);
+                PlayerPrefs.SetInt(key, 0);
             }
         }
         else
@@ -41,7 +46,8 @@ public class MusicManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("music") == 1) return;
 
-        int next = PlayerPrefs.GetInt("musicint", 0);
+        string key = isGameScene ? "musicint_game" : "musicint_menu";
+        int next = PlayerPrefs.GetInt(key, 0);
 
         ad1.Stop();
         ad1_2.Stop();
@@ -49,12 +55,12 @@ public class MusicManager : MonoBehaviour
         if (next == 0)
         {
             ad1.Play();
-            PlayerPrefs.SetInt("musicint", 1);
+            PlayerPrefs.SetInt(key, 1);
         }
         else
         {
             ad1_2.Play();
-            PlayerPrefs.SetInt("musicint", 0);
+            PlayerPrefs.SetInt(key, 0);
         }
     }
 }
