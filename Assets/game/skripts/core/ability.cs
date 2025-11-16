@@ -7,10 +7,10 @@ using RDG;
 public class DoubleTapHandler : MonoBehaviour
 {
     // --- ЦЕНЫ СПОСОБНОСТЕЙ ---
-    public int costAbility1 = 20;  // Двойной тап — гиператака
-    public int costAbility2 = 15;  // Свайп вверх
+    public int costAbility1 = 15;  // Двойной тап — гиператака
+    public int costAbility2 = 5;  // Свайп вверх
     public int costAbility3 = 10;  // Свайп вниз
-    public int costAbility4 = 40;  // Двойной свайп вверх
+    public int costAbility4 = 35;  // Двойной свайп вверх
 
     public Animator abilityIconAnimator;
     public completetasks c;
@@ -24,13 +24,13 @@ public class DoubleTapHandler : MonoBehaviour
     public float isotkat = 20;
 
     public float otkat2 = -1;
-    public float isotkat2 = 8;
+    public float isotkat2 = 10;
 
     public float otkat3 = -1;
-    public float isotkat3 = 13;
+    public float isotkat3 = 10;
 
     public float otkat4 = -1;
-    public float isotkat4 = 32;
+    public float isotkat4 = 30;
 
     public float lightintens;
     public energy e;

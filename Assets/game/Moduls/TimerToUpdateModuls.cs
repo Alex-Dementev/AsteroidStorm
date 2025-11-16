@@ -5,10 +5,11 @@ using System;
 public class TimerToUpdateModuls : MonoBehaviour
 {
     public Text timerText;
+    public UpdateModuls shopUpdater; // привяжи компонент UpdateModuls на той же сцене
 
     private const string TIME_KEY = "shop_last_update";
-    private const string REFRESH_KEY = "shop_need_refresh";
-    private const int HOURS = 24;
+    private const float HOURS = 60f; // 15 минут для теста
+    private bool updatedThisFrame = false;
 
     void Start()
     {
@@ -18,57 +19,50 @@ public class TimerToUpdateModuls : MonoBehaviour
     void Update()
     {
         UpdateTimerText();
+
+        if (GetHoursLeft() <= 0f && !updatedThisFrame)
+        {
+            if (shopUpdater != null)
+                shopUpdater.ForceRefresh(); // обновляем магаз сразу
+
+            PlayerPrefs.SetString(TIME_KEY, DateTime.UtcNow.ToString());
+            PlayerPrefs.Save();
+
+            updatedThisFrame = true; // чтобы не вызывалось каждый кадр
+        }
+        else if (GetHoursLeft() > 0f)
+        {
+            updatedThisFrame = false;
+        }
     }
 
     void CheckTimer()
     {
-        if (!PlayerPrefs.HasKey(TIME_KEY))
+        DateTime last;
+        string lastStr = PlayerPrefs.GetString(TIME_KEY, "");
+
+        if (!DateTime.TryParse(lastStr, out last))
         {
-            PlayerPrefs.SetString(TIME_KEY, DateTime.UtcNow.ToString());
-            PlayerPrefs.SetInt(REFRESH_KEY, 1);
-            PlayerPrefs.Save();
-            return;
-        }
-
-        DateTime last = DateTime.Parse(PlayerPrefs.GetString(TIME_KEY));
-        DateTime now = DateTime.UtcNow;
-
-        TimeSpan passed = now - last;
-        int cycles = (int)(passed.TotalHours / HOURS);
-
-        if (cycles >= 1)
-        {
-            PlayerPrefs.SetInt(REFRESH_KEY, 1);
-
-            DateTime newTime = last.AddHours(cycles * HOURS);
-            PlayerPrefs.SetString(TIME_KEY, newTime.ToString());
-
+            last = DateTime.UtcNow;
+            PlayerPrefs.SetString(TIME_KEY, last.ToString());
             PlayerPrefs.Save();
         }
     }
 
     float GetHoursLeft()
     {
-        DateTime last = DateTime.Parse(PlayerPrefs.GetString(TIME_KEY));
-        DateTime now = DateTime.UtcNow;
+        DateTime last;
+        if (!DateTime.TryParse(PlayerPrefs.GetString(TIME_KEY, ""), out last))
+            last = DateTime.UtcNow;
 
-        return Mathf.Clamp(HOURS - (float)(now - last).TotalHours, 0, HOURS);
+        return Mathf.Clamp(HOURS - (float)(DateTime.UtcNow - last).TotalHours, 0f, HOURS);
     }
 
     void UpdateTimerText()
     {
         float hoursLeft = GetHoursLeft();
-
         int hours = Mathf.FloorToInt(hoursLeft);
-        int minutes = Mathf.FloorToInt((hoursLeft - hours) * 60);
-
-        if (hours <= 0 && minutes <= 0)
-        {
-            timerText.text = "Обновление: скоро";
-        }
-        else
-        {
-            timerText.text = $"Обновление через: {hours}ч {minutes}м";
-        }
+        int minutes = Mathf.FloorToInt((hoursLeft - hours) * 60f);
+        timerText.text = $"Обновление через: {hours}ч {minutes}м";
     }
 }
