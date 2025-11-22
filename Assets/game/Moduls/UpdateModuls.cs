@@ -11,18 +11,13 @@ public class UpdateModuls : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("shop_need_refresh", 0) == 1)
-        {
-            ForceRefresh();
-        }
-        else
-        {
-            LoadColumn(1, common1, rare1, epic1, legendary1, ultra1);
-            LoadColumn(2, common2, rare2, epic2, legendary2, ultra2);
-            LoadColumn(3, common3, rare3, epic3, legendary3, ultra3);
-        }
+        // Отключаем все при старте — ничего не показываем
+        DisableAll(common1, rare1, epic1, legendary1, ultra1);
+        DisableAll(common2, rare2, epic2, legendary2, ultra2);
+        DisableAll(common3, rare3, epic3, legendary3, ultra3);
     }
 
+    // Метод для обновления магазина (рандомно)
     public void ForceRefresh()
     {
         UpdateAllColumns();
@@ -45,11 +40,11 @@ public class UpdateModuls : MonoBehaviour
         int rarity = 0;
         GameObject[] array;
 
-        if (roll < 25) { rarity = 0; array = common; }       // 25%
-        else if (roll < 60) { rarity = 1; array = rare; }    // 35%
-        else if (roll < 85) { rarity = 2; array = epic; }    // 25%
-        else if (roll < 97) { rarity = 3; array = legendary; } // 12%
-        else { rarity = 4; array = ultra; }                 // 3%
+        if (roll < 25) { rarity = 0; array = common; }
+        else if (roll < 60) { rarity = 1; array = rare; }
+        else if (roll < 85) { rarity = 2; array = epic; }
+        else if (roll < 97) { rarity = 3; array = legendary; }
+        else { rarity = 4; array = ultra; }
 
         int index = 0;
         if (array.Length > 0)
@@ -61,28 +56,6 @@ public class UpdateModuls : MonoBehaviour
         PlayerPrefs.SetInt($"shop_col{id}_rarity", rarity);
         PlayerPrefs.SetInt($"shop_col{id}_index", index);
         PlayerPrefs.Save();
-    }
-
-    void LoadColumn(int id, GameObject[] common, GameObject[] rare, GameObject[] epic, GameObject[] legendary, GameObject[] ultra)
-    {
-        DisableAll(common, rare, epic, legendary, ultra);
-
-        int rarity = PlayerPrefs.GetInt($"shop_col{id}_rarity", 0);
-        int index = PlayerPrefs.GetInt($"shop_col{id}_index", 0);
-        GameObject[] array;
-
-        switch (rarity)
-        {
-            default:
-            case 0: array = common; break;
-            case 1: array = rare; break;
-            case 2: array = epic; break;
-            case 3: array = legendary; break;
-            case 4: array = ultra; break;
-        }
-
-        if (array.Length > 0 && index < array.Length)
-            array[index].SetActive(true);
     }
 
     void DisableAll(params GameObject[][] all)

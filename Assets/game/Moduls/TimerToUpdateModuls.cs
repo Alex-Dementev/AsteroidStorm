@@ -4,49 +4,58 @@ using System;
 
 public class TimerToUpdateModuls : MonoBehaviour
 {
+    [Header("UI и магазин")]
     public Text timerText;
-    public UpdateModuls shopUpdater; // привяжи компонент UpdateModuls на той же сцене
+    public UpdateModuls shopUpdater; // компонент магазина
+
+    [Header("Модули для первого показа")]
+    public GameObject[] initialModules; // просто массив объектов, которые включатся при первом входе
+
+    [Header("Таймер")]
+    public bool enableTimer = false;   // галочка в инспекторе — включить таймер
+    public float hoursLength = 1f;     // длительность таймера в часах
 
     private const string TIME_KEY = "shop_last_update";
-    private const float HOURS = 60f; // 15 минут для теста
     private bool updatedThisFrame = false;
 
     void Start()
     {
-        CheckTimer();
+        // Включаем выбранные объекты при первом входе
+        foreach (var go in initialModules)
+            if (go != null)
+                go.SetActive(true);
+
+        // Если галочка на таймер → сохраняем стартовое время
+        if (enableTimer)
+            SaveCurrentTime();
     }
 
     void Update()
     {
-        UpdateTimerText();
+        if (!enableTimer) return;
 
-        if (GetHoursLeft() <= 0f && !updatedThisFrame)
+        float hoursLeft = GetHoursLeft();
+        UpdateTimerText(hoursLeft);
+
+        if (hoursLeft <= 0f && !updatedThisFrame)
         {
+            // обновляем магазин
             if (shopUpdater != null)
-                shopUpdater.ForceRefresh(); // обновляем магаз сразу
+                shopUpdater.ForceRefresh();
 
-            PlayerPrefs.SetString(TIME_KEY, DateTime.UtcNow.ToString());
-            PlayerPrefs.Save();
-
-            updatedThisFrame = true; // чтобы не вызывалось каждый кадр
+            SaveCurrentTime();
+            updatedThisFrame = true;
         }
-        else if (GetHoursLeft() > 0f)
+        else if (hoursLeft > 0f)
         {
             updatedThisFrame = false;
         }
     }
 
-    void CheckTimer()
+    void SaveCurrentTime()
     {
-        DateTime last;
-        string lastStr = PlayerPrefs.GetString(TIME_KEY, "");
-
-        if (!DateTime.TryParse(lastStr, out last))
-        {
-            last = DateTime.UtcNow;
-            PlayerPrefs.SetString(TIME_KEY, last.ToString());
-            PlayerPrefs.Save();
-        }
+        PlayerPrefs.SetString(TIME_KEY, DateTime.UtcNow.ToString());
+        PlayerPrefs.Save();
     }
 
     float GetHoursLeft()
@@ -55,14 +64,14 @@ public class TimerToUpdateModuls : MonoBehaviour
         if (!DateTime.TryParse(PlayerPrefs.GetString(TIME_KEY, ""), out last))
             last = DateTime.UtcNow;
 
-        return Mathf.Clamp(HOURS - (float)(DateTime.UtcNow - last).TotalHours, 0f, HOURS);
+        return Mathf.Clamp(hoursLength - (float)(DateTime.UtcNow - last).TotalHours, 0f, hoursLength);
     }
 
-    void UpdateTimerText()
+    void UpdateTimerText(float hoursLeft)
     {
-        float hoursLeft = GetHoursLeft();
-        int hours = Mathf.FloorToInt(hoursLeft);
-        int minutes = Mathf.FloorToInt((hoursLeft - hours) * 60f);
-        timerText.text = $"Обновление через: {hours}ч {minutes}м";
+        int h = Mathf.FloorToInt(hoursLeft);
+        int m = Mathf.FloorToInt((hoursLeft - h) * 60f);
+        if (timerText != null)
+            timerText.text = $"Обновление через: {h}ч {m}м";
     }
 }

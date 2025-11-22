@@ -19,7 +19,8 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -123,6 +124,7 @@ Material:
     - _ZWrite: 1
     - _bottomline: 0.5
     - _metalic: 1
+    - _powerfresnel: 0
     - _smoothnes: 0.364
     - _topline: 0.5
     m_Colors:
@@ -132,8 +134,10 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _base: {r: 6.498019, g: 6.498019, b: 6.498019, a: 0}
     - _bottom_color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+    - _fresnelcolor: {r: 0, g: 0, b: 0, a: 0}
     - _topcolor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!114 &278119771105749249
 MonoBehaviour:
   m_ObjectHideFlags: 11
