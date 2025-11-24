@@ -38,7 +38,6 @@ public class menu : MonoBehaviour
     public GameObject butfall;
     public GameObject panel1;
     public GameObject panel2;
-    public GameObject panel3;
     public GameObject panel4;
     public GameObject panel5;
     public GameObject panel6;
@@ -123,7 +122,6 @@ public class menu : MonoBehaviour
     public ParticleSystem ps15;
     public ParticleSystem ps16;
     public ParticleSystem ps17;
-    public ParticleSystem ps18;
     public ParticleSystem ps19;
     public ParticleSystem ps20;
     public ParticleSystem ps21;
@@ -339,7 +337,6 @@ public class menu : MonoBehaviour
         ps15.Stop();
         ps16.Stop();
         ps17.Stop();
-        ps18.Stop();
         ps19.Stop();
         ps20.Stop();
         ps21.Stop();
@@ -519,7 +516,6 @@ public class menu : MonoBehaviour
             if(isachi == true)
             {
                 isachi = false;
-                panel3.SetActive(!panel3.activeSelf);
             }
         }
         if(shop <= 0)
@@ -685,7 +681,6 @@ public class menu : MonoBehaviour
         ps15.Stop();
         ps16.Stop();
         ps17.Stop();
-        ps18.Stop();
         ps19.Stop();
         ps20.Stop();
         ps21.Stop();
@@ -914,7 +909,6 @@ public void destartedrocketps()
         ps15.Play();
         ps16.Play();
         ps17.Play();
-        ps18.Play();
         ps19.Play();
         ps40.Play();
         ps46.Play();
@@ -1096,7 +1090,6 @@ public void destartedrocketps()
         {
             if (isanim3 == false)
             {
-                panel3.SetActive(!panel3.activeSelf);
                 isanim3 = true;
                 anim6.Play("anim 18 0");
                 anim3.Play("19 0");
@@ -1136,7 +1129,6 @@ public void destartedrocketps()
             }
             if (isanim3 == false)
             {
-                panel3.SetActive(!panel3.activeSelf);
                 isanim3 = true;
                 anim6.Play("anim 18 0");
                 anim3.Play("19 0");
@@ -1234,7 +1226,6 @@ ad2end();
         {
             if (isanim3 == false)
             {
-                panel3.SetActive(!panel3.activeSelf);
                 isanim3 = true;
                 anim6.Play("anim 18 0");
                 anim3.Play("19 0");
@@ -1383,7 +1374,6 @@ ad2end();
         {
             if (isanim3 == false)
             {
-                panel3.SetActive(!panel3.activeSelf);
                 isanim3 = true;
                 anim6.Play("anim 18 0");
                 anim3.Play("19 0");

@@ -60,7 +60,7 @@ public class ObstaclearSpawner : MonoBehaviour
             movement.rotationSpeed = Random.Range(-rotationSpeedRange, rotationSpeedRange);
             movement.direction = direction;
 
-            Destroy(obstacle, 20f);
+            Destroy(obstacle, 35f);
         }
     }
 

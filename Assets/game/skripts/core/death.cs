@@ -376,10 +376,10 @@ public class death : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("obstraclemini"))
         {
-            Destroy(Collision.gameObject);
-
             if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
+                Destroy(Collision.gameObject);
+
                 AsteroidSkript AS = Collision.gameObject.GetComponent<AsteroidSkript>();
                 if (AS != null)
                 {

@@ -6,27 +6,27 @@ public class TimerToUpdateModuls : MonoBehaviour
 {
     [Header("UI и магазин")]
     public Text timerText;
-    public UpdateModuls shopUpdater; // компонент магазина
+    public UpdateModuls shopUpdater;
 
     [Header("Модули для первого показа")]
-    public GameObject[] initialModules; // просто массив объектов, которые включатся при первом входе
+    public GameObject[] initialModules;
 
     [Header("Таймер")]
-    public bool enableTimer = false;   // галочка в инспекторе — включить таймер
-    public float hoursLength = 1f;     // длительность таймера в часах
+    public bool enableTimer = false; // галочка для запуска таймера
+    public float hoursLength = 24f;  // например, 24 часа (или 1 час — как хочешь)
 
     private const string TIME_KEY = "shop_last_update";
     private bool updatedThisFrame = false;
 
     void Start()
     {
-        // Включаем выбранные объекты при первом входе
+        // включаем стартовые модули
         foreach (var go in initialModules)
             if (go != null)
                 go.SetActive(true);
 
-        // Если галочка на таймер → сохраняем стартовое время
-        if (enableTimer)
+        // Если таймер включён, но времени нет — записываем стартовое
+        if (enableTimer && !PlayerPrefs.HasKey(TIME_KEY))
             SaveCurrentTime();
     }
 
@@ -39,7 +39,6 @@ public class TimerToUpdateModuls : MonoBehaviour
 
         if (hoursLeft <= 0f && !updatedThisFrame)
         {
-            // обновляем магазин
             if (shopUpdater != null)
                 shopUpdater.ForceRefresh();
 
@@ -52,26 +51,39 @@ public class TimerToUpdateModuls : MonoBehaviour
         }
     }
 
+    // --- Сохраняем текущее время в секундах ---
     void SaveCurrentTime()
     {
-        PlayerPrefs.SetString(TIME_KEY, DateTime.UtcNow.ToString());
+        long unixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        PlayerPrefs.SetString(TIME_KEY, unixTime.ToString());
         PlayerPrefs.Save();
     }
 
+    // --- Считаем сколько осталось времени до обновления ---
     float GetHoursLeft()
     {
-        DateTime last;
-        if (!DateTime.TryParse(PlayerPrefs.GetString(TIME_KEY, ""), out last))
-            last = DateTime.UtcNow;
+        string saved = PlayerPrefs.GetString(TIME_KEY, "");
+        if (string.IsNullOrEmpty(saved))
+            return hoursLength;
 
-        return Mathf.Clamp(hoursLength - (float)(DateTime.UtcNow - last).TotalHours, 0f, hoursLength);
+        long lastUnix;
+        if (!long.TryParse(saved, out lastUnix))
+            return hoursLength;
+
+        long nowUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        float hoursPassed = (nowUnix - lastUnix) / 3600f;
+
+        return Mathf.Clamp(hoursLength - hoursPassed, 0f, hoursLength);
     }
 
+    // --- Пишем на UI оставшееся время ---
     void UpdateTimerText(float hoursLeft)
     {
+        if (timerText == null) return;
+
         int h = Mathf.FloorToInt(hoursLeft);
         int m = Mathf.FloorToInt((hoursLeft - h) * 60f);
-        if (timerText != null)
-            timerText.text = $"Обновление через: {h}ч {m}м";
+
+        timerText.text = $"Обновление через: {h}ч {m}м";
     }
 }
