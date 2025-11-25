@@ -37,6 +37,7 @@ public class death : MonoBehaviour
     public bool isstarttask;
     public int is2;
     public float fuel;
+    public int ScoreBuff;
     public Slider SliderFuel;
     public bool isfuelzero;
     public bool isfuel5;
@@ -319,6 +320,9 @@ public class death : MonoBehaviour
 
                 if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                 {
+                    ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
+                    ScoreBuff += ((int)(player.position.z / 3) + 1000);
+                    PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
                     score = PlayerPrefs.GetInt("allscore");
                     score += ((int)(player.position.z / 3) + 1000);
                     allcoins += ((int)(player.position.z / 7) + 400);
@@ -327,6 +331,9 @@ public class death : MonoBehaviour
                 }
                 else
                 {
+                    ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
+                    ScoreBuff += ((int)(player.position.z / 3) + 1000);
+                    PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
                     score = PlayerPrefs.GetInt("allscore");
                     score += ((int)(player.position.z / 3));
                     PlayerPrefs.SetInt("allscore", score);
@@ -563,6 +570,9 @@ public class death : MonoBehaviour
 
                                 if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                                 {
+                                    ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
+                                    ScoreBuff += ((int)(player.position.z / 3) + 1000);
+                                    PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
                                     score = PlayerPrefs.GetInt("allscore");
                                     score += ((int)(player.position.z / 3) + 1000);
                                     PlayerPrefs.SetInt("allscore", score);
@@ -570,6 +580,9 @@ public class death : MonoBehaviour
                                 }
                                 else
                                 {
+                                    ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
+                                    ScoreBuff += ((int)(player.position.z / 3) + 1000);
+                                    PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
                                     score = PlayerPrefs.GetInt("allscore");
                                     score += ((int)(player.position.z / 3));
                                     PlayerPrefs.SetInt("allscore", score);

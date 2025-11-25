@@ -91,6 +91,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _Boolean: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -128,14 +129,15 @@ Material:
     - _smoothnes: 0.364
     - _topline: 0.5
     m_Colors:
+    - _Base2: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.14150941, g: 0.109264165, b: 0.036712352, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _base: {r: 6.498019, g: 6.498019, b: 6.498019, a: 0}
-    - _bottom_color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+    - _base: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
+    - _bottom_color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
     - _fresnelcolor: {r: 0, g: 0, b: 0, a: 0}
-    - _topcolor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+    - _topcolor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &278119771105749249

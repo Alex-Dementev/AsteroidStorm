@@ -217,7 +217,7 @@ public class ScoreCounter : MonoBehaviour
         ad18.volume = audios;
 
 
-        if ((int)(player.position.z / 3) >= 890 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
+        if ((int)(player.position.z / 3) >= 1150 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
             PlayerPrefs.SetInt("GoToFinalGlav", 1);
             image.SetActive(true);
@@ -232,7 +232,7 @@ public class ScoreCounter : MonoBehaviour
             is100 = true;
             ad9.Play();
         }
-        if ((int)(player.position.z / 3) >= 825 && !is825)
+        if ((int)(player.position.z / 3) >= 925 && !is825)
         {
             text.text = "выход на высокую арбиту луны";
             anim2.Play("anim 26 1");
@@ -249,7 +249,7 @@ public class ScoreCounter : MonoBehaviour
             PlayerPrefs.SetInt("youcheat", 0);
         }
 
-        if ((int)(player.position.z / 3) >= 700)
+        if ((int)(player.position.z / 3) >= 750)
         {
             if (!isbtotask)
             {
