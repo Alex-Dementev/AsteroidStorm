@@ -6,14 +6,24 @@ using RDG;
 
 public class DoubleTapHandler : MonoBehaviour
 {
-    // --- ЦЕНЫ СПОСОБНОСТЕЙ ---
-    public int costAbility1 = 15;  // Двойной тап — гиператака
-    public int costAbility2 = 5;  // Свайп вверх
-    public int costAbility3 = 10;  // Свайп вниз
-    public int costAbility4 = 35;  // Двойной свайп вверх
+    // === ЦЕНЫ СПОСОБНОСТЕЙ ===
+    public int costAbility1 = 15;
+    public int costAbility2 = 5;
+    public int costAbility3 = 10;
+    public int costAbility4 = 35;
 
-    public Animator abilityIconAnimator;
-    public completetasks c;
+    // === ИКОНКИ (новые 4 аниматора) ===
+    public Animator ability1Animator;
+    public Animator ability2Animator;
+    public Animator ability3Animator;
+    public Animator ability4Animator;
+
+    bool state1Ready = false;
+    bool state2Ready = false;
+    bool state3Ready = false;
+    bool state4Ready = false;
+
+    // === Старые переменные ===
     public float doubleTapThreshold = 0.5f;
     public float speed;
     public float delay;
@@ -70,82 +80,103 @@ public class DoubleTapHandler : MonoBehaviour
     public float lastTapTime = 0;
     public bool isWaitingForSecondTap = false;
 
-    // --- Для свайпов ---
     public Vector2 startTouchPos;
     public Vector2 endTouchPos;
     public float lastSwipeUpTime = 0f;
     public bool waitingSecondSwipeUp = false;
-    public float swipeThreshold = 180f; // чувствительность свайпа
+    public float swipeThreshold = 180f;
+
+    private Coroutine waitSecondSwipeCoroutine;
+
+    void Start()
+    {
+        abilityt = PlayerPrefs.GetInt("abilityt", 0);
+        isdelay = PlayerPrefs.GetFloat("isdelay");
+        isotkat = PlayerPrefs.GetFloat("isotkat");
+        PlayerPrefs.SetInt("isabilityuse", 0);
+
+        if (PlayerPrefs.GetInt("audio") == 0) ad.enabled = true;
+        else ad.enabled = false;
+
+        float audios = PlayerPrefs.GetFloat("audios", 0.5f);
+        ad.volume = audios;
+
+        if (PlayerPrefs.GetInt("partic") == 0)
+            p.Stop();
+    }
 
     void Update()
     {
+        // === Откаты ===
         otkat -= Time.deltaTime;
         otkat2 -= Time.deltaTime;
         otkat3 -= Time.deltaTime;
         otkat4 -= Time.deltaTime;
-        isdelayShield -= Time.deltaTime;
 
         s.value = otkat;
         s2.value = otkat2;
         s3.value = otkat3;
         s4.value = otkat4;
+
         isdelay1 -= Time.deltaTime;
+        isdelayShield -= Time.deltaTime;
 
-        if(isActiveShield && isdelayShield <= 0 && PlayerPrefs.GetInt("activeShield") == 1)
+        UpdateAbilityIcons();   
+
+        HandleShield();
+        HandleBoost();
+        DetectTouchesAndSwipes();
+    }
+
+    // ======================================================
+    // === ОБНОВЛЕНИЕ ИКОНОК ===
+    // ======================================================
+    void UpdateAbilityIcons()
+    {
+        bool ready1 = otkat <= 0 && e.energyint >= costAbility1;
+        bool ready2 = otkat2 <= 0 && e.energyint >= costAbility2;
+        bool ready3 = otkat3 <= 0 && e.energyint >= costAbility3;
+        bool ready4 = otkat4 <= 0 && e.energyint >= costAbility4;
+
+        if (ready1 != state1Ready)
         {
-            isActiveShield = false;
-            ShieldEndAS.Play();
-            ShieldAnim.Play("endShield");
-            isActiveShield2 = true;
-        }
-        if(isActiveShield && isdelayShield <= -0.3f && isActiveShield2)
-        {
-            isActiveShield2 = false;
-            PlayerPrefs.SetInt("activeShield", 0);
-        }
-
-        if (abilityt >= 10 && PlayerPrefs.GetInt("is10", 0) == 0)
-        {
-            PlayerPrefs.SetInt("is10", 1);
-            c.voidcompletetasks();
-        }
-
-        if (isdelay1 >= 0)
-            ps.Stop();
-
-        if (b)
-        {
-            if (bb)
-            {
-                if (delay <= -0.05)
-                {
-                    r.zSpeed = speed;
-                    r.zSpeed += 1;
-                    bb = false;
-                    l.intensity = lightintens;
-                    if (PlayerPrefs.GetInt("isfinal1g", 0) == 0)
-                        l.color = new Color(0.878f, 0.788f, 0.659f);
-                    else
-                        l.color = new Color(238f / 255f, 211f / 255f, 179f / 255f);
-                }
-            }
-
-            if (delay <= -0.2)
-                ps.Stop();
-
-            if (delay <= -0.5)
-                b = false;
+            state1Ready = ready1;
+            if (ready1) ability1Animator.Play("anim 28 0");
+            else ability1Animator.Play("anim 28");
         }
 
-        delay -= Time.deltaTime;
+        if (ready2 != state2Ready)
+        {
+            state2Ready = ready2;
+            if (ready2) ability2Animator.Play("SkannerStart");
+            else ability2Animator.Play("SkannerIdle");
+        }
 
-        // --- Проверка свайпов ---
-        bool wasSwipe = DetectSwipe(); // теперь возвращает bool
+        if (ready3 != state3Ready)
+        {
+            state3Ready = ready3;
+            if (ready3) ability3Animator.Play("ShieldStart");
+            else ability3Animator.Play("ShieldIdle");
+        }
 
-        // --- Проверка на клик ---
+        if (ready4 != state4Ready)
+        {
+            state4Ready = ready4;
+            if (ready4) ability4Animator.Play("ProgectileStart");
+            else ability4Animator.Play("ProgectileIdle");
+        }
+    }
+
+    // ======================================================
+    // ===  ОБРАБОТКА КАСАНИЙ / СВАЙПОВ  ===
+    // ======================================================
+
+    void DetectTouchesAndSwipes()
+    {
+        bool wasSwipe = DetectSwipe();
         bool isTapDetected = false;
 
-        if (!wasSwipe) // если свайпа не было — считаем тап
+        if (!wasSwipe)
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
                 isTapDetected = true;
@@ -155,79 +186,60 @@ public class DoubleTapHandler : MonoBehaviour
         }
         else
         {
-            // если был свайп — сбрасываем возможный первый тап
             isWaitingForSecondTap = false;
             lastTapTime = -1f;
         }
 
         if (isTapDetected)
         {
-            float currentTime = Time.time;
+            float time = Time.time;
 
             if (isWaitingForSecondTap)
             {
-                if (currentTime - lastTapTime <= doubleTapThreshold)
+                if (time - lastTapTime <= doubleTapThreshold)
                 {
                     isWaitingForSecondTap = false;
-                    ActivateAbilityGiperAttack(); // способность 1
+                    ActivateAbilityGiperAttack();
                 }
             }
             else
             {
                 isWaitingForSecondTap = true;
-                lastTapTime = currentTime;
+                lastTapTime = time;
             }
         }
 
         if (isWaitingForSecondTap && Time.time - lastTapTime > doubleTapThreshold)
             isWaitingForSecondTap = false;
-
-        // --- Иконка готовности ---
-        bool nowReady = otkat <= 0 && e.energyint >= costAbility1;
-
-        if (nowReady && !isactivateicon)
-        {
-            abilityIconAnimator.Play("anim 28 0");
-            isactivateicon = true;
-        }
-        else if (!isdisactivateicon)
-        {
-            abilityIconAnimator.Play("anim 28");
-            isdisactivateicon = true;
-        }
     }
 
-    // --- Универсальный свайп ---
     bool DetectSwipe()
     {
         bool didSwipe = false;
 
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
+            Touch t = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Began)
-                startTouchPos = touch.position;
+            if (t.phase == TouchPhase.Began)
+                startTouchPos = t.position;
 
-            else if (touch.phase == TouchPhase.Ended)
+            else if (t.phase == TouchPhase.Ended)
             {
-                endTouchPos = touch.position;
-                Vector2 swipeDelta = endTouchPos - startTouchPos;
+                endTouchPos = t.position;
+                Vector2 delta = endTouchPos - startTouchPos;
 
-                if (Mathf.Abs(swipeDelta.y) > Mathf.Abs(swipeDelta.x) && Mathf.Abs(swipeDelta.y) > swipeThreshold)
+                if (Mathf.Abs(delta.y) > Mathf.Abs(delta.x) && Mathf.Abs(delta.y) > swipeThreshold)
                 {
                     didSwipe = true;
-                    isWaitingForSecondTap = false; // сброс клика
-                    lastTapTime = -1f; // обнуление
-                    if (swipeDelta.y > 0)
-                        OnSwipeUp();
-                    else
-                        OnSwipeDown();
+                    isWaitingForSecondTap = false;
+
+                    if (delta.y > 0) OnSwipeUp();
+                    else OnSwipeDown();
                 }
             }
         }
 
-        // --- Для редактора ---
         if (Application.isEditor)
         {
             if (Input.GetMouseButtonDown(0))
@@ -236,17 +248,15 @@ public class DoubleTapHandler : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 endTouchPos = Input.mousePosition;
-                Vector2 swipeDelta = endTouchPos - startTouchPos;
+                Vector2 delta = endTouchPos - startTouchPos;
 
-                if (Mathf.Abs(swipeDelta.y) > Mathf.Abs(swipeDelta.x) && Mathf.Abs(swipeDelta.y) > swipeThreshold)
+                if (Mathf.Abs(delta.y) > Mathf.Abs(delta.x) && Mathf.Abs(delta.y) > swipeThreshold)
                 {
                     didSwipe = true;
                     isWaitingForSecondTap = false;
-                    lastTapTime = -1f;
-                    if (swipeDelta.y > 0)
-                        OnSwipeUp();
-                    else
-                        OnSwipeDown();
+
+                    if (delta.y > 0) OnSwipeUp();
+                    else OnSwipeDown();
                 }
             }
         }
@@ -256,12 +266,11 @@ public class DoubleTapHandler : MonoBehaviour
 
     void OnSwipeUp()
     {
-        float currentTime = Time.time;
+        float time = Time.time;
 
         if (waitingSecondSwipeUp)
         {
-            // Второй свайп — активируем способность 4
-            if (currentTime - lastSwipeUpTime <= doubleTapThreshold)
+            if (time - lastSwipeUpTime <= doubleTapThreshold)
             {
                 waitingSecondSwipeUp = false;
 
@@ -269,14 +278,13 @@ public class DoubleTapHandler : MonoBehaviour
                     StopCoroutine(waitSecondSwipeCoroutine);
 
                 if (otkat4 <= 0 && e.energyint >= costAbility4)
-                    ActivateDoubleSwipeUpAbility(); // способность 4
+                    ActivateDoubleSwipeUpAbility();
             }
         }
         else
         {
-            // Первый свайп — ждём второй
             waitingSecondSwipeUp = true;
-            lastSwipeUpTime = currentTime;
+            lastSwipeUpTime = time;
 
             if (waitSecondSwipeCoroutine != null)
                 StopCoroutine(waitSecondSwipeCoroutine);
@@ -285,12 +293,9 @@ public class DoubleTapHandler : MonoBehaviour
         }
     }
 
-    private Coroutine waitSecondSwipeCoroutine;
-
     IEnumerator WaitForSecondSwipeUp()
     {
         float timer = 0f;
-        waitingSecondSwipeUp = true;
 
         while (timer < doubleTapThreshold)
         {
@@ -298,31 +303,25 @@ public class DoubleTapHandler : MonoBehaviour
             yield return null;
 
             if (!waitingSecondSwipeUp)
-                yield break; // если был второй свайп — выходим
+                yield break;
         }
 
-        // если второго свайпа не было — запускаем способность 2
         waitingSecondSwipeUp = false;
 
         if (otkat2 <= 0 && e.energyint >= costAbility2)
-            ActivateSwipeUpAbility(); // способность 2
+            ActivateSwipeUpAbility();
     }
-
-
 
     void OnSwipeDown()
     {
         if (otkat3 <= 0 && e.energyint >= costAbility3)
-            ActivateSwipeDownAbility(); // способность 3
+            ActivateSwipeDownAbility();
     }
 
-    void OnDoubleSwipeUp()
-    {
-        if (otkat4 <= 0 && e.energyint >= costAbility4)
-            ActivateDoubleSwipeUpAbility(); // способность 4
-    }
+    // ======================================================
+    // === АКТИВАЦИЯ СПОСОБНОСТЕЙ ===
+    // ======================================================
 
-    // --- СПОСОБНОСТЬ 1 ---
     public void ActivateAbilityGiperAttack()
     {
         if (otkat > 0 || e.energyint < costAbility1) return;
@@ -370,9 +369,11 @@ public class DoubleTapHandler : MonoBehaviour
         PlayerPrefs.SetInt("isabilityuse", 1);
         e.energyint -= costAbility3;
         abilityt++;
+
         PlayerPrefs.SetInt("activeShield", 1);
         isdelayShield = 5;
         isActiveShield = true;
+
         PlayerPrefs.SetInt("abilityt", abilityt);
         otkat3 = isotkat3;
         anim.Play("blue");
@@ -397,37 +398,55 @@ public class DoubleTapHandler : MonoBehaviour
         AttackAS.Play();
     }
 
-    private void OnCollisionEnter(Collision Collision)
+    // === Щиты и бусты ===
+
+    void HandleShield()
     {
-        if (Collision.gameObject.CompareTag("bb"))
+        if (isActiveShield && isdelayShield <= 0 && PlayerPrefs.GetInt("activeShield") == 1)
         {
-            e.energyint += 20;
-            ad.Play();
-            anim1.Play("green");
-            Destroy(Collision.gameObject);
-            if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
-            {
-                cb = PlayerPrefs.GetInt("collectBonus", 0);
-                cb++;
-                PlayerPrefs.SetInt("collectBonus", cb);
-            }
+            isActiveShield = false;
+            ShieldEndAS.Play();
+            ShieldAnim.Play("endShield");
+            isActiveShield2 = true;
+        }
+
+        if (isActiveShield && isdelayShield <= -0.3f && isActiveShield2)
+        {
+            isActiveShield2 = false;
+            PlayerPrefs.SetInt("activeShield", 0);
         }
     }
 
-    void Start()
+    void HandleBoost()
     {
-        abilityt = PlayerPrefs.GetInt("abilityt", 0);
-        isdelay = PlayerPrefs.GetFloat("isdelay");
-        isotkat = PlayerPrefs.GetFloat("isotkat");
-        PlayerPrefs.SetInt("isabilityuse", 0);
+        if (isdelay1 >= 0)
+            ps.Stop();
 
-        if (PlayerPrefs.GetInt("audio") == 0) ad.enabled = true;
-        else if (PlayerPrefs.GetInt("audio") == 1) ad.enabled = false;
+        if (b)
+        {
+            if (bb)
+            {
+                if (delay <= -0.05)
+                {
+                    r.zSpeed = speed;
+                    r.zSpeed += 1;
+                    bb = false;
+                    l.intensity = lightintens;
 
-        float audios = PlayerPrefs.GetFloat("audios", 0.5f);
-        ad.volume = audios;
+                    if (PlayerPrefs.GetInt("isfinal1g", 0) == 0)
+                        l.color = new Color(0.878f, 0.788f, 0.659f);
+                    else
+                        l.color = new Color(238f / 255f, 211f / 255f, 179f / 255f);
+                }
+            }
 
-        if (PlayerPrefs.GetInt("partic") == 0)
-            p.Stop();
+            if (delay <= -0.2)
+                ps.Stop();
+
+            if (delay <= -0.5)
+                b = false;
+        }
+
+        delay -= Time.deltaTime;
     }
 }

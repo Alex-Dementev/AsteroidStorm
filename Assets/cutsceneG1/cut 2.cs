@@ -19,7 +19,7 @@ public class AnimationSceneChanger : MonoBehaviour
 
         if (PlayerPrefs.GetInt("audio") == 0)
             ad1.enabled = true;
-        else
+        if (PlayerPrefs.GetInt("audio") == 1)
             ad1.enabled = false;
     }
 

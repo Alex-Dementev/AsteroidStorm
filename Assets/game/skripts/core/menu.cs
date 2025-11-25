@@ -151,6 +151,7 @@ public class menu : MonoBehaviour
     public ParticleSystem ps48;
     public ParticleSystem ps49;
     public ParticleSystem ps50;
+    public ParticleSystem ps51;
 
     public ParticleSystem rocketstart1;
     public ParticleSystem rocketstart2;
@@ -358,6 +359,7 @@ public class menu : MonoBehaviour
         ps48.Stop();
         ps49.Stop();
         ps50.Stop();
+        ps51.Stop();
 
 
         if (is11 == 0 && ach1 == 1)
@@ -710,6 +712,7 @@ public class menu : MonoBehaviour
         ps48.Stop();
         ps49.Stop();
         ps50.Stop();
+        ps51.Stop();
 
         if(!rocketfall)
         ad2.Play();
@@ -975,6 +978,10 @@ public void destartedrocketps()
     {
         ps50.Play();
     }
+    public void isps28()
+    {
+        ps51.Play();
+    }
 
 
     public void ViewProlog()
@@ -993,6 +1000,12 @@ public void destartedrocketps()
 
     public void offvibration(){PlayerPrefs.SetInt("vibration", ison2 ? 1 : 0);}
 
+
+    public void Aftors()
+    {
+        image.SetActive(true);
+        anim.Play("anim9 0 0");
+    }
 
     public void started()
     {
@@ -1015,7 +1028,7 @@ public void destartedrocketps()
     }
     public void is1g()
     {
-        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 3 && PlayerPrefs.GetInt("fueltostart", 0) >= 1)
+        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 3 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 || PlayerPrefs.GetInt("yousurwive", 0) == 1)
         {
             PlayerPrefs.SetInt("start", 1);
             int fuel = PlayerPrefs.GetInt("fuel");
