@@ -88,8 +88,8 @@ public class tasks : MonoBehaviour
                 task2Slider.value = PlayerPrefs.GetInt("breakObstacles", 0);
                 break;
             case 1:
-                task2Text.text = "Собрать бонус 5 раз";
-                task2Slider.maxValue = 5;
+                task2Text.text = "Собрать бонус 10 раз";
+                task2Slider.maxValue = 10;
                 task2Slider.value = PlayerPrefs.GetInt("collectBonus", 0);
                 break;
             case 2:
@@ -139,7 +139,7 @@ public class tasks : MonoBehaviour
         switch (currentTask2)
         {
             case 0: if (PlayerPrefs.GetInt("breakObstacles", 0) >= 2) completed = true; break;
-            case 1: if (PlayerPrefs.GetInt("collectBonus", 0) >= 5) completed = true; break;
+            case 1: if (PlayerPrefs.GetInt("collectBonus", 0) >= 10) completed = true; break;
             case 2: if (PlayerPrefs.GetInt("loseLife", 0) >= 15) completed = true; break;
             case 3: if (PlayerPrefs.GetInt("abilityOver80", 0) >= 1) completed = true; break;
         }

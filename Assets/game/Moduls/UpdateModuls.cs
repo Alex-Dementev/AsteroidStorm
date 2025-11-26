@@ -11,17 +11,61 @@ public class UpdateModuls : MonoBehaviour
 
     void Start()
     {
-        // Отключаем все при старте — ничего не показываем
+        // выключаем всё перед загрузкой
         DisableAll(common1, rare1, epic1, legendary1, ultra1);
         DisableAll(common2, rare2, epic2, legendary2, ultra2);
         DisableAll(common3, rare3, epic3, legendary3, ultra3);
+
+        // если есть сохранённые модули – загружаем
+        LoadSavedState();
     }
 
-    // Метод для обновления магазина (рандомно)
+    // ==========================
+    //      СОХРАНЁННОЕ СОСТОЯНИЕ
+    // ==========================
+    public bool LoadSavedState()
+    {
+        bool loaded = false;
+
+        loaded |= LoadColumn(1, common1, rare1, epic1, legendary1, ultra1);
+        loaded |= LoadColumn(2, common2, rare2, epic2, legendary2, ultra2);
+        loaded |= LoadColumn(3, common3, rare3, epic3, legendary3, ultra3);
+
+        return loaded;
+    }
+
+    bool LoadColumn(int id, GameObject[] common, GameObject[] rare, GameObject[] epic, GameObject[] legendary, GameObject[] ultra)
+    {
+        int rarity = PlayerPrefs.GetInt($"shop_col{id}_rarity", -1);
+        int index  = PlayerPrefs.GetInt($"shop_col{id}_index", -1);
+
+        if (rarity == -1 || index == -1)
+            return false;
+
+        GameObject[] array;
+
+        switch (rarity)
+        {
+            case 0: array = common; break;
+            case 1: array = rare; break;
+            case 2: array = epic; break;
+            case 3: array = legendary; break;
+            case 4: array = ultra; break;
+            default: return false;
+        }
+
+        if (index >= 0 && index < array.Length)
+            array[index].SetActive(true);
+
+        return true;
+    }
+
+    // ==========================
+    //   ОБНОВЛЕНИЕ МАГАЗИНА
+    // ==========================
     public void ForceRefresh()
     {
         UpdateAllColumns();
-        PlayerPrefs.SetInt("shop_need_refresh", 0);
         PlayerPrefs.Save();
     }
 
@@ -30,6 +74,9 @@ public class UpdateModuls : MonoBehaviour
         RefreshColumn(1, common1, rare1, epic1, legendary1, ultra1);
         RefreshColumn(2, common2, rare2, epic2, legendary2, ultra2);
         RefreshColumn(3, common3, rare3, epic3, legendary3, ultra3);
+
+        // ===== ДОБАВЛЕНО ПО ТВОЕЙ ПРОСЬБЕ =====
+        PlayerPrefs.SetInt("ResetBuyModuls", 1);
     }
 
     void RefreshColumn(int id, GameObject[] common, GameObject[] rare, GameObject[] epic, GameObject[] legendary, GameObject[] ultra)
@@ -37,7 +84,7 @@ public class UpdateModuls : MonoBehaviour
         DisableAll(common, rare, epic, legendary, ultra);
 
         int roll = Random.Range(0, 100);
-        int rarity = 0;
+        int rarity;
         GameObject[] array;
 
         if (roll < 25) { rarity = 0; array = common; }
@@ -55,7 +102,6 @@ public class UpdateModuls : MonoBehaviour
 
         PlayerPrefs.SetInt($"shop_col{id}_rarity", rarity);
         PlayerPrefs.SetInt($"shop_col{id}_index", index);
-        PlayerPrefs.Save();
     }
 
     void DisableAll(params GameObject[][] all)

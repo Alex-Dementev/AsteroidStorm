@@ -15,24 +15,27 @@ public class TimerToUpdateModuls : MonoBehaviour
     public GameObject[] initialModules;
 
     [Header("Запуск таймера")]
-    public bool startTimer = false; // ставим true в инспекторе — таймер стартует и больше не остановится
+    public bool startTimer = false; // ставим true в инспекторе — таймер стартует
 
     private const string NEXT_UPDATE_KEY = "shop_next_update";
     private const string TIMER_STARTED_KEY = "shop_timer_started";
-    private bool timerActive = false; // внутренний флаг, чтобы таймер начал работать один раз
+    private bool timerActive = false;
 
     void Start()
     {
-        // Включаем начальные объекты
-        foreach (var go in initialModules)
-            if (go != null)
-                go.SetActive(true);
+        // показываем стартовые модули только если нет сохранения
+        if (!PlayerPrefs.HasKey("shop_col1_rarity"))
+        {
+            foreach (var go in initialModules)
+                if (go != null)
+                    go.SetActive(true);
+        }
 
-        // UI пустой пока таймер не стартан
+        // очищаем UI
         if (timerText != null)
             timerText.text = "";
 
-        // Проверяем PlayerPrefs — если таймер уже был разрешён ранее
+        // таймер уже был активирован ранее?
         if (PlayerPrefs.GetInt(TIMER_STARTED_KEY, 0) == 1)
             startTimer = true;
 
@@ -44,7 +47,6 @@ public class TimerToUpdateModuls : MonoBehaviour
     {
         if (!timerActive)
         {
-            // Проверяем, если переменная была включена после старта
             if (startTimer)
                 ActivateTimer();
             else
@@ -55,12 +57,11 @@ public class TimerToUpdateModuls : MonoBehaviour
 
         if (hoursLeft <= 0f)
         {
-            // Время вышло — обновляем магазин
             if (shopUpdater != null)
                 shopUpdater.ForceRefresh();
 
             SetNextUpdateTime();
-            hoursLeft = updateIntervalHours; // сброс для UI
+            hoursLeft = updateIntervalHours;
         }
 
         UpdateTimerText(hoursLeft);
@@ -70,11 +71,9 @@ public class TimerToUpdateModuls : MonoBehaviour
     {
         timerActive = true;
 
-        // Сохраняем факт старта таймера
         PlayerPrefs.SetInt(TIMER_STARTED_KEY, 1);
         PlayerPrefs.Save();
 
-        // Если нет сохранённого времени — ставим на сейчас + интервал
         if (!PlayerPrefs.HasKey(NEXT_UPDATE_KEY))
             SetNextUpdateTime();
 
@@ -84,7 +83,7 @@ public class TimerToUpdateModuls : MonoBehaviour
     private void SetNextUpdateTime()
     {
         DateTime nextUpdate = DateTime.UtcNow.AddHours(updateIntervalHours);
-        PlayerPrefs.SetString(NEXT_UPDATE_KEY, nextUpdate.ToString("o")); // универсальный ISO формат
+        PlayerPrefs.SetString(NEXT_UPDATE_KEY, nextUpdate.ToString("o"));
         PlayerPrefs.Save();
     }
 
@@ -110,7 +109,6 @@ public class TimerToUpdateModuls : MonoBehaviour
         timerText.text = $"Обновление через: {hours}ч {minutes}м";
     }
 
-    // Публичный метод для запуска таймера из другого скрипта
     [ContextMenu("Start Timer")]
     public void EnableTimer()
     {

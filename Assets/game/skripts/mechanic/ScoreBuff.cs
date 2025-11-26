@@ -21,8 +21,8 @@ public class ScoreBuff : MonoBehaviour
             PlayerPrefs.SetInt("ScoreBuff", Score);
             coins = PlayerPrefs.GetInt("coins", 0);
             allcoins = PlayerPrefs.GetInt("allcoins", 0);
-            coins += 800;
-            allcoins += 800;
+            coins += 320;
+            allcoins += 320;
             PlayerPrefs.SetInt("coins", coins);
             PlayerPrefs.SetInt("allcoins", allcoins);
             anim.Play("start");
