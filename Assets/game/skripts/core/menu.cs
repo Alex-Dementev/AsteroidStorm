@@ -1036,7 +1036,10 @@ public void destartedrocketps()
             fuel -= fuelstart;
             PlayerPrefs.SetInt("fuel", fuel);
             coins = PlayerPrefs.GetInt("coins");
+
+            if(PlayerPrefs.GetInt("yousurwive", 0) == 0)
             coins -= 3;
+            
             PlayerPrefs.SetInt("coins", coins);
             isstart = true;
             image.SetActive(!image.activeSelf);
