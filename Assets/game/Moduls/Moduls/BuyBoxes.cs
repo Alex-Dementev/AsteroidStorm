@@ -26,7 +26,7 @@ public class BuyBoxes : MonoBehaviour
                 IsBuy.SetActive(false);
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 

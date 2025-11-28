@@ -10,10 +10,10 @@ public class AnimationSceneChanger : MonoBehaviour
     public bool stop;
     public bool start;
     public Animator anim;
+    public Animator webSite;
 
     void Start()
     {
-        PlayerPrefs.SetInt("isstopmusictocutscene", 1);
         maxVolume = PlayerPrefs.GetFloat("audios", 0.5f);
         currentVolume = maxVolume;
 
@@ -41,7 +41,7 @@ public class AnimationSceneChanger : MonoBehaviour
         {
             currentVolume -= 0.02f * Time.deltaTime * 60f;
             currentVolume = Mathf.Clamp(currentVolume, 0f, maxVolume);
-            ad1.volume = currentVolume / 50f;
+            ad1.volume = currentVolume / 18f;
 
             if (currentVolume <= 0f)
                 stop = false;
@@ -51,7 +51,7 @@ public class AnimationSceneChanger : MonoBehaviour
         {
             currentVolume += 0.02f * Time.deltaTime * 60f;
             currentVolume = Mathf.Clamp(currentVolume, 0f, maxVolume);
-            ad1.volume = currentVolume / 50f;
+            ad1.volume = currentVolume / 18f;
 
             if (currentVolume >= maxVolume)
                 start = false;
@@ -61,6 +61,14 @@ public class AnimationSceneChanger : MonoBehaviour
     public void AnimNextScene()
     {
         anim.Play("bs2");
+    }
+    public void NextScene()
+    {
+        SceneManager.LoadScene("main");
+    }
+    public void WebSite()
+    {
+        webSite.Play("WebSite");
     }
     
 }

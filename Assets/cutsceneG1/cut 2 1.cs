@@ -19,13 +19,17 @@ public class cutsceneg2 : MonoBehaviour
         ad3.volume = currentVolume / 1.1f;
 
         if (PlayerPrefs.GetInt("audio") == 0)
+        {
             ad.enabled = true;
             ad2.enabled = true;
             ad3.enabled = true;
+        }
         if (PlayerPrefs.GetInt("audio") == 1)
+        {
             ad.enabled = false;
             ad2.enabled = false;
             ad3.enabled = false;
+        }
     }
 
     public void isclick()

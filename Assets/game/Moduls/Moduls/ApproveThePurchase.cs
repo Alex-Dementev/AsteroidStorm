@@ -29,7 +29,7 @@ public class ApproveThePurchase : MonoBehaviour
             Name.text = "" + PlayerPrefs.GetString("NameBuyBox");
 
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
