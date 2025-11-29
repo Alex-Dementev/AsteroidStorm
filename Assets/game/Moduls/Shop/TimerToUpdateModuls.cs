@@ -5,7 +5,6 @@ using System;
 public class TimerToUpdateModuls : MonoBehaviour
 {
     [Header("Настройки таймера")]
-    // фиксированное время: 24 часа
     private const float updateIntervalHours = 24f;
 
     [Header("UI и магазин")]
@@ -20,10 +19,13 @@ public class TimerToUpdateModuls : MonoBehaviour
 
     private const string NEXT_UPDATE_KEY = "shop_next_update";
     private const string TIMER_STARTED_KEY = "shop_timer_started";
+    private const string SHOP_NEEDS_REFRESH = "shop_needs_refresh";
+
     private bool timerActive = false;
 
     void Start()
     {
+        // показываем стартовые модули
         if (!PlayerPrefs.HasKey("shop_col1_rarity"))
         {
             foreach (var go in initialModules)
@@ -37,8 +39,19 @@ public class TimerToUpdateModuls : MonoBehaviour
         if (PlayerPrefs.GetInt(TIMER_STARTED_KEY, 0) == 1)
             startTimer = true;
 
+        // включаем таймер
         if (startTimer && !timerActive)
             ActivateTimer();
+
+        // проверяем, нужно ли обновить магазин сразу при старте
+        if (PlayerPrefs.GetInt(SHOP_NEEDS_REFRESH, 0) == 1)
+        {
+            if (shopUpdater != null)
+                shopUpdater.ForceRefresh();
+
+            PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 0); // сброс флага
+            PlayerPrefs.Save();
+        }
     }
 
     void Update()
@@ -56,11 +69,11 @@ public class TimerToUpdateModuls : MonoBehaviour
         // === ВРЕМЯ ИСТЕКЛО ===
         if (hoursLeft <= 0f)
         {
-            if (shopUpdater != null)
-                shopUpdater.ForceRefresh();
+            // ставим флаг необходимости обновления
+            PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 1);
+            PlayerPrefs.Save();
 
             SetNextUpdateTimeSmart();
-
             hoursLeft = GetHoursLeft();
         }
 
@@ -70,7 +83,6 @@ public class TimerToUpdateModuls : MonoBehaviour
     private void ActivateTimer()
     {
         timerActive = true;
-
         PlayerPrefs.SetInt(TIMER_STARTED_KEY, 1);
         PlayerPrefs.Save();
 
@@ -80,7 +92,7 @@ public class TimerToUpdateModuls : MonoBehaviour
         UpdateTimerText();
     }
 
-    // === УЧЁТ ПРОПУЩЕННОГО ВРЕМЕНИ ===
+    // учёт пропущенного времени
     private void SetNextUpdateTimeSmart()
     {
         DateTime next;
