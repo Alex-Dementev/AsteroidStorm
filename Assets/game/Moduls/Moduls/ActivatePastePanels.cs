@@ -94,4 +94,48 @@ public class ActivatePastePanels : MonoBehaviour
         Shield.Play("DisActivate");
         Projectile.Play("Activate");
     }
+
+
+    public float minSwipeDistance = 80f;
+    private Vector2 startPos;
+    private bool isSwiping = false;
+
+    void Update()
+    {
+        // Начало касания или клик мышью
+        if (Input.GetMouseButtonDown(0))
+        {
+            startPos = Input.mousePosition;
+            isSwiping = true;
+        }
+
+        // Отпускание пальца/мыши
+        if (Input.GetMouseButtonUp(0) && isSwiping)
+        {
+            Vector2 endPos = Input.mousePosition;
+            float deltaX = endPos.x - startPos.x;
+
+            if (Mathf.Abs(deltaX) >= minSwipeDistance)
+            {
+                if (deltaX < 0)
+                {
+                    // свайп влево
+                    ClosePanel();
+                }
+            }
+
+            isSwiping = false; // сбрасываем флаг
+        }
+    }
+
+    void ClosePanel()
+    {
+        G.Play("DisActivate");
+        F.Play("DisActivate");
+        E.Play("DisActivate");
+        GyperJump.Play("DisActivate");
+        Scanner.Play("DisActivate");
+        Shield.Play("DisActivate");
+        Projectile.Play("DisActivate");
+    }
 }

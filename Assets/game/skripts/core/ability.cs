@@ -85,6 +85,10 @@ public class DoubleTapHandler : MonoBehaviour
     public float lastSwipeUpTime = 0f;
     public bool waitingSecondSwipeUp = false;
     public float swipeThreshold = 180f;
+    public GameObject a1;
+    public GameObject a2;
+    public GameObject a3;
+    public GameObject a4;
 
     private Coroutine waitSecondSwipeCoroutine;
 
@@ -94,6 +98,24 @@ public class DoubleTapHandler : MonoBehaviour
         isdelay = PlayerPrefs.GetFloat("isdelay");
         isotkat = PlayerPrefs.GetFloat("isotkat");
         PlayerPrefs.SetInt("isabilityuse", 0);
+
+        if(PlayerPrefs.GetInt("GyperJump", 0) == 0)
+            a1.SetActive(false);
+        if(PlayerPrefs.GetInt("Scanner", 0) == 0)
+            a2.SetActive(false);
+        if(PlayerPrefs.GetInt("Shield", 0) == 0)
+            a3.SetActive(false);
+        if(PlayerPrefs.GetInt("Projectile", 0) == 0)
+            a4.SetActive(false);
+
+        isotkat = PlayerPrefs.GetInt("GyperJumpOtkat");
+        isotkat2 = PlayerPrefs.GetInt("ScannerOtkat");
+        isotkat3 = PlayerPrefs.GetInt("ShieldOtkat");
+        isotkat4 = PlayerPrefs.GetInt("ProjectileOtkat");
+        costAbility1 = PlayerPrefs.GetInt("GyperJumpEnergy");
+        costAbility2 = PlayerPrefs.GetInt("ScannerEnergy");
+        costAbility3 = PlayerPrefs.GetInt("ShieldEnergy");
+        costAbility4 = PlayerPrefs.GetInt("ProjectileEnergy");
 
         if (PlayerPrefs.GetInt("audio") == 0) ad.enabled = true;
         else ad.enabled = false;
@@ -326,76 +348,86 @@ public class DoubleTapHandler : MonoBehaviour
     {
         if (otkat > 0 || e.energyint < costAbility1) return;
 
-        PlayerPrefs.SetInt("isabilityuse", 1);
-        b = true;
-        e.energyint -= costAbility1;
-        abilityt++;
-        PlayerPrefs.SetInt("abilityt", abilityt);
-        speed = r.zSpeed;
-        r.zSpeed = 750;
-        delay = isdelay;
-        otkat = isotkat;
-        bb = true;
-        lightintens = l.intensity;
-        l.intensity = 1.5f;
-        l.color = new Color(1f, 1f, 0.85f);
-        anim.Play("blue");
-        s.maxValue = isotkat;
-        effect.Play("slide lr");
-        ps.Play();
-        GiperAttackAS.Play();
+        if(PlayerPrefs.GetInt("GyperJump", 0) == 1)
+        {
+            PlayerPrefs.SetInt("isabilityuse", 1);
+            b = true;
+            e.energyint -= costAbility1;
+            abilityt++;
+            PlayerPrefs.SetInt("abilityt", abilityt);
+            speed = r.zSpeed;
+            r.zSpeed = 750;
+            delay = isdelay;
+            otkat = isotkat;
+            bb = true;
+            lightintens = l.intensity;
+            l.intensity = 1.5f;
+            l.color = new Color(1f, 1f, 0.85f);
+            anim.Play("blue");
+            s.maxValue = isotkat;
+            effect.Play("slide lr");
+            ps.Play();
+            GiperAttackAS.Play();
+        }
     }
 
     public void ActivateSwipeUpAbility()
     {
         if (otkat2 > 0 || e.energyint < costAbility2) return;
 
-        PlayerPrefs.SetInt("isabilityuse", 1);
-        Skanner.Play();
-        e.energyint -= costAbility2;
-        abilityt++;
-        PlayerPrefs.SetInt("abilityt", abilityt);
-        otkat2 = isotkat2;
-        anim.Play("blue");
-        s2.maxValue = isotkat2;
-        effect.Play("slide lr");
-        SkanerAS.Play();
+        if(PlayerPrefs.GetInt("Scanner", 0) == 1)
+        {
+            PlayerPrefs.SetInt("isabilityuse", 1);
+            Skanner.Play();
+            e.energyint -= costAbility2;
+            abilityt++;
+            PlayerPrefs.SetInt("abilityt", abilityt);
+            otkat2 = isotkat2;
+            anim.Play("blue");
+            s2.maxValue = isotkat2;
+            effect.Play("slide lr");
+            SkanerAS.Play();
+        }
     }
 
     public void ActivateSwipeDownAbility()
     {
         if (otkat3 > 0 || e.energyint < costAbility3) return;
 
-        PlayerPrefs.SetInt("isabilityuse", 1);
-        e.energyint -= costAbility3;
-        abilityt++;
-
-        PlayerPrefs.SetInt("activeShield", 1);
-        isdelayShield = 5;
-        isActiveShield = true;
-
-        PlayerPrefs.SetInt("abilityt", abilityt);
-        otkat3 = isotkat3;
-        anim.Play("blue");
-        s3.maxValue = isotkat3;
-        effect.Play("slide lr");
-        ShieldAS.Play();
-        ShieldAnim.Play("startShield");
+        if(PlayerPrefs.GetInt("Shield", 0) == 1)
+        {
+            PlayerPrefs.SetInt("isabilityuse", 1);
+            e.energyint -= costAbility3;
+            abilityt++;
+            PlayerPrefs.SetInt("activeShield", 1);
+            isdelayShield = 5;
+            isActiveShield = true;
+            PlayerPrefs.SetInt("abilityt", abilityt);
+            otkat3 = isotkat3;
+            anim.Play("blue");
+            s3.maxValue = isotkat3;
+            effect.Play("slide lr");
+            ShieldAS.Play();
+            ShieldAnim.Play("startShield");
+        }
     }
 
     public void ActivateDoubleSwipeUpAbility()
     {
         if (otkat4 > 0 || e.energyint < costAbility4) return;
 
-        PlayerPrefs.SetInt("isabilityuse", 1);
-        e.energyint -= costAbility4;
-        abilityt++;
-        PlayerPrefs.SetInt("abilityt", abilityt);
-        otkat4 = isotkat4;
-        anim.Play("blue");
-        s4.maxValue = isotkat4;
-        effect.Play("slide lr");
-        AttackAS.Play();
+        if(PlayerPrefs.GetInt("Projectile", 0) == 1)
+        {
+            PlayerPrefs.SetInt("isabilityuse", 1);
+            e.energyint -= costAbility4;
+            abilityt++;
+            PlayerPrefs.SetInt("abilityt", abilityt);
+            otkat4 = isotkat4;
+            anim.Play("blue");
+            s4.maxValue = isotkat4;
+            effect.Play("slide lr");
+            AttackAS.Play();
+        }
     }
 
     // === Щиты и бусты ===

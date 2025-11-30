@@ -11515,6 +11515,8 @@ MonoBehaviour:
   fuel5: {fileID: 0}
   ShieldEndAS: {fileID: 0}
   shield: {fileID: 0}
+  IsDelayFuel: 0
+  MinusFuel: 0
   explosionEffect: {fileID: 0}
   explosionSound1: {fileID: 0}
   explosionSound2: {fileID: 0}
@@ -56456,6 +56458,8 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 1178286100}
+  IsDelayFuel: 0
+  MinusFuel: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 1678625022}
@@ -56549,6 +56553,10 @@ MonoBehaviour:
   lastSwipeUpTime: 0
   waitingSecondSwipeUp: 0
   swipeThreshold: 400
+  a1: {fileID: 1800021482}
+  a2: {fileID: 1193520562}
+  a3: {fileID: 50800885}
+  a4: {fileID: 355636261}
 --- !u!54 &1258039500
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77356,6 +77364,8 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 842111931}
+  IsDelayFuel: 0
+  MinusFuel: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 1678625022}
@@ -77497,6 +77507,10 @@ MonoBehaviour:
   lastSwipeUpTime: 0
   waitingSecondSwipeUp: 0
   swipeThreshold: 400
+  a1: {fileID: 1800021482}
+  a2: {fileID: 1193520562}
+  a3: {fileID: 50800885}
+  a4: {fileID: 355636261}
 --- !u!114 &1582142842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78796,6 +78810,8 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 1940768020}
+  IsDelayFuel: 0
+  MinusFuel: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 1678625022}
@@ -78937,6 +78953,10 @@ MonoBehaviour:
   lastSwipeUpTime: 0
   waitingSecondSwipeUp: 0
   swipeThreshold: 400
+  a1: {fileID: 1800021482}
+  a2: {fileID: 1193520562}
+  a3: {fileID: 50800885}
+  a4: {fileID: 355636261}
 --- !u!114 &1693977096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96084,6 +96104,8 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 896813987}
+  IsDelayFuel: 0
+  MinusFuel: 0
   explosionEffect: {fileID: 1716155051}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 1678625022}
@@ -96225,6 +96247,10 @@ MonoBehaviour:
   lastSwipeUpTime: 0
   waitingSecondSwipeUp: 0
   swipeThreshold: 400
+  a1: {fileID: 1800021482}
+  a2: {fileID: 1193520562}
+  a3: {fileID: 50800885}
+  a4: {fileID: 355636261}
 --- !u!114 &1936518571
 MonoBehaviour:
   m_ObjectHideFlags: 0

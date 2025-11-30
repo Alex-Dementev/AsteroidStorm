@@ -10,6 +10,7 @@ public class fueltostart : MonoBehaviour
     public int fueled;
     private bool userChangedSlider = false;
     public Text text;
+    public int maxfuel;
 
     void Start()
     {
@@ -20,44 +21,55 @@ public class fueltostart : MonoBehaviour
     {
         if(PlayerPrefs.GetInt("start", 0) == 0)
         {
-        fuel = PlayerPrefs.GetInt("fuel", 0);
+            fuel = PlayerPrefs.GetInt("fuel", 0);
+            maxfuel = PlayerPrefs.GetInt("MaxFuel1", 0);
+            maxfuel += PlayerPrefs.GetInt("MaxFuel2", 0);
 
-        if (!userChangedSlider)
-        {
-            // обновляем maxValue всегда
-            fuelSlider.maxValue = Mathf.Max(1, fuel); 
+            if(maxfuel <= fuel)
+            fuelSlider.maxValue = maxfuel;
+            if(maxfuel >= fuel)
+            fuelSlider.maxValue = fuel;
 
-            if (fuel == 0)
+            if (!userChangedSlider)
             {
-                fuelSlider.value = 0;
-                fueled = 0;
-            }
-            else if (fuel == 1)
-            {
-                fuelSlider.value = 1;
-                fueled = 1;
+                if (fuel == 0)
+                {
+                    fuelSlider.value = 0;
+                    fueled = 0;
+                }
+                else if (fuel == 1 && maxfuel >= 1)
+                {
+                    fuelSlider.value = 1;
+                    fueled = 1;
+                }
+                else if(maxfuel >= 1 && fuel >= 2)
+                {
+                    fuelSlider.value = 2;
+                    fueled = 2;
+                }
+
+                PlayerPrefs.SetInt("fueltostart", fueled);
+                text.text = fueled.ToString();
             }
             else
             {
-                fuelSlider.value = 2;
-                fueled = 2;
+                if(maxfuel != 0)
+                {
+                fuel2 = PlayerPrefs.GetInt("fuel", 0);
+                int selected = Mathf.RoundToInt(fuelSlider.value);
+
+                // не даём выбрать больше, чем есть топлива
+                selected = Mathf.Clamp(selected, 0, fuel2);
+
+                PlayerPrefs.SetInt("fueltostart", selected);
+                text.text = selected.ToString();
+                }
+                else
+                {
+                    fuel2 = 0;
+                    text.text = "0";
+                }
             }
-
-            PlayerPrefs.SetInt("fueltostart", fueled);
-            text.text = fueled.ToString();
-        }
-        else
-        {
-            fuel2 = PlayerPrefs.GetInt("fuel", 0);
-            int selected = Mathf.RoundToInt(fuelSlider.value);
-
-            // не даём выбрать больше, чем есть топлива
-            selected = Mathf.Clamp(selected, 0, fuel2);
-
-            PlayerPrefs.SetInt("fueltostart", selected);
-            text.text = selected.ToString();
-            fuelSlider.maxValue = fuel2;
-        }
         }
     }
 

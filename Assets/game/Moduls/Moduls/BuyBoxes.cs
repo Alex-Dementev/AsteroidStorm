@@ -10,11 +10,18 @@ public class BuyBoxes : MonoBehaviour
     public GameObject IsBuy;
     public int IndexEnd;
     public string Name;
+    private Coroutine loop;
 
 
-    void Start()
+    void OnEnable()
     {
-        StartCoroutine(TimerLoop());
+        loop = StartCoroutine(TimerLoop());
+    }
+
+    void OnDisable()
+    {
+        if (loop != null)
+            StopCoroutine(loop);
     }
 
     private IEnumerator TimerLoop()

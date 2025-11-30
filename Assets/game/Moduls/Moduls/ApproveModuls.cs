@@ -14,19 +14,40 @@ public class ApproveModuls : MonoBehaviour
     public Image rareBox;
     public Image rareDesc;
     private int Index;
+    public int IndexSlot;
     private int Rare;
     public int TypeIndex;
     public int Position;
+    public Image Detection;
+    private Coroutine loop;
+
+
+    void OnEnable()
+    {
+        loop = StartCoroutine(TimerLoop());
+    }
 
     void Start()
     {
-        StartCoroutine(TimerLoop());
+        PlayerPrefs.SetInt("IndexSlot", 0);
+    }
+
+    void OnDisable()
+    {
+        if (loop != null)
+            StopCoroutine(loop);
     }
 
     private IEnumerator TimerLoop()
     {
         while (true)
         {
+            if(PlayerPrefs.GetInt("IndexSlot", 0) == IndexSlot)
+                Detection.color = new Color(35/255f, 154/255f, 28/255f);
+            else
+                Detection.color = new Color(147/255f, 15/255f, 128/255f);
+
+
             if(TypeIndex == 1)
                 Index = PlayerPrefs.GetInt("EngineIndex", 0);
             if(TypeIndex == 2)
@@ -55,6 +76,7 @@ public class ApproveModuls : MonoBehaviour
                 Index = PlayerPrefs.GetInt("ShieldIndex", 0);
             if(TypeIndex == 7)
                 Index = PlayerPrefs.GetInt("ProjectileIndex", 0);
+
 
             if(Index >= 1)
             {
@@ -127,7 +149,8 @@ public class ApproveModuls : MonoBehaviour
         DescPositive.text = "" + DescPositiveS;
         DescNegative.text = "" + DescNegativeS;
 
-        PlayerPrefs.SetInt("Position", Position);
+        PlayerPrefs.SetInt("IndexSlot", IndexSlot);
+        Debug.Log(PlayerPrefs.GetInt("IndexSlot"));
 
         if(Rare == 0)
             rareDesc.color = new Color(66/255f, 50/255f, 75/255f);
@@ -141,5 +164,7 @@ public class ApproveModuls : MonoBehaviour
             rareDesc.color = new Color(125/255f, 132/255f, 0/255f);
         if(Rare == 5)
             rareDesc.color = new Color(114/255f, 15/255f, 61/255f);
+
+        PlayerPrefs.SetInt("Position", Position);
     }
 }

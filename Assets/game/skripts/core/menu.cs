@@ -215,6 +215,8 @@ public class menu : MonoBehaviour
     public bool isCloseCustomPanel;
     public bool isCloseBankmPanel;
     public bool isCloseLomPanel;
+    public Animator Dificite;
+    private float Dificitefloat;
 
 
 
@@ -455,6 +457,12 @@ public class menu : MonoBehaviour
         ad7.volume = audios;
         ad8.volume = audios / 1.5f;
         ad9.volume = audios;
+
+        Dificitefloat = PlayerPrefs.GetFloat("Generators1Energy", 0);
+        Dificitefloat += PlayerPrefs.GetFloat("Generators2Energy", 0);
+        Dificitefloat += PlayerPrefs.GetFloat("Generators3Energy", 0);
+        Dificitefloat += PlayerPrefs.GetFloat("Generators4Energy", 0);
+        Dificitefloat -= PlayerPrefs.GetFloat("TurbinsEnergy", 0);
 
         if(rocketfall && !isfall)
         {
@@ -1028,7 +1036,7 @@ public void destartedrocketps()
     }
     public void is1g()
     {
-        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 3 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 || PlayerPrefs.GetInt("yousurwive", 0) == 1)
+        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 3 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 && Dificitefloat >= 0|| PlayerPrefs.GetInt("yousurwive", 0) == 1)
         {
             PlayerPrefs.SetInt("start", 1);
             int fuel = PlayerPrefs.GetInt("fuel");
@@ -1047,6 +1055,10 @@ public void destartedrocketps()
             allgames = PlayerPrefs.GetInt("allgames", 0);
             allgames++;
             PlayerPrefs.SetInt("allgames", allgames);
+        }
+        else if(Dificitefloat <= 0)
+        {
+            Dificite.Play("Start");
         }
 
         if(r2.isdelayb == true)

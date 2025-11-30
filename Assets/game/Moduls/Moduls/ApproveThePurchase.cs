@@ -12,12 +12,18 @@ public class ApproveThePurchase : MonoBehaviour
     public AudioSource Fail;
     public AudioSource Approved;
     public Text Name;
+    private Coroutine loop;
 
-    public void Start()
+    void OnEnable()
     {
-        StartCoroutine(TimerLoop());
+        loop = StartCoroutine(TimerLoop());
     }
 
+    void OnDisable()
+    {
+        if (loop != null)
+            StopCoroutine(loop);
+    }
     private IEnumerator TimerLoop()
     {
         while (true)

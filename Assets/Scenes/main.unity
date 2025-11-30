@@ -442,6 +442,13 @@ MonoBehaviour:
   NameT: {fileID: 964024191}
   IndexModul: A32
   QuantityText: {fileID: 1924506819}
+  Detected: {fileID: 2101796758}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 5
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 10
 --- !u!114 &8793598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,13 +903,21 @@ MonoBehaviour:
     \u0432 \u0430\u0441\u0442\u0435\u0440\u043E\u0438\u0434 \u0432\u044B\u0437\u044B\u0432\u0430\u0435\u0442
     \u0432\u0437\u0440\u044B\u0432"
   DescNegat: "\u042D\u043D\u0435\u0440\u0433\u0438\u044F: 35                                    
-    \u041E\u0442\u043A\u0430\u0442: 30"
+    \u041E\u0442\u043A\u0430\u0442: 30                           \u041C\u043E\u0436\u0435\u0442
+    \u0437\u0430\u0434\u0435\u0442\u044C \u0440\u0430\u043A\u0435\u0442\u0443"
   RareLevel: 5
   Index: 14
   TypeIndex: 7
   NameT: {fileID: 1997108804}
   IndexModul: A24
   QuantityText: {fileID: 518623835}
+  Detected: {fileID: 1375546203}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 35
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 30
 --- !u!114 &14441413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12186,6 +12201,13 @@ MonoBehaviour:
   NameT: {fileID: 10553240}
   IndexModul: A21
   QuantityText: {fileID: 99169976}
+  Detected: {fileID: 1136649241}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 25
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 23
 --- !u!114 &113637735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12450,7 +12472,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u043D\u0438\u0441\u0442\u0440
-    +55"
+    +31"
 --- !u!222 &117364715
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12982,8 +13004,15 @@ MonoBehaviour:
   Index: 0
   TypeIndex: 5
   NameT: {fileID: 2043449811}
-  IndexModul: 
-  QuantityText: {fileID: 0}
+  IndexModul: 0
+  QuantityText: {fileID: 1573982647}
+  Detected: {fileID: 491462757}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &124597674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18658,6 +18687,13 @@ MonoBehaviour:
   NameT: {fileID: 1149797356}
   IndexModul: A11
   QuantityText: {fileID: 1247097742}
+  Detected: {fileID: 564180975}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 30
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 30
 --- !u!114 &134702183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34145,7 +34181,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u043D\u0438\u0441\u0442\u0440
-    +25"
+    +18"
 --- !u!222 &203305808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35583,8 +35619,10 @@ MonoBehaviour:
   Name: {fileID: 708981365}
   rareBox: {fileID: 1540265132}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 11
   TypeIndex: 3
   Position: 2
+  Detection: {fileID: 1195277432}
 --- !u!1 &217597671
 GameObject:
   m_ObjectHideFlags: 0
@@ -38900,6 +38938,7 @@ MonoBehaviour:
   fuel2: 0
   fueled: 0
   text: {fileID: 205707539}
+  maxfuel: 0
 --- !u!1 &248942662
 GameObject:
   m_ObjectHideFlags: 0
@@ -46410,6 +46449,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &283567593
 GameObject:
   m_ObjectHideFlags: 0
@@ -46819,6 +46865,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &286973788
 GameObject:
   m_ObjectHideFlags: 0
@@ -53344,6 +53397,7 @@ RectTransform:
   - {fileID: 1338686151}
   - {fileID: 596760587}
   - {fileID: 342502687}
+  - {fileID: 1573982646}
   m_Father: {fileID: 1421074705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -53377,6 +53431,7 @@ MonoBehaviour:
   GOScanner: {fileID: 246526279}
   GOShield: {fileID: 539587913}
   GOProjectile: {fileID: 1622825769}
+  minSwipeDistance: 120
 --- !u!1 &307350927
 GameObject:
   m_ObjectHideFlags: 0
@@ -54606,7 +54661,7 @@ MonoBehaviour:
   DescPositive: {fileID: 1399107767}
   DescNegative: {fileID: 55085157}
   DescPos: "\u0412\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u0432\u0437\u044F\u0442\u044C
-    \u0441 \u0441\u043E\u0431\u043E\u0439 25 \u043A\u0430\u043D\u0438\u0441\u0442\u0440"
+    \u0441 \u0441\u043E\u0431\u043E\u0439 18 \u043A\u0430\u043D\u0438\u0441\u0442\u0440"
   DescNegat: '-'
   RareLevel: 2
   Index: 2
@@ -54614,6 +54669,13 @@ MonoBehaviour:
   NameT: {fileID: 569422869}
   IndexModul: F2
   QuantityText: {fileID: 1026059764}
+  Detected: {fileID: 1789448438}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 18
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &316622767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56513,6 +56575,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &346329625
 GameObject:
   m_ObjectHideFlags: 0
@@ -59261,7 +59330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.21967699}
   m_AnchorMax: {x: 1, y: 0.748323}
-  m_AnchoredPosition: {x: 0, y: -4217.292}
+  m_AnchoredPosition: {x: 0, y: -4217.288}
   m_SizeDelta: {x: 0, y: 496.44434}
   m_Pivot: {x: 0.5, y: 20.5}
 --- !u!114 &383156904
@@ -59647,8 +59716,10 @@ MonoBehaviour:
   Name: {fileID: 335183852}
   rareBox: {fileID: 2077762810}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 8
   TypeIndex: 6
-  Position: 0
+  Position: 1
+  Detection: {fileID: 1636302441}
 --- !u!1 &385874396
 GameObject:
   m_ObjectHideFlags: 0
@@ -65788,6 +65859,13 @@ MonoBehaviour:
   NameT: {fileID: 167037914}
   IndexModul: A23
   QuantityText: {fileID: 1845544026}
+  Detected: {fileID: 1473539202}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 15
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 15
 --- !u!114 &400969457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66765,8 +66843,10 @@ MonoBehaviour:
   Name: {fileID: 1798821979}
   rareBox: {fileID: 1793610272}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 5
   TypeIndex: 2
   Position: 4
+  Detection: {fileID: 885865693}
 --- !u!1 &405145190
 GameObject:
   m_ObjectHideFlags: 0
@@ -67809,6 +67889,13 @@ MonoBehaviour:
   NameT: {fileID: 325061142}
   IndexModul: A14
   QuantityText: {fileID: 1383426780}
+  Detected: {fileID: 2063632270}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 60
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 50
 --- !u!114 &425775464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68189,6 +68276,109 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427801211}
   m_CullTransparentMesh: 1
+--- !u!1 &434527205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 434527206}
+  - component: {fileID: 434527208}
+  - component: {fileID: 434527207}
+  - component: {fileID: 434527209}
+  m_Layer: 5
+  m_Name: Dificite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &434527206
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434527205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1212562435}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 307.09998}
+  m_SizeDelta: {x: -50, y: 140}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &434527207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434527205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5377358, g: 0, b: 0.034345932, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 2
+    m_MaxSize: 80
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u041D\u0435\u0434\u043E\u0441\u0442\u0430\u0442\u043E\u0447\u043D\u0430\u044F
+    \u0432\u044B\u0440\u043E\u0431\u043E\u0442\u043A\u0430\n\u044D\u043D\u0435\u0440\u0433\u0438\u0438"
+--- !u!222 &434527208
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434527205}
+  m_CullTransparentMesh: 1
+--- !u!95 &434527209
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434527205}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0066deeeaecc38f49be615092bd00b84, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &434788634
 GameObject:
   m_ObjectHideFlags: 0
@@ -68527,8 +68717,15 @@ MonoBehaviour:
   Index: 0
   TypeIndex: 2
   NameT: {fileID: 974174524}
-  IndexModul: 
-  QuantityText: {fileID: 0}
+  IndexModul: 0
+  QuantityText: {fileID: 1573982647}
+  Detected: {fileID: 637300596}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &437963681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69418,8 +69615,10 @@ MonoBehaviour:
   Name: {fileID: 1865750381}
   rareBox: {fileID: 129263387}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 3
   TypeIndex: 2
   Position: 2
+  Detection: {fileID: 1514322130}
 --- !u!1 &447599830
 GameObject:
   m_ObjectHideFlags: 0
@@ -75135,6 +75334,7 @@ MonoBehaviour:
   isCloseCustomPanel: 0
   isCloseBankmPanel: 0
   isCloseLomPanel: 0
+  Dificite: {fileID: 434527209}
 --- !u!114 &455307803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82020,7 +82220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15, y: 0}
   m_AnchorMax: {x: 0.35, y: 0.2135715}
-  m_AnchoredPosition: {x: 0, y: -112.476746}
+  m_AnchoredPosition: {x: 0, y: -112.466736}
   m_SizeDelta: {x: 130, y: -425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485773957
@@ -82412,8 +82612,10 @@ MonoBehaviour:
   Name: {fileID: 263386782}
   rareBox: {fileID: 250462389}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 4
   TypeIndex: 2
   Position: 3
+  Detection: {fileID: 803514459}
 --- !u!1 &488618778
 GameObject:
   m_ObjectHideFlags: 0
@@ -86182,7 +86384,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 547254009}
-  - component: {fileID: 547254010}
   m_Layer: 0
   m_Name: ads
   m_TagString: Untagged
@@ -86205,19 +86406,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &547254010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547254006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fecc0eb953734246a86c039518893ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ff: 0
 --- !u!1 &548666882
 GameObject:
   m_ObjectHideFlags: 0
@@ -100495,8 +100683,10 @@ MonoBehaviour:
   Name: {fileID: 1035378901}
   rareBox: {fileID: 190934531}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 7
   TypeIndex: 5
-  Position: 0
+  Position: 1
+  Detection: {fileID: 824468595}
 --- !u!1 &676248515
 GameObject:
   m_ObjectHideFlags: 0
@@ -106922,7 +107112,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u043D\u0438\u0441\u0442\u0440
-    +55"
+    +31"
 --- !u!222 &687142776
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -123516,6 +123706,13 @@ MonoBehaviour:
   NameT: {fileID: 1289517280}
   IndexModul: G4S
   QuantityText: {fileID: 1860087290}
+  Detected: {fileID: 1504502900}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 3.5
+  otkat: 0
 --- !u!114 &706751036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126592,6 +126789,13 @@ MonoBehaviour:
   NameT: {fileID: 530247713}
   IndexModul: G2E
   QuantityText: {fileID: 832343477}
+  Detected: {fileID: 1277194125}
+  minusfuel: 0.025
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0.8
+  otkat: 0
 --- !u!114 &744325493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128542,7 +128746,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u043D\u0438\u0441\u0442\u0440
-    +200"
+    +55"
 --- !u!222 &763410287
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -134154,8 +134358,15 @@ MonoBehaviour:
   Index: 0
   TypeIndex: 4
   NameT: {fileID: 439516805}
-  IndexModul: 
-  QuantityText: {fileID: 0}
+  IndexModul: 0
+  QuantityText: {fileID: 1573982647}
+  Detected: {fileID: 1079589957}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &779608559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137472,7 +137683,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u043D\u0438\u0441\u0442\u0440
-    +25"
+    +18"
 --- !u!222 &835538381
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -138526,6 +138737,13 @@ MonoBehaviour:
   NameT: {fileID: 1679132715}
   IndexModul: G4E
   QuantityText: {fileID: 1005584590}
+  Detected: {fileID: 228721608}
+  minusfuel: 0.1
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 3
+  otkat: 0
 --- !u!114 &856947064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138633,7 +138851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5283019, g: 0, b: 0.45163086, a: 0.19607843}
+  m_Color: {r: 0.5754717, g: 0.05700427, b: 0.49866152, a: 0.19607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -138917,6 +139135,13 @@ MonoBehaviour:
   NameT: {fileID: 816800862}
   IndexModul: G3E
   QuantityText: {fileID: 716592242}
+  Detected: {fileID: 784980614}
+  minusfuel: 0.06
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 1.7
+  otkat: 0
 --- !u!114 &862474412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139044,6 +139269,13 @@ MonoBehaviour:
   NameT: {fileID: 1750691290}
   IndexModul: A31
   QuantityText: {fileID: 1944632112}
+  Detected: {fileID: 1033902329}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 15
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 20
 --- !u!114 &862898753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147859,6 +148091,13 @@ MonoBehaviour:
   NameT: {fileID: 1422875702}
   IndexModul: B2
   QuantityText: {fileID: 1881511375}
+  Detected: {fileID: 1559346531}
+  minusfuel: 0.075
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &913969809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154675,8 +154914,10 @@ MonoBehaviour:
   Name: {fileID: 1797733323}
   rareBox: {fileID: 88546339}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 10
   TypeIndex: 3
   Position: 1
+  Detection: {fileID: 367577332}
 --- !u!1 &941158210
 GameObject:
   m_ObjectHideFlags: 0
@@ -161439,8 +161680,10 @@ MonoBehaviour:
   Name: {fileID: 779148471}
   rareBox: {fileID: 256028918}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 9
   TypeIndex: 7
-  Position: 0
+  Position: 1
+  Detection: {fileID: 1601344776}
 --- !u!1 &973712784
 GameObject:
   m_ObjectHideFlags: 0
@@ -166965,7 +167208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.6016025}
-  m_AnchoredPosition: {x: 0, y: -1500.0427}
+  m_AnchoredPosition: {x: 0, y: -1500.0642}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &979075891
@@ -169666,6 +169909,13 @@ MonoBehaviour:
   NameT: {fileID: 986050833}
   IndexModul: A13
   QuantityText: {fileID: 2133617232}
+  Detected: {fileID: 427801213}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 20
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 20
 --- !u!114 &1019938439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170029,6 +170279,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &1025404974
 GameObject:
   m_ObjectHideFlags: 0
@@ -171723,6 +171980,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &1038641181
 GameObject:
   m_ObjectHideFlags: 0
@@ -179827,6 +180091,13 @@ MonoBehaviour:
   NameT: {fileID: 1817017177}
   IndexModul: A22
   QuantityText: {fileID: 1607078536}
+  Detected: {fileID: 1902716731}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 10
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 15
 --- !u!114 &1085351197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180859,6 +181130,13 @@ MonoBehaviour:
   NameT: {fileID: 139604833}
   IndexModul: A33
   QuantityText: {fileID: 578925005}
+  Detected: {fileID: 254066821}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 10
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 10
 --- !u!114 &1092631137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181495,6 +181773,13 @@ MonoBehaviour:
   NameT: {fileID: 1230903660}
   IndexModul: G3
   QuantityText: {fileID: 292262884}
+  Detected: {fileID: 340829953}
+  minusfuel: 0.11
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 2.4
+  otkat: 0
 --- !u!114 &1098473941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203971,6 +204256,13 @@ MonoBehaviour:
   NameT: {fileID: 834348415}
   IndexModul: A12
   QuantityText: {fileID: 1331708330}
+  Detected: {fileID: 172079165}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 15
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 20
 --- !u!114 &1133630879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204713,7 +205005,7 @@ MonoBehaviour:
   DescPositive: {fileID: 1399107767}
   DescNegative: {fileID: 55085157}
   DescPos: "\u0412\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u0432\u0437\u044F\u0442\u044C
-    \u0441 \u0441\u043E\u0431\u043E\u0439 200 \u043A\u0430\u043D\u0438\u0441\u0442\u0440"
+    \u0441 \u0441\u043E\u0431\u043E\u0439 55 \u043A\u0430\u043D\u0438\u0441\u0442\u0440"
   DescNegat: '-'
   RareLevel: 4
   Index: 4
@@ -204721,6 +205013,13 @@ MonoBehaviour:
   NameT: {fileID: 1789955959}
   IndexModul: F4
   QuantityText: {fileID: 2023679980}
+  Detected: {fileID: 1002893927}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 55
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &1138833607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206665,6 +206964,13 @@ MonoBehaviour:
   NameT: {fileID: 1257662262}
   IndexModul: B1
   QuantityText: {fileID: 2120100640}
+  Detected: {fileID: 349366530}
+  minusfuel: 0.1
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &1167676498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206971,6 +207277,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &1175216588
 GameObject:
   m_ObjectHideFlags: 0
@@ -213898,6 +214211,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &1203112459
 GameObject:
   m_ObjectHideFlags: 0
@@ -214318,6 +214638,7 @@ RectTransform:
   - {fileID: 248218783}
   - {fileID: 979075890}
   - {fileID: 1384246528}
+  - {fileID: 434527206}
   - {fileID: 856318263}
   m_Father: {fileID: 1689878932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -214613,6 +214934,13 @@ MonoBehaviour:
   NameT: {fileID: 89353873}
   IndexModul: E2
   QuantityText: {fileID: 695992412}
+  Detected: {fileID: 405145192}
+  minusfuel: 0
+  minusenergy: 1.5
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &1214051018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215222,6 +215550,13 @@ MonoBehaviour:
   NameT: {fileID: 754881743}
   IndexModul: B3
   QuantityText: {fileID: 301629672}
+  Detected: {fileID: 218951081}
+  minusfuel: 0.05
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &1221272521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226405,8 +226740,10 @@ MonoBehaviour:
   Name: {fileID: 1313452974}
   rareBox: {fileID: 1902709198}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 6
   TypeIndex: 4
-  Position: 0
+  Position: 1
+  Detection: {fileID: 1912103048}
 --- !u!1 &1248726906
 GameObject:
   m_ObjectHideFlags: 0
@@ -229495,6 +229832,13 @@ MonoBehaviour:
   NameT: {fileID: 394630179}
   IndexModul: G4
   QuantityText: {fileID: 166089596}
+  Detected: {fileID: 999733731}
+  minusfuel: 0.18
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 4
+  otkat: 0
 --- !u!114 &1292069529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235097,6 +235441,13 @@ MonoBehaviour:
   NameT: {fileID: 2119195827}
   IndexModul: G1
   QuantityText: {fileID: 680792378}
+  Detected: {fileID: 874163886}
+  minusfuel: 0.02
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0.5
+  otkat: 0
 --- !u!114 &1301371579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245978,7 +246329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1, y: 0.06784948}
   m_AnchorMax: {x: 0.45, y: 0.3057742}
-  m_AnchoredPosition: {x: 40.000244, y: 71.00525}
+  m_AnchoredPosition: {x: 40.000244, y: 71.00574}
   m_SizeDelta: {x: -220, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1331708328
@@ -251251,7 +251602,7 @@ MonoBehaviour:
   DescPositive: {fileID: 1399107767}
   DescNegative: {fileID: 55085157}
   DescPos: "\u0412\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u0432\u0437\u044F\u0442\u044C
-    \u0441 \u0441\u043E\u0431\u043E\u0439 55 \u043A\u0430\u043D\u0438\u0441\u0442\u0440"
+    \u0441 \u0441\u043E\u0431\u043E\u0439 31 \u043A\u0430\u043D\u0438\u0441\u0442\u0440"
   DescNegat: '-'
   RareLevel: 3
   Index: 3
@@ -251259,6 +251610,13 @@ MonoBehaviour:
   NameT: {fileID: 2057058519}
   IndexModul: F3
   QuantityText: {fileID: 742214793}
+  Detected: {fileID: 1130855697}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 31
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &1337912032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251828,6 +252186,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &1341055726
 GameObject:
   m_ObjectHideFlags: 0
@@ -259794,7 +260159,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u043D\u0438\u0441\u0442\u0440
-    +200"
+    +55"
 --- !u!222 &1397287173
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -271533,6 +271898,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &1421074711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277757,6 +278129,13 @@ MonoBehaviour:
   NameT: {fileID: 1641626367}
   IndexModul: G3S
   QuantityText: {fileID: 1066898561}
+  Detected: {fileID: 1862073679}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 2
+  otkat: 0
 --- !u!114 &1440166343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301701,6 +302080,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572960578}
   m_CullTransparentMesh: 1
+--- !u!1 &1573982645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1573982646}
+  - component: {fileID: 1573982648}
+  - component: {fileID: 1573982647}
+  m_Layer: 5
+  m_Name: No
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1573982646
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573982645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 302229527}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -36368, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1573982647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573982645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1573982648
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573982645}
+  m_CullTransparentMesh: 1
 --- !u!1 &1574034032
 GameObject:
   m_ObjectHideFlags: 0
@@ -309147,8 +309605,15 @@ MonoBehaviour:
   Index: 0
   TypeIndex: 7
   NameT: {fileID: 1515633656}
-  IndexModul: 
-  QuantityText: {fileID: 0}
+  IndexModul: 0
+  QuantityText: {fileID: 1573982647}
+  Detected: {fileID: 2029195948}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &1615684326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312276,7 +312741,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u043D\u0438\u0441\u0442\u0440
-    +200"
+    +55"
 --- !u!222 &1660773427
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -325031,6 +325496,13 @@ MonoBehaviour:
   NameT: {fileID: 926691269}
   IndexModul: G1E
   QuantityText: {fileID: 841728917}
+  Detected: {fileID: 605767303}
+  minusfuel: 0.01
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0.3
+  otkat: 0
 --- !u!114 &1795697086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333216,8 +333688,15 @@ MonoBehaviour:
   Index: 0
   TypeIndex: 6
   NameT: {fileID: 1089137643}
-  IndexModul: 
-  QuantityText: {fileID: 0}
+  IndexModul: 0
+  QuantityText: {fileID: 1573982647}
+  Detected: {fileID: 873422439}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &1852738138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333524,6 +334003,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &1853208820
 GameObject:
   m_ObjectHideFlags: 0
@@ -333774,6 +334260,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &1856400637
 GameObject:
   m_ObjectHideFlags: 0
@@ -334498,7 +334991,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u043D\u0438\u0441\u0442\u0440
-    +25"
+    +18"
 --- !u!222 &1872844796
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -341325,7 +341818,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u043D\u0438\u0441\u0442\u0440
-    +55"
+    +31"
 --- !u!222 &1909116401
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -349209,8 +349702,10 @@ MonoBehaviour:
   Name: {fileID: 1444059200}
   rareBox: {fileID: 977929077}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 2
   TypeIndex: 2
   Position: 1
+  Detection: {fileID: 812044805}
 --- !u!1 &1957780843
 GameObject:
   m_ObjectHideFlags: 0
@@ -352238,8 +352733,10 @@ MonoBehaviour:
   Name: {fileID: 18637768}
   rareBox: {fileID: 1399083115}
   rareDesc: {fileID: 990782573}
+  IndexSlot: 1
   TypeIndex: 1
-  Position: 0
+  Position: 1
+  Detection: {fileID: 1918019896}
 --- !u!1 &2005017506
 GameObject:
   m_ObjectHideFlags: 0
@@ -352527,6 +353024,13 @@ MonoBehaviour:
   NameT: {fileID: 1800630200}
   IndexModul: E1
   QuantityText: {fileID: 340296695}
+  Detected: {fileID: 1594194135}
+  minusfuel: 0
+  minusenergy: 2.5
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &2008563817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373986,6 +374490,13 @@ MonoBehaviour:
   NameT: {fileID: 0}
   IndexModul: 
   QuantityText: {fileID: 0}
+  Detected: {fileID: 0}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!1 &2047112407
 GameObject:
   m_ObjectHideFlags: 0
@@ -374111,6 +374622,13 @@ MonoBehaviour:
   NameT: {fileID: 1508642935}
   IndexModul: G2
   QuantityText: {fileID: 1154442603}
+  Detected: {fileID: 1802649626}
+  minusfuel: 0.05
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 1.2
+  otkat: 0
 --- !u!114 &2047112411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387744,8 +388262,15 @@ MonoBehaviour:
   Index: 0
   TypeIndex: 3
   NameT: {fileID: 2126191545}
-  IndexModul: 
-  QuantityText: {fileID: 0}
+  IndexModul: 0
+  QuantityText: {fileID: 1573982647}
+  Detected: {fileID: 861363712}
+  minusfuel: 0
+  minusenergy: 0
+  energyAbility: 0
+  maxFuel: 0
+  plusenergy: 0
+  otkat: 0
 --- !u!114 &2117096372
 MonoBehaviour:
   m_ObjectHideFlags: 0

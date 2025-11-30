@@ -21,20 +21,127 @@ public class PrefBoxPaste : MonoBehaviour
     private string LoadIndexModul;
     private int Quantity;
     public Text QuantityText;
+    public Image Detected;
+    private Coroutine loop;
+
+    public float minusfuel;
+    public float minusenergy;
+    public int energyAbility;
+    public int maxFuel;
+    public float plusenergy;
+    public int otkat;
 
 
-    void OnEnable() 
+
+    void OnEnable()
     {
-        StartCoroutine(TimerLoop());
+        loop = StartCoroutine(TimerLoop());
+    }
+
+    void OnDisable()
+    {
+        if (loop != null)
+            StopCoroutine(loop);
     }
 
     private IEnumerator TimerLoop()
     {
         while (true)
         {
+            if(TypeIndex == 1)
+            {
+                if(PlayerPrefs.GetString("TurbinIndexModule", "") == IndexModul)
+                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+            if(TypeIndex == 2)
+            {
+                IndexSlot = PlayerPrefs.GetInt("Position");
+                
+                if(IndexSlot == 1)
+                {
+                    if(PlayerPrefs.GetString("Generator1IndexModule", "") == IndexModul)
+                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    else
+                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
+                }
+                if(IndexSlot == 2)
+                {
+                    if(PlayerPrefs.GetString("Generator2IndexModule") == IndexModul)
+                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    else
+                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
+                }
+                if(IndexSlot == 3)
+                {
+                    if(PlayerPrefs.GetString("Generator3IndexModule", "") == IndexModul)
+                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+                }
+                if(IndexSlot == 4)
+                {
+                    if(PlayerPrefs.GetString("Generator4IndexModule", "") == IndexModul)
+                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    else
+                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
+                }
+            }
+            if(TypeIndex == 3)
+            {
+                IndexSlot = PlayerPrefs.GetInt("Position");
+                
+                if(IndexSlot == 1)
+                {
+                    if(PlayerPrefs.GetString("Fuel1IndexModule") == IndexModul)
+                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    else
+                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
+                }
+                if(IndexSlot == 2)
+                {
+                    if(PlayerPrefs.GetString("Fuel2IndexModule") == IndexModul)
+                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    else
+                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
+                }
+            }
+            if (TypeIndex == 4)
+            {
+                if(PlayerPrefs.GetString("GyperJumpIndexModule", "") == IndexModul)
+                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+
+            if (TypeIndex == 5)
+            {
+                if(PlayerPrefs.GetString("ScannerIndexModule", "") == IndexModul)
+                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+
+            if (TypeIndex == 6)
+            {
+                if(PlayerPrefs.GetString("ShieldIndexModule", "") == IndexModul)
+                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+
+            if (TypeIndex == 7)
+            {
+                if(PlayerPrefs.GetString("ProjectileIndexModule", "") == IndexModul)
+                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+
             QuantityText.text = "" + PlayerPrefs.GetInt(IndexModul);
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -70,6 +177,8 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                     Quantity -= 1;
                     PlayerPrefs.SetInt(IndexModul, Quantity);
+                    PlayerPrefs.SetFloat("TurbinsEnergy", minusenergy);
+                    PlayerPrefs.SetFloat("TurbinsFuel", minusfuel);
                 }
             }
             if(TypeIndex == 2)
@@ -90,6 +199,8 @@ public class PrefBoxPaste : MonoBehaviour
                         Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                         Quantity -= 1;
                         PlayerPrefs.SetInt(IndexModul, Quantity);
+                        PlayerPrefs.SetFloat("Generators1Energy", plusenergy);
+                        PlayerPrefs.SetFloat("Genertors1Fuel", minusfuel);
                     }
                 }
                 if(IndexSlot == 2)
@@ -106,6 +217,8 @@ public class PrefBoxPaste : MonoBehaviour
                         Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                         Quantity -= 1;
                         PlayerPrefs.SetInt(IndexModul, Quantity);
+                        PlayerPrefs.SetFloat("Generators2Energy", plusenergy);
+                        PlayerPrefs.SetFloat("Genertors2Fuel", minusfuel);
                     }
                 }
                 if(IndexSlot == 3)
@@ -122,6 +235,8 @@ public class PrefBoxPaste : MonoBehaviour
                         Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                         Quantity -= 1;
                         PlayerPrefs.SetInt(IndexModul, Quantity);
+                        PlayerPrefs.SetFloat("Generators3Energy", plusenergy);
+                        PlayerPrefs.SetFloat("Genertors3Fuel", minusfuel);
                     }
                 }
                 if(IndexSlot == 4)
@@ -138,6 +253,8 @@ public class PrefBoxPaste : MonoBehaviour
                         Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                         Quantity -= 1;
                         PlayerPrefs.SetInt(IndexModul, Quantity);
+                        PlayerPrefs.SetFloat("Generators4Energy", plusenergy);
+                        PlayerPrefs.SetFloat("Genertors4Fuel", minusfuel);
                     }
                 }
             }
@@ -159,6 +276,7 @@ public class PrefBoxPaste : MonoBehaviour
                         Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                         Quantity -= 1;
                         PlayerPrefs.SetInt(IndexModul, Quantity);
+                        PlayerPrefs.SetInt("MaxFuel1", maxFuel);
                     }
                 }
                 if(IndexSlot == 2)
@@ -175,6 +293,7 @@ public class PrefBoxPaste : MonoBehaviour
                         Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                         Quantity -= 1;
                         PlayerPrefs.SetInt(IndexModul, Quantity);
+                        PlayerPrefs.SetInt("MaxFuel2", maxFuel);
                     }
                 }
             }
@@ -192,6 +311,9 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                     Quantity -= 1;
                     PlayerPrefs.SetInt(IndexModul, Quantity);
+                    PlayerPrefs.SetInt("GyperJump", 1);
+                    PlayerPrefs.SetInt("GyperJumpEnergy", energyAbility);
+                    PlayerPrefs.SetInt("GyperJumpOtkat", otkat);
                 }
             }
             if (TypeIndex == 5)
@@ -208,6 +330,9 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                     Quantity -= 1;
                     PlayerPrefs.SetInt(IndexModul, Quantity);
+                    PlayerPrefs.SetInt("Scanner", 1);
+                    PlayerPrefs.SetInt("ScannerEnergy", energyAbility);
+                    PlayerPrefs.SetInt("ScannerOtkat", otkat);
                 }
             }
             if (TypeIndex == 6)
@@ -224,6 +349,9 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                     Quantity -= 1;
                     PlayerPrefs.SetInt(IndexModul, Quantity);
+                    PlayerPrefs.SetInt("Shield", 1);
+                    PlayerPrefs.SetInt("ShieldEnergy", energyAbility);
+                    PlayerPrefs.SetInt("ShieldOtkat", otkat);
                 }
             }
             if (TypeIndex == 7)
@@ -240,20 +368,14 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(IndexModul, 0);
                     Quantity -= 1;
                     PlayerPrefs.SetInt(IndexModul, Quantity);
+                    PlayerPrefs.SetInt("Projectile", 1);
+                    PlayerPrefs.SetInt("ProjectileEnergy", energyAbility);
+                    PlayerPrefs.SetInt("ProjectileOtkat", otkat);
                 }
             }
         }
-        if(IndexModul == "")
+        if(IndexModul == "0")
         {
-            if(TypeIndex == 1)
-            {
-                PlayerPrefs.SetInt("EngineIndex", 0);
-                LoadIndexModul = PlayerPrefs.GetString("TurbinIndexModule", "");
-                Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
-                Quantity++;
-                PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                PlayerPrefs.SetString("TurbinIndexModule", "0");
-            }
             if(TypeIndex == 2)
             {
                 IndexSlot = PlayerPrefs.GetInt("Position");
@@ -265,7 +387,9 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                     Quantity++;
                     PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                    PlayerPrefs.SetString("Generator1IndexModule", "0");
+                    PlayerPrefs.SetString("Generator1IndexModule", IndexModul);
+                    PlayerPrefs.SetFloat("Generators1Energy", 0);
+                    PlayerPrefs.SetFloat("Genertors1Fuel", 0);
                 }
                 if(IndexSlot == 2)
                 {
@@ -274,7 +398,9 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                     Quantity++;
                     PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                    PlayerPrefs.SetString("Generator2IndexModule", "");
+                    PlayerPrefs.SetString("Generator2IndexModule", IndexModul);
+                    PlayerPrefs.SetFloat("Generators2Energy", 0);
+                    PlayerPrefs.SetFloat("Genertors2Fuel", 0);
                 }
                 if(IndexSlot == 3)
                 {
@@ -283,7 +409,9 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                     Quantity++;
                     PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                    PlayerPrefs.SetString("Generator3IndexModule", "0");
+                    PlayerPrefs.SetString("Generator3IndexModule", IndexModul);
+                    PlayerPrefs.SetFloat("Generators3Energy", 0);
+                    PlayerPrefs.SetFloat("Genertors3Fuel", 0);
                 }
                 if(IndexSlot == 4)
                 {
@@ -292,7 +420,9 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                     Quantity++;
                     PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                    PlayerPrefs.SetString("Generator4IndexModule", "0");
+                    PlayerPrefs.SetString("Generator4IndexModule", IndexModul);
+                    PlayerPrefs.SetFloat("Generators4Energy", 0);
+                    PlayerPrefs.SetFloat("Genertors4Fuel", 0);
                 }
             }
             if(TypeIndex == 3)
@@ -306,7 +436,8 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                     Quantity++;
                     PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                    PlayerPrefs.SetString("Fuel1IndexModule", "0");
+                    PlayerPrefs.SetString("Fuel1IndexModule", IndexModul);
+                    PlayerPrefs.SetInt("MaxFuel1", 0);
                 }
                 if(IndexSlot == 2)
                 {
@@ -315,7 +446,8 @@ public class PrefBoxPaste : MonoBehaviour
                     Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                     Quantity++;
                     PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                    PlayerPrefs.SetString("Fuel2IndexModule", "0");
+                    PlayerPrefs.SetString("Fuel2IndexModule", IndexModul);
+                    PlayerPrefs.SetInt("MaxFuel2", 0);
                 }
             }
             if (TypeIndex == 4)
@@ -325,7 +457,8 @@ public class PrefBoxPaste : MonoBehaviour
                 Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                 Quantity++;
                 PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                PlayerPrefs.SetString("GyperJumpIndexModule", "0");
+                PlayerPrefs.SetString("GyperJumpIndexModule", IndexModul);
+                PlayerPrefs.SetInt("GyperJump", 0);
             }
 
             if (TypeIndex == 5)
@@ -335,7 +468,8 @@ public class PrefBoxPaste : MonoBehaviour
                 Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                 Quantity++;
                 PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                PlayerPrefs.SetString("ScannerIndexModule", "0");
+                PlayerPrefs.SetString("ScannerIndexModule", IndexModul);
+                PlayerPrefs.SetInt("Scanner", 0);
             }
 
             if (TypeIndex == 6)
@@ -345,7 +479,8 @@ public class PrefBoxPaste : MonoBehaviour
                 Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                 Quantity++;
                 PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                PlayerPrefs.SetString("ShieldIndexModule", "0");
+                PlayerPrefs.SetString("ShieldIndexModule", IndexModul);
+                PlayerPrefs.SetInt("Shield", 0);
             }
 
             if (TypeIndex == 7)
@@ -355,7 +490,8 @@ public class PrefBoxPaste : MonoBehaviour
                 Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
                 Quantity++;
                 PlayerPrefs.SetInt(LoadIndexModul, Quantity);
-                PlayerPrefs.SetString("ProjectileIndexModule", "0");
+                PlayerPrefs.SetString("ProjectileIndexModule", IndexModul);
+                PlayerPrefs.SetInt("Projectile", 0);
             }
         }
 

@@ -60,7 +60,6 @@ public class ScoreCounter : MonoBehaviour
     public float isdelay1;
     private float isdelay2 = 1;
     public float isminus;
-    public SmoothSkyboxSwitcher ss;
     public bool isbportal;
     private int ars = 300;
     public int ach1;

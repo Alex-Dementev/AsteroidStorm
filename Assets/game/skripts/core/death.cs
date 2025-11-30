@@ -44,6 +44,8 @@ public class death : MonoBehaviour
     public Animator fuel5;
     public AudioSource ShieldEndAS;
     public Animator shield;
+    public float IsDelayFuel;
+    public float MinusFuel;
 
     public GameObject explosionEffect;
     public AudioSource explosionSound1;
@@ -209,6 +211,13 @@ public class death : MonoBehaviour
 
     void Start()
     {
+        MinusFuel = PlayerPrefs.GetFloat("Genertors1Fuel", 0);
+        MinusFuel += PlayerPrefs.GetFloat("Genertors2Fuel", 0);
+        MinusFuel += PlayerPrefs.GetFloat("Genertors3Fuel", 0);
+        MinusFuel += PlayerPrefs.GetFloat("Genertors4Fuel", 0);
+        MinusFuel += PlayerPrefs.GetFloat("TurbinsFuel", 0);
+        MinusFuel /= 4;
+
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 0)
         {
             fuel = PlayerPrefs.GetInt("fueltostart", 0);
@@ -230,7 +239,7 @@ public class death : MonoBehaviour
         livet.text = live.ToString();
         b = false;
 
-        int chance = Random.Range(1, 501);
+        int chance = Random.Range(1, 250);
         if (chance == 1)
         {
             quoteText.text = "ТЫ НИЧТОЖЕСТВО";
@@ -254,8 +263,15 @@ public class death : MonoBehaviour
             isfuel5 = true;
         }
 
-        fuel -= Time.deltaTime;
+
+        IsDelayFuel -= Time.deltaTime;
         SliderFuel.value = fuel;
+        if(IsDelayFuel <= 0)
+        {
+            IsDelayFuel = 0.025f;
+            fuel -= MinusFuel;
+        }
+
 
         if (PlayerPrefs.GetInt("GoToFinalGlav", 0) == 1)
         {
