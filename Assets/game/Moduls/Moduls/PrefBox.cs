@@ -30,6 +30,11 @@ public class PrefBoxPaste : MonoBehaviour
     public int maxFuel;
     public float plusenergy;
     public int otkat;
+    public Animator approve;
+    public int coins;
+    public int allcoins;
+    public Text Sellcoins;
+    public int twoclicks;
 
 
 
@@ -507,5 +512,200 @@ public class PrefBoxPaste : MonoBehaviour
             Rare.color = new Color(125/255f, 132/255f, 0/255f);
         if(RareLevel == 5)
             Rare.color = new Color(114/255f, 15/255f, 61/255f);
+
+        if(PlayerPrefs.GetString("TurbinIndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("Generator1IndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("Generator2IndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("Generator3IndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("Generator4IndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("Fuel1IndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("Fuel2IndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("GyperJumpIndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("ScannerIndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("ShieldIndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+        if(PlayerPrefs.GetString("ProjectileIndexModule", "") == IndexModul)
+        {
+            if(twoclicks >= 1)
+            {
+                twoclicks = 0;
+                approveSell();
+            }
+            twoclicks++;
+        }
+        else
+        twoclicks = 0;
+    }
+
+    public void approveSell()
+    {
+        approve.Play("Start");
+        PlayerPrefs.SetString("SellModul", IndexModul);
+        PlayerPrefs.SetInt("SellModulRare", RareLevel);
+        if(RareLevel == 1)
+        {
+            Sellcoins.text = "+200";
+        }
+        if(RareLevel == 2)
+        {
+            Sellcoins.text = "+370";
+        }
+        if(RareLevel == 3)
+        {
+            Sellcoins.text = "+680";
+        }
+        if(RareLevel == 4)
+        {
+            Sellcoins.text = "+1050";
+        }
+        if(RareLevel == 5)
+        {
+            Sellcoins.text = "+1500";
+        }
+    }
+    public void NotApprove()
+    {
+        approve.Play("End");
+    }
+    public void sell()
+    {
+        LoadIndexModul = PlayerPrefs.GetString("SellModul", "");
+        Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
+        Quantity -= 1;
+        PlayerPrefs.SetInt(LoadIndexModul, Quantity);
+
+        int raresell = PlayerPrefs.GetInt("SellModulRare", 0);
+        coins = PlayerPrefs.GetInt("coins", 0);
+        allcoins = PlayerPrefs.GetInt("allcoins", 0);
+
+        if(raresell == 1)
+        {
+            coins += 200;
+            allcoins += 200;
+        }
+        if(raresell == 2)
+        {
+            coins += 370;
+            allcoins += 370;
+        }
+        if(raresell == 3)
+        {
+            coins += 680;
+            allcoins += 680;
+        }
+        if(raresell == 4)
+        {
+            coins += 1050;
+            allcoins += 1050;
+        }
+        if(raresell == 5)
+        {
+            coins += 1500;
+            allcoins += 1500;
+        }
+
+        PlayerPrefs.SetInt("coins", coins);
+        PlayerPrefs.SetInt("allcoins", allcoins);
+
+        approve.Play("End");
     }
 }
