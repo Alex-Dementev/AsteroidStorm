@@ -35,6 +35,8 @@ public class PrefBoxPaste : MonoBehaviour
     public int allcoins;
     public Text Sellcoins;
     public int twoclicks;
+    public float ResetClicksFloat;
+    public bool ResetClicks;
 
 
 
@@ -150,6 +152,13 @@ public class PrefBoxPaste : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        ResetClicksFloat -= Time.deltaTime;
+
+        if(twoclicks >= 1 && ResetClicks == true && ResetClicksFloat <= 0)
+            twoclicks = 0;
+    }
 
     public void ApplyDesc()
     {
@@ -515,125 +524,136 @@ public class PrefBoxPaste : MonoBehaviour
 
         if(PlayerPrefs.GetString("TurbinIndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("Generator1IndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("Generator2IndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("Generator3IndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("Generator4IndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("Fuel1IndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("Fuel2IndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("GyperJumpIndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("ScannerIndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("ShieldIndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
         if(PlayerPrefs.GetString("ProjectileIndexModule", "") == IndexModul)
         {
-            if(twoclicks >= 1)
+            twoclicks++;
+            ResetClicksFloat = 0.5f;
+            ResetClicks = true;
+            if(twoclicks >= 2)
             {
                 twoclicks = 0;
+                ResetClicks = false;
                 approveSell();
             }
-            twoclicks++;
         }
-        else
-        twoclicks = 0;
     }
 
     public void approveSell()
