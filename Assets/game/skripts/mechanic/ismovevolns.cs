@@ -1,19 +1,21 @@
-// GameManager.cs
 using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Characters")]
     public GameObject s1;
     public GameObject s2;
     public GameObject s3;
     public GameObject s4;
 
-    public Animator textAnimator; // Аниматор текста
-    public CameraFollowAndShake c; // Камера для тряски
-
     private GameObject activeCharacter;
 
+    [Header("UI & Camera")]
+    public Animator textAnimator;
+    public CameraFollowAndShake c;
+
+    [Header("Control Settings")]
     public float sensitivity = 1f;
     public float xRange = 10f;
     public float smoothFactor = 0.1f;
@@ -24,18 +26,21 @@ public class GameManager : MonoBehaviour
     private bool invertControl = false;
     private bool freezeControl = false;
 
+    [Header("Anomaly Settings")]
+    public float anomalyDuration = 1.2f;
+    public float anomalyBetweenDelay = 0.5f;
+
+    [Header("Delay Settings")]
+    public float characterCheckDelay = 4f; // время до проверки персонажа
+
     void Start()
     {
-        StartCoroutine(GameLoop());
+        // Запускаем проверку персонажа через 4 секунды
+        StartCoroutine(DelayedStart());
     }
 
     void Update()
     {
-        if (s1.activeInHierarchy) activeCharacter = s1;
-        else if (s2.activeInHierarchy) activeCharacter = s2;
-        else if (s3.activeInHierarchy) activeCharacter = s3;
-        else if (s4.activeInHierarchy) activeCharacter = s4;
-
         if (activeCharacter != null)
         {
             Vector3 position = activeCharacter.transform.position;
@@ -47,6 +52,7 @@ public class GameManager : MonoBehaviour
                     Vector2 inputPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
                     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, Camera.main.transform.position.y));
                     worldPosition += calibrationOffset;
+
                     float clampedX = Mathf.Clamp(worldPosition.x * sensitivity, -xRange, xRange);
                     targetX = invertControl ? -clampedX : clampedX;
                 }
@@ -56,6 +62,22 @@ public class GameManager : MonoBehaviour
                 activeCharacter.transform.position = position;
             }
         }
+    }
+
+    IEnumerator DelayedStart()
+    {
+        yield return new WaitForSeconds(characterCheckDelay);
+
+        DetectActiveCharacter();
+        StartCoroutine(GameLoop());
+    }
+
+    void DetectActiveCharacter()
+    {
+        if (s1.activeInHierarchy) activeCharacter = s1;
+        else if (s2.activeInHierarchy) activeCharacter = s2;
+        else if (s3.activeInHierarchy) activeCharacter = s3;
+        else if (s4.activeInHierarchy) activeCharacter = s4;
     }
 
     IEnumerator GameLoop()
@@ -72,21 +94,22 @@ public class GameManager : MonoBehaviour
 
             bool doReverse = Random.value < 0.5f;
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 8; i++)
             {
                 if (doReverse)
                 {
                     invertControl = true;
-                    yield return new WaitForSeconds(Random.Range(0.5f, 2f));
+                    yield return new WaitForSeconds(anomalyDuration);
                     invertControl = false;
                 }
                 else
                 {
                     freezeControl = true;
-                    yield return new WaitForSeconds(Random.Range(0.5f, 2f));
+                    yield return new WaitForSeconds(anomalyDuration);
                     freezeControl = false;
                 }
-                yield return new WaitForSeconds(0.5f);
+
+                yield return new WaitForSeconds(anomalyBetweenDelay);
             }
 
             yield return new WaitForSeconds(0.5f);

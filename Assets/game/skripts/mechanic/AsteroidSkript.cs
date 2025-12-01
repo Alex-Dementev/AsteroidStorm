@@ -38,12 +38,12 @@ public class AsteroidSkript : MonoBehaviour
                 asteroidType = 4; 
                 rend.material = diamondMaterial;
             }
-            else if (roll2 < 12f)
+            else if (roll2 < 8f)
             {
                 asteroidType = 3; 
                 rend.material = goldMaterial;
             }
-            else if (roll2 < 38f)
+            else if (roll2 < 30f)
             {
                 asteroidType = 2; 
                 rend.material = silverMaterial;

@@ -29,16 +29,20 @@ public class PrefBoxPaste : MonoBehaviour
     public int energyAbility;
     public int maxFuel;
     public float plusenergy;
+    public int ScannerLenght;
     public int otkat;
     public Animator approve;
     public int coins;
     public int allcoins;
     public Text Sellcoins;
     public int twoclicks;
+    public int twoclicks2;
+    public int twoclicks3;
+    public int twoclicks4;
     public float ResetClicksFloat;
-    public bool ResetClicks;
+    public AudioSource ApproveAD;
 
-
+    
 
     void OnEnable()
     {
@@ -156,8 +160,14 @@ public class PrefBoxPaste : MonoBehaviour
     {
         ResetClicksFloat -= Time.deltaTime;
 
-        if(twoclicks >= 1 && ResetClicks == true && ResetClicksFloat <= 0)
+        if(twoclicks >= 1 && ResetClicksFloat <= 0)
             twoclicks = 0;
+        if(twoclicks2 >= 1 && ResetClicksFloat <= 0)
+            twoclicks2 = 0;
+        if(twoclicks3 >= 1 && ResetClicksFloat <= 0)
+            twoclicks3 = 0;
+        if(twoclicks4 >= 1 && ResetClicksFloat <= 0)
+            twoclicks4 = 0;
     }
 
     public void ApplyDesc()
@@ -347,6 +357,8 @@ public class PrefBoxPaste : MonoBehaviour
                     PlayerPrefs.SetInt("Scanner", 1);
                     PlayerPrefs.SetInt("ScannerEnergy", energyAbility);
                     PlayerPrefs.SetInt("ScannerOtkat", otkat);
+                    PlayerPrefs.SetInt("ScannerLenght", ScannerLenght);
+                    
                 }
             }
             if (TypeIndex == 6)
@@ -390,6 +402,17 @@ public class PrefBoxPaste : MonoBehaviour
         }
         if(IndexModul == "0")
         {
+            if (TypeIndex == 1)
+            {
+                PlayerPrefs.SetInt("EngineIndex", 0);
+                LoadIndexModul = PlayerPrefs.GetString("TurbinIndexModule", "");
+                Quantity = PlayerPrefs.GetInt(LoadIndexModul, 0);
+                Quantity++;
+                PlayerPrefs.SetInt(LoadIndexModul, Quantity);
+                PlayerPrefs.SetString("TurbinIndexModule", IndexModul);
+                PlayerPrefs.SetFloat("TurbinsEnergy", minusenergy);
+                PlayerPrefs.SetFloat("TurbinsFuel", minusfuel);
+            }
             if(TypeIndex == 2)
             {
                 IndexSlot = PlayerPrefs.GetInt("Position");
@@ -474,7 +497,6 @@ public class PrefBoxPaste : MonoBehaviour
                 PlayerPrefs.SetString("GyperJumpIndexModule", IndexModul);
                 PlayerPrefs.SetInt("GyperJump", 0);
             }
-
             if (TypeIndex == 5)
             {
                 PlayerPrefs.SetInt("ScannerIndex", 0);
@@ -485,7 +507,6 @@ public class PrefBoxPaste : MonoBehaviour
                 PlayerPrefs.SetString("ScannerIndexModule", IndexModul);
                 PlayerPrefs.SetInt("Scanner", 0);
             }
-
             if (TypeIndex == 6)
             {
                 PlayerPrefs.SetInt("ShieldIndex", 0);
@@ -496,7 +517,6 @@ public class PrefBoxPaste : MonoBehaviour
                 PlayerPrefs.SetString("ShieldIndexModule", IndexModul);
                 PlayerPrefs.SetInt("Shield", 0);
             }
-
             if (TypeIndex == 7)
             {
                 PlayerPrefs.SetInt("ProjectileIndex", 0);
@@ -525,132 +545,132 @@ public class PrefBoxPaste : MonoBehaviour
         if(PlayerPrefs.GetString("TurbinIndexModule", "") == IndexModul)
         {
             twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
+            ResetClicksFloat = 0.75f;
+            
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                ResetClicks = false;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("Generator1IndexModule", "") == IndexModul)
         {
             twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
+            ResetClicksFloat = 0.75f;
+            
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                ResetClicks = false;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("Generator2IndexModule", "") == IndexModul)
         {
-            twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
-            if(twoclicks >= 2)
+            twoclicks2++;
+            ResetClicksFloat = 0.75f;
+            
+            if(twoclicks2 >= 2)
             {
-                twoclicks = 0;
-                ResetClicks = false;
+                twoclicks2 = 0;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("Generator3IndexModule", "") == IndexModul)
         {
-            twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
-            if(twoclicks >= 2)
+            twoclicks3++;
+            ResetClicksFloat = 0.75f;
+            
+            if(twoclicks3 >= 2)
             {
-                twoclicks = 0;
-                ResetClicks = false;
+                twoclicks3 = 0;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("Generator4IndexModule", "") == IndexModul)
         {
-            twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
-            if(twoclicks >= 2)
+            twoclicks4++;
+            ResetClicksFloat = 0.75f;
+            
+            if(twoclicks4 >= 2)
             {
-                twoclicks = 0;
-                ResetClicks = false;
+                twoclicks4 = 0;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("Fuel1IndexModule", "") == IndexModul)
         {
             twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
+            ResetClicksFloat = 0.75f;
+            
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                ResetClicks = false;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("Fuel2IndexModule", "") == IndexModul)
         {
-            twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
-            if(twoclicks >= 2)
+            twoclicks2++;
+            ResetClicksFloat = 0.75f;
+            
+            if(twoclicks2 >= 2)
             {
-                twoclicks = 0;
-                ResetClicks = false;
+                twoclicks2 = 0;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("GyperJumpIndexModule", "") == IndexModul)
         {
             twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
+            ResetClicksFloat = 0.75f;
+            
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                ResetClicks = false;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("ScannerIndexModule", "") == IndexModul)
         {
             twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
+            ResetClicksFloat = 0.75f;
+            
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                ResetClicks = false;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("ShieldIndexModule", "") == IndexModul)
         {
             twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
+            ResetClicksFloat = 0.75f;
+            
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                ResetClicks = false;
+                
                 approveSell();
             }
         }
         if(PlayerPrefs.GetString("ProjectileIndexModule", "") == IndexModul)
         {
             twoclicks++;
-            ResetClicksFloat = 0.5f;
-            ResetClicks = true;
+            ResetClicksFloat = 0.75f;
+            
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                ResetClicks = false;
+                
                 approveSell();
             }
         }
@@ -725,6 +745,8 @@ public class PrefBoxPaste : MonoBehaviour
 
         PlayerPrefs.SetInt("coins", coins);
         PlayerPrefs.SetInt("allcoins", allcoins);
+
+        ApproveAD.Play();
 
         approve.Play("End");
     }

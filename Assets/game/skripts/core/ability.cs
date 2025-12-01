@@ -94,6 +94,10 @@ public class DoubleTapHandler : MonoBehaviour
 
     void Start()
     {
+        var main = ps.main;
+        main.startSize = PlayerPrefs.GetInt("ScannerLenght", 200);
+
+        PlayerPrefs.SetInt("activeShield", 0);
         abilityt = PlayerPrefs.GetInt("abilityt", 0);
         isdelay = PlayerPrefs.GetFloat("isdelay");
         isotkat = PlayerPrefs.GetFloat("isotkat");

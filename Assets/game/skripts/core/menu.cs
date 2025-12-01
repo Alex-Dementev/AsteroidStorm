@@ -61,6 +61,8 @@ public class menu : MonoBehaviour
     public AudioSource ad7;
     public AudioSource ad8;
     public AudioSource ad9;
+    public AudioSource yesad;
+    public AudioSource noad;
     public float isdelay;
     private float isdelay1 = 1.5f;
     private float isdelay2 = 0.85f;
@@ -86,7 +88,6 @@ public class menu : MonoBehaviour
     public Animator anim6;
     public Animator anim7;
     public Animator anim8;
-    public Animator anim9;
     public Animator anim11;
     public Animator anim12;
     public Animator anim13;
@@ -203,11 +204,16 @@ public class menu : MonoBehaviour
     public float audios;
     public bool is6;
     public Text logo;
+    public Text logo2;
+    public Text logo3;
+    public Text logo4;
     public Text t1;
-    public Text t2;
     public Text t3;
     public Text t4;
     public Text t5;
+    public Text PashalTextError1;
+    public Text PashalTextError2;
+    public Text PashalTextError3;
     public bool isfall;
     public GameObject surwive;
     public int intsurwive;
@@ -260,6 +266,8 @@ public class menu : MonoBehaviour
         ad7.volume = audios;
         ad8.volume = audios / 1.5f;
         ad9.volume = audios;
+        yesad.volume = audios;
+        noad.volume = audios;
 
 
         if (is11 == 0)
@@ -412,7 +420,6 @@ public class menu : MonoBehaviour
         anim6.Play("anim 18");
         anim7.Play("anim1");
         anim8.Play("anim12");
-        anim9.Play("anim14");
         anim11.Play("4t");
         anim12.Play("anim5t");
         anim13.Play("anim13");
@@ -457,6 +464,8 @@ public class menu : MonoBehaviour
         ad7.volume = audios;
         ad8.volume = audios / 1.5f;
         ad9.volume = audios;
+        yesad.volume = audios;
+        noad.volume = audios;
 
         Dificitefloat = PlayerPrefs.GetFloat("Generators1Energy", 0);
         Dificitefloat += PlayerPrefs.GetFloat("Generators2Energy", 0);
@@ -468,11 +477,16 @@ public class menu : MonoBehaviour
         {
             isfall = true;
             logo.text = "ШОК Контент!";
+            logo2.text = "ШОК Контент!";
+            logo3.text = "ШОК Контент!";
+            logo4.text = "ШОК Контент!";
             t1.text = "Чёрный рынок";
-            t2.text = "Список твоих понтов";
             t3.text = "График страданий";
             t4.text = "Сделай или забудь";
             t5.text = "Говно, но моё";
+            PashalTextError2.text = "Турбины нет, также как и твоей девушки";
+            PashalTextError1.text = "Твоя турбина слишком прожорливая....";
+            PashalTextError3.text = "И куда ты будешь заливать топливо?";
             n1.text = "SUS-1";
             n2.text = "Ёлки-Палки 3000";
             n3.text = "Лунный Порношутер";
@@ -606,6 +620,8 @@ public class menu : MonoBehaviour
             ad7.enabled = true;
             ad8.enabled = true;
             ad9.enabled = true;
+            yesad.enabled = true;
+            noad.enabled = true;
             ison1 = true;
             but1.GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
@@ -620,6 +636,8 @@ public class menu : MonoBehaviour
             ad7.enabled = false;
             ad8.enabled = false;
             ad9.enabled = false;
+            yesad.enabled = false;
+            noad.enabled = false;
             ison1 = false;
             but1.GetComponent<Image>().color = new Color(255, 0, 0, 255);
         }
@@ -747,13 +765,18 @@ public class menu : MonoBehaviour
         rocketfall = false;
         isfall = false;
         logo.text = "Астероидный Шторм";
+        logo2.text = "Астероидный Шторм";
+        logo3.text = "Астероидный Шторм";
+        logo4.text = "Астероидный Шторм";
         butfall.SetActive(false);
         PlayerPrefs.SetInt("fall", 0);
         t1.text = "Магазин";
-        t2.text = "Достижения";
         t3.text = "Статистика";
         t4.text = "Задания";
         t5.text = "Кастомизация";
+        PashalTextError2.text = "Чтобы начать нужно установить турбину в космический аппарат";
+        PashalTextError1.text = "Недостаточная выроботка энергии: генераторы не обеспечивают работу выбранной турбине";
+        PashalTextError3.text = "Чтобы набрать топливо нужно установить топливный бак в космический аппарат";
         n1.text = "SUS";
         n2.text = "Ёлки-Палки";
         n3.text = "Лунолет";
@@ -1036,7 +1059,11 @@ public void destartedrocketps()
     }
     public void is1g()
     {
-        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 3 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 && Dificitefloat >= 0|| PlayerPrefs.GetInt("yousurwive", 0) == 1)
+        float turbinsMinus;
+        turbinsMinus = PlayerPrefs.GetFloat("TurbinsEnergy", 0);
+        turbinsMinus += PlayerPrefs.GetFloat("TurbinsFuel", 0);
+
+        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 3 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 && Dificitefloat >= 0 && turbinsMinus != 0 || PlayerPrefs.GetInt("yousurwive", 0) == 1)
         {
             PlayerPrefs.SetInt("start", 1);
             int fuel = PlayerPrefs.GetInt("fuel");
@@ -1055,6 +1082,10 @@ public void destartedrocketps()
             allgames = PlayerPrefs.GetInt("allgames", 0);
             allgames++;
             PlayerPrefs.SetInt("allgames", allgames);
+        }
+        else if(turbinsMinus == 0)
+        {
+            Dificite.Play("Start2");
         }
         else if(Dificitefloat <= 0)
         {

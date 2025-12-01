@@ -11,6 +11,8 @@ public class BuyModuls : MonoBehaviour
     public GameObject YouBuy;
     public int coins;
     public int Quantity;
+    public AudioSource ad;
+    public AudioSource adfail;
 
     
     void Start()
@@ -46,6 +48,9 @@ public class BuyModuls : MonoBehaviour
             Quantity++;
             PlayerPrefs.SetInt(NamePP, Quantity);
             YouBuy.SetActive(true);
+            ad.Play();
         }
+        else
+            adfail.Play();
     }
 }

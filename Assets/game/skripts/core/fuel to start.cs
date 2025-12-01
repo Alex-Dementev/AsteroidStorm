@@ -11,6 +11,9 @@ public class fueltostart : MonoBehaviour
     private bool userChangedSlider = false;
     public Text text;
     public int maxfuel;
+    public Animator zeroTanks;
+    public float delay;
+    public bool isdelay;
 
     void Start()
     {
@@ -19,6 +22,8 @@ public class fueltostart : MonoBehaviour
 
     void Update()
     {
+        delay -= Time.deltaTime;
+
         if(PlayerPrefs.GetInt("start", 0) == 0)
         {
             fuel = PlayerPrefs.GetInt("fuel", 0);
@@ -71,13 +76,25 @@ public class fueltostart : MonoBehaviour
                 }
             }
         }
+
+        if(delay <= 0)
+            isdelay = false;
     }
 
     void OnSliderChanged(float value)
     {
         // Проверяем, было ли движение реально от игрока
-        if (Input.GetMouseButton(0) || Input.touchCount > 0 && fuel >= 1)
+        if (Input.GetMouseButton(0) || Input.touchCount > 0)
         {
+            Debug.Log("fd");
+
+            if (maxfuel == 0 && isdelay != true)
+            {
+                zeroTanks.Play("Start3");
+                delay = 3;
+                isdelay = true;
+            }
+
             userChangedSlider = true;
         }
     }

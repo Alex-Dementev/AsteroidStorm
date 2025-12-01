@@ -10,6 +10,7 @@ public class energy : MonoBehaviour
     public Slider s;
     public float floatt;
     public bool isfinal1g;
+    public Animator SliderAnim;
 
 
 
@@ -53,5 +54,11 @@ public class energy : MonoBehaviour
         floatt += PlayerPrefs.GetFloat("Generators4Energy", 0);
         floatt -= PlayerPrefs.GetFloat("TurbinsEnergy", 0);
         floatt = floatt / 40;
+    }
+
+    public void Bonus()
+    {
+        energyint += 25;
+        SliderAnim.Play("Start");
     }
 }

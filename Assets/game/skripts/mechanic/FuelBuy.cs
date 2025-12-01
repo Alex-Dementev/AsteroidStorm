@@ -8,6 +8,7 @@ public class FuelBuy : MonoBehaviour
     public AudioSource errorSound;
 
     public Text priceText;
+    public Text price10Text;   // 💥 ЦЕНА ЗА 10
     public Text percentText;
     public Text cansText;
 
@@ -22,10 +23,8 @@ public class FuelBuy : MonoBehaviour
 
     void UpdatePrice()
     {
-        // Загружаем сохранённую цену
         currentPrice = PlayerPrefs.GetInt("fuelPrice", basePrice);
 
-        // Проверяем последнее обновление
         string lastTime = PlayerPrefs.GetString("lastFuelUpdate", "");
         DateTime lastUpdate;
 
@@ -39,17 +38,11 @@ public class FuelBuy : MonoBehaviour
 
                 for (int i = 0; i < hours; i++)
                 {
-                    // случайный процент 15–35
                     int percent = UnityEngine.Random.Range(15, 36);
-
-                    // вверх или вниз
                     bool increase = UnityEngine.Random.value > 0.5f;
-
                     float factor = 1f + (increase ? percent : -percent) / 100f;
 
                     currentPrice = Mathf.RoundToInt(currentPrice * factor);
-
-                    // ограничиваем от 3 до 30
                     currentPrice = Mathf.Clamp(currentPrice, 3, 30);
                 }
 
@@ -58,7 +51,6 @@ public class FuelBuy : MonoBehaviour
         }
         else
         {
-            // первый запуск
             currentPrice = basePrice;
             PlayerPrefs.SetString("lastFuelUpdate", DateTime.Now.ToString());
         }
@@ -69,17 +61,21 @@ public class FuelBuy : MonoBehaviour
 
     void UpdateUI()
     {
-        // Цена
+        // Цена за 1
         priceText.text = currentPrice.ToString();
 
-        // Проценты относительно 10
+        // Цена за 10 💥
+        if (price10Text != null)
+            price10Text.text = (currentPrice * 10).ToString();
+
+        // Проценты
         float percentChange = ((float)currentPrice - basePrice) / basePrice * 100f;
         string sign = percentChange >= 0 ? "+" : "";
         percentText.text = sign + Mathf.RoundToInt(percentChange) + "%";
 
-        // Цвет процентов
         Color baseColor;
         ColorUtility.TryParseHtmlString("#FD70FA", out baseColor);
+
         if (percentChange > 0)
             percentText.color = Color.Lerp(baseColor, Color.red, 0.5f);
         else if (percentChange < 0)
@@ -87,11 +83,12 @@ public class FuelBuy : MonoBehaviour
         else
             percentText.color = baseColor;
 
-        // Канистры (только число)
+        // Канистры
         int cans = PlayerPrefs.GetInt("fuel", 0);
         cansText.text = cans.ToString();
     }
 
+    // ----------- ПОКУПКА 1 -----------
     public void Click()
     {
         int coins = PlayerPrefs.GetInt("coins", 0);
@@ -101,8 +98,33 @@ public class FuelBuy : MonoBehaviour
             coins -= currentPrice;
             PlayerPrefs.SetInt("coins", coins);
 
-            int cans = PlayerPrefs.GetInt("fuel", 0);
-            cans++;
+            int cans = PlayerPrefs.GetInt("fuel", 0) + 1;
+            PlayerPrefs.SetInt("fuel", cans);
+
+            PlayerPrefs.Save();
+
+            if (buySound) buySound.Play();
+        }
+        else
+        {
+            if (errorSound) errorSound.Play();
+        }
+
+        UpdateUI();
+    }
+
+    // ----------- ПОКУПКА 10 💥 -----------
+    public void Click10()
+    {
+        int coins = PlayerPrefs.GetInt("coins", 0);
+        int cost10 = currentPrice * 10;
+
+        if (coins >= cost10)
+        {
+            coins -= cost10;
+            PlayerPrefs.SetInt("coins", coins);
+
+            int cans = PlayerPrefs.GetInt("fuel", 0) + 10;
             PlayerPrefs.SetInt("fuel", cans);
 
             PlayerPrefs.Save();
