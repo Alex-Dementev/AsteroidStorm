@@ -153,6 +153,10 @@ public class menu : MonoBehaviour
     public ParticleSystem ps49;
     public ParticleSystem ps50;
     public ParticleSystem ps51;
+    public ParticleSystem ps52;
+    public ParticleSystem ps53;
+    public ParticleSystem ps54;
+    public ParticleSystem ps55;
 
     public ParticleSystem rocketstart1;
     public ParticleSystem rocketstart2;
@@ -370,6 +374,10 @@ public class menu : MonoBehaviour
         ps49.Stop();
         ps50.Stop();
         ps51.Stop();
+        ps52.Stop();
+        ps53.Stop();
+        ps54.Stop();
+        ps55.Stop();
 
 
         if (is11 == 0 && ach1 == 1)
@@ -739,6 +747,10 @@ public class menu : MonoBehaviour
         ps49.Stop();
         ps50.Stop();
         ps51.Stop();
+        ps52.Stop();
+        ps53.Stop();
+        ps54.Stop();
+        ps55.Stop();
 
         if(!rocketfall)
         ad2.Play();
@@ -947,6 +959,7 @@ public void destartedrocketps()
         ps40.Play();
         ps46.Play();
         ps47.Play();
+        ps52.Play();
     }
     public void isps16()
     {
@@ -958,6 +971,7 @@ public void destartedrocketps()
         ps41.Play();
         ps48.Play();
         ps49.Play();
+        ps53.Play();
     }
     public void isps17()
     {
@@ -965,6 +979,7 @@ public void destartedrocketps()
         ps26.Play();
         ps27.Play();
         ps42.Play();
+        ps54.Play();
     }
     public void isps18()
     {
@@ -972,6 +987,7 @@ public void destartedrocketps()
         ps37.Play();
         ps38.Play();
         ps39.Play();
+        ps55.Play();
     }
     public void isps19()
     {

@@ -4,9 +4,6 @@ using System;
 
 public class TimerToUpdateModuls : MonoBehaviour
 {
-    [Header("Настройки таймера")]
-    private const float updateIntervalHours = 24f;
-
     [Header("UI и магазин")]
     public Text timerText;
     public UpdateModuls shopUpdater;
@@ -23,8 +20,14 @@ public class TimerToUpdateModuls : MonoBehaviour
 
     private bool timerActive = false;
 
+    // === 🎯 Интервал (теперь берётся из PlayerPrefs) ===
+    private float updateIntervalHours;
+
     void Start()
     {
+        // загружаем интервал таймера
+        updateIntervalHours = PlayerPrefs.GetInt("HoursTimer", 24);
+
         // показываем стартовые модули
         if (!PlayerPrefs.HasKey("shop_col1_rarity"))
         {
@@ -49,7 +52,7 @@ public class TimerToUpdateModuls : MonoBehaviour
             if (shopUpdater != null)
                 shopUpdater.ForceRefresh();
 
-            PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 0); // сброс флага
+            PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 0);
             PlayerPrefs.Save();
         }
     }
@@ -66,10 +69,8 @@ public class TimerToUpdateModuls : MonoBehaviour
 
         float hoursLeft = GetHoursLeft();
 
-        // === ВРЕМЯ ИСТЕКЛО ===
         if (hoursLeft <= 0f)
         {
-            // ставим флаг необходимости обновления
             PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 1);
             PlayerPrefs.Save();
 
@@ -92,15 +93,17 @@ public class TimerToUpdateModuls : MonoBehaviour
         UpdateTimerText();
     }
 
-    // учёт пропущенного времени
+    // ---------- Умное выставление следующего обновления ----------
     private void SetNextUpdateTimeSmart()
     {
+        // обновляем интервал на случай, если игрок его изменил
+        updateIntervalHours = PlayerPrefs.GetInt("HoursTimer", 24);
+
         DateTime next;
 
         if (PlayerPrefs.HasKey(NEXT_UPDATE_KEY) &&
             DateTime.TryParse(PlayerPrefs.GetString(NEXT_UPDATE_KEY), out next))
         {
-            // крутим время вперёд, пока не попадём в будущее
             while (next <= DateTime.UtcNow)
                 next = next.AddHours(updateIntervalHours);
         }
@@ -113,8 +116,11 @@ public class TimerToUpdateModuls : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // ---------- Осталось времени ----------
     private float GetHoursLeft()
     {
+        updateIntervalHours = PlayerPrefs.GetInt("HoursTimer", 24);
+
         if (!PlayerPrefs.HasKey(NEXT_UPDATE_KEY))
             return updateIntervalHours;
 

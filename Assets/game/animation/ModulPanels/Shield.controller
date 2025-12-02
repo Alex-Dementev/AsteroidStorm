@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Activate
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -34,7 +34,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DisActivate
-  m_Speed: -1.75
+  m_Speed: -2.15
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -91,7 +91,7 @@ AnimatorStateMachine:
     m_Position: {x: 305.35516, y: 64.89567, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4300625001402709862}
-    m_Position: {x: 235, y: -15, z: 0}
+    m_Position: {x: 230, y: -20, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
