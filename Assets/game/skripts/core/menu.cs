@@ -24,8 +24,6 @@ public class menu : MonoBehaviour
     public int prefs;
     public bool isprolog;
     public bool rocketfall;
-    public bool Bbackstarted;
-    public float Dbackstarted;
     public Image but;
     public Image but1;
     public Image but2;
@@ -65,7 +63,7 @@ public class menu : MonoBehaviour
     public AudioSource noad;
     public float isdelay;
     private float isdelay1 = 1.5f;
-    private float isdelay2 = 0.85f;
+    private float isdelay2 = 0.55f;
     private float isdelay5;
     public bool isanim1;
     public bool isanim2;
@@ -157,6 +155,10 @@ public class menu : MonoBehaviour
     public ParticleSystem ps53;
     public ParticleSystem ps54;
     public ParticleSystem ps55;
+    public ParticleSystem ps56;
+    public ParticleSystem ps57;
+    public ParticleSystem ps58;
+    public ParticleSystem ps59;
 
     public ParticleSystem rocketstart1;
     public ParticleSystem rocketstart2;
@@ -168,35 +170,19 @@ public class menu : MonoBehaviour
     public bool ison2;
     public bool ison3;
     public bool isCustomPanel;
-    public bool isshop;
-    public bool ispref;
-    public bool isachi;
-    public bool isstat;
-    public bool istask;
     public bool isstart = false;
-    public float shop;
-    public float pref;
-    public float achi;
-    public float task;
-    public bool isCloseBankPanel;
-    public float BankFloatPanel;
-    public float LomFloatPanel;
     public float ach1;
     public float ach2;
     public float ach3;
     public float ach4;
     public float ach5;
-    public float stat;
-    public float compopf;
     public int allgames;
-    public bool is7;
     public int is11;
     public int is12;
     public int is13;
     public int is14;
     public int is15;
     public int maxcoins;
-    public float customFloatPanel;
 
     public float RR;
     public int Vp;
@@ -222,9 +208,6 @@ public class menu : MonoBehaviour
     public GameObject surwive;
     public int intsurwive;
     public bool isbsurwive;
-    public bool isCloseCustomPanel;
-    public bool isCloseBankmPanel;
-    public bool isCloseLomPanel;
     public Animator Dificite;
     private float Dificitefloat;
 
@@ -378,6 +361,10 @@ public class menu : MonoBehaviour
         ps53.Stop();
         ps54.Stop();
         ps55.Stop();
+        ps56.Stop();
+        ps57.Stop();
+        ps58.Stop();
+        ps59.Stop();
 
 
         if (is11 == 0 && ach1 == 1)
@@ -446,17 +433,7 @@ public class menu : MonoBehaviour
         isdelay2 -= Time.deltaTime;
         isdelay1 -= Time.deltaTime;
         isdelay -= Time.deltaTime;
-        achi -= Time.deltaTime;
-        pref -= Time.deltaTime;
-        shop -= Time.deltaTime;
-        stat -= Time.deltaTime;
-        task -= Time.deltaTime;
         isdelay5 -= Time.deltaTime;
-        Dbackstarted -= Time.deltaTime;
-        compopf -= Time.deltaTime;
-        customFloatPanel -= Time.deltaTime;
-        LomFloatPanel -= Time.deltaTime;
-        BankFloatPanel -= Time.deltaTime;
 
 
         musics = Sm.value;
@@ -512,73 +489,6 @@ public class menu : MonoBehaviour
         Vp = (int)Sp.value;
         PlayerPrefs.SetInt("maxParticles", Vp);
 
-        if(compopf <= 0)
-        {
-            if(is7 == true)
-            {
-                is7 = false;
-                panel8.SetActive(!panel8.activeSelf);
-            }
-        }
-        if(customFloatPanel <= 0 && isCloseCustomPanel == true)
-        {
-            isCloseCustomPanel = false;
-            panelCustomizate.SetActive(!panelCustomizate.activeSelf);
-        }
-        if(BankFloatPanel <= 0 && isCloseBankPanel == true)
-        {
-            isCloseBankPanel = false;
-            panelBank.SetActive(!panelBank.activeSelf);
-        }
-        if(LomFloatPanel <= 0 && isCloseLomPanel == true)
-        {
-            isCloseLomPanel = false;
-            panelLom.SetActive(!panelLom.activeSelf);
-        }
-        if (pref <= 0)
-        {
-            if (ispref == true)
-            {
-                ispref = false;
-                panel1.SetActive(!panel1.activeSelf);
-            }
-        }
-        if(achi <= 0)
-        {
-            if(isachi == true)
-            {
-                isachi = false;
-            }
-        }
-        if(shop <= 0)
-        {
-            if(isshop == true)
-            {
-                isshop = false;
-                panel2.SetActive(!panel2.activeSelf);
-            }
-        }
-        if(stat <= 0)
-        {
-            if(isstat == true)
-            {
-                isstat = false;
-                panel4.SetActive(!panel4.activeSelf);
-            }
-        }
-        if(task <= 0)
-        {
-            if(istask == true)
-            {
-                istask = false;
-                panel5.SetActive(!panel5.activeSelf);
-            }
-        }
-        if(Dbackstarted <= 0 && Bbackstarted)
-        {
-            panel7.SetActive(!panel7.activeSelf);
-            Bbackstarted = false;
-        }
 
         if(isdelay1 <= 0)
         {
@@ -751,6 +661,10 @@ public class menu : MonoBehaviour
         ps53.Stop();
         ps54.Stop();
         ps55.Stop();
+        ps56.Stop();
+        ps57.Stop();
+        ps58.Stop();
+        ps59.Stop();
 
         if(!rocketfall)
         ad2.Play();
@@ -960,6 +874,7 @@ public void destartedrocketps()
         ps46.Play();
         ps47.Play();
         ps52.Play();
+        ps56.Play();
     }
     public void isps16()
     {
@@ -972,6 +887,7 @@ public void destartedrocketps()
         ps48.Play();
         ps49.Play();
         ps53.Play();
+        ps57.Play();
     }
     public void isps17()
     {
@@ -980,6 +896,7 @@ public void destartedrocketps()
         ps27.Play();
         ps42.Play();
         ps54.Play();
+        ps58.Play();
     }
     public void isps18()
     {
@@ -988,6 +905,7 @@ public void destartedrocketps()
         ps38.Play();
         ps39.Play();
         ps55.Play();
+        ps59.Play();
     }
     public void isps19()
     {
@@ -1068,9 +986,7 @@ public void destartedrocketps()
         if(isdelay2 <= 2)
         {
         anim21.Play("anim 32 1");
-        Dbackstarted = 0.8f;
-        Bbackstarted = true;
-        isdelay2 = 0.85f;
+        isdelay2 = 0.55f;
         }
     }
     public void is1g()
@@ -1140,16 +1056,12 @@ public void destartedrocketps()
                 panel1.SetActive(!panel1.activeSelf);
                 anim1.Play("anim13 0");
                 anim7.Play("anim 1 0");
-                isanim1 = true;
-                prefs = 0;
+                isanim1 = true;     
             }
             else
             {
                 anim1.Play("anim13 1");
-                pref = 1.1f;
-                ispref = true;
                 isanim1 = false;
-                prefs = 0;
             }
 
         isdelay2 = 1f;
@@ -1173,12 +1085,10 @@ public void destartedrocketps()
             {
                 anim6.Play("anim 18 0");
                 anim3.Play("19 1");
-                achi = 1.1f;
-                isachi = true;
                 isanim3 = false;
             }
 
-        isdelay2 = 0.85f;
+        isdelay2 = 0.55f;
         ad2end();
 
         }
@@ -1199,8 +1109,6 @@ public void destartedrocketps()
             {
                 anim2.Play("anim12 0");
                 isanim2 = false;
-                shop = 1.1f;
-                isshop = true;
             }
             if (isanim3 == false)
             {
@@ -1212,12 +1120,9 @@ public void destartedrocketps()
             {
                 anim6.Play("anim 18 0");
                 anim3.Play("19 1");
-                achi = 1.1f;
-                isachi = true;
-                isanim3 = false;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel24()
@@ -1235,8 +1140,6 @@ public void destartedrocketps()
             {
                 anim2.Play("anim12 0");
                 isanim2 = false;
-                shop = 1.1f;
-                isshop = true;
             }
             if (isanim4 == false)
             {
@@ -1250,11 +1153,9 @@ public void destartedrocketps()
                 anim15.Play("anim 23 0");
                 anim14.Play("anim 22 0");
                 isanim4 = false;
-                stat = 1.1f;
-                isstat = true;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel54()
@@ -1273,8 +1174,6 @@ public void destartedrocketps()
             anim17.Play("anim 25 0");
             anim16.Play("anim 24 1");
             isanim5 = false;
-            task = 1.1f;
-            istask = true;
         }
         if (isanim4 == false)
         {
@@ -1288,11 +1187,9 @@ public void destartedrocketps()
             anim15.Play("anim 23 0");
             anim14.Play("anim 22 0");
             isanim4 = false;
-            stat = 1.1f;
-            isstat = true;
         }
 ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel34()
@@ -1309,9 +1206,6 @@ ad2end();
             {
                 anim6.Play("anim 18 0");
                 anim3.Play("19 1");
-                achi = 1.1f;
-                isachi = true;
-                isanim3 = false;
             }
             if (isanim4 == false)
             {
@@ -1325,11 +1219,9 @@ ad2end();
                 anim15.Play("anim 23 0");
                 anim14.Play("anim 22 0");
                 isanim4 = false;
-                stat = 1.1f;
-                isstat = true;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel25()
@@ -1347,8 +1239,6 @@ ad2end();
             {
                 anim2.Play("anim12 0");
                 isanim2 = false;
-                shop = 1.1f;
-                isshop = true;
             }
             if (isanim5 == false)
             {
@@ -1362,11 +1252,9 @@ ad2end();
                 anim17.Play("anim 25 0");
                 anim16.Play("anim 24 1");
                 isanim5 = false;
-                task = 1.1f;
-                istask = true;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel28()
@@ -1384,8 +1272,6 @@ ad2end();
             {
                 anim2.Play("anim12 0");
                 isanim2 = false;
-                shop = 1.1f;
-                isshop = true;
             }
             if (isanim7 == false)
             {
@@ -1393,17 +1279,14 @@ ad2end();
                 componentsp.Play("componentsp");
                 components.Play("componclick");
                 isanim7 = true;
-                isdelay2 = 2;
             }
             else if(isdelay2 <= 0)
             {
                 componentsp.Play("componentsp1");
                 isanim7 = false;
-                compopf = 1;
-                is7 = true;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel29()
@@ -1421,8 +1304,6 @@ ad2end();
             {
                 anim2.Play("anim12 0");
                 isanim2 = false;
-                shop = 1.1f;
-                isshop = true;
             }
             if (isCustomPanel == false)
             {
@@ -1430,17 +1311,14 @@ ad2end();
                 skins.Play("anim 17 0");
                 skinspanel.Play("customization");
                 isCustomPanel = true;
-                isdelay2 = 2;
             }
             else if(isdelay2 <= 0)
             {
                 skinspanel.Play("customization 0");
                 isCustomPanel = false;
-                customFloatPanel = 1;
-                isCloseCustomPanel = true;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel35()
@@ -1457,8 +1335,6 @@ ad2end();
             {
                 anim6.Play("anim 18 0");
                 anim3.Play("19 1");
-                achi = 1.1f;
-                isachi = true;
                 isanim3 = false;
             }
             if (isanim5 == false)
@@ -1473,11 +1349,9 @@ ad2end();
                 anim17.Play("anim 25 0");
                 anim16.Play("anim 24 1");
                 isanim5 = false;
-                task = 1.1f;
-                istask = true;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel85()
@@ -1490,14 +1364,11 @@ ad2end();
                 componentsp.Play("componentsp");
                 components.Play("componclick");
                 isanim7 = true;
-                isdelay2 = 2;
             }
             else if(isdelay2 <= 0)
             {
                 componentsp.Play("componentsp1");
                 isanim7 = false;
-                compopf = 1;
-                is7 = true;
             }
             if (isanim5 == false)
             {
@@ -1511,11 +1382,9 @@ ad2end();
                 anim17.Play("anim 25 0");
                 anim16.Play("anim 24 1");
                 isanim5 = false;
-                task = 1.1f;
-                istask = true;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel89()
@@ -1528,32 +1397,26 @@ ad2end();
                 skins.Play("anim 17 0");
                 skinspanel.Play("customization");
                 isCustomPanel = true;
-                isdelay2 = 2;
             }
             else if(isdelay2 <= 0)
             {
                 skinspanel.Play("customization 0");
                 isCustomPanel = false;
-                customFloatPanel = 1;
-                isCloseCustomPanel = true;
             }
             if (isanim7 == false)
             {
                 panel8.SetActive(!panel8.activeSelf);
                 isanim7 = true;
-                isdelay2 = 2;
                 componentsp.Play("componentsp");
                 components.Play("componclick");
             }
             else if (isanim7 == true)
             {
                 isanim7 = false;
-                compopf = 1;
-                is7 = true;
                 componentsp.Play("componentsp1");
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanel95()
@@ -1566,14 +1429,11 @@ ad2end();
                 skins.Play("anim 17 0");
                 skinspanel.Play("customization");
                 isCustomPanel = true;
-                isdelay2 = 2;
             }
             else if(isdelay2 <= 0)
             {
                 skinspanel.Play("customization 0");
                 isCustomPanel = false;
-                customFloatPanel = 1;
-                isCloseCustomPanel = true;
             }
             if (isanim5 == false)
             {
@@ -1587,11 +1447,9 @@ ad2end();
                 anim17.Play("anim 25 0");
                 anim16.Play("anim 24 1");
                 isanim5 = false;
-                task = 1.1f;
-                istask = true;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     public void activatepanelbl()
@@ -1609,8 +1467,6 @@ ad2end();
             {
                 bankpanel.Play("Bank 0");
                 isBankPanel = false;
-                BankFloatPanel = 1;
-                isCloseBankPanel = true;
             }
             
              if (isLomPanel == false)
@@ -1619,17 +1475,14 @@ ad2end();
                 lombard.Play("lombardclick");
                 lompanel.Play("Lombard");
                 isLomPanel = true;
-                isdelay2 = 1;
             }
             else if (isdelay2 <= 0)
             {
                 lompanel.Play("Lombard 0");
                 isLomPanel = false;
-                LomFloatPanel = 1;
-                isCloseLomPanel = true;
             }
             ad2end();
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
         }
     }
     
@@ -1654,12 +1507,10 @@ ad2end();
             {
                 anim2.Play("anim12 0");
                 isanim2 = false;
-                shop = 1.1f;
-                isshop = true;
                 one = 0;
             }
 
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
 
             ad2end();
         }
@@ -1682,11 +1533,9 @@ ad2end();
                 anim15.Play("anim 23 0");
                 anim14.Play("anim 22 0");
                 isanim4 = false;
-                stat = 1.1f;
-                isstat = true;
             }
 
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
 
             ad2end();
         }
@@ -1709,11 +1558,9 @@ ad2end();
                 anim17.Play("anim 25 0");
                 anim16.Play("anim 24 1");
                 isanim5 = false;
-                task = 1.1f;
-                istask = true;
             }
 
-            isdelay2 = 0.85f;
+            isdelay2 = 0.55f;
 
             ad2end();
         }
@@ -1726,17 +1573,15 @@ ad2end();
                 panel6.SetActive(!panel6.activeSelf);
                 anim20.Play("anim 45 1");
                 isanim6 = true;
-                isdelay2 = 2;
             }
             else if(isdelay2 <= 0)
             {
                 anim20.Play("anim 45 0");
                 isanim6 = false;
-                isdelay5 = 1;
-                is6 = true;
             }
 
             ad2end();
+            isdelay2 = 0.55f;
     }
     public void activatepanel8()
     {
@@ -1746,17 +1591,15 @@ ad2end();
                 componentsp.Play("componentsp");
                 components.Play("componclick");
                 isanim7 = true;
-                isdelay2 = 2;
             }
             else if(isdelay2 <= 0)
             {
                 componentsp.Play("componentsp1");
                 isanim7 = false;
-                compopf = 1;
-                is7 = true;
             }
 
             ad2end();
+            isdelay2 = 0.55f;
     }
     public void activateCustomizatePanel()
     {
@@ -1766,17 +1609,15 @@ ad2end();
                 skins.Play("anim 17 0");
                 skinspanel.Play("customization");
                 isCustomPanel = true;
-                isdelay2 = 1;
             }
             else if(isdelay2 <= 0)
             {
                 skinspanel.Play("customization 0");
                 isCustomPanel = false;
-                customFloatPanel = 1;
-                isCloseCustomPanel = true;
             }
 
             ad2end();
+            isdelay2 = 0.55f;
     }
     public void activateLombardPanel()
     {
@@ -1786,17 +1627,15 @@ ad2end();
                 lombard.Play("lombardclick");
                 lompanel.Play("Lombard");
                 isLomPanel = true;
-                isdelay2 = 1;
             }
             else if(isdelay2 <= 0)
             {
                 lompanel.Play("Lombard 0");
                 isLomPanel = false;
-                LomFloatPanel = 1;
-                isCloseLomPanel = true;
             }
 
             ad2end();
+            isdelay2 = 0.55f;
     }
     public void activateBankPanel()
     {
@@ -1806,16 +1645,14 @@ ad2end();
                 Bank.Play("Bankclick");
                 bankpanel.Play("Bank");
                 isBankPanel = true;
-                isdelay2 = 1;
             }
             else if(isdelay2 <= 0)
             {
                 bankpanel.Play("Bank 0");
                 isBankPanel = false;
-                BankFloatPanel = 1;
-                isCloseBankPanel = true;
             }
 
             ad2end();
+            isdelay2 = 0.55f;
     }
 }
