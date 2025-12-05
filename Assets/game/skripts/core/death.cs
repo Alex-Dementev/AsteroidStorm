@@ -441,7 +441,7 @@ public class death : MonoBehaviour
 
             Destroy(Collision.gameObject);
         }
-        if (Collision.gameObject.CompareTag("br") && live <= 2)
+        if (Collision.gameObject.CompareTag("br") && live <= PlayerPrefs.GetInt("LifeToStart", 1) - 1)
         {
             live += 1;
             adbonus.Play();
@@ -559,17 +559,42 @@ public class death : MonoBehaviour
 
                     if (live >= 1)
                     {
-                        if (live == 3)
+                        if(PlayerPrefs.GetInt("LifeToStart", 1) >= 3)
                         {
-                            fineText.color = new Color(1f, 0f, 0.3f);
+                            if (live >= 3)
+                            {
+                                fineText.color = new Color(1f, 0f, 0.3f);
+                            }
+                            else if (live == 2)
+                            {
+                                fineText.color = new Color(0.749f, 0.223f, 0.478f);
+                            }
+                            else
+                            {
+                                fineText.color = new Color(0.671f, 0.376f, 0.522f);
+                            }
                         }
-                        else if (live == 2)
+                        if(PlayerPrefs.GetInt("LifeToStart", 1) == 2)
                         {
-                            fineText.color = new Color(0.749f, 0.223f, 0.478f);
+                            if (live == 2)
+                            {
+                                fineText.color = new Color(1f, 0f, 0.3f);
+                            }
+                            else
+                            {
+                                fineText.color = new Color(0.749f, 0.223f, 0.478f);
+                            }
                         }
-                        else
+                        if(PlayerPrefs.GetInt("LifeToStart", 1) == 1)
                         {
-                            fineText.color = new Color(0.671f, 0.376f, 0.522f);
+                            if (live == 1)
+                            {
+                                fineText.color = new Color(1f, 0f, 0.3f);
+                            }
+                            else
+                            {
+                                fineText.color = new Color(0.749f, 0.223f, 0.478f);
+                            }
                         }
 
                         if (PlayerPrefs.GetInt("vibration") == 0)

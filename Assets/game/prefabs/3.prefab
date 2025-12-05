@@ -59,6 +59,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -133,17 +136,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5f2b0cab234c1064499b5fa593ada49d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.524313
+      value: 27.2909
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f2b0cab234c1064499b5fa593ada49d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.8277876
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f2b0cab234c1064499b5fa593ada49d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 192.69215
+      value: 1.8359909
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f2b0cab234c1064499b5fa593ada49d,
         type: 3}
@@ -244,8 +247,9 @@ MonoBehaviour:
   goldMaterial: {fileID: 2100000, guid: 8d3d5e7318aa1b84db5ef0063e8b29d6, type: 2}
   diamondMaterial: {fileID: 2100000, guid: d21c4df5e9b3e8d4e9563c45fba311fc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: f728d6d7cad90c248baa2a51e19e10ee, type: 2}
-  normalMap: {fileID: 0}
+  normalMap: {fileID: 2800000, guid: 02588083d8b1e2c4eaa879bffd101116, type: 3}
   baseMass: 3.2
+  Metals: 0
   happened: 0
   asteroidType: 0
   mass: 0
@@ -311,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToEnable: {fileID: 5959850750692644514}
+  spawnChance: 0.02
 --- !u!1001 &6806290885319093235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: 8d7e7141366de1e4297256a1ba3d01dd,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2042f4b7843b17c4dbe7dc84900d869b, type: 2}
     - target: {fileID: 919132149155446097, guid: 8d7e7141366de1e4297256a1ba3d01dd,

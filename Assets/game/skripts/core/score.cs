@@ -151,7 +151,7 @@ public class ScoreCounter : MonoBehaviour
 
         ScheduleNextSpawn();
 
-        PlayerPrefs.SetInt("live", 3);
+        PlayerPrefs.SetInt("live", PlayerPrefs.GetInt("LifeToStart", 1));
     }
 
     void Update()

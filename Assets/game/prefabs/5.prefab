@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8dc796e1b56f91344aa33b27a528d6b2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.412552
+      value: 27.484402
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8dc796e1b56f91344aa33b27a528d6b2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.9561403
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8dc796e1b56f91344aa33b27a528d6b2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 421.3354
+      value: -4.5419865
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8dc796e1b56f91344aa33b27a528d6b2,
         type: 3}
@@ -108,7 +108,9 @@ MonoBehaviour:
   goldMaterial: {fileID: 2100000, guid: 8d3d5e7318aa1b84db5ef0063e8b29d6, type: 2}
   diamondMaterial: {fileID: 2100000, guid: d21c4df5e9b3e8d4e9563c45fba311fc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: f728d6d7cad90c248baa2a51e19e10ee, type: 2}
+  normalMap: {fileID: 2800000, guid: 02588083d8b1e2c4eaa879bffd101116, type: 3}
   baseMass: 0.8
+  Metals: 0
   happened: 0
   asteroidType: 0
   mass: 0

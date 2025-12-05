@@ -183,6 +183,7 @@ public class menu : MonoBehaviour
     public int is14;
     public int is15;
     public int maxcoins;
+    public int allgamesPermanentTask;
 
     public float RR;
     public int Vp;
@@ -1005,15 +1006,20 @@ public void destartedrocketps()
             coins = PlayerPrefs.GetInt("coins");
 
             if(PlayerPrefs.GetInt("yousurwive", 0) == 0)
-            coins -= 3;
+            {
+                coins -= 3;
+                allgames = PlayerPrefs.GetInt("allgames", 0);
+                allgames++;
+                PlayerPrefs.SetInt("allgames", allgames);
+                allgamesPermanentTask = PlayerPrefs.GetInt("PermanentTaskLife", 0);
+                allgamesPermanentTask++;
+                PlayerPrefs.SetInt("PermanentTaskLife", allgamesPermanentTask);
+            }
             
             PlayerPrefs.SetInt("coins", coins);
             isstart = true;
             image.SetActive(!image.activeSelf);
             anim.Play("anim9 0");
-            allgames = PlayerPrefs.GetInt("allgames", 0);
-            allgames++;
-            PlayerPrefs.SetInt("allgames", allgames);
         }
         else if(turbinsMinus == 0)
         {

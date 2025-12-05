@@ -15,6 +15,8 @@ public class AsteroidSkript : MonoBehaviour
 
     public float baseMass = 1f; // масса, задаваемая вручную в инспекторе
 
+    public int Metals;
+
     private Renderer rend;
     public bool happened = false;
     public int asteroidType = 0; // 0=камень,1=бронза,2=серебро,3=золото,4=алмаз
@@ -72,6 +74,10 @@ public class AsteroidSkript : MonoBehaviour
         float totalMass = PlayerPrefs.GetFloat("totalMass", 0f);
         totalMass += mass;
         PlayerPrefs.SetFloat("totalMass", totalMass);
+
+        Metals = PlayerPrefs.GetInt("PermanentTaskMetals", 0);
+        Metals++;
+        PlayerPrefs.SetInt("PermanentTaskMetals", Metals);
 
         string key = "";
         switch (asteroidType)

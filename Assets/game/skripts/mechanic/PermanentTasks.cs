@@ -42,6 +42,7 @@ public class PermanentTasks : MonoBehaviour
                 Slider.maxValue = 200;
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskFuel", 0);
                 Task.text = ("Купленно: " + PlayerPrefs.GetInt("PermanentTaskFuel", 0) + "/200 канистр");
+                PlayerPrefs.SetInt("AllColl", 200);
 
                 if(PlayerPrefs.GetInt("PermanentTaskFuel", 0) >= 200)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -56,6 +57,8 @@ public class PermanentTasks : MonoBehaviour
                 Slider.maxValue = 500;
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskFuel", 0);
                 Task.text = ("Купленно: " + PlayerPrefs.GetInt("PermanentTaskFuel", 0) + "/500 канистр");
+                PlayerPrefs.SetInt("AllColl", 500);
+                PlayerPrefs.SetFloat("DiscountOnFuel", 0.9f);
 
                 if(PlayerPrefs.GetInt("PermanentTaskFuel", 0) >= 500)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -70,6 +73,8 @@ public class PermanentTasks : MonoBehaviour
                 Slider.maxValue = 1000;
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskFuel", 0);
                 Task.text = ("Купленно: " + PlayerPrefs.GetInt("PermanentTaskFuel", 0) + "/1000 канистр");
+                PlayerPrefs.SetInt("AllColl", 1000);
+                PlayerPrefs.SetFloat("DiscountOnFuel", 0.8f);
 
                 if(PlayerPrefs.GetInt("PermanentTaskFuel", 0) >= 1000)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -78,6 +83,7 @@ public class PermanentTasks : MonoBehaviour
             }
             if(PlayerPrefs.GetInt("LevelTask1", 0) == 3)
             {
+                PlayerPrefs.SetFloat("DiscountOnFuel", 0.7f);
                 Desc.text = ("Ты выполнил все задания типа канистры");
                 DescPositive.text = ("Награда: скидка на топливо 30%");
                 go2.SetActive(false);
@@ -98,6 +104,7 @@ public class PermanentTasks : MonoBehaviour
                 Slider.maxValue = 600;
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskEnergy", 0);
                 Task.text = ("Выработанно: " + PlayerPrefs.GetInt("PermanentTaskEnergy", 0) + "/600 едениц энергии");
+                PlayerPrefs.SetInt("AllColl", 600);
 
                 if(PlayerPrefs.GetInt("PermanentTaskEnergy", 0) >= 600)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -112,6 +119,8 @@ public class PermanentTasks : MonoBehaviour
                 Slider.maxValue = 2000;
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskEnergy", 0);
                 Task.text = ("Выработанно: " + PlayerPrefs.GetInt("PermanentTaskEnergy", 0) + "/2000 едениц энергии");
+                PlayerPrefs.SetInt("AllColl", 2000);
+                PlayerPrefs.SetFloat("ProductivityOnEnergy", 1.1f);
 
                 if(PlayerPrefs.GetInt("PermanentTaskEnergy", 0) >= 2000)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -126,6 +135,8 @@ public class PermanentTasks : MonoBehaviour
                 Slider.maxValue = 5000;
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskEnergy", 0);
                 Task.text = ("Выработанно: " + PlayerPrefs.GetInt("PermanentTaskEnergy", 0) + "/5000 едениц энергии");
+                PlayerPrefs.SetInt("AllColl", 5000);
+                PlayerPrefs.SetFloat("ProductivityOnEnergy", 1.2f);
 
                 if(PlayerPrefs.GetInt("PermanentTaskEnergy", 0) >= 5000)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -134,6 +145,7 @@ public class PermanentTasks : MonoBehaviour
             }
             if(PlayerPrefs.GetInt("LevelTask2", 0) == 3)
             {
+                PlayerPrefs.SetFloat("ProductivityOnEnergy", 1.3f);
                 Desc.text = ("Ты выполнил все задания типа энергия");
                 DescPositive.text = ("Награда: эффективность выработки энергии +30%");
                 go2.SetActive(false);
@@ -154,6 +166,7 @@ public class PermanentTasks : MonoBehaviour
                 Slider.maxValue = 15;
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskLife", 0);
                 Task.text = ("Начато: " + PlayerPrefs.GetInt("PermanentTaskLife", 0) + "/15 залетов");
+                PlayerPrefs.SetInt("AllColl", 15);
 
                 if(PlayerPrefs.GetInt("PermanentTaskLife", 0) >= 15)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -168,6 +181,8 @@ public class PermanentTasks : MonoBehaviour
                 Slider.maxValue = 35;
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskLife", 0);
                 Task.text = ("Начато: " + PlayerPrefs.GetInt("PermanentTaskLife", 0) + "/35 залетов");
+                PlayerPrefs.SetInt("AllColl", 35);
+                PlayerPrefs.SetInt("LifeToStart", 2);
 
                 if(PlayerPrefs.GetInt("PermanentTaskLife", 0) >= 35)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -182,6 +197,8 @@ public class PermanentTasks : MonoBehaviour
                 Slider.maxValue = 135;
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskLife", 0);
                 Task.text = ("Начато: " + PlayerPrefs.GetInt("PermanentTaskLife", 0) + "/135 залетов");
+                PlayerPrefs.SetInt("AllColl", 135);
+                PlayerPrefs.SetInt("LifeToStart", 3);
 
                 if(PlayerPrefs.GetInt("PermanentTaskLife", 0) >= 135)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -190,6 +207,7 @@ public class PermanentTasks : MonoBehaviour
             }
             if(PlayerPrefs.GetInt("LevelTask3", 0) == 3)
             {
+                PlayerPrefs.SetInt("LifeToStart", 4);
                 Desc.text = ("Ты выполнил все задания типа жизни");
                 DescPositive.text = ("Награда: жизни +3");
                 go2.SetActive(false);
@@ -208,10 +226,11 @@ public class PermanentTasks : MonoBehaviour
                 LevelDesc.text = ("Уровень: 0/3");
                 DescPositive.text = ("-");
                 Slider.maxValue = 350;
-                Slider.value = PlayerPrefs.GetInt("PermanentTaskMetalls", 0);
-                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetalls", 0) + "/350 астероидов");
+                Slider.value = PlayerPrefs.GetInt("PermanentTaskMetals", 0);
+                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetals", 0) + "/350 астероидов");
+                PlayerPrefs.SetInt("AllColl", 350);
 
-                if(PlayerPrefs.GetInt("PermanentTaskMetalls", 0) >= 350)
+                if(PlayerPrefs.GetInt("PermanentTaskMetals", 0) >= 350)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
                 else
                     Give.color = new Color(121f/255f, 78f/255f, 119f/255f);
@@ -222,10 +241,12 @@ public class PermanentTasks : MonoBehaviour
                 LevelDesc.text = ("Уровень: 1/3");
                 DescPositive.text = ("Награда: стоимость металлов +10%");
                 Slider.maxValue = 650;
-                Slider.value = PlayerPrefs.GetInt("PermanentTaskMetalls", 0);
-                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetalls", 0) + "/650 астероидов");
+                Slider.value = PlayerPrefs.GetInt("PermanentTaskMetals", 0);
+                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetals", 0) + "/650 астероидов");
+                PlayerPrefs.SetInt("AllColl", 650);
+                PlayerPrefs.SetFloat("DiscountOnLombart", 0.9f);
 
-                if(PlayerPrefs.GetInt("PermanentTaskMetalls", 0) >= 650)
+                if(PlayerPrefs.GetInt("PermanentTaskMetals", 0) >= 650)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
                 else
                     Give.color = new Color(121f/255f, 78f/255f, 119f/255f);
@@ -236,16 +257,19 @@ public class PermanentTasks : MonoBehaviour
                 LevelDesc.text = ("Уровень: 2/3");
                 DescPositive.text = ("Награда: стоимость металлов +20%");
                 Slider.maxValue = 1300;
-                Slider.value = PlayerPrefs.GetInt("PermanentTaskMetalls", 0);
-                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetalls", 0) + "/1300 астероидов");
+                Slider.value = PlayerPrefs.GetInt("PermanentTaskMetals", 0);
+                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetals", 0) + "/1300 астероидов");
+                PlayerPrefs.SetInt("AllColl", 1300);
+                PlayerPrefs.SetFloat("DiscountOnLombart", 0.8f);
 
-                if(PlayerPrefs.GetInt("PermanentTaskMetalls", 0) >= 1300)
+                if(PlayerPrefs.GetInt("PermanentTaskMetals", 0) >= 1300)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
                 else
                     Give.color = new Color(121f/255f, 78f/255f, 119f/255f);
             }
             if(PlayerPrefs.GetInt("LevelTask4", 0) == 3)
             {
+                PlayerPrefs.SetFloat("DiscountOnLombart", 0.7f);
                 Desc.text = ("Ты выполнил все задания типа металлы");
                 DescPositive.text = ("Награда: стоимость металлов +30%");
                 go2.SetActive(false);

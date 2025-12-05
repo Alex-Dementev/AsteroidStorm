@@ -94,7 +94,7 @@ public class DoubleTapHandler : MonoBehaviour
 
     void Start()
     {
-        var main = ps.main;
+        var main = p.main;
         main.startSize = PlayerPrefs.GetInt("ScannerLenght", 200);
 
         PlayerPrefs.SetInt("activeShield", 0);
@@ -128,7 +128,7 @@ public class DoubleTapHandler : MonoBehaviour
         ad.volume = audios;
 
         if (PlayerPrefs.GetInt("partic") == 0)
-            p.Stop();
+            ps.Stop();
     }
 
     void Update()
