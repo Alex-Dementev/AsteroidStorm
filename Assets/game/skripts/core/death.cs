@@ -334,6 +334,7 @@ public class death : MonoBehaviour
                 anim1.Play("anim11");
                 fuelzero.text = "Топливо закончилось";
                 isfuelzero = true;
+                energy.End();
 
                 if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                 {
@@ -622,9 +623,9 @@ public class death : MonoBehaviour
                         losePanel.SetActive(true);
                         anim1.Play("anim11");
                         live -= 1;
-
                         livet.text = live.ToString();
                         PlayerPrefs.SetInt("live", live);
+                        energy.End();
 
                         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                         {
@@ -639,7 +640,7 @@ public class death : MonoBehaviour
                         else
                         {
                             ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
-                            ScoreBuff += ((int)(player.position.z / 3) + 1000);
+                            ScoreBuff += ((int)(player.position.z / 3));
                             PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
                             score = PlayerPrefs.GetInt("allscore");
                             score += ((int)(player.position.z / 3));

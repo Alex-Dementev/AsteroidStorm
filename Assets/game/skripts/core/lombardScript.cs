@@ -11,10 +11,10 @@ public class lombardScript : MonoBehaviour
     private float floatton1, floatton2, floatton3, floatton4;
 
     [Header("Базовые цены за тонну")]
-    public float basePrice1 = 10f;
-    public float basePrice2 = 20f;
-    public float basePrice3 = 50f;
-    public float basePrice4 = 100f;
+    private float basePrice1 = 8;
+    private float basePrice2 = 14;
+    private float basePrice3 = 30;
+    private float basePrice4 = 150;
 
     [Header("Сколько продаём (из слайдера)")]
     public Slider SliderSell1, SliderSell2, SliderSell3, SliderSell4;
@@ -34,11 +34,25 @@ public class lombardScript : MonoBehaviour
 
     void Start()
     {
+        basePrice1 = basePrice1 * PlayerPrefs.GetFloat("DiscountOnLombart", 1f);
+        basePrice2 = basePrice2 * PlayerPrefs.GetFloat("DiscountOnLombart", 1f);
+        basePrice3 = basePrice3 * PlayerPrefs.GetFloat("DiscountOnLombart", 1f);
+        basePrice4 = basePrice4 * PlayerPrefs.GetFloat("DiscountOnLombart", 1f);
+
         UpdatePercents();
     }
 
     void Update()
     {
+        if(PlayerPrefs.GetInt("MetalsIsActivateTask", 0) == 1)
+        {
+            basePrice1 = basePrice1 * PlayerPrefs.GetFloat("DiscountOnLombart", 1f);
+            basePrice2 = basePrice2 * PlayerPrefs.GetFloat("DiscountOnLombart", 1f);
+            basePrice3 = basePrice3 * PlayerPrefs.GetFloat("DiscountOnLombart", 1f);
+            basePrice4 = basePrice4 * PlayerPrefs.GetFloat("DiscountOnLombart", 1f);
+            PlayerPrefs.SetInt("MetalsIsActivateTask", 0);
+        }
+
         // Загружаем количество тонн
         floatton1 = PlayerPrefs.GetFloat("bronzeMass", 0);
         floatton2 = PlayerPrefs.GetFloat("silverMass", 0);

@@ -14,6 +14,7 @@ public class GivePermonentTasks : MonoBehaviour
     public PermanentTasks PT3;
     public PermanentTasks PT4;
     public AudioSource Approve;
+    public int Coll;
     
 
     public void Click()
@@ -26,9 +27,11 @@ public class GivePermonentTasks : MonoBehaviour
             Level++;
             PlayerPrefs.SetInt("LevelTask1", Level);
             LevelT1.text = ("Уровень: " + Level + "/3");
-            PlayerPrefs.SetInt("PermanentTaskFuel", 0);
+            Coll = PlayerPrefs.GetInt("PermanentTaskFuel", 0) - PlayerPrefs.GetInt("AllColl", 0);
+            PlayerPrefs.SetInt("PermanentTaskFuel", Coll);
             PT1.UpdateDesc();
             Approve.Play();
+            PlayerPrefs.SetInt("fuelIsActivateTask", 1);
         }   
         if(Type == 2 && PlayerPrefs.GetInt("AllColl", 0) <= PlayerPrefs.GetInt("PermanentTaskEnergy", 0))
         {
@@ -36,7 +39,8 @@ public class GivePermonentTasks : MonoBehaviour
             Level++;
             PlayerPrefs.SetInt("LevelTask2", Level);
             LevelT2.text = ("Уровень: " + Level + "/3");
-            PlayerPrefs.SetInt("PermanentTaskEnergy", 0);
+            Coll = PlayerPrefs.GetInt("PermanentTaskEnergy", 0) - PlayerPrefs.GetInt("AllColl", 0);
+            PlayerPrefs.SetInt("PermanentTaskEnergy", Coll);
             PT1.UpdateDesc();
             Approve.Play();
         }   
@@ -46,7 +50,8 @@ public class GivePermonentTasks : MonoBehaviour
             Level++;
             PlayerPrefs.SetInt("LevelTask3", Level);
             LevelT3.text = ("Уровень: " + Level + "/3");
-            PlayerPrefs.SetInt("PermanentTaskLife", 0);
+            Coll = PlayerPrefs.GetInt("PermanentTaskLife", 0) - PlayerPrefs.GetInt("AllColl", 0);
+            PlayerPrefs.SetInt("PermanentTaskLife", Coll);
             PT1.UpdateDesc();
             Approve.Play();
         }   
@@ -56,9 +61,11 @@ public class GivePermonentTasks : MonoBehaviour
             Level++;
             PlayerPrefs.SetInt("LevelTask4", Level);
             LevelT4.text = ("Уровень: " + Level + "/3");
-            PlayerPrefs.SetInt("PermanentTaskMetalls", 0);
+            Coll = PlayerPrefs.GetInt("PermanentTaskMetalls", 0) - PlayerPrefs.GetInt("AllColl", 0);
+            PlayerPrefs.SetInt("PermanentTaskMetalls", Coll);
             PT1.UpdateDesc();
             Approve.Play();
+            PlayerPrefs.SetInt("MetalsIsActivateTask", 1);
         }   
     }
 }

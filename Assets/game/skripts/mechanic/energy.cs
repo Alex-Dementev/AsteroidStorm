@@ -11,14 +11,28 @@ public class energy : MonoBehaviour
     public float floatt;
     public bool isfinal1g;
     public Animator SliderAnim;
+    public float PermanentTaskEnergy;
+    public float PermanentTaskEnergySet;
+    public bool DeActivateEnergySet;
+    public float isDelayEnergySet;
 
 
 
     void Update()
     {
+        if(!DeActivateEnergySet && isDelayEnergySet <= 0)
+        {
+            isDelayEnergySet = 2;
+            PermanentTaskEnergySet = PlayerPrefs.GetInt("PermanentTaskEnergy", 0);
+            PermanentTaskEnergySet += PermanentTaskEnergy;
+            PlayerPrefs.SetInt("PermanentTaskEnergy", Mathf.RoundToInt(PermanentTaskEnergySet));
+            PermanentTaskEnergy = 0;
+        }
+
         s.value = energyint;
 
         energyfloat -= Time.deltaTime;
+        isDelayEnergySet -= Time.deltaTime;
 
         if(!isfinal1g)
         {
@@ -33,7 +47,8 @@ public class energy : MonoBehaviour
         {
             if(energyint <= 100)
             {
-                energyint = energyint + floatt;
+                energyint += floatt;
+                PermanentTaskEnergy += floatt;
                 energyfloat = 0.025f;
             }
         }
@@ -53,6 +68,7 @@ public class energy : MonoBehaviour
         floatt += PlayerPrefs.GetFloat("Generators3Energy", 0);
         floatt += PlayerPrefs.GetFloat("Generators4Energy", 0);
         floatt -= PlayerPrefs.GetFloat("TurbinsEnergy", 0);
+        floatt = floatt * PlayerPrefs.GetFloat("ProductivityOnEnergy", 1f);
         floatt = floatt / 40;
     }
 
@@ -60,5 +76,12 @@ public class energy : MonoBehaviour
     {
         energyint += 25;
         SliderAnim.Play("Start");
+    }
+    public void End()
+    {
+        PermanentTaskEnergySet = PlayerPrefs.GetInt("PermanentTaskEnergy", 0);
+        PermanentTaskEnergySet += PermanentTaskEnergy;
+        PlayerPrefs.SetInt("PermanentTaskEnergy", Mathf.RoundToInt(PermanentTaskEnergySet));
+        DeActivateEnergySet = true;
     }
 }

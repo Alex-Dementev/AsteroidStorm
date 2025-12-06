@@ -149,7 +149,11 @@ public class tasks : MonoBehaviour
 
     void HandleAnimation()
     {
-        TaskAttract.SetBool("IsTrue", task1Completed || task2Completed);
+        if(task1Completed || task2Completed)
+        {
+            PlayerPrefs.SetInt("isDisActivateAnimTask1", 1);
+            TaskAttract.SetBool("IsTrue", true);
+        }
     }
 
     public void CollectTask1Reward()
@@ -158,7 +162,11 @@ public class tasks : MonoBehaviour
 
         GiveReward(rewardsBlock1[currentTask1]);
         task1Completed = false;
-        TaskAttract.SetBool("IsTrue", false);
+
+        PlayerPrefs.SetInt("isDisActivateAnimTask1", 1);
+
+        if(PlayerPrefs.GetInt("isDisActivateAnimTask2", 0) == 1)
+            TaskAttract.SetBool("IsTrue", false);
 
         int[] remaining = RemainingTasks(block1, currentTask1);
         currentTask1 = remaining[Random.Range(0, remaining.Length)];
@@ -173,7 +181,11 @@ public class tasks : MonoBehaviour
 
         GiveReward(rewardsBlock2[currentTask2]);
         task2Completed = false;
-        TaskAttract.SetBool("IsTrue", false);
+
+        PlayerPrefs.SetInt("isDisActivateAnimTask1", 0);
+
+        if(PlayerPrefs.GetInt("isDisActivateAnimTask2", 0) == 0)
+            TaskAttract.SetBool("IsTrue", false);
 
         int[] remaining = RemainingTasks(block2, currentTask2);
         currentTask2 = remaining[Random.Range(0, remaining.Length)];

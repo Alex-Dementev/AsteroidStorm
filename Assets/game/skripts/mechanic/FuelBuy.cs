@@ -8,91 +8,80 @@ public class FuelBuy : MonoBehaviour
     public AudioSource errorSound;
 
     public Text priceText;
-    public Text price10Text;   // 💥 ЦЕНА ЗА 10
+    public Text price10Text;
     public Text percentText;
     public Text cansText;
 
-    private int currentPrice;
     private int basePrice = 10;
+    private int currentPrice;
+    private int plusFuelBuy;
+
+    private float dynamicDiscount = 1f; // Динамическая скидка (меняется каждый час)
 
     void Start()
     {
+        UpdateDynamicDiscount();
         UpdatePrice();
         UpdateUI();
     }
 
-    void UpdatePrice()
+    void UpdateDynamicDiscount()
     {
-        currentPrice = PlayerPrefs.GetInt("fuelPrice", basePrice);
-
         string lastTime = PlayerPrefs.GetString("lastFuelUpdate", "");
         DateTime lastUpdate;
-
         if (DateTime.TryParse(lastTime, out lastUpdate))
         {
             TimeSpan diff = DateTime.Now - lastUpdate;
-
             if (diff.TotalHours >= 1)
             {
                 int hours = (int)diff.TotalHours;
-
                 for (int i = 0; i < hours; i++)
                 {
                     int percent = UnityEngine.Random.Range(15, 36);
                     bool increase = UnityEngine.Random.value > 0.5f;
-                    float factor = 1f + (increase ? percent : -percent) / 100f;
-
-                    currentPrice = Mathf.RoundToInt(currentPrice * factor);
-                    currentPrice = Mathf.Clamp(currentPrice, 3, 30);
+                    dynamicDiscount = 1f + (increase ? percent : -percent) / 100f;
+                    
+                    // Ограничение от 30% до 200%
+                    dynamicDiscount = Mathf.Clamp(dynamicDiscount, 0.3f, 2f);
                 }
-
                 PlayerPrefs.SetString("lastFuelUpdate", DateTime.Now.ToString());
             }
         }
         else
         {
-            currentPrice = basePrice;
+            dynamicDiscount = 1f;
             PlayerPrefs.SetString("lastFuelUpdate", DateTime.Now.ToString());
         }
+        PlayerPrefs.SetFloat("dynamicDiscount", dynamicDiscount);
+    }
 
-        PlayerPrefs.SetInt("fuelPrice", currentPrice);
-        PlayerPrefs.Save();
+    void UpdatePrice()
+    {
+        float manualDiscount = PlayerPrefs.GetInt("DiscountOnFuel", 10) / 10f; // Ручная скидка
+        float price = basePrice * manualDiscount * dynamicDiscount;
+        currentPrice = Mathf.RoundToInt(price);
     }
 
     void UpdateUI()
     {
-        // Цена за 1
         priceText.text = currentPrice.ToString();
+        if (price10Text != null) price10Text.text = (currentPrice * 10).ToString();
 
-        // Цена за 10 💥
-        if (price10Text != null)
-            price10Text.text = (currentPrice * 10).ToString();
+        // Динамическая скидка текстом
+        float percentTextValue = Mathf.Round((1f - dynamicDiscount) * 100f);
+        if (percentTextValue == 0) percentText.text = "0%";
+        else percentText.text = (percentTextValue < 0 ? "+" : "-") + Mathf.Abs((int)percentTextValue) + "%";
 
-        // Проценты
-        float percentChange = ((float)currentPrice - basePrice) / basePrice * 100f;
-        string sign = percentChange >= 0 ? "+" : "";
-        percentText.text = sign + Mathf.RoundToInt(percentChange) + "%";
+        ColorUtility.TryParseHtmlString("#FD70FA", out Color baseColor);
+        percentText.color = dynamicDiscount < 1f ? Color.green : (dynamicDiscount > 1f ? Color.red : baseColor);
 
-        Color baseColor;
-        ColorUtility.TryParseHtmlString("#FD70FA", out baseColor);
-
-        if (percentChange > 0)
-            percentText.color = Color.Lerp(baseColor, Color.red, 0.5f);
-        else if (percentChange < 0)
-            percentText.color = Color.Lerp(baseColor, Color.green, 0.5f);
-        else
-            percentText.color = baseColor;
-
-        // Канистры
         int cans = PlayerPrefs.GetInt("fuel", 0);
         cansText.text = cans.ToString();
     }
 
-    // ----------- ПОКУПКА 1 -----------
     public void Click()
     {
         int coins = PlayerPrefs.GetInt("coins", 0);
-
         if (coins >= currentPrice)
         {
             coins -= currentPrice;
@@ -101,19 +90,19 @@ public class FuelBuy : MonoBehaviour
             int cans = PlayerPrefs.GetInt("fuel", 0) + 1;
             PlayerPrefs.SetInt("fuel", cans);
 
-            PlayerPrefs.Save();
+            plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 1;
+            PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);
 
-            if (buySound) buySound.Play();
+            PlayerPrefs.Save();
+            buySound?.Play();
         }
         else
         {
-            if (errorSound) errorSound.Play();
+            errorSound?.Play();
         }
-
         UpdateUI();
     }
 
-    // ----------- ПОКУПКА 10 💥 -----------
     public void Click10()
     {
         int coins = PlayerPrefs.GetInt("coins", 0);
@@ -127,15 +116,23 @@ public class FuelBuy : MonoBehaviour
             int cans = PlayerPrefs.GetInt("fuel", 0) + 10;
             PlayerPrefs.SetInt("fuel", cans);
 
-            PlayerPrefs.Save();
+            plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 10;
+            PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);
 
-            if (buySound) buySound.Play();
+            PlayerPrefs.Save();
+            buySound?.Play();
         }
         else
         {
-            if (errorSound) errorSound.Play();
+            errorSound?.Play();
         }
+        UpdateUI();
+    }
 
+    void Update()
+    {
+        UpdateDynamicDiscount();
+        UpdatePrice();
         UpdateUI();
     }
 }

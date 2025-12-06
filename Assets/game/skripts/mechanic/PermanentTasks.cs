@@ -58,7 +58,7 @@ public class PermanentTasks : MonoBehaviour
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskFuel", 0);
                 Task.text = ("Купленно: " + PlayerPrefs.GetInt("PermanentTaskFuel", 0) + "/500 канистр");
                 PlayerPrefs.SetInt("AllColl", 500);
-                PlayerPrefs.SetFloat("DiscountOnFuel", 0.9f);
+                PlayerPrefs.SetInt("DiscountOnFuel", 9);
 
                 if(PlayerPrefs.GetInt("PermanentTaskFuel", 0) >= 500)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -74,7 +74,7 @@ public class PermanentTasks : MonoBehaviour
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskFuel", 0);
                 Task.text = ("Купленно: " + PlayerPrefs.GetInt("PermanentTaskFuel", 0) + "/1000 канистр");
                 PlayerPrefs.SetInt("AllColl", 1000);
-                PlayerPrefs.SetFloat("DiscountOnFuel", 0.8f);
+                PlayerPrefs.SetInt("DiscountOnFuel", 8);
 
                 if(PlayerPrefs.GetInt("PermanentTaskFuel", 0) >= 1000)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -83,7 +83,7 @@ public class PermanentTasks : MonoBehaviour
             }
             if(PlayerPrefs.GetInt("LevelTask1", 0) == 3)
             {
-                PlayerPrefs.SetFloat("DiscountOnFuel", 0.7f);
+                PlayerPrefs.SetInt("DiscountOnFuel", 7);
                 Desc.text = ("Ты выполнил все задания типа канистры");
                 DescPositive.text = ("Награда: скидка на топливо 30%");
                 go2.SetActive(false);

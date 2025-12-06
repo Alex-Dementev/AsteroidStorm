@@ -1063,11 +1063,13 @@ public void destartedrocketps()
                 anim1.Play("anim13 0");
                 anim7.Play("anim 1 0");
                 isanim1 = true;     
+                prefs = 0;
             }
             else
             {
                 anim1.Play("anim13 1");
                 isanim1 = false;
+                prefs = 0;
             }
 
         isdelay2 = 1f;
