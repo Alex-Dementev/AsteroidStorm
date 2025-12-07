@@ -12,7 +12,7 @@ public class FuelBuy : MonoBehaviour
     public Text percentText;
     public Text cansText;
 
-    private int basePrice = 10;
+    private int basePrice = 7;
     private int currentPrice;
     private int plusFuelBuy;
 
@@ -29,31 +29,43 @@ public class FuelBuy : MonoBehaviour
     {
         string lastTime = PlayerPrefs.GetString("lastFuelUpdate", "");
         DateTime lastUpdate;
+
+        // Загружаем последний сохранённый коэффициент
+        dynamicDiscount = PlayerPrefs.GetFloat("dynamicDiscount", 1f);
+
         if (DateTime.TryParse(lastTime, out lastUpdate))
         {
             TimeSpan diff = DateTime.Now - lastUpdate;
+
             if (diff.TotalHours >= 1)
             {
                 int hours = (int)diff.TotalHours;
+
                 for (int i = 0; i < hours; i++)
                 {
-                    int percent = UnityEngine.Random.Range(15, 36);
-                    bool increase = UnityEngine.Random.value > 0.5f;
-                    dynamicDiscount = 1f + (increase ? percent : -percent) / 100f;
-                    
-                    // Ограничение от 30% до 200%
-                    dynamicDiscount = Mathf.Clamp(dynamicDiscount, 0.3f, 2f);
+                    // Дельта изменения (от -15% до +15%)
+                    float delta = UnityEngine.Random.Range(-0.15f, 0.15f);
+
+                    // Применяем изменение
+                    dynamicDiscount += dynamicDiscount * delta;
+
+                    // Ограничиваем общие рамки 30%–180%
+                    dynamicDiscount = Mathf.Clamp(dynamicDiscount, 0.3f, 1.8f);
                 }
+
                 PlayerPrefs.SetString("lastFuelUpdate", DateTime.Now.ToString());
+                PlayerPrefs.SetFloat("dynamicDiscount", dynamicDiscount);
             }
         }
         else
         {
+            // Первый запуск
             dynamicDiscount = 1f;
             PlayerPrefs.SetString("lastFuelUpdate", DateTime.Now.ToString());
+            PlayerPrefs.SetFloat("dynamicDiscount", dynamicDiscount);
         }
-        PlayerPrefs.SetFloat("dynamicDiscount", dynamicDiscount);
     }
+
 
     void UpdatePrice()
     {
