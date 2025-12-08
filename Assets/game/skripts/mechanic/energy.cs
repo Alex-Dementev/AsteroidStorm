@@ -68,7 +68,12 @@ public class energy : MonoBehaviour
         floatt += PlayerPrefs.GetFloat("Generators3Energy", 0);
         floatt += PlayerPrefs.GetFloat("Generators4Energy", 0);
         floatt -= PlayerPrefs.GetFloat("TurbinsEnergy", 0);
-        floatt = floatt * PlayerPrefs.GetFloat("ProductivityOnEnergy", 1f);
+
+        if(PlayerPrefs.GetInt("Boost2", 0) >= 1)
+            floatt = floatt * (PlayerPrefs.GetFloat("ProductivityOnEnergy", 1f) + 0.5f);
+        else
+            floatt = floatt * PlayerPrefs.GetFloat("ProductivityOnEnergy", 1f);
+
         floatt = floatt / 40;
     }
 

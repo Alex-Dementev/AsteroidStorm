@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Boosts : MonoBehaviour
 {
     public int Index;
+    public int IndexUpdate;
     public Text Desc;
     public Text Timer;
     public Text DescTimerPrice;
@@ -14,6 +15,7 @@ public class Boosts : MonoBehaviour
     public Slider Slider;
     public Image BuyImage;
     public GameObject GoMoney;
+    public string NameTimerPlayerPrefs;
 
 
     void Start()
@@ -35,7 +37,33 @@ public class Boosts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        IndexUpdate = PlayerPrefs.GetInt("IndexBoost", 0);
         
+        if(PlayerPrefs.GetInt(NameTimerPlayerPrefs, 0) == 1)
+            Timer.text = PlayerPrefs.GetString(NameTimerPlayerPrefs + "Timer_Text");
+        else
+            Timer.text = "";
+
+        Debug.Log(PlayerPrefs.GetString("Boost1Timer_Text"));
+
+        if(IndexUpdate == 1 && PlayerPrefs.GetInt("Boost1", 0) == 1)
+        {
+            DescTimerPrice.text = PlayerPrefs.GetString("Boost1Timer_Text");
+            Slider.maxValue = 3600;
+            Slider.value = PlayerPrefs.GetInt("Boost1Timer_LeftSeconds", 0);
+        }
+        if(IndexUpdate == 2 && PlayerPrefs.GetInt("Boost2", 0) == 1)
+        {
+            DescTimerPrice.text = PlayerPrefs.GetString("Boost2Timer_Text");
+            Slider.maxValue = 7200;
+            Slider.value = PlayerPrefs.GetInt("Boost2Timer_LeftSeconds", 0);
+        }
+        if(IndexUpdate == 3 && PlayerPrefs.GetInt("Boost3", 0) == 1)
+        {
+            DescTimerPrice.text = PlayerPrefs.GetString("Boost3Timer_Text");
+            Slider.maxValue = 3600;
+            Slider.value = PlayerPrefs.GetInt("Boost3Timer_LeftSeconds", 0);
+        }
     }
 
     public void UpdateDesc()
@@ -44,6 +72,8 @@ public class Boosts : MonoBehaviour
         GoSlider.SetActive(true);
         GoTimerPrice.SetActive(true);
         GoMoney.SetActive(false);
+        
+        PlayerPrefs.SetInt("IndexBoost", Index);
 
         if(Index == 0)
         {
@@ -100,7 +130,7 @@ public class Boosts : MonoBehaviour
         }
         if(Index == 3)
         {
-            Desc.text = "Масса астероидов больше на 70%, на 1 час";
+            Desc.text = "Масса астероидов больше на 50%, на 1 час";
 
             if(PlayerPrefs.GetInt("Boost3", 0) >= 1)
             {

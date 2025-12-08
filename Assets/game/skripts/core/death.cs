@@ -218,6 +218,8 @@ public class death : MonoBehaviour
         MinusFuel += PlayerPrefs.GetFloat("Genertors4Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("TurbinsFuel", 0);
         MinusFuel /= 4;
+        if(PlayerPrefs.GetInt("Boost1", 0) >= 1)
+            MinusFuel = MinusFuel * 0.65f;
 
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 0)
         {

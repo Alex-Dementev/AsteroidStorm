@@ -76391,7 +76391,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.21967699}
   m_AnchorMax: {x: 1, y: 0.748323}
-  m_AnchoredPosition: {x: 0, y: -4217.2725}
+  m_AnchoredPosition: {x: 0, y: -4217.2666}
   m_SizeDelta: {x: 0, y: 496.44434}
   m_Pivot: {x: 0.5, y: 20.5}
 --- !u!114 &383156904
@@ -100538,7 +100538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15, y: 0}
   m_AnchorMax: {x: 0.35, y: 0.2135715}
-  m_AnchoredPosition: {x: -70.999985, y: -112.45575}
+  m_AnchoredPosition: {x: -70.999985, y: -112.44745}
   m_SizeDelta: {x: 130, y: -425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485773957
@@ -102001,6 +102001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: 2
+  IndexUpdate: 0
   Desc: {fileID: 812733929}
   Timer: {fileID: 1352509744}
   DescTimerPrice: {fileID: 1738801553}
@@ -102011,6 +102012,7 @@ MonoBehaviour:
   Slider: {fileID: 926828869}
   BuyImage: {fileID: 757346996}
   GoMoney: {fileID: 85857880}
+  NameTimerPlayerPrefs: Boost2
 --- !u!114 &498810015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115970,6 +115972,7 @@ GameObject:
   - component: {fileID: 596760588}
   - component: {fileID: 596760590}
   - component: {fileID: 596760591}
+  - component: {fileID: 596760592}
   m_Layer: 5
   m_Name: E
   m_TagString: Untagged
@@ -116077,6 +116080,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GO: {fileID: 596760586}
+--- !u!114 &596760592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596760586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154b1907272f23a479343314e6843977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textArray:
+  - {fileID: 1623299364}
+  - {fileID: 2120100640}
+  - {fileID: 1881511375}
+  - {fileID: 301629672}
+  - {fileID: 340296695}
+  - {fileID: 695992412}
+  playerPrefsKey: TurbinsCount
+  totalValue: 0
 --- !u!1 &596789351
 GameObject:
   m_ObjectHideFlags: 0
@@ -154117,6 +154141,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748030184}
   m_CullTransparentMesh: 1
+--- !u!1 &748280323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748280324}
+  - component: {fileID: 748280325}
+  m_Layer: 0
+  m_Name: Timers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748280324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748280323}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.7, z: -20.86}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1389164060}
+  - {fileID: 981516128}
+  - {fileID: 1860284944}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &748280325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748280323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdd2011439732c468d11b8c26102f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  b1: {fileID: 934669412}
+  b2: {fileID: 498810014}
+  b3: {fileID: 1170657555}
+  No: {fileID: 226863684}
+  Yes: {fileID: 1742775584}
 --- !u!1 &748361013
 GameObject:
   m_ObjectHideFlags: 0
@@ -155222,9 +155298,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GivePermonentTasks, Assembly-CSharp
-        m_MethodName: Click
+      - m_Target: {fileID: 748280325}
+        m_TargetAssemblyTypeName: BuyBoosts, Assembly-CSharp
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -187647,6 +187723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: 1
+  IndexUpdate: 0
   Desc: {fileID: 812733929}
   Timer: {fileID: 550646491}
   DescTimerPrice: {fileID: 1738801553}
@@ -187657,6 +187734,7 @@ MonoBehaviour:
   Slider: {fileID: 926828869}
   BuyImage: {fileID: 757346996}
   GoMoney: {fileID: 85857880}
+  NameTimerPlayerPrefs: Boost1
 --- !u!114 &934669413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200730,7 +200808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.6016025}
-  m_AnchoredPosition: {x: 0, y: -1500.0808}
+  m_AnchoredPosition: {x: 0, y: -1500.0979}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &979075891
@@ -201021,6 +201099,52 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041F\u043E\u043B\u0443\u0447\u0438\u0448\u044C: 10000"
+--- !u!1 &981516127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 981516128}
+  - component: {fileID: 981516129}
+  m_Layer: 0
+  m_Name: Boost2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &981516128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981516127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 748280324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &981516129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981516127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dfc5a78a5b3634b97b77a6ef3b3b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerKey: Boost2Timer
+  DurationSeconds: 7200
 --- !u!1 &982201690
 GameObject:
   m_ObjectHideFlags: 0
@@ -243709,6 +243833,7 @@ GameObject:
   - component: {fileID: 1129660418}
   - component: {fileID: 1129660420}
   - component: {fileID: 1129660421}
+  - component: {fileID: 1129660422}
   m_Layer: 5
   m_Name: F
   m_TagString: Untagged
@@ -243814,6 +243939,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GO: {fileID: 1129660416}
+--- !u!114 &1129660422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129660416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154b1907272f23a479343314e6843977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textArray:
+  - {fileID: 544672198}
+  - {fileID: 1026059764}
+  - {fileID: 742214793}
+  - {fileID: 2023679980}
+  playerPrefsKey: FuelTanksCount
+  totalValue: 0
 --- !u!1 &1130545183
 GameObject:
   m_ObjectHideFlags: 0
@@ -246431,7 +246575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1159154932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -246546,6 +246690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: 0
+  IndexUpdate: 0
   Desc: {fileID: 812733929}
   Timer: {fileID: 0}
   DescTimerPrice: {fileID: 1738801553}
@@ -246556,6 +246701,7 @@ MonoBehaviour:
   Slider: {fileID: 926828869}
   BuyImage: {fileID: 757346996}
   GoMoney: {fileID: 85857880}
+  NameTimerPlayerPrefs: 
 --- !u!114 &1159154939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247594,6 +247740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: 3
+  IndexUpdate: 0
   Desc: {fileID: 812733929}
   Timer: {fileID: 1832853048}
   DescTimerPrice: {fileID: 1738801553}
@@ -247604,6 +247751,7 @@ MonoBehaviour:
   Slider: {fileID: 926828869}
   BuyImage: {fileID: 757346996}
   GoMoney: {fileID: 85857880}
+  NameTimerPlayerPrefs: Boost3
 --- !u!114 &1170657556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288687,7 +288835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1, y: 0.06784948}
   m_AnchorMax: {x: 0.45, y: 0.3057742}
-  m_AnchoredPosition: {x: 40.000244, y: 71.00696}
+  m_AnchoredPosition: {x: 40.000244, y: 71.0072}
   m_SizeDelta: {x: -220, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1331708328
@@ -302480,6 +302628,52 @@ MonoBehaviour:
   Quantity: 0
   ad: {fileID: 0}
   adfail: {fileID: 0}
+--- !u!1 &1389164059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1389164060}
+  - component: {fileID: 1389164061}
+  m_Layer: 0
+  m_Name: Boost1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1389164060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389164059}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 748280324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1389164061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389164059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dfc5a78a5b3634b97b77a6ef3b3b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerKey: Boost1Timer
+  DurationSeconds: 3600
 --- !u!1 &1391207170
 GameObject:
   m_ObjectHideFlags: 0
@@ -390114,6 +390308,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860087288}
   m_CullTransparentMesh: 1
+--- !u!1 &1860284943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860284944}
+  - component: {fileID: 1860284945}
+  m_Layer: 0
+  m_Name: Boost3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1860284944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860284943}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 748280324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1860284945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860284943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dfc5a78a5b3634b97b77a6ef3b3b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerKey: Boost3Timer
+  DurationSeconds: 3600
 --- !u!1 &1862073677
 GameObject:
   m_ObjectHideFlags: 0
@@ -447860,6 +448100,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 455307800}
+  - {fileID: 748280324}
   - {fileID: 547254009}
   - {fileID: 1678706565}
   - {fileID: 1423571614}

@@ -71,6 +71,9 @@ public class AsteroidSkript : MonoBehaviour
 
     public void asvoid()
     {
+        if(PlayerPrefs.GetInt("Boost3", 0) >= 1)
+            mass = mass * 1.5f;
+
         float totalMass = PlayerPrefs.GetFloat("totalMass", 0f);
         totalMass += mass;
         PlayerPrefs.SetFloat("totalMass", totalMass);

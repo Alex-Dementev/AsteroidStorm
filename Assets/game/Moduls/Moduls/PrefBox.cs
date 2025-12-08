@@ -176,7 +176,6 @@ public class PrefBoxPaste : MonoBehaviour
         DescPositive.text = "" + DescPos;
         DescNegative.text = "" + DescNegat;
 
-
         if(PlayerPrefs.GetInt(IndexModul, 0) >= 1)
         {
             PlayerPrefs.SetString("DescText" + Index, Desc);
@@ -550,8 +549,9 @@ public class PrefBoxPaste : MonoBehaviour
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                
-                approveSell();
+
+                if(PlayerPrefs.GetInt("TurbinsCount", 0) >= 1)
+                    approveSell();
             }
         }
         if(PlayerPrefs.GetString("Generator1IndexModule", "") == IndexModul)
@@ -562,7 +562,7 @@ public class PrefBoxPaste : MonoBehaviour
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                
+
                 approveSell();
             }
         }
@@ -574,7 +574,7 @@ public class PrefBoxPaste : MonoBehaviour
             if(twoclicks2 >= 2)
             {
                 twoclicks2 = 0;
-                
+
                 approveSell();
             }
         }
@@ -586,7 +586,7 @@ public class PrefBoxPaste : MonoBehaviour
             if(twoclicks3 >= 2)
             {
                 twoclicks3 = 0;
-                
+
                 approveSell();
             }
         }
@@ -611,7 +611,8 @@ public class PrefBoxPaste : MonoBehaviour
             {
                 twoclicks = 0;
                 
-                approveSell();
+                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 || PlayerPrefs.GetString("Generator2IndexModule", "") != "0")
+                    approveSell();
             }
         }
         if(PlayerPrefs.GetString("Fuel2IndexModule", "") == IndexModul)
@@ -622,8 +623,9 @@ public class PrefBoxPaste : MonoBehaviour
             if(twoclicks2 >= 2)
             {
                 twoclicks2 = 0;
-                
-                approveSell();
+
+                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 || PlayerPrefs.GetString("Generator1IndexModule", "") != "0")
+                    approveSell();
             }
         }
         if(PlayerPrefs.GetString("GyperJumpIndexModule", "") == IndexModul)
@@ -634,7 +636,7 @@ public class PrefBoxPaste : MonoBehaviour
             if(twoclicks >= 2)
             {
                 twoclicks = 0;
-                
+
                 approveSell();
             }
         }
