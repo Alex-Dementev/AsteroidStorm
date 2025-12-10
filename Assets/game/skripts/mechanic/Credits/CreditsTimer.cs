@@ -16,6 +16,9 @@ public class SmartCreditsTimer : MonoBehaviour
     [Header("Если отсутствовал больше дней — таймер не уменьшается")]
     public int MaxOfflineDays = 3;
 
+    [Header("Полностью отключить время при статусе 3?")]
+    public bool HardDisable = true;
+
     private string endTimeKey;
     private string lastLoginKey;
     private string textKey;
@@ -32,14 +35,34 @@ public class SmartCreditsTimer : MonoBehaviour
         secondsLeftKey = TimerKey + "_SecondsLeft";
         lostTimeKey = TimerKey + "_LostTime";
 
-        HandleOfflineTime();   // важная часть
+        HandleOfflineTime();
     }
 
     void Update()
     {
         int status = PlayerPrefs.GetInt(TimerKey, 0);
 
-        // ======= ЗАПУСК =======
+        // ================================
+        //       ПОЛНОЕ ОТКЛЮЧЕНИЕ (3)
+        // ================================
+        if (status == 3)
+        {
+            // Просто выключаем таймер, НИЧЕГО не удаляем
+            if (HardDisable)
+            {
+                PlayerPrefs.SetInt(secondsLeftKey, 0);
+                PlayerPrefs.SetString(textKey, "0д 0ч 0м");
+            }
+
+            // Сбрасываем основное состояние
+            PlayerPrefs.SetInt(TimerKey, 0);
+            PlayerPrefs.Save();
+            return;
+        }
+
+        // ================================
+        //              СТАРТ (1)
+        // ================================
         if (status == 1)
         {
             StartCoroutine(StartTimerWithDelay());
@@ -47,7 +70,9 @@ public class SmartCreditsTimer : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        // ======= ПРОДОЛЖЕНИЕ =======
+        // ================================
+        //            ПРОДОЛЖЕНИЕ
+        // ================================
         if (PlayerPrefs.HasKey(endTimeKey))
             UpdateTimer();
     }
@@ -76,7 +101,6 @@ public class SmartCreditsTimer : MonoBehaviour
         DateTime lastOnline = new DateTime(lastTicks);
         TimeSpan offline = now - lastOnline;
 
-        // если отсутствовал СЛИШКОМ долго
         if (offline.TotalDays > MaxOfflineDays)
         {
             PlayerPrefs.SetString(lastLoginKey, now.Ticks.ToString());
@@ -90,14 +114,12 @@ public class SmartCreditsTimer : MonoBehaviour
             long endTicks = long.Parse(PlayerPrefs.GetString(endTimeKey));
             DateTime endTime = new DateTime(endTicks);
 
-            // если таймер закончился пока игрок был оффлайн
             if (now > endTime)
             {
                 TimeSpan afterEnd = now - endTime;
 
-                PlayerPrefs.SetInt(lostTimeKey, (int)afterEnd.TotalSeconds); // ← Сохраняем потерянное время!
-                PlayerPrefs.SetInt(TimerKey, 2); // завершён
-                PlayerPrefs.DeleteKey(endTimeKey); // удаляем активный таймер
+                PlayerPrefs.SetInt(lostTimeKey, (int)afterEnd.TotalSeconds);
+                PlayerPrefs.SetInt(TimerKey, 2); // таймер завершён
                 PlayerPrefs.Save();
             }
         }
@@ -111,12 +133,11 @@ public class SmartCreditsTimer : MonoBehaviour
     // ================================
     IEnumerator StartTimerWithDelay()
     {
-        yield return new WaitForSeconds(1); // ← задержка 1 сек
+        yield return new WaitForSeconds(1);
 
         int lost = PlayerPrefs.GetInt(lostTimeKey, 0);
         int totalSeconds = DurationMinutes * 60;
 
-        // применяем потерянное время, если нужно
         if (ApplyLostTime && lost > 0)
         {
             totalSeconds -= lost;
@@ -152,15 +173,12 @@ public class SmartCreditsTimer : MonoBehaviour
 
             PlayerPrefs.SetString(textKey, "0д 0ч 0м");
             PlayerPrefs.SetInt(secondsLeftKey, 0);
-
-            PlayerPrefs.DeleteKey(endTimeKey);
             PlayerPrefs.Save();
             return;
         }
 
         TimeSpan left = new TimeSpan(endTicks - now);
-
-        string text = $"{left.Days}д {left.Hours}ч {left.Minutes}м";
+        string text = "До конца времени погашения: " + $"{left.Days}д {left.Hours}ч {left.Minutes}м";
 
         PlayerPrefs.SetString(textKey, text);
         PlayerPrefs.SetInt(secondsLeftKey, (int)left.TotalSeconds);

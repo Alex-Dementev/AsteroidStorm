@@ -15,6 +15,7 @@ public class GivePermonentTasks : MonoBehaviour
     public PermanentTasks PT4;
     public AudioSource Approve;
     public int Coll;
+    public float CoinsPercentToCredits;
     
 
     public void Click()
@@ -32,6 +33,9 @@ public class GivePermonentTasks : MonoBehaviour
             PT1.UpdateDesc();
             Approve.Play();
             PlayerPrefs.SetInt("fuelIsActivateTask", 1);
+            CoinsPercentToCredits = PlayerPrefs.GetFloat("CreditMaxCoins", 1);
+            CoinsPercentToCredits += 0.1f;
+            PlayerPrefs.SetFloat("CreditMaxCoins", CoinsPercentToCredits);
         }   
         if(Type == 2 && PlayerPrefs.GetInt("AllColl", 0) <= PlayerPrefs.GetInt("PermanentTaskEnergy", 0))
         {
@@ -41,8 +45,11 @@ public class GivePermonentTasks : MonoBehaviour
             LevelT2.text = ("Уровень: " + Level + "/3");
             Coll = PlayerPrefs.GetInt("PermanentTaskEnergy", 0) - PlayerPrefs.GetInt("AllColl", 0);
             PlayerPrefs.SetInt("PermanentTaskEnergy", Coll);
-            PT1.UpdateDesc();
+            PT2.UpdateDesc();
             Approve.Play();
+            CoinsPercentToCredits = PlayerPrefs.GetFloat("CreditMaxCoins", 1);
+            CoinsPercentToCredits += 0.1f;
+            PlayerPrefs.SetFloat("CreditMaxCoins", CoinsPercentToCredits);
         }   
         if(Type == 3 && PlayerPrefs.GetInt("AllColl", 0) <= PlayerPrefs.GetInt("PermanentTaskLife", 0))
         {
@@ -52,8 +59,11 @@ public class GivePermonentTasks : MonoBehaviour
             LevelT3.text = ("Уровень: " + Level + "/3");
             Coll = PlayerPrefs.GetInt("PermanentTaskLife", 0) - PlayerPrefs.GetInt("AllColl", 0);
             PlayerPrefs.SetInt("PermanentTaskLife", Coll);
-            PT1.UpdateDesc();
+            PT3.UpdateDesc();
             Approve.Play();
+            CoinsPercentToCredits = PlayerPrefs.GetFloat("CreditMaxCoins", 1);
+            CoinsPercentToCredits += 0.1f;
+            PlayerPrefs.SetFloat("CreditMaxCoins", CoinsPercentToCredits);
         }   
         if(Type == 4 && PlayerPrefs.GetInt("AllColl", 0) <= PlayerPrefs.GetInt("PermanentTaskMetalls", 0))
         {
@@ -63,9 +73,12 @@ public class GivePermonentTasks : MonoBehaviour
             LevelT4.text = ("Уровень: " + Level + "/3");
             Coll = PlayerPrefs.GetInt("PermanentTaskMetalls", 0) - PlayerPrefs.GetInt("AllColl", 0);
             PlayerPrefs.SetInt("PermanentTaskMetalls", Coll);
-            PT1.UpdateDesc();
+            PT4.UpdateDesc();
             Approve.Play();
             PlayerPrefs.SetInt("MetalsIsActivateTask", 1);
+            CoinsPercentToCredits = PlayerPrefs.GetFloat("CreditMaxCoins", 1);
+            CoinsPercentToCredits += 0.1f;
+            PlayerPrefs.SetFloat("CreditMaxCoins", CoinsPercentToCredits);
         }   
     }
 }
