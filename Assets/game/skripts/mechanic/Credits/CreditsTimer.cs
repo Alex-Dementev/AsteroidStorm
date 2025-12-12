@@ -162,11 +162,12 @@ public class SmartCreditsTimer : MonoBehaviour
         long endTicks = long.Parse(PlayerPrefs.GetString(endTimeKey));
         long now = DateTime.UtcNow.Ticks;
 
+        // === ТАЙМЕР ЗАКОНЧИЛСЯ ===
         if (now >= endTicks)
         {
             if (!finishedSaved)
             {
-                PlayerPrefs.SetInt(TimerKey, 2);
+                PlayerPrefs.SetInt(TimerKey, 2); // завершён
                 finishedSaved = true;
                 PlayerPrefs.Save();
             }
@@ -177,6 +178,10 @@ public class SmartCreditsTimer : MonoBehaviour
             return;
         }
 
+        // === ТАЙМЕР АКТИВЕН ===
+        PlayerPrefs.SetInt(TimerKey, 4); // <<< ТВОЁ УСЛОВИЕ
+        PlayerPrefs.Save();
+
         TimeSpan left = new TimeSpan(endTicks - now);
         string text = "До конца времени погашения: " + $"{left.Days}д {left.Hours}ч {left.Minutes}м";
 
@@ -184,4 +189,5 @@ public class SmartCreditsTimer : MonoBehaviour
         PlayerPrefs.SetInt(secondsLeftKey, (int)left.TotalSeconds);
         PlayerPrefs.Save();
     }
+
 }

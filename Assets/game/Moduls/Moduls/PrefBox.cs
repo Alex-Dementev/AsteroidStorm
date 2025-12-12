@@ -176,7 +176,7 @@ public class PrefBoxPaste : MonoBehaviour
         DescPositive.text = "" + DescPos;
         DescNegative.text = "" + DescNegat;
 
-        if(PlayerPrefs.GetInt(IndexModul, 0) >= 1)
+        if(PlayerPrefs.GetInt(IndexModul, 0) == 1)
         {
             PlayerPrefs.SetString("DescText" + Index, Desc);
             PlayerPrefs.SetString("DescPositiveText" + Index, DescPos);
@@ -602,7 +602,8 @@ public class PrefBoxPaste : MonoBehaviour
                 approveSell();
             }
         }
-        if(PlayerPrefs.GetString("Fuel1IndexModule", "") == IndexModul)
+        IndexSlot = PlayerPrefs.GetInt("Position");
+        if(PlayerPrefs.GetString("Fuel1IndexModule", "") == IndexModul && IndexSlot == 1)
         {
             twoclicks++;
             ResetClicksFloat = 0.75f;
@@ -611,11 +612,12 @@ public class PrefBoxPaste : MonoBehaviour
             {
                 twoclicks = 0;
                 
-                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 || PlayerPrefs.GetString("Generator2IndexModule", "") != "0")
+                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 || PlayerPrefs.GetString("Fuel2IndexModule", "") != "0")
                     approveSell();
             }
         }
-        if(PlayerPrefs.GetString("Fuel2IndexModule", "") == IndexModul)
+        IndexSlot = PlayerPrefs.GetInt("Position");
+        if(PlayerPrefs.GetString("Fuel2IndexModule", "") == IndexModul && IndexSlot == 2)
         {
             twoclicks2++;
             ResetClicksFloat = 0.75f;
@@ -624,7 +626,7 @@ public class PrefBoxPaste : MonoBehaviour
             {
                 twoclicks2 = 0;
 
-                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 || PlayerPrefs.GetString("Generator1IndexModule", "") != "0")
+                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 || PlayerPrefs.GetString("Fuel1IndexModule", "") != "0")
                     approveSell();
             }
         }
