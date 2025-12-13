@@ -64,8 +64,7 @@ public class AsteroidSkript : MonoBehaviour
             rend.material.SetFloat("_BumpScale", 1f);
         }
 
-        // итоговая масса с разбросом ±0.2 и округлением до сотых
-        float rawMass = baseMass + Random.Range(-0.2f, 0.2f);
+        float rawMass = baseMass - ((baseMass - (Random.Range(-0.5f, 0.5f) * baseMass)) * 0.5f);
         mass = Mathf.Round(rawMass * 100f) / 100f;
     }
 
@@ -73,7 +72,7 @@ public class AsteroidSkript : MonoBehaviour
     {
         if(PlayerPrefs.GetInt("Boost3", 0) >= 1)
             mass = mass * 1.5f;
-
+        
         float totalMass = PlayerPrefs.GetFloat("totalMass", 0f);
         totalMass += mass;
         PlayerPrefs.SetFloat("totalMass", totalMass);
@@ -96,6 +95,7 @@ public class AsteroidSkript : MonoBehaviour
             float currentMass = PlayerPrefs.GetFloat(key, 0f);
             currentMass += mass;
             PlayerPrefs.SetFloat(key, currentMass);
+            Debug.Log(PlayerPrefs.GetFloat("bronzeMass", 0));
         }
 
         PlayerPrefs.Save();

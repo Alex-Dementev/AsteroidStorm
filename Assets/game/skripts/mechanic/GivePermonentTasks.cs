@@ -16,6 +16,7 @@ public class GivePermonentTasks : MonoBehaviour
     public AudioSource Approve;
     public int Coll;
     public float CoinsPercentToCredits;
+    private float DiscountOnLombart;
     
 
     public void Click()
@@ -73,6 +74,7 @@ public class GivePermonentTasks : MonoBehaviour
             LevelT4.text = ("Уровень: " + Level + "/3");
             Coll = PlayerPrefs.GetInt("PermanentTaskMetalls", 0) - PlayerPrefs.GetInt("AllColl", 0);
             PlayerPrefs.SetInt("PermanentTaskMetalls", Coll);
+
             PT4.UpdateDesc();
             Approve.Play();
             PlayerPrefs.SetInt("MetalsIsActivateTask", 1);

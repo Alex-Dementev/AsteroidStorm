@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class TimerToUpdateModuls : MonoBehaviour
+public class ShopTimerSmart : MonoBehaviour
 {
     [Header("UI и магазин")]
     public Text timerText;
@@ -11,24 +11,23 @@ public class TimerToUpdateModuls : MonoBehaviour
     [Header("Модули для первого показа")]
     public GameObject[] initialModules;
 
-    [Header("Запуск таймера")]
+    [Header("Запуск таймера (после обучения)")]
     public bool startTimer = false;
 
-    private const string NEXT_UPDATE_KEY = "shop_next_update";
+    [Header("Интервал обновления магазина (ЧАСЫ)")]
+    public int UpdateIntervalHours = 24;
+
     private const string TIMER_STARTED_KEY = "shop_timer_started";
+    private const string END_TIME_KEY = "shop_end_time_ticks";
+    private const string LAST_LOGIN_KEY = "shop_last_login_ticks";
     private const string SHOP_NEEDS_REFRESH = "shop_needs_refresh";
 
-    private bool timerActive = false;
+    private bool timerActive;
 
-    // === 🎯 Интервал (теперь берётся из PlayerPrefs) ===
-    private float updateIntervalHours;
-
+    // ================================
     void Start()
     {
-        // загружаем интервал таймера
-        updateIntervalHours = PlayerPrefs.GetInt("HoursTimer", 24);
-
-        // показываем стартовые модули
+        // стартовые модули
         if (!PlayerPrefs.HasKey("shop_col1_rarity"))
         {
             foreach (var go in initialModules)
@@ -36,22 +35,17 @@ public class TimerToUpdateModuls : MonoBehaviour
                     go.SetActive(true);
         }
 
-        if (timerText != null)
-            timerText.text = "";
-
         if (PlayerPrefs.GetInt(TIMER_STARTED_KEY, 0) == 1)
             startTimer = true;
 
-        // включаем таймер
-        if (startTimer && !timerActive)
-            ActivateTimer();
+        HandleOfflineTime();
 
-        // проверяем, нужно ли обновить магазин сразу при старте
+        if (startTimer)
+            EnsureTimer();
+
         if (PlayerPrefs.GetInt(SHOP_NEEDS_REFRESH, 0) == 1)
         {
-            if (shopUpdater != null)
-                shopUpdater.ForceRefresh();
-
+            shopUpdater?.ForceRefresh();
             PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 0);
             PlayerPrefs.Save();
         }
@@ -60,95 +54,126 @@ public class TimerToUpdateModuls : MonoBehaviour
     void Update()
     {
         if (!timerActive)
-        {
-            if (startTimer)
-                ActivateTimer();
-            else
-                return;
-        }
+            return;
 
-        float hoursLeft = GetHoursLeft();
-
-        if (hoursLeft <= 0f)
-        {
-            PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 1);
-            PlayerPrefs.Save();
-
-            SetNextUpdateTimeSmart();
-            hoursLeft = GetHoursLeft();
-        }
-
-        UpdateTimerText(hoursLeft);
+        UpdateTimer();
     }
 
-    private void ActivateTimer()
+    void OnApplicationQuit()
     {
+        PlayerPrefs.SetString(LAST_LOGIN_KEY, DateTime.UtcNow.Ticks.ToString());
+        PlayerPrefs.Save();
+    }
+
+    // ================================
+    // ОФФЛАЙН ЛОГИКА (как в SmartCreditsTimer)
+    // ================================
+    void HandleOfflineTime()
+    {
+        DateTime now = DateTime.UtcNow;
+
+        if (!PlayerPrefs.HasKey(LAST_LOGIN_KEY))
+        {
+            PlayerPrefs.SetString(LAST_LOGIN_KEY, now.Ticks.ToString());
+            PlayerPrefs.Save();
+            return;
+        }
+
+        long lastTicks = long.Parse(PlayerPrefs.GetString(LAST_LOGIN_KEY));
+        DateTime lastOnline = new DateTime(lastTicks);
+
+        if (PlayerPrefs.HasKey(END_TIME_KEY))
+        {
+            long endTicks = long.Parse(PlayerPrefs.GetString(END_TIME_KEY));
+            DateTime endTime = new DateTime(endTicks);
+
+            if (now >= endTime)
+            {
+                PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 1);
+
+                // сдвигаем таймер циклически
+                while (endTime <= now)
+                    endTime = endTime.AddHours(UpdateIntervalHours);
+
+                PlayerPrefs.SetString(END_TIME_KEY, endTime.Ticks.ToString());
+                PlayerPrefs.Save();
+            }
+        }
+
+        PlayerPrefs.SetString(LAST_LOGIN_KEY, now.Ticks.ToString());
+        PlayerPrefs.Save();
+    }
+
+    // ================================
+    // СОЗДАНИЕ ТАЙМЕРА (1 РАЗ)
+    // ================================
+    void EnsureTimer()
+    {
+        if (timerActive)
+            return;
+
         timerActive = true;
         PlayerPrefs.SetInt(TIMER_STARTED_KEY, 1);
-        PlayerPrefs.Save();
 
-        if (!PlayerPrefs.HasKey(NEXT_UPDATE_KEY))
-            SetNextUpdateTimeSmart();
-
-        UpdateTimerText();
-    }
-
-    // ---------- Умное выставление следующего обновления ----------
-    private void SetNextUpdateTimeSmart()
-    {
-        // обновляем интервал на случай, если игрок его изменил
-        updateIntervalHours = PlayerPrefs.GetInt("HoursTimer", 24);
-
-        DateTime next;
-
-        if (PlayerPrefs.HasKey(NEXT_UPDATE_KEY) &&
-            DateTime.TryParse(PlayerPrefs.GetString(NEXT_UPDATE_KEY), out next))
+        if (!PlayerPrefs.HasKey(END_TIME_KEY))
         {
-            while (next <= DateTime.UtcNow)
-                next = next.AddHours(updateIntervalHours);
-        }
-        else
-        {
-            next = DateTime.UtcNow.AddHours(updateIntervalHours);
+            long endTicks = DateTime.UtcNow
+                .AddHours(UpdateIntervalHours)
+                .Ticks;
+
+            PlayerPrefs.SetString(END_TIME_KEY, endTicks.ToString());
         }
 
-        PlayerPrefs.SetString(NEXT_UPDATE_KEY, next.ToString("o"));
         PlayerPrefs.Save();
     }
 
-    // ---------- Осталось времени ----------
-    private float GetHoursLeft()
+    // ================================
+    // ОБНОВЛЕНИЕ
+    // ================================
+    void UpdateTimer()
     {
-        updateIntervalHours = PlayerPrefs.GetInt("HoursTimer", 24);
+        long endTicks = long.Parse(PlayerPrefs.GetString(END_TIME_KEY));
+        long now = DateTime.UtcNow.Ticks;
 
-        if (!PlayerPrefs.HasKey(NEXT_UPDATE_KEY))
-            return updateIntervalHours;
+        if (now >= endTicks)
+        {
+            PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 1);
 
-        if (!DateTime.TryParse(PlayerPrefs.GetString(NEXT_UPDATE_KEY, ""), out DateTime next))
-            return updateIntervalHours;
+            DateTime endTime = new DateTime(endTicks);
+            while (endTime <= DateTime.UtcNow)
+                endTime = endTime.AddHours(UpdateIntervalHours);
 
-        double hoursLeft = (next - DateTime.UtcNow).TotalHours;
-        return Mathf.Max(0f, (float)hoursLeft);
+            PlayerPrefs.SetString(END_TIME_KEY, endTime.Ticks.ToString());
+            PlayerPrefs.Save();
+        }
+
+        TimeSpan left = new TimeSpan(endTicks - now);
+        UpdateTimerText(left);
     }
 
-    private void UpdateTimerText(float hoursLeft = -1f)
+    // ================================
+    // UI
+    // ================================
+    void UpdateTimerText(TimeSpan left)
     {
-        if (timerText == null) return;
+        if (timerText == null)
+            return;
 
-        if (hoursLeft < 0f)
-            hoursLeft = GetHoursLeft();
+        if (left.TotalSeconds < 0)
+            left = TimeSpan.Zero;
 
-        int hours = Mathf.FloorToInt(hoursLeft);
-        int minutes = Mathf.FloorToInt((hoursLeft - hours) * 60f);
+        int totalHours = left.Days * 24 + left.Hours;
 
-        timerText.text = $"Обновление через: {hours}ч {minutes}м";
+        timerText.text =
+            $"Обновление через: {totalHours}ч {left.Minutes}м";
     }
 
-    [ContextMenu("Start Timer")]
+    // ================================
+    // ВЫЗЫВАЕТ ОБУЧЕНИЕ
+    // ================================
     public void EnableTimer()
     {
         startTimer = true;
-        if (!timerActive)
-            ActivateTimer();
+        EnsureTimer();
     }
 }

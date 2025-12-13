@@ -27,6 +27,7 @@ public class Credits : MonoBehaviour
     private float PercentCalc;
     public Text Trables;
     public Animator TrablesAnim;
+    private float DisCount;
 
     void Start()
     {
@@ -75,7 +76,8 @@ public class Credits : MonoBehaviour
             }
             if(PlayerPrefs.GetInt("CreditsTrables", 0) == 3)
             {
-                Timer.text = "";
+                Timer.text = "Стоимость металов -25%";
+                Timer.color = new Color(1, 61/255f, 110/255f);
             }
         }
 
@@ -109,15 +111,20 @@ public class Credits : MonoBehaviour
         if(PlayerPrefs.GetInt("CreditNumber", 0) <= 0)
         {
             PlayerPrefs.SetInt("CreditsActivee", 0);
+
             PlayerPrefs.SetInt("CreditsTimerStatus", 3);
             PlayerPrefs.SetInt("CreditsTimerNegtive1", 3);
             PlayerPrefs.SetInt("CreditsTimerNegtive2", 3);
+
             PlayerPrefs.SetInt("CreditsTrables", 0);
+
             goGet.SetActive(true);
             goPayOff.SetActive(false);
+
             PlayerPrefs.SetInt("CreditsTimerNegtive1True", 0);
             PlayerPrefs.SetInt("CreditsTimerNegtive2True", 0);
             PlayerPrefs.SetInt("CreditsTimerStatusTrue", 0);
+
             PlayerPrefs.SetInt("DelayCredits", 1);
 
             if(PlayerPrefs.GetInt("CreditsTimerStatus_SecondsLeft") >= 8640)

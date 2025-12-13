@@ -47,18 +47,26 @@ public class SmartCreditsTimer : MonoBehaviour
         // ================================
         if (status == 3)
         {
-            // Просто выключаем таймер, НИЧЕГО не удаляем
-            if (HardDisable)
-            {
-                PlayerPrefs.SetInt(secondsLeftKey, 0);
-                PlayerPrefs.SetString(textKey, "0д 0ч 0м");
-            }
+            // обнуляем остаток времени
+            PlayerPrefs.SetInt(secondsLeftKey, 0);
 
-            // Сбрасываем основное состояние
+            // пишем нулевой текст
+            PlayerPrefs.SetString(textKey, "0д 0ч 0м");
+
+            // удаляем активный таймер, чтобы он точно не продолжился
+            if (PlayerPrefs.HasKey(endTimeKey))
+                PlayerPrefs.DeleteKey(endTimeKey);
+
+            // сбрасываем потерянное оффлайн время
+            if (PlayerPrefs.HasKey(lostTimeKey))
+                PlayerPrefs.DeleteKey(lostTimeKey);
+
+            // возвращаем статус в 0
             PlayerPrefs.SetInt(TimerKey, 0);
             PlayerPrefs.Save();
             return;
         }
+
 
         // ================================
         //              СТАРТ (1)
@@ -111,18 +119,25 @@ public class SmartCreditsTimer : MonoBehaviour
         // Если таймер был активен
         if (PlayerPrefs.HasKey(endTimeKey))
         {
-            long endTicks = long.Parse(PlayerPrefs.GetString(endTimeKey));
-            DateTime endTime = new DateTime(endTicks);
+            int prevStatus = PlayerPrefs.GetInt(TimerKey, 0);
 
-            if (now > endTime)
+            // проверять окончание таймера можно только если он был активен
+            if (prevStatus == 4)
             {
-                TimeSpan afterEnd = now - endTime;
+                long endTicks = long.Parse(PlayerPrefs.GetString(endTimeKey));
+                DateTime endTime = new DateTime(endTicks);
 
-                PlayerPrefs.SetInt(lostTimeKey, (int)afterEnd.TotalSeconds);
-                PlayerPrefs.SetInt(TimerKey, 2); // таймер завершён
-                PlayerPrefs.Save();
+                if (now > endTime)
+                {
+                    TimeSpan afterEnd = now - endTime;
+
+                    PlayerPrefs.SetInt(lostTimeKey, (int)afterEnd.TotalSeconds);
+                    PlayerPrefs.SetInt(TimerKey, 2); // завершено
+                    PlayerPrefs.Save();
+                }
             }
         }
+
 
         PlayerPrefs.SetString(lastLoginKey, now.Ticks.ToString());
         PlayerPrefs.Save();
@@ -175,6 +190,11 @@ public class SmartCreditsTimer : MonoBehaviour
             PlayerPrefs.SetString(textKey, "0д 0ч 0м");
             PlayerPrefs.SetInt(secondsLeftKey, 0);
             PlayerPrefs.Save();
+
+            // удаляем время окончания чтобы не думал что таймер активен при следующем входе
+            if (PlayerPrefs.HasKey(endTimeKey))
+                PlayerPrefs.DeleteKey(endTimeKey);
+
             return;
         }
 

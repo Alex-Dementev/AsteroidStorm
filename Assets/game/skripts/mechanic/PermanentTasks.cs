@@ -17,6 +17,7 @@ public class PermanentTasks : MonoBehaviour
     public GameObject goReward;
     public GameObject goSlider;
     public GameObject goGive;
+    private float DiscountOnLombart;
     
     
     public void UpdateDesc()
@@ -229,6 +230,7 @@ public class PermanentTasks : MonoBehaviour
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskMetals", 0);
                 Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetals", 0) + "/350 астероидов");
                 PlayerPrefs.SetInt("AllColl", 350);
+                PlayerPrefs.SetFloat("DiscountOnLombart", 1);
 
                 if(PlayerPrefs.GetInt("PermanentTaskMetals", 0) >= 350)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -244,7 +246,7 @@ public class PermanentTasks : MonoBehaviour
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskMetals", 0);
                 Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetals", 0) + "/650 астероидов");
                 PlayerPrefs.SetInt("AllColl", 650);
-                PlayerPrefs.SetFloat("DiscountOnLombart", 0.9f);
+                PlayerPrefs.SetFloat("DiscountOnLombart", 1.1f);
 
                 if(PlayerPrefs.GetInt("PermanentTaskMetals", 0) >= 650)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -260,7 +262,7 @@ public class PermanentTasks : MonoBehaviour
                 Slider.value = PlayerPrefs.GetInt("PermanentTaskMetals", 0);
                 Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetals", 0) + "/1300 астероидов");
                 PlayerPrefs.SetInt("AllColl", 1300);
-                PlayerPrefs.SetFloat("DiscountOnLombart", 0.8f);
+                PlayerPrefs.SetFloat("DiscountOnLombart", 1.2f);
 
                 if(PlayerPrefs.GetInt("PermanentTaskMetals", 0) >= 1300)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
@@ -269,7 +271,7 @@ public class PermanentTasks : MonoBehaviour
             }
             if(PlayerPrefs.GetInt("LevelTask4", 0) == 3)
             {
-                PlayerPrefs.SetFloat("DiscountOnLombart", 0.7f);
+                PlayerPrefs.SetFloat("DiscountOnLombart", 1.3f);
                 Desc.text = ("Ты выполнил все задания типа металлы");
                 DescPositive.text = ("Награда: стоимость металлов +30%");
                 go2.SetActive(false);
