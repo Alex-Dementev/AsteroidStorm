@@ -541,7 +541,7 @@ public class death : MonoBehaviour
                         Destroy(Collision.gameObject);
                     }
                 }
-                else if (b == false)
+                else if (b == false && PlayerPrefs.GetInt("youdead", 0) == 0)
                 {
                     anim2.Play("oneshake");
                     fineText.color = new Color(0.698f, 0.0f, 0.608f);
@@ -628,6 +628,7 @@ public class death : MonoBehaviour
                         livet.text = live.ToString();
                         PlayerPrefs.SetInt("live", live);
                         energy.End();
+                        PlayerPrefs.SetInt("youdead", 1);
 
                         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                         {
@@ -637,7 +638,6 @@ public class death : MonoBehaviour
                             score = PlayerPrefs.GetInt("allscore");
                             score += ((int)(player.position.z / 3) + 1000);
                             PlayerPrefs.SetInt("allscore", score);
-                            PlayerPrefs.SetInt("youdead", 1);
                         }
                         else
                         {
@@ -647,12 +647,19 @@ public class death : MonoBehaviour
                             score = PlayerPrefs.GetInt("allscore");
                             score += ((int)(player.position.z / 3));
                             PlayerPrefs.SetInt("allscore", score);
-                            PlayerPrefs.SetInt("youdead", 1);
                         }
 
                         if (PlayerPrefs.GetInt("vibration") == 0)
                         {
                             Vibration.Vibrate(800, 120);
+                        }
+
+                        if(fuel >= 20)
+                        {
+                            fuel -= 10;
+                            fuel /= 10;
+                            fuel += PlayerPrefs.GetInt("fuel", 0);
+                            PlayerPrefs.SetInt("Fuel", (int)fuel);
                         }
 
                         ad.Play();
@@ -661,6 +668,38 @@ public class death : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void GiveRevard()
+    {
+        if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
+        {
+            ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
+            ScoreBuff += ((int)(player.position.z / 3) + 1000);
+            PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
+            score = PlayerPrefs.GetInt("allscore");
+            score += ((int)(player.position.z / 3) + 1000);
+            PlayerPrefs.SetInt("allscore", score);
+            PlayerPrefs.SetInt("youdead", 1);
+        }
+        else
+        {
+            ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
+            ScoreBuff += ((int)(player.position.z / 3));
+            PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
+            score = PlayerPrefs.GetInt("allscore");
+            score += ((int)(player.position.z / 3));
+            PlayerPrefs.SetInt("allscore", score);
+            PlayerPrefs.SetInt("youdead", 1);
+        }
+
+        if(fuel >= 20)
+        {
+            fuel -= 10;
+            fuel /= 10;
+            fuel += PlayerPrefs.GetInt("fuel", 0);
+            PlayerPrefs.SetInt("Fuel", (int)fuel);
         }
     }
 }

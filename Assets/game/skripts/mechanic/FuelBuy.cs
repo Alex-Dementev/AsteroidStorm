@@ -16,6 +16,9 @@ public class FuelBuy : MonoBehaviour
     private int currentPrice;
     private int plusFuelBuy;
 
+    public ActivateDisActivatePanels ads;
+    public menu menu;
+
     private float dynamicDiscount = 1f; // Динамическая скидка (меняется каждый час)
 
     void Start()
@@ -111,6 +114,8 @@ public class FuelBuy : MonoBehaviour
         else
         {
             errorSound?.Play();
+            ads.Activate();
+            menu.activatepanel2();
         }
         UpdateUI();
     }
@@ -137,6 +142,8 @@ public class FuelBuy : MonoBehaviour
         else
         {
             errorSound?.Play();
+            ads.Activate();
+            menu.activatepanel2();
         }
         UpdateUI();
     }

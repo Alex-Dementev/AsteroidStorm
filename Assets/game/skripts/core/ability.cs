@@ -360,7 +360,7 @@ public class DoubleTapHandler : MonoBehaviour
             abilityt++;
             PlayerPrefs.SetInt("abilityt", abilityt);
             speed = r.zSpeed;
-            r.zSpeed = 750;
+            r.zSpeed = 500;
             delay = isdelay;
             otkat = isotkat;
             bb = true;

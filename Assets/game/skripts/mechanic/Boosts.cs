@@ -44,25 +44,23 @@ public class Boosts : MonoBehaviour
         else
             Timer.text = "";
 
-        Debug.Log(PlayerPrefs.GetString("Boost1Timer_Text"));
-
         if(IndexUpdate == 1 && PlayerPrefs.GetInt("Boost1", 0) == 1)
         {
             DescTimerPrice.text = PlayerPrefs.GetString("Boost1Timer_Text");
             Slider.maxValue = 3600;
-            Slider.value = PlayerPrefs.GetInt("Boost1Timer_LeftSeconds", 0);
+            Slider.value = PlayerPrefs.GetInt("Boost1Timer_SecondsLeft", 0);
         }
         if(IndexUpdate == 2 && PlayerPrefs.GetInt("Boost2", 0) == 1)
         {
             DescTimerPrice.text = PlayerPrefs.GetString("Boost2Timer_Text");
             Slider.maxValue = 7200;
-            Slider.value = PlayerPrefs.GetInt("Boost2Timer_LeftSeconds", 0);
+            Slider.value = PlayerPrefs.GetInt("Boost2Timer_SecondsLeft", 0);
         }
         if(IndexUpdate == 3 && PlayerPrefs.GetInt("Boost3", 0) == 1)
         {
             DescTimerPrice.text = PlayerPrefs.GetString("Boost3Timer_Text");
             Slider.maxValue = 3600;
-            Slider.value = PlayerPrefs.GetInt("Boost3Timer_LeftSeconds", 0);
+            Slider.value = PlayerPrefs.GetInt("Boost3Timer_SecondsLeft", 0);
         }
     }
 

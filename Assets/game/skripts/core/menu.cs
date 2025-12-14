@@ -254,8 +254,8 @@ public class menu : MonoBehaviour
         ad7.volume = audios;
         ad8.volume = audios / 1.5f;
         ad9.volume = audios;
-        yesad.volume = audios;
-        noad.volume = audios;
+        yesad.volume = audios / 2;
+        noad.volume = audios / 2;
 
 
         if (is11 == 0)
@@ -450,8 +450,8 @@ public class menu : MonoBehaviour
         ad7.volume = audios;
         ad8.volume = audios / 1.5f;
         ad9.volume = audios;
-        yesad.volume = audios;
-        noad.volume = audios;
+        yesad.volume = audios / 2;
+        noad.volume = audios / 2;
 
         Dificitefloat = PlayerPrefs.GetFloat("Generators1Energy", 0);
         Dificitefloat += PlayerPrefs.GetFloat("Generators2Energy", 0);
@@ -996,7 +996,7 @@ public void destartedrocketps()
         turbinsMinus = PlayerPrefs.GetFloat("TurbinsEnergy", 0);
         turbinsMinus += PlayerPrefs.GetFloat("TurbinsFuel", 0);
 
-        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 3 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 && Dificitefloat >= 0 && turbinsMinus != 0 || PlayerPrefs.GetInt("yousurwive", 0) == 1)
+        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 10 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 && Dificitefloat >= 0 && turbinsMinus != 0 || PlayerPrefs.GetInt("yousurwive", 0) == 1)
         {
             PlayerPrefs.SetInt("start", 1);
             int fuel = PlayerPrefs.GetInt("fuel");
@@ -1007,7 +1007,7 @@ public void destartedrocketps()
 
             if(PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
-                coins -= 3;
+                coins -= 10;
                 allgames = PlayerPrefs.GetInt("allgames", 0);
                 allgames++;
                 PlayerPrefs.SetInt("allgames", allgames);
@@ -1024,10 +1024,17 @@ public void destartedrocketps()
         else if(turbinsMinus == 0)
         {
             Dificite.Play("Start2");
+            noad.Play();
         }
         else if(Dificitefloat <= 0)
         {
             Dificite.Play("Start");
+            noad.Play();
+        }
+        else
+        {
+            Dificite.Play("Start");
+            noad.Play();
         }
 
         if(r2.isdelayb == true)
