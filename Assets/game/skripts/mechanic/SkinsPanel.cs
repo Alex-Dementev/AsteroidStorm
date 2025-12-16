@@ -10,7 +10,8 @@ public class SkinsPanel : MonoBehaviour
     public ParticleSystem ps3;
     public ParticleSystem ps4;
 
-    public Material mat; // 🔹 Материал, которому меняем цвет, не трогая яркость
+    public Material mat;  // 🔹 Первый материал
+    public Material mat2; // 🔹 Второй материал
 
     public Slider R;
     public Slider G;
@@ -55,30 +56,11 @@ public class SkinsPanel : MonoBehaviour
         ps3.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", c);
         ps4.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", c);
 
-        // 🔹 Применяем цвет к материалу, сохраняя интенсивность (если есть)
-        if (mat != null)
-        {
-            float intensity = 1f;
+        // 🔹 Применяем цвет к первому материалу
+        ApplyColorToMaterial(mat, c);
 
-            // Попробуем считать разные свойства, если они есть
-            if (mat.HasProperty("_Intensity"))
-                intensity = mat.GetFloat("_Intensity");
-            else if (mat.HasProperty("_EmissionStrength"))
-                intensity = mat.GetFloat("_EmissionStrength");
-            else if (mat.HasProperty("_EmissionMultiplier"))
-                intensity = mat.GetFloat("_EmissionMultiplier");
-
-            // Меняем цвет
-            mat.SetColor("_Color", c);
-
-            // Возвращаем старую интенсивность
-            if (mat.HasProperty("_Intensity"))
-                mat.SetFloat("_Intensity", intensity);
-            else if (mat.HasProperty("_EmissionStrength"))
-                mat.SetFloat("_EmissionStrength", intensity);
-            else if (mat.HasProperty("_EmissionMultiplier"))
-                mat.SetFloat("_EmissionMultiplier", intensity);
-        }
+        // 🔹 Применяем цвет ко второму материалу
+        ApplyColorToMaterial(mat2, c);
 
         // Скорость частиц
         iSpeed = Speed.value;
@@ -96,6 +78,29 @@ public class SkinsPanel : MonoBehaviour
         main.startSpeed = speed;
     }
 
+    void ApplyColorToMaterial(Material m, Color c)
+    {
+        if (m == null) return;
+
+        float intensity = 1f;
+
+        if (m.HasProperty("_Intensity"))
+            intensity = m.GetFloat("_Intensity");
+        else if (m.HasProperty("_EmissionStrength"))
+            intensity = m.GetFloat("_EmissionStrength");
+        else if (m.HasProperty("_EmissionMultiplier"))
+            intensity = m.GetFloat("_EmissionMultiplier");
+
+        m.SetColor("_Color", c);
+
+        if (m.HasProperty("_Intensity"))
+            m.SetFloat("_Intensity", intensity);
+        else if (m.HasProperty("_EmissionStrength"))
+            m.SetFloat("_EmissionStrength", intensity);
+        else if (m.HasProperty("_EmissionMultiplier"))
+            m.SetFloat("_EmissionMultiplier", intensity);
+    }
+
     // Быстрый выбор цвета
     public void speedRed()   { R.value = 1; G.value = 0; B.value = 0; }
     public void speedBlue()  { R.value = 0; G.value = 0; B.value = 1; }
@@ -104,4 +109,3 @@ public class SkinsPanel : MonoBehaviour
     public void speedWhite() { R.value = 1; G.value = 1; B.value = 1; }
     public void speedGreen() { R.value = 0; G.value = 1; B.value = 0; }
 }
-    

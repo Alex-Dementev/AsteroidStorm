@@ -90,13 +90,16 @@ public class DoubleTapHandler : MonoBehaviour
     public GameObject a3;
     public GameObject a4;
 
+    public GameObject prefab;
+    public Transform spawnTransform;
+
     private Coroutine waitSecondSwipeCoroutine;
 
     void Start()
     {
         var main = p.main;
         main.startSize = PlayerPrefs.GetInt("ScannerLenght", 200);
-
+        
         PlayerPrefs.SetInt("activeShield", 0);
         abilityt = PlayerPrefs.GetInt("abilityt", 0);
         isdelay = PlayerPrefs.GetFloat("isdelay");
@@ -427,6 +430,7 @@ public class DoubleTapHandler : MonoBehaviour
             abilityt++;
             PlayerPrefs.SetInt("abilityt", abilityt);
             otkat4 = isotkat4;
+            Instantiate(prefab, spawnTransform.position, prefab.transform.rotation);
             anim.Play("blue");
             s4.maxValue = isotkat4;
             effect.Play("slide lr");

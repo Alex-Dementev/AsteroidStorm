@@ -9,8 +9,8 @@ public class SmartBoostTimer : MonoBehaviour
     [Header("Длительность таймера в секундах")]
     public int DurationSeconds = 3600; // 1 час
 
-    private string endTimeKey; 
-    private string textKey;    
+    private string endTimeKey;
+    private string textKey;
     private string secondsLeftKey;
 
     private bool finishedSaved = false;
@@ -21,44 +21,44 @@ public class SmartBoostTimer : MonoBehaviour
         textKey = TimerKey + "_Text";
         secondsLeftKey = TimerKey + "_SecondsLeft";
 
-        // Если таймер был активен — продолжаем
+        // Если таймер уже был запущен ранее — продолжаем
         if (PlayerPrefs.HasKey(endTimeKey))
         {
-            UpdateTimer();
+            PlayerPrefs.SetInt(TimerKey, 3); // таймер идёт
+            PlayerPrefs.Save();
         }
     }
 
     void Update()
     {
-        // Проверка на запуск
         int status = PlayerPrefs.GetInt(TimerKey, 0);
 
+        // === ЗАПРОС НА ЗАПУСК ===
         if (status == 1)
         {
             StartTimer();
-            PlayerPrefs.SetInt(TimerKey, 0); 
-            PlayerPrefs.Save();
         }
 
-        // Если таймер активен — обновляем
+        // === ЕСЛИ ТАЙМЕР ИДЁТ ===
         if (PlayerPrefs.HasKey(endTimeKey))
         {
             UpdateTimer();
         }
     }
 
-    // ======== Запуск ========
+    // ======== ЗАПУСК ТАЙМЕРА ========
     void StartTimer()
     {
         long endTicks = DateTime.UtcNow.AddSeconds(DurationSeconds).Ticks;
 
         PlayerPrefs.SetString(endTimeKey, endTicks.ToString());
+        PlayerPrefs.SetInt(TimerKey, 3); // таймер идёт
         PlayerPrefs.Save();
 
         finishedSaved = false;
     }
 
-    // ======== Обновление ========
+    // ======== ОБНОВЛЕНИЕ ========
     void UpdateTimer()
     {
         long endTicks = long.Parse(PlayerPrefs.GetString(endTimeKey));
@@ -69,22 +69,19 @@ public class SmartBoostTimer : MonoBehaviour
         {
             if (!finishedSaved)
             {
-                PlayerPrefs.SetInt(TimerKey, 2);  // завершён
+                PlayerPrefs.SetInt(TimerKey, 2); // завершён
+                PlayerPrefs.SetInt(secondsLeftKey, 0);
+                PlayerPrefs.SetString(textKey, "0ч 0м 0с");
+
+                PlayerPrefs.DeleteKey(endTimeKey);
                 PlayerPrefs.Save();
+
                 finishedSaved = true;
             }
-
-            PlayerPrefs.SetString(textKey, "0ч 0м 0с");
-            PlayerPrefs.SetInt(secondsLeftKey, 0);
-
-            // Удаляем активный таймер
-            PlayerPrefs.DeleteKey(endTimeKey);
-            PlayerPrefs.Save();
-
             return;
         }
 
-        // === Считаем оставшееся ===
+        // === СЧИТАЕМ ОСТАВШЕЕСЯ ВРЕМЯ ===
         TimeSpan left = new TimeSpan(endTicks - now);
 
         string text = $"{left.Hours}ч {left.Minutes}м {left.Seconds}с";
@@ -94,3 +91,4 @@ public class SmartBoostTimer : MonoBehaviour
         PlayerPrefs.Save();
     }
 }
+    

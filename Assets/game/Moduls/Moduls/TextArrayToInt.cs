@@ -7,7 +7,7 @@ public class TextArrayToInt : MonoBehaviour
     public Text[] textArray;
 
     [Header("Ключ для PlayerPrefs")]
-    public string playerPrefsKey = "SavedValue";
+    public string playerPrefsKey;
 
     [Header("Сумма значений")]
     private int totalValue = 0;

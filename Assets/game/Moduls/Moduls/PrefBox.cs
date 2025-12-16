@@ -39,6 +39,7 @@ public class PrefBoxPaste : MonoBehaviour
     public int twoclicks2;
     public int twoclicks3;
     public int twoclicks4;
+    public int ProjectileRadius;
     public float ResetClicksFloat;
     public AudioSource ApproveAD;
 
@@ -176,7 +177,10 @@ public class PrefBoxPaste : MonoBehaviour
         DescPositive.text = "" + DescPos;
         DescNegative.text = "" + DescNegat;
 
-        if(PlayerPrefs.GetInt(IndexModul, 0) == 1)
+        if(PlayerPrefs.GetString("Fuel2IndexModule", "") == "")
+            PlayerPrefs.SetString("Fuel2IndexModule", "0");
+
+        if(PlayerPrefs.GetInt(IndexModul, 0) >= 1)
         {
             PlayerPrefs.SetString("DescText" + Index, Desc);
             PlayerPrefs.SetString("DescPositiveText" + Index, DescPos);
@@ -207,7 +211,6 @@ public class PrefBoxPaste : MonoBehaviour
             if(TypeIndex == 2)
             {
                 IndexSlot = PlayerPrefs.GetInt("Position");
-                
                 if(IndexSlot == 1)
                 {
                     PlayerPrefs.SetInt("GeneratorIndex1", Index);
@@ -396,6 +399,8 @@ public class PrefBoxPaste : MonoBehaviour
                     PlayerPrefs.SetInt("Projectile", 1);
                     PlayerPrefs.SetInt("ProjectileEnergy", energyAbility);
                     PlayerPrefs.SetInt("ProjectileOtkat", otkat);
+                    PlayerPrefs.SetInt("ProjectileRadius", ProjectileRadius);
+
                 }
             }
         }

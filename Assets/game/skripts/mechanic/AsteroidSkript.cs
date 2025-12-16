@@ -77,7 +77,7 @@ public class AsteroidSkript : MonoBehaviour
         totalMass += mass;
         PlayerPrefs.SetFloat("totalMass", totalMass);
 
-        Metals = PlayerPrefs.GetInt("PermanentTaskMetals", 0);
+        Metals = PlayerPrefs.GetInt("PermanentTaskMetalls", 0);
         Metals++;
         PlayerPrefs.SetInt("PermanentTaskMetals", Metals);
 
@@ -95,7 +95,6 @@ public class AsteroidSkript : MonoBehaviour
             float currentMass = PlayerPrefs.GetFloat(key, 0f);
             currentMass += mass;
             PlayerPrefs.SetFloat(key, currentMass);
-            Debug.Log(PlayerPrefs.GetFloat("bronzeMass", 0));
         }
 
         PlayerPrefs.Save();

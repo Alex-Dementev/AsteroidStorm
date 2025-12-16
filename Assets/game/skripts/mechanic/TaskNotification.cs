@@ -31,11 +31,11 @@ public class TaskNotification : MonoBehaviour
         if(PlayerPrefs.GetInt("LevelTask3", 0) == 2 && 135 <= PlayerPrefs.GetInt("PermanentTaskLife", 0))
             AnyTrue = true;
 
-        if(PlayerPrefs.GetInt("LevelTask4", 0) == 0 && 350 <= PlayerPrefs.GetInt("PermanentTaskMetals", 0))
+        if(PlayerPrefs.GetInt("LevelTask4", 0) == 0 && 350 <= PlayerPrefs.GetInt("PermanentTaskMetalls", 0))
             AnyTrue = true;
-        if(PlayerPrefs.GetInt("LevelTask4", 0) == 1 && 650 <= PlayerPrefs.GetInt("PermanentTaskMetals", 0))
+        if(PlayerPrefs.GetInt("LevelTask4", 0) == 1 && 650 <= PlayerPrefs.GetInt("PermanentTaskMetalls", 0))
             AnyTrue = true;
-        if(PlayerPrefs.GetInt("LevelTask4", 0) == 2 && 1300 <= PlayerPrefs.GetInt("PermanentTaskMetals", 0))
+        if(PlayerPrefs.GetInt("LevelTask4", 0) == 2 && 1300 <= PlayerPrefs.GetInt("PermanentTaskMetalls", 0))
             AnyTrue = true;
 
         if(AnyTrue && !WasActive)

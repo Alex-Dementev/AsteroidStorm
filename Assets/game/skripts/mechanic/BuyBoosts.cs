@@ -10,11 +10,12 @@ public class BuyBoosts : MonoBehaviour
     private int Coins;
     public AudioSource No;
     public AudioSource Yes;
+    public Material mat;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        BoostNot();
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class BuyBoosts : MonoBehaviour
             PlayerPrefs.SetInt("Boost1", 0);
             b1.UpdateDesc();
             No.Play();
-            Debug.Log("ddf");
+            BoostNot();
         }
         if(PlayerPrefs.GetInt("Boost2Timer", 0) == 2)
         {
@@ -35,7 +36,7 @@ public class BuyBoosts : MonoBehaviour
             PlayerPrefs.SetInt("Boost2", 0);
             b2.UpdateDesc();
             No.Play();
-            Debug.Log("dsddf");
+            BoostNot();
         }
         if(PlayerPrefs.GetInt("Boost3Timer", 0) == 2)
         {
@@ -43,8 +44,16 @@ public class BuyBoosts : MonoBehaviour
             PlayerPrefs.SetInt("Boost3", 0);
             b3.UpdateDesc();
             No.Play();
-            Debug.Log("ddsf");
+            BoostNot();
         }
+    }
+
+    public void BoostNot()
+    {
+        if(PlayerPrefs.GetInt("Boost3Timer", 0) != 3 && PlayerPrefs.GetInt("Boost2Timer", 0) != 3 && PlayerPrefs.GetInt("Boost1Timer", 0) != 3)
+            mat.SetFloat("_pp", 0.02f);
+        else 
+            mat.SetFloat("_pp", 0.125f);
     }
 
     public void Buy()
@@ -60,6 +69,7 @@ public class BuyBoosts : MonoBehaviour
             PlayerPrefs.SetInt("Boost1", 1);
             PlayerPrefs.SetInt("Boost1Timer", 1);
             b1.UpdateDesc();
+            mat.SetFloat("_pp", 0.125f);
         }
         else if(Index == 1 && PlayerPrefs.GetInt("coins", 0) <= 775 || Index == 1 && PlayerPrefs.GetInt("Boost1", 0) == 1)
             No.Play();
@@ -73,6 +83,7 @@ public class BuyBoosts : MonoBehaviour
             PlayerPrefs.SetInt("Boost2", 1);
             PlayerPrefs.SetInt("Boost2Timer", 1);
             b2.UpdateDesc();
+            mat.SetFloat("_pp", 0.125f);
         }
         else if(Index == 2 && PlayerPrefs.GetInt("coins", 0) <= 700 || Index == 2 && PlayerPrefs.GetInt("Boost2", 0) == 1)
             No.Play();
@@ -86,6 +97,7 @@ public class BuyBoosts : MonoBehaviour
             PlayerPrefs.SetInt("Boost3", 1);
             PlayerPrefs.SetInt("Boost3Timer", 1);
             b3.UpdateDesc();
+            mat.SetFloat("_pp", 0.125f);
         }
         else if(Index == 3 && PlayerPrefs.GetInt("coins", 0) <= 850 || Index == 3 && PlayerPrefs.GetInt("Boost3", 0) == 1)
             No.Play();
