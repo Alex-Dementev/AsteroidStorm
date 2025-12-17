@@ -32,10 +32,6 @@ public class Skins : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.SetInt("Skin1", 1);
-        PlayerPrefs.SetInt("Skin2", 1);
-        PlayerPrefs.SetInt("Skin3", 1);
-        
         anim.Play("anim 17");
 
         currentSkin = PlayerPrefs.GetInt("CurrentSkin", -1);

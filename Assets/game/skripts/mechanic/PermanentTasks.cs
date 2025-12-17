@@ -243,12 +243,12 @@ public class PermanentTasks : MonoBehaviour
                 LevelDesc.text = ("Уровень: 1/3");
                 DescPositive.text = ("Награда: стоимость металлов +10%");
                 Slider.maxValue = 650;
-                Slider.value = PlayerPrefs.GetInt("PermanentTaskmetalls", 0);
-                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskmetalls", 0) + "/650 астероидов");
+                Slider.value = PlayerPrefs.GetInt("PermanentTaskMetalls", 0);
+                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetalls", 0) + "/650 астероидов");
                 PlayerPrefs.SetInt("AllColl", 650);
                 PlayerPrefs.SetFloat("DiscountOnLombart", 1.1f);
 
-                if(PlayerPrefs.GetInt("PermanentTaskmetalls", 0) >= 650)
+                if(PlayerPrefs.GetInt("PermanentTaskMetalls", 0) >= 650)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
                 else
                     Give.color = new Color(121f/255f, 78f/255f, 119f/255f);
@@ -259,12 +259,12 @@ public class PermanentTasks : MonoBehaviour
                 LevelDesc.text = ("Уровень: 2/3");
                 DescPositive.text = ("Награда: стоимость металлов +20%");
                 Slider.maxValue = 1300;
-                Slider.value = PlayerPrefs.GetInt("PermanentTaskmetalls", 0);
-                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskmetalls", 0) + "/1300 астероидов");
+                Slider.value = PlayerPrefs.GetInt("PermanentTaskMetalls", 0);
+                Task.text = ("Уничтоженно: " + PlayerPrefs.GetInt("PermanentTaskMetalls", 0) + "/1300 астероидов");
                 PlayerPrefs.SetInt("AllColl", 1300);
                 PlayerPrefs.SetFloat("DiscountOnLombart", 1.2f);
 
-                if(PlayerPrefs.GetInt("PermanentTaskmetalls", 0) >= 1300)
+                if(PlayerPrefs.GetInt("PermanentTaskMetalls", 0) >= 1300)
                     Give.color = new Color(135f/255f, 0f, 138f/255f);
                 else
                     Give.color = new Color(121f/255f, 78f/255f, 119f/255f);

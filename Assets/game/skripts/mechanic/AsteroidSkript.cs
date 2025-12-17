@@ -79,7 +79,7 @@ public class AsteroidSkript : MonoBehaviour
 
         Metals = PlayerPrefs.GetInt("PermanentTaskMetalls", 0);
         Metals++;
-        PlayerPrefs.SetInt("PermanentTaskMetals", Metals);
+        PlayerPrefs.SetInt("PermanentTaskMetalls", Metals);
 
         string key = "";
         switch (asteroidType)

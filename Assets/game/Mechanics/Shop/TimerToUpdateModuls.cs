@@ -27,7 +27,7 @@ public class ShopTimerSmart : MonoBehaviour
     // ================================
     void Start()
     {
-        // стартовые модули
+        // стартовые модули (первый запуск)
         if (!PlayerPrefs.HasKey("shop_col1_rarity"))
         {
             foreach (var go in initialModules)
@@ -43,6 +43,7 @@ public class ShopTimerSmart : MonoBehaviour
         if (startTimer)
             EnsureTimer();
 
+        // ★ ИЗМЕНЕНО: если оффлайн-обновление — обновляем СРАЗУ
         if (PlayerPrefs.GetInt(SHOP_NEEDS_REFRESH, 0) == 1)
         {
             shopUpdater?.ForceRefresh();
@@ -66,7 +67,7 @@ public class ShopTimerSmart : MonoBehaviour
     }
 
     // ================================
-    // ОФФЛАЙН ЛОГИКА (как в SmartCreditsTimer)
+    // ОФФЛАЙН ЛОГИКА
     // ================================
     void HandleOfflineTime()
     {
@@ -79,9 +80,6 @@ public class ShopTimerSmart : MonoBehaviour
             return;
         }
 
-        long lastTicks = long.Parse(PlayerPrefs.GetString(LAST_LOGIN_KEY));
-        DateTime lastOnline = new DateTime(lastTicks);
-
         if (PlayerPrefs.HasKey(END_TIME_KEY))
         {
             long endTicks = long.Parse(PlayerPrefs.GetString(END_TIME_KEY));
@@ -91,7 +89,6 @@ public class ShopTimerSmart : MonoBehaviour
             {
                 PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 1);
 
-                // сдвигаем таймер циклически
                 while (endTime <= now)
                     endTime = endTime.AddHours(UpdateIntervalHours);
 
@@ -105,7 +102,7 @@ public class ShopTimerSmart : MonoBehaviour
     }
 
     // ================================
-    // СОЗДАНИЕ ТАЙМЕРА (1 РАЗ)
+    // СОЗДАНИЕ ТАЙМЕРА
     // ================================
     void EnsureTimer()
     {
@@ -128,7 +125,7 @@ public class ShopTimerSmart : MonoBehaviour
     }
 
     // ================================
-    // ОБНОВЛЕНИЕ
+    // ОБНОВЛЕНИЕ ТАЙМЕРА
     // ================================
     void UpdateTimer()
     {
@@ -137,7 +134,8 @@ public class ShopTimerSmart : MonoBehaviour
 
         if (now >= endTicks)
         {
-            PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 1);
+            // ★ ИЗМЕНЕНО: ОБНОВЛЯЕМ МАГАЗИН СРАЗУ
+            shopUpdater?.ForceRefresh();
 
             DateTime endTime = new DateTime(endTicks);
             while (endTime <= DateTime.UtcNow)
@@ -164,8 +162,7 @@ public class ShopTimerSmart : MonoBehaviour
 
         int totalHours = left.Days * 24 + left.Hours;
 
-        timerText.text =
-            $"Обновление через: {totalHours}ч {left.Minutes}м";
+        timerText.text = $"Обновление через: {totalHours}ч {left.Minutes}м";
     }
 
     // ================================

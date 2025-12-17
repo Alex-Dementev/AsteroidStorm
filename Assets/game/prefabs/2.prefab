@@ -246,7 +246,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 74e42a9d35d392e42912a3a0ef5e9d28,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.27066
+      value: 48.316986
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74e42a9d35d392e42912a3a0ef5e9d28,
         type: 3}
@@ -256,7 +256,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 74e42a9d35d392e42912a3a0ef5e9d28,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.78018
+      value: 88.388794
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74e42a9d35d392e42912a3a0ef5e9d28,
         type: 3}
@@ -327,6 +327,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6487168838049134789}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74e42a9d35d392e42912a3a0ef5e9d28,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 183655819797239137}
   m_SourcePrefab: {fileID: 100100000, guid: 74e42a9d35d392e42912a3a0ef5e9d28, type: 3}
 --- !u!4 &6087690286635058335 stripped
 Transform:
@@ -426,3 +430,142 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToEnable: {fileID: 190118420115116592}
   spawnChance: 0.02
+--- !u!114 &183655819797239137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858985133061103141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4d76f733087744991913c9d19d5274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LensFlareData: {fileID: 11400000, guid: c8732ab59f08e434a9cb895cb5d3fc34, type: 2}
+  version: 0
+  intensity: 0.0015
+  maxAttenuationDistance: 200
+  maxAttenuationScale: 10
+  distanceAttenuationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.007854462
+      value: -0.00094747543
+      inSlope: 4.8681364
+      outSlope: 4.8681364
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1762656
+      value: 0.81890094
+      inSlope: 2.0028417
+      outSlope: 2.0028417
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.1060486
+      value: 0.017006874
+      inSlope: -0.8624529
+      outSlope: -0.8624529
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleByDistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  attenuationByLightShape: 1
+  radialScreenAttenuationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useOcclusion: 1
+  useBackgroundCloudOcclusion: 0
+  environmentOcclusion: 0
+  useWaterOcclusion: 0
+  occlusionRadius: 1
+  sampleCount: 6
+  occlusionOffset: 10
+  scale: 0.5
+  allowOffScreen: 1
+  volumetricCloudOcclusion: 0
+  occlusionRemapCurve:
+    <length>k__BackingField: 2
+    m_Loop: 0
+    m_ZeroValue: 1
+    m_Range: 1
+    m_Curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  lightOverride: {fileID: 0}
