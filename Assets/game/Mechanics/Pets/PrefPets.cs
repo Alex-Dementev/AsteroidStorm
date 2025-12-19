@@ -13,12 +13,15 @@ public class PrefPets : MonoBehaviour
     private Coroutine loop;
     public Text NameText;
     public string Name;
+    private int Clicks;
+    private float TimerClicks;
+    public PanelsBuySell BuySell;
 
     public void UpdateSlots()
     {
         Slot = PlayerPrefs.GetInt("PetsSlot", 0);
 
-        if(PlayerPrefs.GetInt("PetsIndex" + Slot) != Index && PlayerPrefs.GetInt("PetsIndex" + Slot) >= 2 && PlayerPrefs.GetInt(IndexPets) >= 1 || PlayerPrefs.GetInt("PetsIndex" + Slot) == 1)
+        if(PlayerPrefs.GetInt("PetsIndex" + Slot) != Index && PlayerPrefs.GetInt(IndexPets) >= 1 || Index == 1 && PlayerPrefs.GetInt("PetsIndex" + Slot) == 1)
         {
             Coll = PlayerPrefs.GetInt(PlayerPrefs.GetString("BackPet" + Slot, ""), 0);
             Coll += 1;
@@ -30,6 +33,20 @@ public class PrefPets : MonoBehaviour
             PlayerPrefs.SetString("BackPet" + Slot, IndexPets);
 
             PlayerPrefs.SetInt("PetsIndex" + Slot, Index);
+        }
+
+        if(PlayerPrefs.GetInt(IndexPets) >= 0 && Index != 1)
+        {
+            if(Clicks <= 1)
+            {
+            Clicks++;
+            TimerClicks = 0.5f;
+            }
+
+            if(Clicks >= 2)
+            {
+                BuySell.VSellPanel();
+            }
         }
 
         NameText.text = "" + Name;
@@ -57,9 +74,18 @@ public class PrefPets : MonoBehaviour
             else
                 DetectedSlot.color = new Color(92/255f, 0, 78/255f);
 
-            Quantity.text = "" + PlayerPrefs.GetInt(IndexPets, 0);
+            if(Quantity != null)
+                Quantity.text = "" + PlayerPrefs.GetInt(IndexPets, 0);
 
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    void Update()
+    {
+        TimerClicks -= Time.deltaTime;
+
+        if(TimerClicks <= 0)
+            Clicks = 0;
     }
 }

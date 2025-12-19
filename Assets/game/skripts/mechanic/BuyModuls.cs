@@ -29,7 +29,6 @@ public class BuyModuls : MonoBehaviour
     {
         if(PlayerPrefs.GetInt("ResetBuyModuls", 0) == 1)
         {
-            PlayerPrefs.SetInt("ResetBuyModuls", 0);
             PlayerPrefs.SetInt(Index, 0);
             YouBuy.SetActive(false);
         }

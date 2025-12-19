@@ -43,7 +43,7 @@ public class ApproveModuls : MonoBehaviour
         while (true)
         {
             if(PlayerPrefs.GetInt("IndexSlot", 0) == IndexSlot)
-                Detection.color = new Color(35/255f, 154/255f, 28/255f);
+                Detection.color = new Color(0, 220/255f, 0);
             else
                 Detection.color = new Color(147/255f, 15/255f, 128/255f);
 

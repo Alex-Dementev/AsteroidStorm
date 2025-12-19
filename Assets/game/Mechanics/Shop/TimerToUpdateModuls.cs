@@ -43,10 +43,10 @@ public class ShopTimerSmart : MonoBehaviour
         if (startTimer)
             EnsureTimer();
 
-        // ★ ИЗМЕНЕНО: если оффлайн-обновление — обновляем СРАЗУ
+        // если оффлайн-обновление — обновляем СРАЗУ
         if (PlayerPrefs.GetInt(SHOP_NEEDS_REFRESH, 0) == 1)
         {
-            shopUpdater?.ForceRefresh();
+            shopUpdater.ForceRefresh();
             PlayerPrefs.SetInt(SHOP_NEEDS_REFRESH, 0);
             PlayerPrefs.Save();
         }
@@ -134,14 +134,15 @@ public class ShopTimerSmart : MonoBehaviour
 
         if (now >= endTicks)
         {
-            // ★ ИЗМЕНЕНО: ОБНОВЛЯЕМ МАГАЗИН СРАЗУ
-            shopUpdater?.ForceRefresh();
+            // обновляем магазин
+            shopUpdater.ForceRefresh();
 
             DateTime endTime = new DateTime(endTicks);
             while (endTime <= DateTime.UtcNow)
                 endTime = endTime.AddHours(UpdateIntervalHours);
 
-            PlayerPrefs.SetString(END_TIME_KEY, endTime.Ticks.ToString());
+            endTicks = endTime.Ticks; // ★ FIX
+            PlayerPrefs.SetString(END_TIME_KEY, endTicks.ToString());
             PlayerPrefs.Save();
         }
 
@@ -161,7 +162,6 @@ public class ShopTimerSmart : MonoBehaviour
             left = TimeSpan.Zero;
 
         int totalHours = left.Days * 24 + left.Hours;
-
         timerText.text = $"Обновление через: {totalHours}ч {left.Minutes}м";
     }
 
@@ -172,5 +172,15 @@ public class ShopTimerSmart : MonoBehaviour
     {
         startTimer = true;
         EnsureTimer();
+    }
+
+    // ================================
+    // ★ ПУБЛИЧЕСКИЙ МЕТОД: СДЕЛАТЬ ОСТАТОК = 5 СЕКУНД
+    // ================================
+    public void SetTimerTo5Seconds()
+    {
+        long newEndTicks = DateTime.UtcNow.AddSeconds(5).Ticks;
+        PlayerPrefs.SetString(END_TIME_KEY, newEndTicks.ToString());
+        PlayerPrefs.Save();
     }
 }

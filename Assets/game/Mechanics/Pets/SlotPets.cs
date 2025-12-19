@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class SlotPets : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class SlotPets : MonoBehaviour
 
     void Update()
     {
+        if(PlayerPrefs.GetInt("PetsSlot", 0) == Slot)
+            DetectedSlot.color = new Color(0, 220/255f, 0);
+        else
+            DetectedSlot.color = new Color(92/255f, 0, 78/255f);
+
         if(PlayerPrefs.GetInt("PetsIndex" + Slot) == 1)
         {
             DeActive();
@@ -68,9 +75,6 @@ public class SlotPets : MonoBehaviour
 
     public void Click()
     {
-        if(PlayerPrefs.GetInt("PetsSlot", 0) == Slot)
-            DetectedSlot.color = new Color(0, 220/255f, 0);
-        else
-            DetectedSlot.color = new Color(92/255f, 0, 78/255f);
+        PlayerPrefs.SetInt("PetsSlot", Slot);
     }
 }

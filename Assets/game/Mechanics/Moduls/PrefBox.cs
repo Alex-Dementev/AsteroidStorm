@@ -63,7 +63,7 @@ public class PrefBoxPaste : MonoBehaviour
             if(TypeIndex == 1)
             {
                 if(PlayerPrefs.GetString("TurbinIndexModule", "") == IndexModul)
-                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    Detected.color = new Color(0, 220/255f, 0);
                 else
                     Detected.color = new Color(147/255f, 15/255f, 128/255f);
             }
@@ -74,28 +74,28 @@ public class PrefBoxPaste : MonoBehaviour
                 if(IndexSlot == 1)
                 {
                     if(PlayerPrefs.GetString("Generator1IndexModule", "") == IndexModul)
-                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                        Detected.color = new Color(0, 220/255f, 0);
                     else
                         Detected.color = new Color(147/255f, 15/255f, 128/255f);
                 }
                 if(IndexSlot == 2)
                 {
                     if(PlayerPrefs.GetString("Generator2IndexModule") == IndexModul)
-                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                        Detected.color = new Color(0, 220/255f, 0);
                     else
                         Detected.color = new Color(147/255f, 15/255f, 128/255f);
                 }
                 if(IndexSlot == 3)
                 {
                     if(PlayerPrefs.GetString("Generator3IndexModule", "") == IndexModul)
-                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    Detected.color = new Color(0, 220/255f, 0);
                 else
                     Detected.color = new Color(147/255f, 15/255f, 128/255f);
                 }
                 if(IndexSlot == 4)
                 {
                     if(PlayerPrefs.GetString("Generator4IndexModule", "") == IndexModul)
-                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                        Detected.color = new Color(0, 220/255f, 0);
                     else
                         Detected.color = new Color(147/255f, 15/255f, 128/255f);
                 }
@@ -107,14 +107,14 @@ public class PrefBoxPaste : MonoBehaviour
                 if(IndexSlot == 1)
                 {
                     if(PlayerPrefs.GetString("Fuel1IndexModule") == IndexModul)
-                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                        Detected.color = new Color(0, 220/255f, 0);
                     else
                         Detected.color = new Color(147/255f, 15/255f, 128/255f);
                 }
                 if(IndexSlot == 2)
                 {
                     if(PlayerPrefs.GetString("Fuel2IndexModule") == IndexModul)
-                        Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                        Detected.color = new Color(0, 220/255f, 0);
                     else
                         Detected.color = new Color(147/255f, 15/255f, 128/255f);
                 }
@@ -122,7 +122,7 @@ public class PrefBoxPaste : MonoBehaviour
             if (TypeIndex == 4)
             {
                 if(PlayerPrefs.GetString("GyperJumpIndexModule", "") == IndexModul)
-                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    Detected.color = new Color(0, 220/255f, 0);
                 else
                     Detected.color = new Color(147/255f, 15/255f, 128/255f);
             }
@@ -130,7 +130,7 @@ public class PrefBoxPaste : MonoBehaviour
             if (TypeIndex == 5)
             {
                 if(PlayerPrefs.GetString("ScannerIndexModule", "") == IndexModul)
-                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    Detected.color = new Color(0, 220/255f, 0);
                 else
                     Detected.color = new Color(147/255f, 15/255f, 128/255f);
             }
@@ -138,7 +138,7 @@ public class PrefBoxPaste : MonoBehaviour
             if (TypeIndex == 6)
             {
                 if(PlayerPrefs.GetString("ShieldIndexModule", "") == IndexModul)
-                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    Detected.color = new Color(0, 220/255f, 0);
                 else
                     Detected.color = new Color(147/255f, 15/255f, 128/255f);
             }
@@ -146,7 +146,7 @@ public class PrefBoxPaste : MonoBehaviour
             if (TypeIndex == 7)
             {
                 if(PlayerPrefs.GetString("ProjectileIndexModule", "") == IndexModul)
-                    Detected.color = new Color(35/255f, 154/255f, 28/255f);
+                    Detected.color = new Color(0, 220/255f, 0);
                 else
                     Detected.color = new Color(147/255f, 15/255f, 128/255f);
             }

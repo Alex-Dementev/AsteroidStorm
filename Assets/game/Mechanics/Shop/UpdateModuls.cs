@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class UpdateModuls : MonoBehaviour
 {
@@ -77,6 +78,7 @@ public class UpdateModuls : MonoBehaviour
 
         // ===== ДОБАВЛЕНО ПО ТВОЕЙ ПРОСЬБЕ =====
         PlayerPrefs.SetInt("ResetBuyModuls", 1);
+        StartCoroutine(DelayOneSecond());
     }
 
     void RefreshColumn(int id, GameObject[] common, GameObject[] rare, GameObject[] epic, GameObject[] legendary, GameObject[] ultra)
@@ -110,5 +112,12 @@ public class UpdateModuls : MonoBehaviour
             foreach (var obj in arr)
                 if (obj != null)
                     obj.SetActive(false);
+    }
+
+    IEnumerator DelayOneSecond()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        PlayerPrefs.SetInt("ResetBuyModuls", 0);
     }
 }
