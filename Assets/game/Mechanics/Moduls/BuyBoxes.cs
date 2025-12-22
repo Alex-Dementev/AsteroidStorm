@@ -40,7 +40,21 @@ public class BuyBoxes : MonoBehaviour
     public void Buy()
     {
             PlayerPrefs.SetInt("IndexToBuyBox", Index);
-            PlayerPrefs.SetInt("PriceToBuyBox", Price);
+
+            if(Index == 8 || Index == 6 || Index == 4 || Index == 2)
+            {
+                if(Index == 6 && Index == 4 && Index == 2)
+                    PlayerPrefs.SetInt("PriceToBuyBox", 3085);
+                else if(Index == 4 && Index == 2)
+                    PlayerPrefs.SetInt("PriceToBuyBox", 1635);
+                else if(Index == 2)
+                    PlayerPrefs.SetInt("PriceToBuyBox", 620);
+                else
+                    PlayerPrefs.SetInt("PriceToBuyBox", 155);
+            }
+            else
+                PlayerPrefs.SetInt("PriceToBuyBox", Price);
+
             PlayerPrefs.SetString("NameBuyBox", Name);
             BuyPanel.Play("Start");
     }

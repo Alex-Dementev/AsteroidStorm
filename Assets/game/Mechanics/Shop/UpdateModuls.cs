@@ -41,7 +41,10 @@ public class UpdateModuls : MonoBehaviour
         int index  = PlayerPrefs.GetInt($"shop_col{id}_index", -1);
 
         if (rarity == -1 || index == -1)
+        {
+            Debug.Log($"[SHOP LOAD] Колонка {id} | Ничего не сохранено");
             return false;
+        }
 
         GameObject[] array;
 
@@ -56,10 +59,19 @@ public class UpdateModuls : MonoBehaviour
         }
 
         if (index >= 0 && index < array.Length)
+        {
             array[index].SetActive(true);
 
-        return true;
+            Debug.Log(
+                $"[SHOP LOAD] Колонка {id} | Редкость {rarity} | Индекс {index} | Объект: {array[index].name}"
+            );
+            return true;
+        }
+
+        Debug.LogWarning($"[SHOP LOAD] Колонка {id} | Индекс вне диапазона");
+        return false;
     }
+
 
     // ==========================
     //   ОБНОВЛЕНИЕ МАГАЗИНА

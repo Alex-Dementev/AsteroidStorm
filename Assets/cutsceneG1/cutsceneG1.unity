@@ -6374,6 +6374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -6676,6 +6681,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: f728d6d7cad90c248baa2a51e19e10ee, type: 2}
   normalMap: {fileID: 0}
   baseMass: 0.8
+  Metals: 0
   happened: 1
   asteroidType: 2
   mass: 0.64
@@ -6775,6 +6781,7 @@ GameObject:
   - component: {fileID: 567917514}
   - component: {fileID: 567917513}
   - component: {fileID: 567917515}
+  - component: {fileID: 567917516}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6970,6 +6977,23 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &567917516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567917508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21aa7773c67ff6442abf80bdc46837fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3414099849356413560, guid: bbed286dcb20a8946a34624bfc6ebdd1, type: 3}
+  prefab2: {fileID: 2030266068874924673, guid: f0e86e5474f2aeb429fa2f5deb7b2a8f, type: 3}
+  prefab3: {fileID: 786766446842013943, guid: 21fba28b32ec66d4f819336db5b8dbb8, type: 3}
+  prefab4: {fileID: 2957064319778636745, guid: 6b3e57dfb63a5854aac998da2a91d2aa, type: 3}
+  prefab5: {fileID: 9152939442075572085, guid: 48ecae339a1fb174d8dbf28d2aba6605, type: 3}
 --- !u!1 &576464652
 GameObject:
   m_ObjectHideFlags: 0
@@ -13301,6 +13325,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: f728d6d7cad90c248baa2a51e19e10ee, type: 2}
   normalMap: {fileID: 0}
   baseMass: 0.8
+  Metals: 0
   happened: 1
   asteroidType: 2
   mass: 0.64
@@ -14552,7 +14577,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
         type: 3}
       propertyPath: m_TagString
-      value: obstacle
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15394,7 +15419,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_TagString
-      value: obstacle
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21076,7 +21101,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cd4d7b672404adf41a6985a99779200a,
         type: 3}
       propertyPath: m_TagString
-      value: obstacle
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

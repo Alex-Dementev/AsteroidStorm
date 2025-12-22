@@ -21,35 +21,40 @@ public class PrefPets : MonoBehaviour
     {
         Slot = PlayerPrefs.GetInt("PetsSlot", 0);
 
-        if(PlayerPrefs.GetInt("PetsIndex" + Slot) != Index && PlayerPrefs.GetInt(IndexPets) >= 1 || Index == 1 && PlayerPrefs.GetInt("PetsIndex" + Slot) == 1)
+        if(Slot != 0)
         {
-            Coll = PlayerPrefs.GetInt(PlayerPrefs.GetString("BackPet" + Slot, ""), 0);
-            Coll += 1;
-            PlayerPrefs.SetInt(PlayerPrefs.GetString("BackPet" + Slot, ""), Coll);
-
-            Coll = PlayerPrefs.GetInt(IndexPets);
-            Coll -= 1;
-            PlayerPrefs.SetInt(IndexPets, Coll);
-            PlayerPrefs.SetString("BackPet" + Slot, IndexPets);
-
-            PlayerPrefs.SetInt("PetsIndex" + Slot, Index);
-        }
-
-        if(PlayerPrefs.GetInt(IndexPets) >= 0 && Index != 1)
-        {
-            if(Clicks <= 1)
+            if(PlayerPrefs.GetInt("PetsIndex" + Slot) != Index && PlayerPrefs.GetInt(IndexPets) >= 1 || Index == 1)
             {
-            Clicks++;
-            TimerClicks = 0.5f;
+                Coll = PlayerPrefs.GetInt(PlayerPrefs.GetString("BackPet" + Slot, ""), 0);
+                Coll += 1;
+                PlayerPrefs.SetInt(PlayerPrefs.GetString("BackPet" + Slot, ""), Coll);
+
+                Coll = PlayerPrefs.GetInt(IndexPets);
+                Coll -= 1;
+                PlayerPrefs.SetInt(IndexPets, Coll);
+                PlayerPrefs.SetString("BackPet" + Slot, IndexPets);
+
+                PlayerPrefs.SetInt("PetsIndex" + Slot, Index);
             }
 
-            if(Clicks >= 2)
+            if(PlayerPrefs.GetInt(IndexPets) >= 0 && Index != 1 && PlayerPrefs.GetString("BackPet" + Slot, "") == IndexPets)
             {
-                BuySell.VSellPanel();
-            }
-        }
+                if(Clicks <= 1)
+                {
+                Clicks++;
+                TimerClicks = 0.5f;
+                }
 
-        NameText.text = "" + Name;
+                if(Clicks >= 2)
+                {
+                    BuySell.VSellPanel();
+                }
+            }
+            
+            NameText.text = "" + Name;
+        }
+        else
+            NameText.text = "Не выбран слот";
     }
 
     void OnEnable()
