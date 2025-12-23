@@ -16,6 +16,7 @@ public class PrefPets : MonoBehaviour
     private int Clicks;
     private float TimerClicks;
     public PanelsBuySell BuySell;
+    public GameObject Secret;
 
     public void UpdateSlots()
     {
@@ -60,6 +61,11 @@ public class PrefPets : MonoBehaviour
     void OnEnable()
     {
         loop = StartCoroutine(TimerLoop());
+
+        if(PlayerPrefs.GetInt(IndexPets + "Buy", 0) == 1)
+            Secret.SetActive(true);
+        else
+            Secret.SetActive(false);
     }
 
     void OnDisable()

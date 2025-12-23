@@ -48,6 +48,17 @@ public class BuyModuls : MonoBehaviour
             PlayerPrefs.SetInt(NamePP, Quantity);
             YouBuy.SetActive(true);
             ad.Play();
+
+            if(NamePP == "P1")
+                PlayerPrefs.SetInt("P1Buy", 1);
+            if(NamePP == "P2")
+                PlayerPrefs.SetInt("P2Buy", 1);
+            if(NamePP == "P3")
+                PlayerPrefs.SetInt("P3Buy", 1);
+            if(NamePP == "P4")
+                PlayerPrefs.SetInt("P4Buy", 1);
+            if(NamePP == "P5")
+                PlayerPrefs.SetInt("P5Buy", 1);
         }
         else
             adfail.Play();
