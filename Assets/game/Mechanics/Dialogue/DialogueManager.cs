@@ -4,11 +4,8 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     [Header("Реплики для диалогов")]
-    public string[] Dialogue0;
-    public string[] Dialogue1;
-
-    public float[] Float0;
-    public float[] Float1;
+    public string[] Dialogue;
+    public float[] Float;
 
     [Header("Для скрипта")]
     public Text[] Name;
@@ -22,17 +19,20 @@ public class DialogueManager : MonoBehaviour
     
     public ActivateDisActivatePanels Activate;
 
-    private float Delay = 3;
+    private float Delay = 1.65f;
     private float Delay2;
 
-    private int IndexDialogue;
     private int Index;
 
     private bool Max;
     private bool Dis;
-    private bool Dis2;
 
     public int MaxIndex;
+    public int Complete;
+
+    public DIalogueActivate UpdateDialogue;
+
+    public AudioSource SMS;
 
     void Start()
     {
@@ -41,10 +41,7 @@ public class DialogueManager : MonoBehaviour
             msg.SetActive(false);
         }
 
-        
         StartDialogue();
-
-        PlayerPrefs.SetInt("DialogueActive", 0);
     }
 
     void Update()
@@ -52,99 +49,92 @@ public class DialogueManager : MonoBehaviour
         if(Max == false)
             Delay -= Time.deltaTime;
 
-        if(Delay <= 0)
+        if(Delay <= 0 && PlayerPrefs.GetInt("DialogueActive", 0) == 0)
             Next();
 
         Delay2 -= Time.deltaTime;
 
-        if(Delay2 <= 0 && Dis2)
+        if(Delay2 <= 0 && Dis)
         {
             foreach (GameObject msg in Message)
             {
                 msg.SetActive(false);
             }
 
-            Dis2 = false;
+            Dis = false;
         }
     }
 
     public void Next()
     {
-        if(Index <= 5)
+        if(Index <= 5 && Index < MaxIndex)
         {
-            if(IndexDialogue == 0)
-            {
-                Delay = Float0[Index];
-                Message[Index].SetActive(true);
-                Text[Index].text = Dialogue0[Index];
-                Name[Index].text = Dialogue0[Index + 10];
+            SMS.Play();
 
-                if(Dialogue0[Index + 20] == "Алексей")
-                {
-                    Name[Index].color = new Color(113/255f, 224/255f, 107/255f);
-                }
-            }
+            Delay = Float[Index];
+            Message[Index].SetActive(true);
+            MessageAnim[Index].Play("Start");
+            Text[Index].text = Dialogue[Index];
+            Name[Index].text = Dialogue[Index + 20];
+
+            if(Dialogue[Index + 20] == "Алексей")
+                Name[Index].color = new Color(113/255f, 224/255f, 107/255f);
+            else    
+                Name[5].color = new Color(1f, 100f / 255f, 237f / 255f);
         }
-        else if(Index >= 6 && Index <= 8)
+        else if(Index >= 6 && Index < MaxIndex)
         {
-            Delay = Float0[Index];
+            SMS.Play();
 
-            Text[0].text = Dialogue0[Index - 5];
-            Name[0].text = Dialogue0[Index + 15];
-            Text[1].text = Dialogue0[Index - 4];
-            Name[1].text = Dialogue0[Index + 16];
-            Text[2].text = Dialogue0[Index - 3];
-            Name[2].text = Dialogue0[Index + 17];
-            Text[3].text = Dialogue0[Index - 2];
-            Name[3].text = Dialogue0[Index + 18];
-            Text[4].text = Dialogue0[Index - 1];
-            Name[4].text = Dialogue0[Index + 19];
-            Text[5].text = Dialogue0[Index];
-            Name[5].text = Dialogue0[Index + 20];
+            Delay = Float[Index];
 
-            if(Dialogue0[Index + 20] == "Алексей")
+            Text[0].text = Dialogue[Index - 5];
+            Name[0].text = Dialogue[Index + 15];
+            Text[1].text = Dialogue[Index - 4];
+            Name[1].text = Dialogue[Index + 16];
+            Text[2].text = Dialogue[Index - 3];
+            Name[2].text = Dialogue[Index + 17];
+            Text[3].text = Dialogue[Index - 2];
+            Name[3].text = Dialogue[Index + 18];
+            Text[4].text = Dialogue[Index - 1];
+            Name[4].text = Dialogue[Index + 19];
+            Text[5].text = Dialogue[Index];
+            Name[5].text = Dialogue[Index + 20];
+
+            if(Dialogue[Index + 20] == "Алексей")
                 Name[5].color = new Color(113/255f, 224/255f, 107/255f);
             else
                 Name[5].color = new Color(1f, 100f / 255f, 237f / 255f);
 
-            if(Dialogue0[Index + 19] == "Алексей")
+            if(Dialogue[Index + 19] == "Алексей")
                 Name[4].color = new Color(113/255f, 224/255f, 107/255f);
             else
                 Name[4].color = new Color(1f, 100f / 255f, 237f / 255f);
 
-            if(Dialogue0[Index + 18] == "Алексей")
+            if(Dialogue[Index + 18] == "Алексей")
                 Name[3].color = new Color(113/255f, 224/255f, 107/255f);
             else
                 Name[3].color = new Color(1f, 100f / 255f, 237f / 255f);
 
-            if(Dialogue0[Index + 17] == "Алексей")
+            if(Dialogue[Index + 17] == "Алексей")
                 Name[2].color = new Color(113/255f, 224/255f, 107/255f);
             else
                 Name[2].color = new Color(1f, 100f / 255f, 237f / 255f);
                 
-            if(Dialogue0[Index + 16] == "Алексей")
+            if(Dialogue[Index + 16] == "Алексей")
                 Name[1].color = new Color(113/255f, 224/255f, 107/255f);
             else
                 Name[1].color = new Color(1f, 100f / 255f, 237f / 255f);
 
-            if(Dialogue0[Index + 15] == "Алексей")
+            if(Dialogue[Index + 15] == "Алексей")
                 Name[0].color = new Color(113/255f, 224/255f, 107/255f);
             else
                 Name[0].color = new Color(1f, 100f / 255f, 237f / 255f);
         }
         else if(Index >= MaxIndex)
         {
-            if(!Max && !Dis)
-            {
-                Delay = 3;
-                Dis = true;
-            }
-
-            if(!Max)
-            {
-                anim.Play("AnswerClose");
-                Max = true;
-            }
+            anim.Play("AnswerClose");
+            Max = true;
         }
 
         Index++;
@@ -154,22 +144,23 @@ public class DialogueManager : MonoBehaviour
     {
         Index = 0;
         PlayerPrefs.SetInt("DialogueActive", 1);
+        PlayerPrefs.SetInt("IndexDialogue", Complete);
 
-        Dis2 = true;
+        Dis = true;
         Delay2 = 0.7f;
 
         foreach (Animator msgA in MessageAnim)
         {
             msgA.Play("End");
         }
+
+        UpdateDialogue.UpdateDialogue();
     }
     public void StartDialogue()
     {
         if(PlayerPrefs.GetInt("DialogueActive", 0) == 0)
         {
             Activate.Activate();
-            IndexDialogue = PlayerPrefs.GetInt("IndexDialogue", 0);
-            Next();
         }
     }
 }

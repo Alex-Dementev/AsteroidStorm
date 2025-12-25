@@ -90056,6 +90056,7 @@ GameObject:
   - component: {fileID: 1783799633}
   - component: {fileID: 1783799632}
   - component: {fileID: 1783799631}
+  - component: {fileID: 1783799634}
   m_Layer: 5
   m_Name: vinet
   m_TagString: Untagged
@@ -90142,6 +90143,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783799629}
   m_CullTransparentMesh: 1
+--- !u!225 &1783799634
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783799629}
+  m_Enabled: 1
+  m_Alpha: 0.03
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1784157978
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,6 +59,7 @@ public class menu : MonoBehaviour
     public AudioSource ad7;
     public AudioSource ad8;
     public AudioSource ad9;
+    public AudioSource SMS;
     public AudioSource yesad;
     public AudioSource noad;
     public float isdelay;
@@ -247,7 +248,7 @@ public class menu : MonoBehaviour
         Sa.value = audios;
         ad1.volume = audios / 2;
         ad2.volume = audios / 2;
-        ad3.volume = audios / 2.5f;
+        ad3.volume = audios / 18f;
         ad4.volume = audios / 1.2f;
         ad5.volume = audios / 1.2f;
         ad6.volume = audios;
@@ -255,6 +256,7 @@ public class menu : MonoBehaviour
         ad8.volume = audios / 1.5f;
         ad9.volume = audios;
         yesad.volume = audios / 2;
+        SMS.volume = audios / 1.4f;
         noad.volume = audios / 2;
 
 
@@ -451,6 +453,7 @@ public class menu : MonoBehaviour
         ad8.volume = audios / 1.5f;
         ad9.volume = audios;
         yesad.volume = audios / 2;
+        SMS.volume = audios / 1.4f;
         noad.volume = audios / 2;
 
         Dificitefloat = PlayerPrefs.GetFloat("Generators1Energy", 0);
@@ -541,6 +544,7 @@ public class menu : MonoBehaviour
             ad9.enabled = true;
             yesad.enabled = true;
             noad.enabled = true;
+            SMS.enabled = true;
             ison1 = true;
             but1.GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
@@ -557,6 +561,7 @@ public class menu : MonoBehaviour
             ad9.enabled = false;
             yesad.enabled = false;
             noad.enabled = false;
+            SMS.enabled = false;
             ison1 = false;
             but1.GetComponent<Image>().color = new Color(255, 0, 0, 255);
         }
@@ -612,6 +617,11 @@ public class menu : MonoBehaviour
 
     public void ad2end()
     {
+        if(!rocketfall)
+        ad2.Play();
+        else
+        ad7.Play();
+        
         ps.Stop();
         ps1.Stop();
         ps2.Stop();
@@ -666,12 +676,6 @@ public class menu : MonoBehaviour
         ps57.Stop();
         ps58.Stop();
         ps59.Stop();
-
-        if(!rocketfall)
-        ad2.Play();
-        else
-        ad7.Play();
-
     }
 
     public void voidclosesurwive()
