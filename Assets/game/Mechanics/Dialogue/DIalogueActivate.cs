@@ -11,6 +11,12 @@ public class DIalogueActivate : MonoBehaviour
     public GameObject Dialogue21;
     public GameObject Dialogue22;
     public GameObject Dialogue23;
+
+    public GameObject Dialogue31;
+    public GameObject Dialogue32;
+    public GameObject Dialogue33;
+
+
     public GameObject[] UIPanels;
     public Text[] TutorialTexts;
 
@@ -18,14 +24,14 @@ public class DIalogueActivate : MonoBehaviour
 
     void Start()
     {
-        if(PlayerPrefs.GetInt("IndexDialogue", 0) <= 10)
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) <= 15)
         {
-            foreach (GameObject msg in UIPanels)
-            {
-                msg.SetActive(false);
-            }
-
             PlayerPrefs.DeleteAll();
+        }
+
+        foreach (GameObject msg in UIPanels)
+        {
+            msg.SetActive(false);
         }
 
         Invoke(nameof(UpdateDialogue), 7f);
@@ -68,17 +74,39 @@ public class DIalogueActivate : MonoBehaviour
         }
             
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 6)
+        {
             Dialogue14.SetActive(true);
+            UIPanels[5].GetComponent<ActivateDisActivatePanels>().DisActivate();
+        }
 
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 8)
+        {
             Dialogue21.SetActive(true);
+            UIPanels[2].GetComponent<ActivateDisActivatePanels>().DisActivate();
+        }
 
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 10)
+        {
             Dialogue22.SetActive(true);
+            UIPanels[5].GetComponent<ActivateDisActivatePanels>().DisActivate();
+        }
 
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 12)
+        {
             Dialogue23.SetActive(true);
+            UIPanels[5].GetComponent<ActivateDisActivatePanels>().DisActivate();
+        }
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 14)
+        {
+            Dialogue31.SetActive(true);
+            UIPanels[12].GetComponent<ActivateDisActivatePanels>().DisActivate();
+        }
 
+    
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) <= 15)
+        {
+            UIPanels[9].SetActive(true);
+        }
 
 
         if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 1)
@@ -95,27 +123,72 @@ public class DIalogueActivate : MonoBehaviour
 
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 3)
         {
-            TutorialTexts[0].text = "Зайди в банк";
+            TutorialTexts[0].text = "Зайти в банк";
+            PlayerPrefs.SetInt("coins", 26);
+            UIPanels[2].SetActive(true);
         }
 
         if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 3)
         {
             UIPanels[4].SetActive(true);
-            UIPanels[2].SetActive(true);
+            UIPanels[6].SetActive(true);
         }
-        if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 5)
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 5)
+        {
+            UIPanels[5].SetActive(true);
+        }
+
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 7)
+        {
             UIPanels[2].SetActive(true);
-        if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 7)
-            UIPanels[2].SetActive(true);
+            TutorialTexts[0].text = "Купить модуль \"Турбина 1\"";
+
+        }
+
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 9)
+        {
+            UIPanels[5].SetActive(true);
+            TutorialTexts[1].text = "Зайди в отдел \"Модули\"";
+
+        }
+
         if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 9)
-            UIPanels[2].SetActive(true);
+        {
+            UIPanels[7].SetActive(true);
+        }
+
         if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 11)
-            UIPanels[2].SetActive(true);
+        {
+            UIPanels[10].SetActive(true);
+        }
+
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 11)
+        {
+            UIPanels[5].SetActive(true);
+            TutorialTexts[1].text = "Купить слот для турбины и поставь \"Турбина 1\"";
+        }
+
         if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 13)
-            UIPanels[2].SetActive(true);
+        {
+            UIPanels[11].SetActive(true);
+        }
+
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 13)
+        {
+            UIPanels[12].SetActive(true);
+        }
     }
 
-    public void ClickButton()
+    public void ClickButton2()
+    {
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 3)
+        {
+            PlayerPrefs.SetInt("IndexDialogue", 4);
+            PlayerPrefs.SetInt("DialogueActive", 0);
+            Invoke(nameof(UpdateDialogue), 2f);
+        }
+    }
+    public void ClickButton1()
     {
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 1)
         {
@@ -123,11 +196,49 @@ public class DIalogueActivate : MonoBehaviour
             PlayerPrefs.SetInt("DialogueActive", 0);
             Invoke(nameof(UpdateDialogue), 0.8f);
         }
-        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 3)
+
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 7)
         {
-            PlayerPrefs.SetInt("IndexDialogue", 4);
+            PlayerPrefs.SetInt("IndexDialogue", 8);
+            PlayerPrefs.SetInt("DialogueActive", 0);
+            Invoke(nameof(UpdateDialogue), 0.8f);
+        }
+    }
+    public void ClickButton3()
+    {
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 5 && PlayerPrefs.GetInt("CreditsActivee", 0) == 1)
+        {
+            PlayerPrefs.SetInt("IndexDialogue", 6);
             PlayerPrefs.SetInt("DialogueActive", 0);
             Invoke(nameof(UpdateDialogue), 2f);
+            UIPanels[8].SetActive(true);
+        }
+    }
+    public void ClickButton4()
+    {
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 9)
+        {
+            PlayerPrefs.SetInt("IndexDialogue", 10);
+            PlayerPrefs.SetInt("DialogueActive", 0);
+            Invoke(nameof(UpdateDialogue), 1.5f);
+        }
+    }
+    public void ClickButton5()
+    {
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 11)
+        {
+            PlayerPrefs.SetInt("IndexDialogue", 12);
+            PlayerPrefs.SetInt("DialogueActive", 0);
+            Invoke(nameof(UpdateDialogue), 1.5f);
+        }
+    }
+    public void ClickButton6()
+    {
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 13 && PlayerPrefs.GetInt("fuel", 0) == 5)
+        {
+            PlayerPrefs.SetInt("IndexDialogue", 14);
+            PlayerPrefs.SetInt("DialogueActive", 0);
+            Invoke(nameof(UpdateDialogue), 0.8f);
         }
     }
 }

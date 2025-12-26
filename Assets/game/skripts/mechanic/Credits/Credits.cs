@@ -158,11 +158,11 @@ public class Credits : MonoBehaviour
     }
     public void Get()
     {
-        if(PlayerPrefs.GetInt("DelayCredits", 0) != 4)
+        if(PlayerPrefs.GetInt("DelayCredits", 0) != 4 && PlayerPrefs.GetInt("IndexDialogue", 0) != 5)
         {
             PlayerPrefs.SetInt("CreditsActivee", 1);
             PercentCalc = PlayerPrefs.GetInt("CreditsPercent", 7);
-            PercentCalc = Mathf.RoundToInt((PercentCalc) * (1f + ((50f - PlayerPrefs.GetInt("StatusPercent", 50)) / 100f)) / 100f) * GetSlider.value;
+            PercentCalc = Mathf.RoundToInt((PercentCalc * (1f + ((50f - PlayerPrefs.GetInt("StatusPercent", 50)) / 100f)) / 100f) * GetSlider.value);
             int sum = (int)(PercentCalc + GetSlider.value);
             PlayerPrefs.SetInt("CreditNumber", sum);
             goGet.SetActive(false);
@@ -177,7 +177,26 @@ public class Credits : MonoBehaviour
             PlayerPrefs.SetInt("CreditsTimerStatus", 1);
             PlayerPrefs.SetInt("DelayCredits", 0);
         }
-        else
+        else if(PlayerPrefs.GetInt("DelayCredits", 0) != 4 && PlayerPrefs.GetInt("IndexDialogue", 0) == 5 && GetSlider.value >= 800)
+        {
+            PlayerPrefs.SetInt("CreditsActivee", 1);
+            PercentCalc = PlayerPrefs.GetInt("CreditsPercent", 7);
+            PercentCalc = Mathf.RoundToInt((PercentCalc * (1f + ((50f - PlayerPrefs.GetInt("StatusPercent", 50)) / 100f)) / 100f) * GetSlider.value);
+            int sum = (int)(PercentCalc + GetSlider.value);
+            PlayerPrefs.SetInt("CreditNumber", sum);
+            goGet.SetActive(false);
+            goPayOff.SetActive(true);
+            Coins = PlayerPrefs.GetInt("coins", 0);
+            Coins += (int)GetSlider.value;
+            AllCoins = PlayerPrefs.GetInt("allcoins", 0);
+            AllCoins += (int)GetSlider.value;
+            PlayerPrefs.SetInt("coins", Coins);
+            PlayerPrefs.SetInt("allcoins", AllCoins);
+            Yes.Play();
+            PlayerPrefs.SetInt("CreditsTimerStatus", 1);
+            PlayerPrefs.SetInt("DelayCredits", 0);
+        }
+        else if(PlayerPrefs.GetInt("IndexDialogue", 0) != 5)
         {
             TrablesAnim.Play("Start4");
         }

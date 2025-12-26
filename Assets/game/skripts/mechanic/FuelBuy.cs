@@ -96,56 +96,90 @@ public class FuelBuy : MonoBehaviour
 
     public void Click()
     {
-        int coins = PlayerPrefs.GetInt("coins", 0);
-        if (coins >= currentPrice)
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) <= 15)
         {
-            coins -= currentPrice;
-            PlayerPrefs.SetInt("coins", coins);
+            int coins = PlayerPrefs.GetInt("coins", 0);
+            if (coins >= currentPrice)
+            {
+                if(PlayerPrefs.GetInt("fuel", 0) <= 4)
+                {
+                    coins -= currentPrice;
+                    PlayerPrefs.SetInt("coins", coins);
 
-            int cans = PlayerPrefs.GetInt("fuel", 0) + 1;
-            PlayerPrefs.SetInt("fuel", cans);
+                    int cans = PlayerPrefs.GetInt("fuel", 0) + 1;
+                    PlayerPrefs.SetInt("fuel", cans);
 
-            plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 1;
-            PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);
+                    plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 1;
+                    PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);
 
-            PlayerPrefs.Save();
-            buySound?.Play();
+                    PlayerPrefs.Save();
+                    buySound?.Play();
+                }
+            }
+            else
+            {
+                errorSound?.Play();
+                ads.Activate();
+                menu.activatepanel2();
+            }
+            UpdateUI();
         }
         else
         {
-            errorSound?.Play();
-            ads.Activate();
-            menu.activatepanel2();
+            int coins = PlayerPrefs.GetInt("coins", 0);
+            if (coins >= currentPrice)
+            {
+                coins -= currentPrice;
+                PlayerPrefs.SetInt("coins", coins);
+
+                int cans = PlayerPrefs.GetInt("fuel", 0) + 1;
+                PlayerPrefs.SetInt("fuel", cans);
+
+                plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 1;
+                PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);
+
+                PlayerPrefs.Save();
+                buySound?.Play();
+            }
+            else
+            {
+                errorSound?.Play();
+                ads.Activate();
+                menu.activatepanel2();
+            }
+            UpdateUI();
         }
-        UpdateUI();
     }
 
     public void Click10()
     {
-        int coins = PlayerPrefs.GetInt("coins", 0);
-        int cost10 = currentPrice * 10;
-
-        if (coins >= cost10)
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 16)
         {
-            coins -= cost10;
-            PlayerPrefs.SetInt("coins", coins);
+            int coins = PlayerPrefs.GetInt("coins", 0);
+            int cost10 = currentPrice * 10;
 
-            int cans = PlayerPrefs.GetInt("fuel", 0) + 10;
-            PlayerPrefs.SetInt("fuel", cans);
+            if (coins >= cost10)
+            {
+                coins -= cost10;
+                PlayerPrefs.SetInt("coins", coins);
 
-            plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 10;
-            PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);
+                int cans = PlayerPrefs.GetInt("fuel", 0) + 10;
+                PlayerPrefs.SetInt("fuel", cans);
 
-            PlayerPrefs.Save();
-            buySound?.Play();
+                plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 10;
+                PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);
+
+                PlayerPrefs.Save();
+                buySound?.Play();
+            }
+            else
+            {
+                errorSound?.Play();
+                ads.Activate();
+                menu.activatepanel2();
+            }
+            UpdateUI();
         }
-        else
-        {
-            errorSound?.Play();
-            ads.Activate();
-            menu.activatepanel2();
-        }
-        UpdateUI();
     }
 
     void Update()

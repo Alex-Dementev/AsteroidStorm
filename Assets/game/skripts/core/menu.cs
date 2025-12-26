@@ -106,20 +106,6 @@ public class menu : MonoBehaviour
     public Animator Bank;
     public Animator bankpanel;
 
-    public ParticleSystem ps;
-    public ParticleSystem ps1;
-    public ParticleSystem ps2;
-    public ParticleSystem ps3;
-    public ParticleSystem ps4;
-    public ParticleSystem ps5;
-    public ParticleSystem ps6;
-    public ParticleSystem ps7;
-    public ParticleSystem ps8;
-    public ParticleSystem ps11;
-    public ParticleSystem ps12;
-    public ParticleSystem ps13;
-    public ParticleSystem ps14;
-    public ParticleSystem ps15;
     public ParticleSystem ps16;
     public ParticleSystem ps17;
     public ParticleSystem ps19;
@@ -322,20 +308,6 @@ public class menu : MonoBehaviour
             achp5.SetActive(true);
         }
 
-        ps.Stop();
-        ps1.Stop();
-        ps2.Stop();
-        ps3.Stop();
-        ps4.Stop();
-        ps5.Stop();
-        ps6.Stop();
-        ps7.Stop();
-        ps8.Stop();
-        ps11.Stop();
-        ps12.Stop();
-        ps13.Stop();
-        ps14.Stop();
-        ps15.Stop();
         ps16.Stop();
         ps17.Stop();
         ps19.Stop();
@@ -618,24 +590,10 @@ public class menu : MonoBehaviour
     public void ad2end()
     {
         if(!rocketfall)
-        ad2.Play();
+            ad2.Play();
         else
-        ad7.Play();
+            ad7.Play();
         
-        ps.Stop();
-        ps1.Stop();
-        ps2.Stop();
-        ps3.Stop();
-        ps4.Stop();
-        ps5.Stop();
-        ps6.Stop();
-        ps7.Stop();
-        ps8.Stop();
-        ps11.Stop();
-        ps12.Stop();
-        ps13.Stop();
-        ps14.Stop();
-        ps15.Stop();
         ps16.Stop();
         ps17.Stop();
         ps19.Stop();
@@ -817,61 +775,8 @@ public void destartedrocketps()
         }  
     }
 
-    public void isps()
-    {
-        ps.Play();
-    }
-    public void isps1()
-    {
-        ps1.Play();
-    }
-    public void isps2()
-    {
-        ps2.Play();
-    }
-    public void isps3()
-    {
-        ps3.Play();
-    }
-    public void isps4()
-    {
-        ps4.Play();
-    }
-    public void isps5()
-    {
-        ps5.Play();
-    }
-    public void isps6()
-    {
-        ps6.Play();
-    }
-    public void isps7()
-    {
-        ps7.Play();
-    }
-    public void isps8()
-    {
-        ps8.Play();
-    }
-    public void isps11()
-    {
-        ps11.Play();
-    }
-    public void isps12()
-    {
-        ps12.Play();
-    }
-    public void isps13()
-    {
-        ps13.Play();
-    }
-    public void isps14()
-    {
-        ps14.Play();
-    }
     public void isps15()
     {
-        ps15.Play();
         ps16.Play();
         ps17.Play();
         ps19.Play();

@@ -155,12 +155,15 @@ public class DialogueManager : MonoBehaviour
         }
 
         UpdateDialogue.UpdateDialogue();
+
+        gameObject.SetActive(false);
     }
     public void StartDialogue()
     {
         if(PlayerPrefs.GetInt("DialogueActive", 0) == 0)
         {
             Activate.Activate();
+            anim.Play("AnswerStart");
         }
     }
 }
