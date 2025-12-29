@@ -199,6 +199,13 @@ public class menu : MonoBehaviour
     public Animator Dificite;
     private float Dificitefloat;
 
+    public GameObject DialogueStart;
+
+    public RocketBehavior move1;
+    public RocketBehavior move2;
+    public RocketBehavior move3;
+    public RocketBehavior move4;
+
 
 
 
@@ -741,20 +748,20 @@ public class menu : MonoBehaviour
 
 
     public void startedrocketps()
-{
-    var m1 = rocketstart1.main; m1.startLifetime = 14f; m1.simulationSpeed = 30f;
-    var m2 = rocketstart2.main; m2.startLifetime = 14f; m2.simulationSpeed = 30f;
-    var m3 = rocketstart3.main; m3.startLifetime = 14f; m3.simulationSpeed = 30f;
-    var m4 = rocketstart4.main; m4.startLifetime = 14f; m4.simulationSpeed = 30f;
-}
+    {
+        var m1 = rocketstart1.main; m1.startLifetime = 14f; m1.simulationSpeed = 30f;
+        var m2 = rocketstart2.main; m2.startLifetime = 14f; m2.simulationSpeed = 30f;
+        var m3 = rocketstart3.main; m3.startLifetime = 14f; m3.simulationSpeed = 30f;
+        var m4 = rocketstart4.main; m4.startLifetime = 14f; m4.simulationSpeed = 30f;
+    }
 
-public void destartedrocketps()
-{
-    var m1 = rocketstart1.main; m1.startLifetime = 7f; m1.simulationSpeed = 20f;
-    var m2 = rocketstart2.main; m2.startLifetime = 7f; m2.simulationSpeed = 20f;
-    var m3 = rocketstart3.main; m3.startLifetime = 7f; m3.simulationSpeed = 20f;
-    var m4 = rocketstart4.main; m4.startLifetime = 7f; m4.simulationSpeed = 20f;
-}
+    public void destartedrocketps()
+    {
+        var m1 = rocketstart1.main; m1.startLifetime = 7f; m1.simulationSpeed = 20f;
+        var m2 = rocketstart2.main; m2.startLifetime = 7f; m2.simulationSpeed = 20f;
+        var m3 = rocketstart3.main; m3.startLifetime = 7f; m3.simulationSpeed = 20f;
+        var m4 = rocketstart4.main; m4.startLifetime = 7f; m4.simulationSpeed = 20f;
+    }
 
 
 
@@ -901,55 +908,67 @@ public void destartedrocketps()
     }
     public void is1g()
     {
-        float turbinsMinus;
-        turbinsMinus = PlayerPrefs.GetFloat("TurbinsEnergy", 0);
-        turbinsMinus += PlayerPrefs.GetFloat("TurbinsFuel", 0);
-
-        if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 10 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 && Dificitefloat >= 0 && turbinsMinus != 0 || PlayerPrefs.GetInt("yousurwive", 0) == 1)
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) != 19)
         {
-            PlayerPrefs.SetInt("start", 1);
-            int fuel = PlayerPrefs.GetInt("fuel");
-            int fuelstart = PlayerPrefs.GetInt("fueltostart");
-            fuel -= fuelstart;
-            PlayerPrefs.SetInt("fuel", fuel);
-            coins = PlayerPrefs.GetInt("coins");
+            float turbinsMinus;
+            turbinsMinus = PlayerPrefs.GetFloat("TurbinsEnergy", 0);
+            turbinsMinus += PlayerPrefs.GetFloat("TurbinsFuel", 0);
 
-            if(PlayerPrefs.GetInt("yousurwive", 0) == 0)
+            if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 10 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 && Dificitefloat >= 0 && turbinsMinus != 0 || PlayerPrefs.GetInt("yousurwive", 0) == 1)
             {
-                coins -= 10;
-                allgames = PlayerPrefs.GetInt("allgames", 0);
-                allgames++;
-                PlayerPrefs.SetInt("allgames", allgames);
-                allgamesPermanentTask = PlayerPrefs.GetInt("PermanentTaskLife", 0);
-                allgamesPermanentTask++;
-                PlayerPrefs.SetInt("PermanentTaskLife", allgamesPermanentTask);
-            }
-            
-            PlayerPrefs.SetInt("coins", coins);
-            isstart = true;
-            image.SetActive(!image.activeSelf);
-            anim.Play("anim9 0");
-        }
-        else if(turbinsMinus == 0)
-        {
-            Dificite.Play("Start2");
-            noad.Play();
-        }
-        else if(Dificitefloat <= 0)
-        {
-            Dificite.Play("Start");
-            noad.Play();
-        }
-        else
-        {
-            Dificite.Play("Start");
-            noad.Play();
-        }
+                PlayerPrefs.SetInt("start", 1);
+                int fuel = PlayerPrefs.GetInt("fuel");
+                int fuelstart = PlayerPrefs.GetInt("fueltostart");
+                fuel -= fuelstart;
+                PlayerPrefs.SetInt("fuel", fuel);
+                coins = PlayerPrefs.GetInt("coins");
 
-        if(r2.isdelayb == true)
-        {  
-            isdelay = 1.33f;
-            isstart = true;
+                move1.LaunchRocket();
+                move2.LaunchRocket();
+                move3.LaunchRocket();
+                move4.LaunchRocket();
+
+                if(PlayerPrefs.GetInt("yousurwive", 0) == 0)
+                {
+                    coins -= 10;
+                    allgames = PlayerPrefs.GetInt("allgames", 0);
+                    allgames++;
+                    PlayerPrefs.SetInt("allgames", allgames);
+                    allgamesPermanentTask = PlayerPrefs.GetInt("PermanentTaskLife", 0);
+                    allgamesPermanentTask++;
+                    PlayerPrefs.SetInt("PermanentTaskLife", allgamesPermanentTask);
+                }
+                
+                PlayerPrefs.SetInt("coins", coins);
+                isstart = true;
+                image.SetActive(!image.activeSelf);
+                anim.Play("anim9 0");
+            }
+            else if(turbinsMinus == 0)
+            {
+                Dificite.Play("Start2");
+                noad.Play();
+            }
+            else if(Dificitefloat <= 0)
+            {
+                Dificite.Play("Start");
+                noad.Play();
+            }
+            else
+            {
+                Dificite.Play("Start");
+                noad.Play();
+            }
+
+            if(r2.isdelayb == true)
+            {  
+                isdelay = 1.33f;
+                isstart = true;
+            }
+        }
+        else if(PlayerPrefs.GetInt("IndexDialogue", 0) == 19)
+        {
+            DialogueStart.SetActive(true);
         }
     }
     public void is2g()

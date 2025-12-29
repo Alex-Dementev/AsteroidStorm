@@ -96,7 +96,7 @@ public class FuelBuy : MonoBehaviour
 
     public void Click()
     {
-        if(PlayerPrefs.GetInt("IndexDialogue", 0) <= 15)
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) <= 20)
         {
             int coins = PlayerPrefs.GetInt("coins", 0);
             if (coins >= currentPrice)
@@ -153,7 +153,7 @@ public class FuelBuy : MonoBehaviour
 
     public void Click10()
     {
-        if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 16)
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 21)
         {
             int coins = PlayerPrefs.GetInt("coins", 0);
             int cost10 = currentPrice * 10;

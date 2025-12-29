@@ -34,6 +34,8 @@ public class DialogueManager : MonoBehaviour
 
     public AudioSource SMS;
 
+    public string PPString;
+
     void Start()
     {
         foreach (GameObject msg in Message)
@@ -49,7 +51,7 @@ public class DialogueManager : MonoBehaviour
         if(Max == false)
             Delay -= Time.deltaTime;
 
-        if(Delay <= 0 && PlayerPrefs.GetInt("DialogueActive", 0) == 0)
+        if(Delay <= 0)
             Next();
 
         Delay2 -= Time.deltaTime;
@@ -80,7 +82,7 @@ public class DialogueManager : MonoBehaviour
             if(Dialogue[Index + 20] == "Алексей")
                 Name[Index].color = new Color(113/255f, 224/255f, 107/255f);
             else    
-                Name[5].color = new Color(1f, 100f / 255f, 237f / 255f);
+                Name[Index].color = new Color(1f, 100f / 255f, 237f / 255f);
         }
         else if(Index >= 6 && Index < MaxIndex)
         {
@@ -143,8 +145,7 @@ public class DialogueManager : MonoBehaviour
     public void Close()
     {
         Index = 0;
-        PlayerPrefs.SetInt("DialogueActive", 1);
-        PlayerPrefs.SetInt("IndexDialogue", Complete);
+        PlayerPrefs.SetInt(PPString, Complete);
 
         Dis = true;
         Delay2 = 0.7f;
@@ -160,10 +161,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue()
     {
-        if(PlayerPrefs.GetInt("DialogueActive", 0) == 0)
-        {
-            Activate.Activate();
-            anim.Play("AnswerStart");
-        }
+        Activate.Activate();
+        anim.Play("AnswerStart");
     }
 }

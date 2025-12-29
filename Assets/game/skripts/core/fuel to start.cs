@@ -5,15 +5,16 @@ using UnityEngine.UI;
 public class fueltostart : MonoBehaviour
 {
     public Slider fuelSlider;
-    public int fuel;
-    public int fuel2;
-    public int fueled;
+    private int fuel;
+    private int fuel2;
+    private int fueled;
     private bool userChangedSlider = false;
     public Text text;
-    public int maxfuel;
+    private int maxfuel;
     public Animator zeroTanks;
-    public float delay;
-    public bool isdelay;
+    private float delay;
+    private bool isdelay;
+    public DIalogueActivate DA;
 
     void Start()
     {
@@ -73,6 +74,8 @@ public class fueltostart : MonoBehaviour
                 {
                     fuel2 = 0;
                     text.text = "0";
+
+                    DA.ClickButton7();
                 }
             }
         }

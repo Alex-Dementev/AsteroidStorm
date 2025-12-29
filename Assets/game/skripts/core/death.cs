@@ -52,6 +52,8 @@ public class death : MonoBehaviour
     public AudioSource explosionSound1;
     public AudioSource explosionSound2;
 
+    public GameObject[] go20;
+
     string[] deathQuotes = {
         "Ну вот и всё, капитан кефир.",
         "Покойся с фпс.",
@@ -242,6 +244,12 @@ public class death : MonoBehaviour
         livet.text = live.ToString();
         b = false;
 
+        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 20)
+        {
+            go20[0].SetActive(false);
+            go20[1].SetActive(false);
+        }
+
         int chance = Random.Range(1, 250);
         if (chance == 1)
         {
@@ -337,6 +345,11 @@ public class death : MonoBehaviour
                 fuelzero.text = "Топливо закончилось";
                 isfuelzero = true;
                 energy.End();
+
+                if(PlayerPrefs.GetInt("IndexDialogue", 0) == 20)
+                {
+                    PlayerPrefs.SetInt("IndexDialogue", 21);
+                }
 
                 if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                 {
@@ -629,6 +642,11 @@ public class death : MonoBehaviour
                         PlayerPrefs.SetInt("live", live);
                         energy.End();
                         PlayerPrefs.SetInt("youdead", 1);
+
+                        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 20)
+                        {
+                            PlayerPrefs.SetInt("IndexDialogue", 21);
+                        }
 
                         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                         {

@@ -80,6 +80,9 @@ public class AsteroidSkript : MonoBehaviour
         Metals = PlayerPrefs.GetInt("PermanentTaskMetalls", 0);
         Metals++;
         PlayerPrefs.SetInt("PermanentTaskMetalls", Metals);
+        
+        if(mass <= 0.6)
+            PlayerPrefs.SetInt("TruekMetalls", 1);
 
         string key = "";
         switch (asteroidType)

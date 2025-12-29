@@ -29,7 +29,7 @@ public class SkinsPanel : MonoBehaviour
         iR = PlayerPrefs.GetFloat("Red", 0.85f);
         iG = PlayerPrefs.GetFloat("Green", 0);
         iB = PlayerPrefs.GetFloat("Blue", 0);
-        iSpeed = PlayerPrefs.GetFloat("PartSpeed", 5f);
+        iSpeed = PlayerPrefs.GetFloat("PartSpeed", 0.28f);
 
         R.value = iR;
         G.value = iG;

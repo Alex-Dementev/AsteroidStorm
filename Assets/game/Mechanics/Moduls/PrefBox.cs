@@ -22,7 +22,6 @@ public class PrefBoxPaste : MonoBehaviour
     private int Quantity;
     public Text QuantityText;
     public Image Detected;
-    private Coroutine loop;
 
     public float minusfuel;
     public float minusenergy;
@@ -42,123 +41,109 @@ public class PrefBoxPaste : MonoBehaviour
     public int ProjectileRadius;
     public float ResetClicksFloat;
     public AudioSource ApproveAD;
+    private float DelayNext; 
 
     
 
-    void OnEnable()
-    {
-        loop = StartCoroutine(TimerLoop());
-    }
-
-    void OnDisable()
-    {
-        if (loop != null)
-            StopCoroutine(loop);
-    }
-
-    private IEnumerator TimerLoop()
-    {
-        while (true)
-        {
-            if(TypeIndex == 1)
-            {
-                if(PlayerPrefs.GetString("TurbinIndexModule", "") == IndexModul)
-                    Detected.color = new Color(0, 220/255f, 0);
-                else
-                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
-            }
-            if(TypeIndex == 2)
-            {
-                IndexSlot = PlayerPrefs.GetInt("Position");
-                
-                if(IndexSlot == 1)
-                {
-                    if(PlayerPrefs.GetString("Generator1IndexModule", "") == IndexModul)
-                        Detected.color = new Color(0, 220/255f, 0);
-                    else
-                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
-                }
-                if(IndexSlot == 2)
-                {
-                    if(PlayerPrefs.GetString("Generator2IndexModule") == IndexModul)
-                        Detected.color = new Color(0, 220/255f, 0);
-                    else
-                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
-                }
-                if(IndexSlot == 3)
-                {
-                    if(PlayerPrefs.GetString("Generator3IndexModule", "") == IndexModul)
-                    Detected.color = new Color(0, 220/255f, 0);
-                else
-                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
-                }
-                if(IndexSlot == 4)
-                {
-                    if(PlayerPrefs.GetString("Generator4IndexModule", "") == IndexModul)
-                        Detected.color = new Color(0, 220/255f, 0);
-                    else
-                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
-                }
-            }
-            if(TypeIndex == 3)
-            {
-                IndexSlot = PlayerPrefs.GetInt("Position");
-                
-                if(IndexSlot == 1)
-                {
-                    if(PlayerPrefs.GetString("Fuel1IndexModule") == IndexModul)
-                        Detected.color = new Color(0, 220/255f, 0);
-                    else
-                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
-                }
-                if(IndexSlot == 2)
-                {
-                    if(PlayerPrefs.GetString("Fuel2IndexModule") == IndexModul)
-                        Detected.color = new Color(0, 220/255f, 0);
-                    else
-                        Detected.color = new Color(147/255f, 15/255f, 128/255f);
-                }
-            }
-            if (TypeIndex == 4)
-            {
-                if(PlayerPrefs.GetString("GyperJumpIndexModule", "") == IndexModul)
-                    Detected.color = new Color(0, 220/255f, 0);
-                else
-                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
-            }
-
-            if (TypeIndex == 5)
-            {
-                if(PlayerPrefs.GetString("ScannerIndexModule", "") == IndexModul)
-                    Detected.color = new Color(0, 220/255f, 0);
-                else
-                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
-            }
-
-            if (TypeIndex == 6)
-            {
-                if(PlayerPrefs.GetString("ShieldIndexModule", "") == IndexModul)
-                    Detected.color = new Color(0, 220/255f, 0);
-                else
-                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
-            }
-
-            if (TypeIndex == 7)
-            {
-                if(PlayerPrefs.GetString("ProjectileIndexModule", "") == IndexModul)
-                    Detected.color = new Color(0, 220/255f, 0);
-                else
-                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
-            }
-
-            QuantityText.text = "" + PlayerPrefs.GetInt(IndexModul);
-
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
     void Update()
     {
+        DelayNext -= Time.deltaTime;
+
+        if(TypeIndex == 1)
+        {
+            if(PlayerPrefs.GetString("TurbinIndexModule", "") == IndexModul)
+                Detected.color = new Color(0, 220/255f, 0);
+            else
+                Detected.color = new Color(147/255f, 15/255f, 128/255f);
+        }
+        if(TypeIndex == 2)
+        {
+            IndexSlot = PlayerPrefs.GetInt("Position");
+            
+            if(IndexSlot == 1)
+            {
+                if(PlayerPrefs.GetString("Generator1IndexModule", "") == IndexModul)
+                    Detected.color = new Color(0, 220/255f, 0);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+            if(IndexSlot == 2)
+            {
+                if(PlayerPrefs.GetString("Generator2IndexModule") == IndexModul)
+                    Detected.color = new Color(0, 220/255f, 0);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+            if(IndexSlot == 3)
+            {
+                if(PlayerPrefs.GetString("Generator3IndexModule", "") == IndexModul)
+                Detected.color = new Color(0, 220/255f, 0);
+            else
+                Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+            if(IndexSlot == 4)
+            {
+                if(PlayerPrefs.GetString("Generator4IndexModule", "") == IndexModul)
+                    Detected.color = new Color(0, 220/255f, 0);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+        }
+        if(TypeIndex == 3)
+        {
+            IndexSlot = PlayerPrefs.GetInt("Position");
+            
+            if(IndexSlot == 1)
+            {
+                if(PlayerPrefs.GetString("Fuel1IndexModule") == IndexModul)
+                    Detected.color = new Color(0, 220/255f, 0);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+            if(IndexSlot == 2)
+            {
+                if(PlayerPrefs.GetString("Fuel2IndexModule") == IndexModul)
+                    Detected.color = new Color(0, 220/255f, 0);
+                else
+                    Detected.color = new Color(147/255f, 15/255f, 128/255f);
+            }
+        }
+        if (TypeIndex == 4)
+        {
+            if(PlayerPrefs.GetString("GyperJumpIndexModule", "") == IndexModul)
+                Detected.color = new Color(0, 220/255f, 0);
+            else
+                Detected.color = new Color(147/255f, 15/255f, 128/255f);
+        }
+
+        if (TypeIndex == 5)
+        {
+            if(PlayerPrefs.GetString("ScannerIndexModule", "") == IndexModul)
+                Detected.color = new Color(0, 220/255f, 0);
+            else
+                Detected.color = new Color(147/255f, 15/255f, 128/255f);
+        }
+
+        if (TypeIndex == 6)
+        {
+            if(PlayerPrefs.GetString("ShieldIndexModule", "") == IndexModul)
+                Detected.color = new Color(0, 220/255f, 0);
+            else
+                Detected.color = new Color(147/255f, 15/255f, 128/255f);
+        }
+
+        if (TypeIndex == 7)
+        {
+            if(PlayerPrefs.GetString("ProjectileIndexModule", "") == IndexModul)
+                Detected.color = new Color(0, 220/255f, 0);
+            else
+                Detected.color = new Color(147/255f, 15/255f, 128/255f);
+        }
+
+        QuantityText.text = "" + PlayerPrefs.GetInt(IndexModul);
+
+
+
         ResetClicksFloat -= Time.deltaTime;
 
         if(twoclicks >= 1 && ResetClicksFloat <= 0)
@@ -180,7 +165,7 @@ public class PrefBoxPaste : MonoBehaviour
         if(PlayerPrefs.GetString("Fuel2IndexModule", "") == "")
             PlayerPrefs.SetString("Fuel2IndexModule", "0");
 
-        if(PlayerPrefs.GetInt(IndexModul, 0) >= 1)
+        if(PlayerPrefs.GetInt(IndexModul, 0) >= 1 && DelayNext <= 0)
         {
             PlayerPrefs.SetString("DescText" + Index, Desc);
             PlayerPrefs.SetString("DescPositiveText" + Index, DescPos);
@@ -403,8 +388,10 @@ public class PrefBoxPaste : MonoBehaviour
 
                 }
             }
+
+            DelayNext = 0.75f;
         }
-        if(IndexModul == "0")
+        if(IndexModul == "0" && DelayNext <= 0)
         {
             if (TypeIndex == 1)
             {
@@ -531,6 +518,8 @@ public class PrefBoxPaste : MonoBehaviour
                 PlayerPrefs.SetString("ProjectileIndexModule", IndexModul);
                 PlayerPrefs.SetInt("Projectile", 0);
             }
+
+            DelayNext = 0.75f;
         }
 
         if(RareLevel == 0)
@@ -555,8 +544,11 @@ public class PrefBoxPaste : MonoBehaviour
             {
                 twoclicks = 0;
 
-                if(PlayerPrefs.GetInt("TurbinsCount", 0) >= 1)
-                    approveSell();
+                if(PlayerPrefs.GetInt("TurbinsCount", 0) >= 1 && PlayerPrefs.GetString("TurbinIndexModule", "") != "0" && PlayerPrefs.GetInt("TurbinsCount", 0) != 0)
+                {
+                    if(PlayerPrefs.GetInt("TurbinsCount", 0) != 0)
+                        approveSell();
+                }
             }
         }
         if(PlayerPrefs.GetString("Generator1IndexModule", "") == IndexModul)
@@ -617,8 +609,11 @@ public class PrefBoxPaste : MonoBehaviour
             {
                 twoclicks = 0;
                 
-                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 || PlayerPrefs.GetString("Fuel2IndexModule", "") != "0")
-                    approveSell();
+                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 && PlayerPrefs.GetString("Fuel1IndexModule", "") != "0"|| PlayerPrefs.GetString("Fuel2IndexModule", "") != "0" && PlayerPrefs.GetInt("FuelTanksCount", 0) != 0)
+                {
+                    if(PlayerPrefs.GetInt("FuelTanksCount", 0) != 0)
+                        approveSell();
+                }
             }
         }
         IndexSlot = PlayerPrefs.GetInt("Position");
@@ -631,8 +626,11 @@ public class PrefBoxPaste : MonoBehaviour
             {
                 twoclicks2 = 0;
 
-                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 || PlayerPrefs.GetString("Fuel1IndexModule", "") != "0")
-                    approveSell();
+                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 && PlayerPrefs.GetString("Fuel2IndexModule", "") != "0"|| PlayerPrefs.GetString("Fuel1IndexModule", "") != "0" && PlayerPrefs.GetInt("FuelTanksCount", 0) != 0)
+                {
+                    if(PlayerPrefs.GetInt("FuelTanksCount", 0) != 0)
+                        approveSell();
+                }
             }
         }
         if(PlayerPrefs.GetString("GyperJumpIndexModule", "") == IndexModul)
