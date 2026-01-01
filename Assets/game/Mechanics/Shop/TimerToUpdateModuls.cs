@@ -177,10 +177,36 @@ public class ShopTimerSmart : MonoBehaviour
     // ================================
     // ★ ПУБЛИЧЕСКИЙ МЕТОД: СДЕЛАТЬ ОСТАТОК = 5 СЕКУНД
     // ================================
-    public void SetTimerTo5Seconds()
+    public void ReduceTimerBy20Percent()
     {
-        long newEndTicks = DateTime.UtcNow.AddSeconds(5).Ticks;
-        PlayerPrefs.SetString(END_TIME_KEY, newEndTicks.ToString());
-        PlayerPrefs.Save();
+        int Games = PlayerPrefs.GetInt("ShopStartsGame");
+        Games += 2;
+
+        if(PlayerPrefs.GetInt("ShopBoost", 0) != 4 && PlayerPrefs.GetInt("ShopStartsGame") <= PlayerPrefs.GetInt("allgames"))
+        {
+            if (!PlayerPrefs.HasKey(END_TIME_KEY))
+                return;
+
+            PlayerPrefs.SetInt("ShopStartsGame", PlayerPrefs.GetInt("allgames"));
+            PlayerPrefs.SetInt("ShopBoost", 1);
+
+            long endTicks = long.Parse(PlayerPrefs.GetString(END_TIME_KEY));
+            long nowTicks = DateTime.UtcNow.Ticks;
+
+            // сколько осталось
+            long remainingTicks = endTicks - nowTicks;
+
+            if (remainingTicks <= 0)
+                return;
+
+            // минус 20%
+            long reducedTicks = (long)(remainingTicks * 0.8f);
+
+            long newEndTicks = nowTicks + reducedTicks;
+
+            PlayerPrefs.SetString(END_TIME_KEY, newEndTicks.ToString());
+            PlayerPrefs.Save();
+        }
     }
+
 }

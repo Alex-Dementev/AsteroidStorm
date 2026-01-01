@@ -31,6 +31,8 @@ public class DIalogueActivate : MonoBehaviour
     public GameObject[] UILocked;
     public Text[] TutorialTexts;
 
+    public ShopTimerSmart ShopT;
+
 
 
     void Start()
@@ -56,11 +58,15 @@ public class DIalogueActivate : MonoBehaviour
             Invoke(nameof(UpdateDialogue), 7f);
         if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 20)
             UpdateDialogue();
+
+        if(PlayerPrefs.GetInt("allgames") >= 1)
+        {
+            ShopT.startTimer = true;
+        }
     }
 
     public void DeActivate()
     {   
-        VoidDialoguesPanel();
 
         if (Dialogue11.activeSelf)
             Dialogue11.GetComponent<DialogueManager>().Close();
@@ -98,8 +104,13 @@ public class DIalogueActivate : MonoBehaviour
         if (DialogueLombardMetals[1].activeSelf)
             DialogueLombardMetals[1].GetComponent<DialogueManager>().Close();
 
+        if (DialoguePanels[3].activeSelf)
+            DialoguePanels[3].GetComponent<DialogueManager>().Close();
+
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 20)
             menu.is1g();
+
+        VoidDialoguesPanel();
     }
 
     public void UpdateDialogue()
@@ -329,6 +340,31 @@ public class DIalogueActivate : MonoBehaviour
         {
             UIPanels[30].SetActive(true);
         }
+
+
+        if(PlayerPrefs.GetInt("PetsApply", 0) == 0)
+        {
+            if(PlayerPrefs.GetInt("P1Buy", 0) == 1)
+            {
+                UIPanels[40].SetActive(true);
+            }
+            if(PlayerPrefs.GetInt("P2Buy", 0) == 1)
+            {
+                UIPanels[40].SetActive(true);
+            }
+            if(PlayerPrefs.GetInt("P3Buy", 0) == 1)
+            {
+                UIPanels[40].SetActive(true);
+            }
+            if(PlayerPrefs.GetInt("P4Buy", 0) == 1)
+            {
+                UIPanels[40].SetActive(true);
+            }
+            if(PlayerPrefs.GetInt("P5Buy", 0) == 1)
+            {
+                UIPanels[40].SetActive(true);
+            }
+        }
     }
 
     public void ClickButton2()
@@ -429,11 +465,32 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[1].SetActive(true);
         }
     }
+    public void ClickButton14()
+    {
+        if(PlayerPrefs.GetInt("PetsDialogue", 0) == 0)
+        {
+            DialoguePanels[11].SetActive(true);
+        }
+    }
+    public void ClickButton13()
+    {
+        if(PlayerPrefs.GetInt("SkinsDialogue", 0) == 0)
+        {
+            DialoguePanels[8].SetActive(true);
+        }
+        if(PlayerPrefs.GetInt("SkinsDialogue", 0) == 2)
+        {
+            DialoguePanels[9].SetActive(true);
+        }
+    }
 
     public void VoidDialoguesPanel()
     {
         if(DialoguePanels[0].activeSelf)
             DialoguePanels[0].GetComponent<DialogueManager>().Close();
+
+        if(DialoguePanels[7].activeSelf)
+            DialoguePanels[7].GetComponent<DialogueManager>().Close();
         if(PlayerPrefs.GetInt("TasksDialogue", 0) == 1)
         {
             UILocked[0].SetActive(false);
@@ -442,5 +499,22 @@ public class DIalogueActivate : MonoBehaviour
 
         if(DialoguePanels[1].activeSelf)
             DialoguePanels[1].GetComponent<DialogueManager>().Close();
+
+        if(DialoguePanels[8].activeSelf)
+        {
+            DialoguePanels[8].GetComponent<DialogueManager>().Close();
+            PlayerPrefs.SetInt("SkinsDialogue", 1);
+        }
+        if(DialoguePanels[9].activeSelf)
+        {
+            DialoguePanels[9].GetComponent<DialogueManager>().Close();
+            PlayerPrefs.SetInt("SkinsDialogue", 3);
+        }
+
+        if(PlayerPrefs.GetInt("CreditsDialogue", 0) == 1)
+        {
+            UILocked[2].SetActive(false);
+            UIPanels[37].SetActive(true);
+        }
     }
 }

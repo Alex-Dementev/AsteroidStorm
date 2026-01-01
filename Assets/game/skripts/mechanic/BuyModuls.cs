@@ -49,15 +49,15 @@ public class BuyModuls : MonoBehaviour
             YouBuy.SetActive(true);
             ad.Play();
 
-            if(NamePP == "P1")
+            if(NamePP == "P1" && PlayerPrefs.GetInt("P1Buy", 0) != 2)
                 PlayerPrefs.SetInt("P1Buy", 1);
-            if(NamePP == "P2")
+            if(NamePP == "P2" && PlayerPrefs.GetInt("P2Buy", 0) != 2)
                 PlayerPrefs.SetInt("P2Buy", 1);
-            if(NamePP == "P3")
+            if(NamePP == "P3" && PlayerPrefs.GetInt("P3Buy", 0) != 2)
                 PlayerPrefs.SetInt("P3Buy", 1);
-            if(NamePP == "P4")
+            if(NamePP == "P4" && PlayerPrefs.GetInt("P4Buy", 0) != 2)
                 PlayerPrefs.SetInt("P4Buy", 1);
-            if(NamePP == "P5")
+            if(NamePP == "P5" && PlayerPrefs.GetInt("P5Buy", 0) != 2)
                 PlayerPrefs.SetInt("P5Buy", 1);
         }
         else

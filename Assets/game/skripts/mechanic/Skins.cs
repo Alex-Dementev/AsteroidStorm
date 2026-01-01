@@ -28,6 +28,13 @@ public class Skins : MonoBehaviour
     void Update()
     {
         isdelay -= Time.deltaTime;
+
+        int SkinsCount = PlayerPrefs.GetInt("Skin1", 0) + PlayerPrefs.GetInt("Skin2", 0) + PlayerPrefs.GetInt("Skin3", 0) + PlayerPrefs.GetInt("Skin4", 0);
+        
+        if(SkinsCount >= 2 && PlayerPrefs.GetInt("SkinsDialogue", 0) == 1)
+        {
+            PlayerPrefs.SetInt("SkinsDialogue", 2);
+        }
     }
 
     void Start()

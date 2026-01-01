@@ -29,6 +29,8 @@ public class Credits : MonoBehaviour
     public Animator TrablesAnim;
     private float DisCount;
 
+    public GameObject Casino;
+
     void Start()
     {
         if(PlayerPrefs.GetInt("CreditsActivee", 0) == 1)
@@ -40,6 +42,14 @@ public class Credits : MonoBehaviour
         {
             StatusInt = PlayerPrefs.GetInt("StatusPercent", 50);
             Status.text = "Рейтинг: " + StatusInt + "%";
+        }
+
+        if(PlayerPrefs.GetInt("NumCredits", 0) >= 1)
+        {
+            if(PlayerPrefs.GetInt("CreditsDialogue", 0) == 0)
+            {
+                Casino.SetActive(true);
+            }
         }
     }
 
@@ -152,6 +162,18 @@ public class Credits : MonoBehaviour
                 PlayerPrefs.SetInt("StatusPercent", StatusInt);
             }
 
+            int NumCredits = PlayerPrefs.GetInt("NumCredits", 0);
+            NumCredits++;
+            PlayerPrefs.SetInt("NumCredits", NumCredits);
+
+            if(PlayerPrefs.GetInt("NumCredits", 0) >= 1)
+            {
+                if(PlayerPrefs.GetInt("CreditsDialogue", 0) == 0)
+                {
+                    Casino.SetActive(true);
+                }
+            }
+
             StatusInt = PlayerPrefs.GetInt("StatusPercent", 50);
             Status.text = "Рейтинг: " + StatusInt + "%";
         }
@@ -177,7 +199,7 @@ public class Credits : MonoBehaviour
             PlayerPrefs.SetInt("CreditsTimerStatus", 1);
             PlayerPrefs.SetInt("DelayCredits", 0);
         }
-        else if(PlayerPrefs.GetInt("DelayCredits", 0) != 4 && PlayerPrefs.GetInt("IndexDialogue", 0) == 5 && GetSlider.value >= 800)
+        else if(PlayerPrefs.GetInt("DelayCredits", 0) != 4 && PlayerPrefs.GetInt("IndexDialogue", 0) == 5 && GetSlider.value >= 799)
         {
             PlayerPrefs.SetInt("CreditsActivee", 1);
             PercentCalc = PlayerPrefs.GetInt("CreditsPercent", 7);
