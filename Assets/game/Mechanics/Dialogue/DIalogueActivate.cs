@@ -59,7 +59,7 @@ public class DIalogueActivate : MonoBehaviour
         if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 20)
             UpdateDialogue();
 
-        if(PlayerPrefs.GetInt("allgames") >= 1)
+        if(PlayerPrefs.GetInt("allgames") >= 2)
         {
             ShopT.startTimer = true;
         }
@@ -104,6 +104,8 @@ public class DIalogueActivate : MonoBehaviour
         if (DialogueLombardMetals[1].activeSelf)
             DialogueLombardMetals[1].GetComponent<DialogueManager>().Close();
 
+        if (DialoguePanels[2].activeSelf)
+            DialoguePanels[2].GetComponent<DialogueManager>().Close();
         if (DialoguePanels[3].activeSelf)
             DialoguePanels[3].GetComponent<DialogueManager>().Close();
 
@@ -341,6 +343,30 @@ public class DIalogueActivate : MonoBehaviour
             UIPanels[30].SetActive(true);
         }
 
+        if(PlayerPrefs.GetInt("AchActive", 0) == 1)
+        {
+            UIPanels[34].SetActive(true);
+            UIPanels[36].SetActive(true);
+        }
+
+
+        if(PlayerPrefs.GetString("TurbinIndexModule", "") != "" && PlayerPrefs.GetString("TurbinIndexModule", "") != "0" && PlayerPrefs.GetString("TurbinIndexModule", "") != "B1" || PlayerPrefs.GetInt("ActivateBoostP", 0) == 1)
+        {
+            UIPanels[33].SetActive(true);
+            UILocked[1].SetActive(false);
+            PlayerPrefs.SetInt("ActivateBoostP", 1);
+        }
+
+
+        if(PlayerPrefs.GetInt("ScoreToCoinsDialogue", 0) == 1)
+        {
+            UIPanels[32].SetActive(true);
+        }
+        if(PlayerPrefs.GetInt("allscore", 0) >= 8000 && PlayerPrefs.GetInt("ScoreToCoinsDialogue", 0) == 0)
+        {
+            DialoguePanels[4].SetActive(true);
+        }
+
 
         if(PlayerPrefs.GetInt("PetsApply", 0) == 0)
         {
@@ -472,6 +498,34 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[11].SetActive(true);
         }
     }
+    public void ClickButton12()
+    {
+        if(PlayerPrefs.GetInt("StatDialogue", 0) == 0)
+        {
+            DialoguePanels[5].SetActive(true);
+        }
+    }
+    public void ClickButton15()
+    {
+        if(PlayerPrefs.GetInt("BoostDialogue", 0) == 0 && PlayerPrefs.GetInt("Turbins>", 0) == 1)
+        {
+            DialoguePanels[6].SetActive(true);
+        }
+    }
+    public void ClickButton16()
+    {
+        if(PlayerPrefs.GetString("TurbinIndexModule", "") != "" && PlayerPrefs.GetString("TurbinIndexModule", "") != "0" && PlayerPrefs.GetString("TurbinIndexModule", "") != "B1" && PlayerPrefs.GetInt("Turbins>", 0) == 0)
+        {
+            DialoguePanels[10].SetActive(true);
+        }
+    }
+    public void ClickButton17()
+    {
+        if(PlayerPrefs.GetInt("PetsBuyDialogue", 0) == 0)
+        {
+            DialoguePanels[11].SetActive(true);
+        }
+    }
     public void ClickButton13()
     {
         if(PlayerPrefs.GetInt("SkinsDialogue", 0) == 0)
@@ -488,6 +542,14 @@ public class DIalogueActivate : MonoBehaviour
     {
         if(DialoguePanels[0].activeSelf)
             DialoguePanels[0].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[11].activeSelf)
+            DialoguePanels[11].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[5].activeSelf)
+            DialoguePanels[5].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[6].activeSelf)
+            DialoguePanels[6].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[10].activeSelf)
+            DialoguePanels[10].GetComponent<DialogueManager>().Close();
 
         if(DialoguePanels[7].activeSelf)
             DialoguePanels[7].GetComponent<DialogueManager>().Close();

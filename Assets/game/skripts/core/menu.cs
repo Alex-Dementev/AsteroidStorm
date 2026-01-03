@@ -119,7 +119,6 @@ public class menu : MonoBehaviour
     public ParticleSystem ps27;
     public ParticleSystem ps31;
     public ParticleSystem ps32;
-    public ParticleSystem ps33;
     public ParticleSystem ps34;
     public ParticleSystem ps35;
     public ParticleSystem ps36;
@@ -328,7 +327,6 @@ public class menu : MonoBehaviour
         ps27.Stop();
         ps31.Stop();
         ps32.Stop();
-        ps33.Stop();
         ps34.Stop();
         ps35.Stop();
         ps44.Stop();
@@ -614,7 +612,6 @@ public class menu : MonoBehaviour
         ps27.Stop();
         ps31.Stop();
         ps32.Stop();
-        ps33.Stop();
         ps34.Stop();
         ps35.Stop();
         ps36.Stop();
@@ -831,10 +828,6 @@ public class menu : MonoBehaviour
     public void isps20()
     {
         ps32.Play();
-    }
-    public void isps21()
-    {
-        ps33.Play();
     }
     public void isps22()
     {

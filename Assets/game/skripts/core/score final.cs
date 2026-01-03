@@ -104,6 +104,7 @@ public class ScoreCounterFinal : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("isfinal1g", 1);
+        PlayerPrefs.SetInt("AchActive", 1);
         ach3 = PlayerPrefs.GetInt("ach3");
         
         l.intensity = PlayerPrefs.GetFloat("lightgameplay") / 2;
