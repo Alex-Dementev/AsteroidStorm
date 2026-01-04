@@ -391,6 +391,8 @@ public class DIalogueActivate : MonoBehaviour
                 UIPanels[40].SetActive(true);
             }
         }
+        else
+            UIPanels[40].SetActive(true);
     }
 
     public void ClickButton2()
@@ -495,7 +497,7 @@ public class DIalogueActivate : MonoBehaviour
     {
         if(PlayerPrefs.GetInt("PetsDialogue", 0) == 0)
         {
-            DialoguePanels[11].SetActive(true);
+            DialoguePanels[12].SetActive(true);
         }
     }
     public void ClickButton12()
@@ -550,6 +552,11 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[6].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[10].activeSelf)
             DialoguePanels[10].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[12].activeSelf)
+            DialoguePanels[12].GetComponent<DialogueManager>().Close();
+
+        if(PlayerPrefs.GetInt("PetsBuyDialogue", 0) == 0)
+            DialoguePanels[11].SetActive(true);
 
         if(DialoguePanels[7].activeSelf)
             DialoguePanels[7].GetComponent<DialogueManager>().Close();

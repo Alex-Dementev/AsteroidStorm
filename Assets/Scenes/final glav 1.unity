@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 5999001}
   - component: {fileID: 5998999}
   - component: {fileID: 5999000}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: s (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5177,7 +5177,7 @@ GameObject:
   - component: {fileID: 7961730}
   - component: {fileID: 7961731}
   - component: {fileID: 7961732}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Point Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16715,7 +16715,7 @@ GameObject:
   - component: {fileID: 169053674}
   - component: {fileID: 169053675}
   - component: {fileID: 169053676}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16836,7 +16836,7 @@ GameObject:
   - component: {fileID: 170444561}
   - component: {fileID: 170444559}
   - component: {fileID: 170444560}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: s
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21678,7 +21678,7 @@ GameObject:
   - component: {fileID: 176981886}
   - component: {fileID: 176981888}
   - component: {fileID: 176981887}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: t
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26838,7 +26838,7 @@ GameObject:
   - component: {fileID: 341318635}
   - component: {fileID: 341318634}
   - component: {fileID: 341318633}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: TrailRo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27673,7 +27673,7 @@ GameObject:
   - component: {fileID: 359619207}
   - component: {fileID: 359619206}
   - component: {fileID: 359619205}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: TrailGo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32898,7 +32898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 386508003}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38494,7 +38494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 577442751}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38910,7 +38910,7 @@ GameObject:
   - component: {fileID: 686990618}
   - component: {fileID: 686990616}
   - component: {fileID: 686990617}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: s
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43750,7 +43750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 696226952}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43918,7 +43918,7 @@ GameObject:
   - component: {fileID: 730111502}
   - component: {fileID: 730111504}
   - component: {fileID: 730111503}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder.003 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49010,7 +49010,7 @@ GameObject:
   - component: {fileID: 831911298}
   - component: {fileID: 831911300}
   - component: {fileID: 831911299}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder.004 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49171,7 +49171,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 026a77feaaf875545a2718f3bdd910c0,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 026a77feaaf875545a2718f3bdd910c0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -49452,7 +49457,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 026a77feaaf875545a2718f3bdd910c0,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 026a77feaaf875545a2718f3bdd910c0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -49508,7 +49518,7 @@ GameObject:
   - component: {fileID: 898861328}
   - component: {fileID: 898861329}
   - component: {fileID: 898861330}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49629,7 +49639,7 @@ GameObject:
   - component: {fileID: 903963805}
   - component: {fileID: 903963806}
   - component: {fileID: 903963807}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Point Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50079,7 +50089,7 @@ GameObject:
   - component: {fileID: 956199524}
   - component: {fileID: 956199526}
   - component: {fileID: 956199525}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder.002 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50272,6 +50282,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: christmas_three
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd4d7b672404adf41a6985a99779200a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50294,7 +50309,7 @@ GameObject:
   - component: {fileID: 984181845}
   - component: {fileID: 984181846}
   - component: {fileID: 984181847}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Point Light (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50822,7 +50837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1023873690}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56538,7 +56553,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 026a77feaaf875545a2718f3bdd910c0,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 026a77feaaf875545a2718f3bdd910c0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -56692,7 +56712,7 @@ GameObject:
   - component: {fileID: 1220377391}
   - component: {fileID: 1220377393}
   - component: {fileID: 1220377392}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder.002 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56843,7 +56863,12 @@ PrefabInstance:
     - target: {fileID: -8380157826906577798, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8380157826906577798, guid: 51268198bc0d3b346b2a28743bb91ca4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6902573867230041995, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
@@ -56853,12 +56878,22 @@ PrefabInstance:
     - target: {fileID: -6733177361254619370, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6733177361254619370, guid: 51268198bc0d3b346b2a28743bb91ca4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5568371526223589888, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 51268198bc0d3b346b2a28743bb91ca4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1439730007547781893, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
@@ -56873,17 +56908,22 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1129496810705857465, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
@@ -56898,12 +56938,22 @@ PrefabInstance:
     - target: {fileID: 8513859187771203891, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: 51268198bc0d3b346b2a28743bb91ca4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8700725330082129686, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700725330082129686, guid: 51268198bc0d3b346b2a28743bb91ca4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -57305,7 +57355,7 @@ GameObject:
   - component: {fileID: 1263378285}
   - component: {fileID: 1263378287}
   - component: {fileID: 1263378286}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57472,6 +57522,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: amongus
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -58163,7 +58218,7 @@ GameObject:
   - component: {fileID: 1409287977}
   - component: {fileID: 1409287979}
   - component: {fileID: 1409287978}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder.005 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58320,6 +58375,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: smerch (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 242a126ddc2216c4c9c540a1f2862a3e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -68292,7 +68352,7 @@ GameObject:
   - component: {fileID: 1525398995}
   - component: {fileID: 1525398997}
   - component: {fileID: 1525398996}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: t
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73125,7 +73185,7 @@ GameObject:
   - component: {fileID: 1580062490}
   - component: {fileID: 1580062488}
   - component: {fileID: 1580062489}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: s
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78032,17 +78092,32 @@ PrefabInstance:
     - target: {fileID: -8380157826906577798, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8380157826906577798, guid: 01b5a8571b318de4c8529d2dcbdffb76,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6733177361254619370, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6733177361254619370, guid: 01b5a8571b318de4c8529d2dcbdffb76,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5568371526223589888, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 01b5a8571b318de4c8529d2dcbdffb76,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
@@ -78052,7 +78127,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
@@ -78064,20 +78139,40 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01b5a8571b318de4c8529d2dcbdffb76,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2800250516343163423, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800250516343163423, guid: 01b5a8571b318de4c8529d2dcbdffb76,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8513859187771203891, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: 01b5a8571b318de4c8529d2dcbdffb76,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8700725330082129686, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700725330082129686, guid: 01b5a8571b318de4c8529d2dcbdffb76,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -78718,7 +78813,7 @@ GameObject:
   - component: {fileID: 1624673739}
   - component: {fileID: 1624673740}
   - component: {fileID: 1624673741}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Point Light (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79127,7 +79222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1658427042}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79537,7 +79632,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
         type: 3}
@@ -79548,6 +79643,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79922,7 +80022,7 @@ GameObject:
   - component: {fileID: 1713058727}
   - component: {fileID: 1713058729}
   - component: {fileID: 1713058728}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder.001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90217,7 +90317,7 @@ GameObject:
   - component: {fileID: 1792738206}
   - component: {fileID: 1792738205}
   - component: {fileID: 1792738204}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: TrailAm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90576,7 +90676,7 @@ GameObject:
   - component: {fileID: 1807325198}
   - component: {fileID: 1807325200}
   - component: {fileID: 1807325199}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder.004 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90846,6 +90946,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: smerch (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 242a126ddc2216c4c9c540a1f2862a3e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -91024,7 +91129,7 @@ GameObject:
   - component: {fileID: 1813187348}
   - component: {fileID: 1813187350}
   - component: {fileID: 1813187349}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder.001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91423,7 +91528,7 @@ GameObject:
   - component: {fileID: 1849819919}
   - component: {fileID: 1849819918}
   - component: {fileID: 1849819917}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: TrailCh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91684,7 +91789,7 @@ GameObject:
   - component: {fileID: 1850019351}
   - component: {fileID: 1850019352}
   - component: {fileID: 1850019353}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Point Light (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92155,7 +92260,7 @@ GameObject:
   - component: {fileID: 1910617516}
   - component: {fileID: 1910617518}
   - component: {fileID: 1910617517}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: t
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97094,7 +97199,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cd4d7b672404adf41a6985a99779200a,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cd4d7b672404adf41a6985a99779200a,
         type: 3}
@@ -97105,6 +97210,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd4d7b672404adf41a6985a99779200a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -97479,7 +97589,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 026a77feaaf875545a2718f3bdd910c0,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 026a77feaaf875545a2718f3bdd910c0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -97647,7 +97762,7 @@ GameObject:
   - component: {fileID: 1958920769}
   - component: {fileID: 1958920771}
   - component: {fileID: 1958920770}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder.003 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97758,6 +97873,9 @@ RectTransform:
   - {fileID: 67334519}
   - {fileID: 1328146609}
   - {fileID: 1001231536}
+  - {fileID: 1764983004}
+  - {fileID: 612056729}
+  - {fileID: 573620532}
   - {fileID: 51455681}
   - {fileID: 168598285}
   - {fileID: 1350524495}
@@ -97765,9 +97883,6 @@ RectTransform:
   - {fileID: 28995408}
   - {fileID: 1259312342}
   - {fileID: 1132852902}
-  - {fileID: 1764983004}
-  - {fileID: 612056729}
-  - {fileID: 573620532}
   - {fileID: 1883183354}
   - {fileID: 1784157979}
   - {fileID: 2130700145}
@@ -98157,7 +98272,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 113
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -98247,7 +98362,7 @@ MonoBehaviour:
   s4: {fileID: 1258039495}
   baseSmoothSpeed: 0.3
   speedMultiplier: 0.2
-  offset: {x: 0, y: 8, z: -46}
+  offset: {x: 0, y: 8, z: -30}
 --- !u!114 &1979058721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98260,9 +98375,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 1
-  m_RequiresOpaqueTextureOption: 1
+  m_RenderShadows: 0
+  m_RequiresDepthTextureOption: 0
+  m_RequiresOpaqueTextureOption: 0
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
@@ -98320,7 +98435,7 @@ GameObject:
   - component: {fileID: 1983654141}
   - component: {fileID: 1983654142}
   - component: {fileID: 1983654143}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Point Light (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98723,7 +98838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2001172198}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103700,7 +103815,7 @@ GameObject:
   - component: {fileID: 2017258266}
   - component: {fileID: 2017258268}
   - component: {fileID: 2017258267}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103784,7 +103899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2040773582}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103818,7 +103933,7 @@ GameObject:
   - component: {fileID: 2041164011}
   - component: {fileID: 2041164013}
   - component: {fileID: 2041164012}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: t
   m_TagString: Untagged
   m_Icon: {fileID: 0}

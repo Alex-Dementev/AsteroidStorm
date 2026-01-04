@@ -18,7 +18,7 @@ GameObject:
   m_TagString: br
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1413600786460866499
 Transform:
@@ -61,6 +61,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -201,14 +204,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1461304994638716399, guid: 5e1cbd51da9c37548a8574ce911bc28f,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6f6ac5ead105f9f448f1c22b42e5681f, type: 2}
     - target: {fileID: -1461304994638716399, guid: 5e1cbd51da9c37548a8574ce911bc28f,
         type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 6f6ac5ead105f9f448f1c22b42e5681f, type: 2}
+    - target: {fileID: -516098083770646512, guid: 5e1cbd51da9c37548a8574ce911bc28f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5e1cbd51da9c37548a8574ce911bc28f,
         type: 3}
       propertyPath: m_Name
@@ -219,11 +227,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: br
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e1cbd51da9c37548a8574ce911bc28f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2869344807088711131, guid: 5e1cbd51da9c37548a8574ce911bc28f,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9a7bdbb0ed1c71b4995a893db2a1fc4e, type: 2}
+    - target: {fileID: 6085036178219441596, guid: 5e1cbd51da9c37548a8574ce911bc28f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

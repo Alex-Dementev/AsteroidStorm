@@ -75,7 +75,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 9fbd20f69e82af9428f772eefdbd4610,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f728d6d7cad90c248baa2a51e19e10ee, type: 2}
     - target: {fileID: 919132149155446097, guid: 9fbd20f69e82af9428f772eefdbd4610,
@@ -87,6 +87,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: obstraclemini
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9fbd20f69e82af9428f772eefdbd4610,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -128,7 +133,9 @@ MonoBehaviour:
   goldMaterial: {fileID: 2100000, guid: 8d3d5e7318aa1b84db5ef0063e8b29d6, type: 2}
   diamondMaterial: {fileID: 2100000, guid: d21c4df5e9b3e8d4e9563c45fba311fc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: f728d6d7cad90c248baa2a51e19e10ee, type: 2}
+  normalMap: {fileID: 0}
   baseMass: 0.15
+  Metals: 0
   happened: 0
   asteroidType: 0
   mass: 0

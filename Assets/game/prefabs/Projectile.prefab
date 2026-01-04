@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &70961912581173327
 Transform:
@@ -252,7 +252,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3527370316949442320
 Transform:
@@ -5095,17 +5095,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6d3ab3877e7853f4aba40ebcd7d415b4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.561384
+      value: 9.016135
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6d3ab3877e7853f4aba40ebcd7d415b4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26852185
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6d3ab3877e7853f4aba40ebcd7d415b4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 148.96724
+      value: -30.210884
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6d3ab3877e7853f4aba40ebcd7d415b4,
         type: 3}
@@ -5151,6 +5151,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d3ab3877e7853f4aba40ebcd7d415b4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5263,7 +5268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a4e60423d920e44822111cd32cf5dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRadius: 25
 --- !u!4 &2136316479367132682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6d3ab3877e7853f4aba40ebcd7d415b4,
@@ -5352,6 +5356,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Projectile (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d3ab3877e7853f4aba40ebcd7d415b4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
