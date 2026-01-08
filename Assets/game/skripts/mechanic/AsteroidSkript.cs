@@ -3,7 +3,7 @@ using UnityEngine;
 public class AsteroidSkript : MonoBehaviour
 {
     [Range(0f, 100f)]
-    private float firstChance = 40f;
+    private float firstChance = 60f;
 
     public Material bronzeMaterial;
     public Material silverMaterial;
@@ -16,7 +16,6 @@ public class AsteroidSkript : MonoBehaviour
     public int Metals;
 
     public Renderer mainRenderer;
-    public Renderer secondRenderer;
 
     public bool happened = false;
     public int asteroidType = 0;
@@ -26,9 +25,7 @@ public class AsteroidSkript : MonoBehaviour
     {
         asteroidType = 0;
 
-        mainRenderer.material = defaultMaterial;
-        if (secondRenderer != null)
-            secondRenderer.material = defaultMaterial;
+        mainRenderer.sharedMaterial = defaultMaterial;
 
         float roll1 = Random.Range(0f, 100f);
         if (roll1 < firstChance)
@@ -64,9 +61,7 @@ public class AsteroidSkript : MonoBehaviour
 
     void ApplyMaterial(Material mat)
     {
-        mainRenderer.material = mat;
-        if (secondRenderer != null)
-            secondRenderer.material = mat;
+        mainRenderer.sharedMaterial = mat;
     }
 
     public void asvoid()

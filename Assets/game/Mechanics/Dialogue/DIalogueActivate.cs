@@ -362,7 +362,7 @@ public class DIalogueActivate : MonoBehaviour
         {
             UIPanels[32].SetActive(true);
         }
-        if(PlayerPrefs.GetInt("allscore", 0) >= 8000 && PlayerPrefs.GetInt("ScoreToCoinsDialogue", 0) == 0)
+        if(PlayerPrefs.GetInt("allscore", 0) >= 675 && PlayerPrefs.GetInt("ScoreToCoinsDialogue", 0) == 0)
         {
             DialoguePanels[4].SetActive(true);
         }
@@ -554,9 +554,6 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[10].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[12].activeSelf)
             DialoguePanels[12].GetComponent<DialogueManager>().Close();
-
-        if(PlayerPrefs.GetInt("PetsBuyDialogue", 0) == 0)
-            DialoguePanels[11].SetActive(true);
 
         if(DialoguePanels[7].activeSelf)
             DialoguePanels[7].GetComponent<DialogueManager>().Close();

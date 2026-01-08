@@ -211,7 +211,6 @@ public class menu : MonoBehaviour
 
     void Start()
     {   
-        PlayerPrefs.GetFloat("isstartmusic", 1f);
         PlayerPrefs.SetInt("isstopmusictocutscene", 0);
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
         musics = PlayerPrefs.GetFloat("musics", 0.5f);
@@ -907,7 +906,7 @@ public class menu : MonoBehaviour
             turbinsMinus = PlayerPrefs.GetFloat("TurbinsEnergy", 0);
             turbinsMinus += PlayerPrefs.GetFloat("TurbinsFuel", 0);
 
-            if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 10 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 && Dificitefloat >= 0 && turbinsMinus != 0 || PlayerPrefs.GetInt("yousurwive", 0) == 1)
+            if (r.isdelayb == true && PlayerPrefs.GetInt("coins", 0) >= 10 && PlayerPrefs.GetInt("fueltostart", 0) >= 1 && Dificitefloat >= 0 && turbinsMinus > 0 || PlayerPrefs.GetInt("yousurwive", 0) == 1)
             {
                 PlayerPrefs.SetInt("start", 1);
                 int fuel = PlayerPrefs.GetInt("fuel");
@@ -947,7 +946,7 @@ public class menu : MonoBehaviour
                 Dificite.Play("Start");
                 noad.Play();
             }
-            else
+            else if(PlayerPrefs.GetInt("coins", 0) <= 9)
             {
                 Dificite.Play("Start");
                 noad.Play();
@@ -959,7 +958,7 @@ public class menu : MonoBehaviour
                 isstart = true;
             }
         }
-        else if(PlayerPrefs.GetInt("IndexDialogue", 0) == 19)
+        else if(PlayerPrefs.GetInt("IndexDialogue", 0) == 19 && PlayerPrefs.GetInt("fueltostart", 0) >= 1)
         {
             DialogueStart.SetActive(true);
         }

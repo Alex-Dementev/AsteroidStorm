@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9fbd20f69e82af9428f772eefdbd4610,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.238868
+      value: 56.26221
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9fbd20f69e82af9428f772eefdbd4610,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.3103523
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9fbd20f69e82af9428f772eefdbd4610,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 160.24483
+      value: -21.698124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9fbd20f69e82af9428f772eefdbd4610,
         type: 3}
@@ -110,6 +110,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8602333135846879007}
   m_SourcePrefab: {fileID: 100100000, guid: 9fbd20f69e82af9428f772eefdbd4610, type: 3}
+--- !u!23 &977329350543030797 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 9fbd20f69e82af9428f772eefdbd4610,
+    type: 3}
+  m_PrefabInstance: {fileID: 1896506359714457225}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1626036605808647128 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9fbd20f69e82af9428f772eefdbd4610,
@@ -133,9 +139,9 @@ MonoBehaviour:
   goldMaterial: {fileID: 2100000, guid: 8d3d5e7318aa1b84db5ef0063e8b29d6, type: 2}
   diamondMaterial: {fileID: 2100000, guid: d21c4df5e9b3e8d4e9563c45fba311fc, type: 2}
   defaultMaterial: {fileID: 2100000, guid: f728d6d7cad90c248baa2a51e19e10ee, type: 2}
-  normalMap: {fileID: 0}
   baseMass: 0.15
   Metals: 0
+  mainRenderer: {fileID: 977329350543030797}
   happened: 0
   asteroidType: 0
   mass: 0

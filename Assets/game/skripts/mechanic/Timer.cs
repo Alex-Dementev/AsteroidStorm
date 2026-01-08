@@ -46,6 +46,26 @@ public class SmartBoostTimer : MonoBehaviour
         }
     }
 
+
+    public void RestartTimer()
+    {
+        // Удаляем старый таймер
+        PlayerPrefs.DeleteKey(endTimeKey);
+        PlayerPrefs.DeleteKey(textKey);
+        PlayerPrefs.DeleteKey(secondsLeftKey);
+
+        // Запускаем заново
+        long endTicks = DateTime.UtcNow.AddSeconds(DurationSeconds).Ticks;
+        PlayerPrefs.SetString(endTimeKey, endTicks.ToString());
+
+        PlayerPrefs.SetInt(TimerKey, 3); // таймер идёт
+        PlayerPrefs.Save();
+
+        finishedSaved = false;
+    }
+
+
+
     // ======== ЗАПУСК ТАЙМЕРА ========
     void StartTimer()
     {
