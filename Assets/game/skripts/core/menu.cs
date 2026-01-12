@@ -44,11 +44,6 @@ public class menu : MonoBehaviour
     public GameObject panelCustomizate;
     public GameObject panelLom;
     public GameObject panelBank;
-    public GameObject achp1;
-    public GameObject achp2;
-    public GameObject achp3;
-    public GameObject achp4;
-    public GameObject achp5;
     public GameObject image;
     public AudioSource ad1;
     public AudioSource ad2;
@@ -157,11 +152,6 @@ public class menu : MonoBehaviour
     public bool ison3;
     public bool isCustomPanel;
     public bool isstart = false;
-    public float ach1;
-    public float ach2;
-    public float ach3;
-    public float ach4;
-    public float ach5;
     public int allgames;
     public int is11;
     public int is12;
@@ -214,16 +204,6 @@ public class menu : MonoBehaviour
         PlayerPrefs.SetInt("isstopmusictocutscene", 0);
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
         musics = PlayerPrefs.GetFloat("musics", 0.5f);
-        ach1 = PlayerPrefs.GetInt("1.5kscore", 0);
-        ach2 = PlayerPrefs.GetInt("450score", 0);
-        ach3 = PlayerPrefs.GetInt("ach3", 0);
-        ach4 = PlayerPrefs.GetInt("ach4", 0);
-        ach5 = PlayerPrefs.GetInt("ach5", 0);
-        is11 = PlayerPrefs.GetInt("tis11", 0);
-        is12 = PlayerPrefs.GetInt("tis12", 0);
-        is13 = PlayerPrefs.GetInt("tis13", 0);
-        is14 = PlayerPrefs.GetInt("tis14", 0);
-        is15 = PlayerPrefs.GetInt("tis15", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
         PlayerPrefs.SetInt("youcheat", 1);
         PlayerPrefs.SetInt("youdead", 0);
@@ -249,69 +229,6 @@ public class menu : MonoBehaviour
         yesad.volume = audios / 2;
         SMS.volume = audios / 1.4f;
         noad.volume = audios / 2;
-
-
-        if (is11 == 0)
-        {
-            controller.GetComponent<Image>().color = new Color(255, 0, 0, 255);
-        }
-        else
-        {
-            controller.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-        }
-        if (is12 == 0)
-        {
-            controller2.GetComponent<Image>().color = new Color(255, 0, 0, 255);
-        }
-        else
-        {
-            controller2.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-        }
-        if (is13 == 0)
-        {
-            controller3.GetComponent<Image>().color = new Color(255, 0, 0, 255);
-        }
-        else
-        {
-            controller3.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-        }
-        if (is14 == 0)
-        {
-            controller4.GetComponent<Image>().color = new Color(255, 0, 0, 255);
-        }
-        else
-        {
-            controller4.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-        }
-        if (is15 == 0)
-        {
-            controller5.GetComponent<Image>().color = new Color(255, 0, 0, 255);
-        }
-        else
-        {
-            controller5.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-        }
-
-        if (ach1 == 1)
-        {
-            achp1.SetActive(true);
-        }
-        if(ach2 == 1)
-        {
-            achp2.SetActive(true);
-        }
-        if(ach3 == 1)
-        {
-            achp3.SetActive(true);
-        }
-        if(ach4 == 1)
-        {
-            achp4.SetActive(true);
-        }
-        if(ach5 == 1)
-        {
-            achp5.SetActive(true);
-        }
 
         ps16.Stop();
         ps17.Stop();
@@ -344,30 +261,6 @@ public class menu : MonoBehaviour
         ps57.Stop();
         ps58.Stop();
         ps59.Stop();
-
-
-        if (is11 == 0 && ach1 == 1)
-        {
-            anim6.SetBool("IsTrue", true);
-        }
-        if (is15 == 0 && ach5 == 1)
-        {
-            anim6.SetBool("IsTrue", true);
-        }
-
-        if (is12 == 0 && ach2 == 1)
-        {
-            anim6.SetBool("IsTrue", true);
-        }
-
-        if (is13 == 0 && ach3 == 1)
-        {
-            anim6.SetBool("IsTrue", true);
-        }
-        if (is14 == 0 && ach4 == 1)
-        {
-            anim6.SetBool("IsTrue", true);
-        }
 
 
         if(!rocketfall)
@@ -678,68 +571,6 @@ public class menu : MonoBehaviour
         d3.text = "Долетел до Луны, плюнул в кратер и вернулся. Теперь уверен, что Земля круглая, а сыр всё-таки твёрдый.";
         d4.text = "Обычная ракета для необычных ситуаций. Летит прямо… пока не решит, что прямо — это в стену.";
         
-    }
-
-
-    public void isclickget()
-    {
-        if (is11 == 0 && ach1 == 1)
-        {
-            is11 = 1;
-            PlayerPrefs.SetInt("tis11", 1);
-            PlayerPrefs.SetInt("Skin3", 1);
-            controller.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-            anim6.SetBool("IsTrue", false);
-        }
-        if (is15 == 0 && ach5 == 1)
-        {
-            is15 = 1;
-            PlayerPrefs.SetInt("tis15", 1);
-            PlayerPrefs.SetInt("Skin1", 1);
-            controller5.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-            anim6.SetBool("IsTrue", false);
-        }
-
-        if (is12 == 0 && ach2 == 1)
-        {
-            is12 = 1;
-            PlayerPrefs.SetInt("tis12", 1);
-            controller2.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-            coins = PlayerPrefs.GetInt("coins", 0);
-            coins += 500;
-            PlayerPrefs.SetInt("coins", coins);
-            maxcoins = PlayerPrefs.GetInt("allcoins", 0);
-            maxcoins += 500;
-            PlayerPrefs.SetInt("allcoins", maxcoins);
-            anim6.SetBool("IsTrue", false);
-        }
-
-        if (is13 == 0 && ach3 == 1)
-        {
-            is13 = 1;
-            PlayerPrefs.SetInt("tis13", 1);
-            controller3.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-            coins = PlayerPrefs.GetInt("coins", 0);
-            coins += 2000;
-            PlayerPrefs.SetInt("coins", coins);
-            maxcoins = PlayerPrefs.GetInt("allcoins", 0);
-            maxcoins += 2000;
-            PlayerPrefs.SetInt("allcoins", maxcoins);
-            anim6.SetBool("IsTrue", false);
-        }
-        if (is14 == 0 && ach4 == 1)
-        {
-            is14 = 1;
-            PlayerPrefs.SetInt("tis14", 1);
-            controller4.GetComponent<Image>().color = new Color(0, 255, 0, 255);
-            coins = PlayerPrefs.GetInt("coins", 0);
-            coins += 5000;
-            PlayerPrefs.SetInt("coins", coins);
-            maxcoins = PlayerPrefs.GetInt("allcoins", 0);
-            maxcoins += 5000;
-            PlayerPrefs.SetInt("allcoins", maxcoins);
-            anim6.SetBool("IsTrue", false);
-        }
     }
 
 

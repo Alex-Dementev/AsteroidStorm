@@ -6707,7 +6707,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1c833fc796cb44c91ecf559d01612b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
+  swipeControlEnabled: 0
+  swipeMultiplier: 0.01
+  smoothTime: 0.4
+  holdTime: 0.8
+  returnSmoothTime: 0.6
 --- !u!65 &207934571
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6727,8 +6731,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6349914, y: 1.5845828, z: 8.317701}
-  m_Center: {x: 0.014836615, y: -0.067220405, z: -0.30533588}
+  m_Size: {x: 0.015, y: 0.05, z: 0.015}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &207934572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6776,6 +6780,7 @@ MonoBehaviour:
   ability2Animator: {fileID: 1345806356}
   ability3Animator: {fileID: 1166743416}
   ability4Animator: {fileID: 1181075924}
+  coll: {fileID: 207934571}
   doubleTapThreshold: 0.3
   speed: 0
   delay: 0
@@ -6820,7 +6825,7 @@ MonoBehaviour:
   Skanner: {fileID: 566875099}
   isdelayShield: 0
   isActiveShield: 0
-  isActiveShield2: 0
+  isActiveShield2: 1
   ShieldEndAS: {fileID: 627188301}
   ShieldAnim: {fileID: 2042601540}
   lastTapTime: 0
@@ -6884,7 +6889,8 @@ MonoBehaviour:
   IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 104172367}
-  explosionEffect: {fileID: 819479952}
+  explosionEffect: {fileID: 7895775261863826403, guid: 44ea2a778b9ef824588b4409357e7746,
+    type: 3}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
   go20:
@@ -12538,7 +12544,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b34ab7af183f2b40b859e5a192a5192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: -100
+  swipeControlEnabled: 0
+  swipeMultiplier: 0.01
+  smoothTime: 0.4
+  holdTime: 0.8
+  returnSmoothTime: 0.8
 --- !u!65 &310942069
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12558,8 +12568,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.00859925, y: 0.04863718, z: 0.012302698}
-  m_Center: {x: -0.0044920905, y: 0.011828181, z: 0.0043439944}
+  m_Size: {x: 0.015, y: 0.05, z: 0.015}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &310942070
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12607,6 +12617,7 @@ MonoBehaviour:
   ability2Animator: {fileID: 1345806356}
   ability3Animator: {fileID: 1166743416}
   ability4Animator: {fileID: 1181075924}
+  coll: {fileID: 310942069}
   doubleTapThreshold: 0.3
   speed: 0
   delay: 0
@@ -12651,7 +12662,7 @@ MonoBehaviour:
   Skanner: {fileID: 566875099}
   isdelayShield: 0
   isActiveShield: 0
-  isActiveShield2: 0
+  isActiveShield2: 1
   ShieldEndAS: {fileID: 627188301}
   ShieldAnim: {fileID: 401081131}
   lastTapTime: 0
@@ -12736,7 +12747,8 @@ MonoBehaviour:
   IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 104172367}
-  explosionEffect: {fileID: 819479952}
+  explosionEffect: {fileID: 7895775261863826403, guid: 44ea2a778b9ef824588b4409357e7746,
+    type: 3}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
   go20:
@@ -35845,7 +35857,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b34ab7af183f2b40b859e5a192a5192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: -100
+  swipeControlEnabled: 0
+  swipeMultiplier: 0.01
+  smoothTime: 0.4
+  holdTime: 0.8
+  returnSmoothTime: 0.8
 --- !u!65 &814676263
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35865,8 +35881,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.012143543, y: 0.05721993, z: 0.010319224}
-  m_Center: {x: -0.0019511927, y: -0.010218385, z: 0.004082685}
+  m_Size: {x: 0.015, y: 0.05, z: 0.015}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &814676264
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35914,6 +35930,7 @@ MonoBehaviour:
   ability2Animator: {fileID: 1345806356}
   ability3Animator: {fileID: 1166743416}
   ability4Animator: {fileID: 1181075924}
+  coll: {fileID: 814676263}
   doubleTapThreshold: 0.3
   speed: 0
   delay: 0
@@ -35958,7 +35975,7 @@ MonoBehaviour:
   Skanner: {fileID: 566875099}
   isdelayShield: 0
   isActiveShield: 0
-  isActiveShield2: 0
+  isActiveShield2: 1
   ShieldEndAS: {fileID: 627188301}
   ShieldAnim: {fileID: 661785907}
   lastTapTime: 0
@@ -36043,7 +36060,8 @@ MonoBehaviour:
   IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 104172367}
-  explosionEffect: {fileID: 819479952}
+  explosionEffect: {fileID: 7895775261863826403, guid: 44ea2a778b9ef824588b4409357e7746,
+    type: 3}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
   go20:
@@ -78987,7 +79005,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1c833fc796cb44c91ecf559d01612b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
+  swipeControlEnabled: 0
+  swipeMultiplier: 0.01
+  smoothTime: 0.4
+  holdTime: 0.8
+  returnSmoothTime: 0.6
 --- !u!54 &1950506759
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79034,8 +79056,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.083779, y: 1.1418775, z: 7.3984537}
-  m_Center: {x: -0.025253668, y: 0.15413173, z: -0.2734314}
+  m_Size: {x: 0.015, y: 0.05, z: 0.015}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1950506762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79056,6 +79078,7 @@ MonoBehaviour:
   ability2Animator: {fileID: 1345806356}
   ability3Animator: {fileID: 1166743416}
   ability4Animator: {fileID: 1181075924}
+  coll: {fileID: 1950506760}
   doubleTapThreshold: 0.3
   speed: 0
   delay: 0
@@ -79100,7 +79123,7 @@ MonoBehaviour:
   Skanner: {fileID: 566875099}
   isdelayShield: 0
   isActiveShield: 0
-  isActiveShield2: 0
+  isActiveShield2: 1
   ShieldEndAS: {fileID: 627188301}
   ShieldAnim: {fileID: 2030853426}
   lastTapTime: 0
@@ -79185,7 +79208,8 @@ MonoBehaviour:
   IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 104172367}
-  explosionEffect: {fileID: 819479952}
+  explosionEffect: {fileID: 7895775261863826403, guid: 44ea2a778b9ef824588b4409357e7746,
+    type: 3}
   explosionSound1: {fileID: 1122586441}
   explosionSound2: {fileID: 254614247}
   go20:

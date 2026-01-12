@@ -23,6 +23,11 @@ public class DoubleTapHandler : MonoBehaviour
     bool state3Ready = false;
     bool state4Ready = false;
 
+    public BoxCollider coll;
+
+    private Vector3 sizedpaste;
+    private Vector3 sized;
+
     // === Старые переменные ===
     public float doubleTapThreshold = 0.5f;
     public float speed;
@@ -367,6 +372,11 @@ public class DoubleTapHandler : MonoBehaviour
             delay = isdelay;
             otkat = isotkat;
             bb = true;
+            sized = coll.size;
+            sizedpaste = coll.size;
+            sized.x *= 1.5f;
+            sized.y *= 1.5f;
+            coll.size = sized;
             lightintens = l.intensity;
             l.intensity = 1.5f;
             l.color = new Color(1f, 1f, 0.85f);
@@ -470,6 +480,9 @@ public class DoubleTapHandler : MonoBehaviour
                 {
                     r.zSpeed = speed;
                     r.zSpeed += 1;
+                    sized.x = sizedpaste.x;
+                    sized.y = sizedpaste.y;
+                    coll.size = sized;
                     bb = false;
                     l.intensity = lightintens;
 

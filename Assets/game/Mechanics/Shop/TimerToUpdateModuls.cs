@@ -15,7 +15,7 @@ public class ShopTimerSmart : MonoBehaviour
     public bool startTimer = false;
 
     [Header("Интервал обновления магазина (ЧАСЫ)")]
-    public int UpdateIntervalHours = 24;
+    public int UpdateIntervalHours = 4;
 
     private const string TIMER_STARTED_KEY = "shop_timer_started";
     private const string END_TIME_KEY = "shop_end_time_ticks";
@@ -161,7 +161,7 @@ public class ShopTimerSmart : MonoBehaviour
         if (left.TotalSeconds < 0)
             left = TimeSpan.Zero;
 
-        int totalHours = left.Days * 24 + left.Hours;
+        int totalHours = left.Days * 4 + left.Hours;
         timerText.text = $"Обновление через: {totalHours}ч {left.Minutes}м";
     }
 
@@ -182,7 +182,7 @@ public class ShopTimerSmart : MonoBehaviour
         int Games = PlayerPrefs.GetInt("ShopStartsGame");
         Games += 2;
 
-        if(PlayerPrefs.GetInt("ShopBoost", 0) != 4 && PlayerPrefs.GetInt("ShopStartsGame") <= PlayerPrefs.GetInt("allgames"))
+        if(PlayerPrefs.GetInt("ShopBoost", 0) == 2 && PlayerPrefs.GetInt("ShopStartsGame") < PlayerPrefs.GetInt("allgames"))
         {
             if (!PlayerPrefs.HasKey(END_TIME_KEY))
                 return;
@@ -200,7 +200,7 @@ public class ShopTimerSmart : MonoBehaviour
                 return;
 
             // минус 20%
-            long reducedTicks = (long)(remainingTicks * 0.8f);
+            long reducedTicks = (long)(remainingTicks * 0.65f);
 
             long newEndTicks = nowTicks + reducedTicks;
 

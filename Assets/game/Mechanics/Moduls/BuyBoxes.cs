@@ -43,11 +43,11 @@ public class BuyBoxes : MonoBehaviour
 
             if(Index == 8 || Index == 6 || Index == 4 || Index == 2)
             {
-                if(Index == 6 && Index == 4 && Index == 2)
+                if(PlayerPrefs.GetInt("2BuyBoxes", 0) == 2 && PlayerPrefs.GetInt("4BuyBoxes", 0) == 4 && PlayerPrefs.GetInt("6BuyBoxes", 0) == 6)
                     PlayerPrefs.SetInt("PriceToBuyBox", 3085);
-                else if(Index == 4 && Index == 2)
+                else if(PlayerPrefs.GetInt("2BuyBoxes", 0) == 2 && PlayerPrefs.GetInt("4BuyBoxes", 0) == 4)
                     PlayerPrefs.SetInt("PriceToBuyBox", 1635);
-                else if(Index == 2)
+                else if(PlayerPrefs.GetInt("2BuyBoxes", 0) == 2)
                     PlayerPrefs.SetInt("PriceToBuyBox", 620);
                 else
                     PlayerPrefs.SetInt("PriceToBuyBox", 155);
