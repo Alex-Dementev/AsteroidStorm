@@ -22,7 +22,6 @@ public class menu : MonoBehaviour
     public Slider lightgameplay;
     private int one;
     public int prefs;
-    public bool isprolog;
     public bool rocketfall;
     public Image but;
     public Image but1;
@@ -57,7 +56,6 @@ public class menu : MonoBehaviour
     public AudioSource SMS;
     public AudioSource yesad;
     public AudioSource noad;
-    public float isdelay;
     private float isdelay1 = 1.5f;
     private float isdelay2 = 0.85f;
     private float isdelay5;
@@ -151,7 +149,6 @@ public class menu : MonoBehaviour
     public bool ison2;
     public bool ison3;
     public bool isCustomPanel;
-    public bool isstart = false;
     public int allgames;
     public int is11;
     public int is12;
@@ -304,7 +301,6 @@ public class menu : MonoBehaviour
     {
         isdelay2 -= Time.deltaTime;
         isdelay1 -= Time.deltaTime;
-        isdelay -= Time.deltaTime;
         isdelay5 -= Time.deltaTime;
 
 
@@ -445,22 +441,6 @@ public class menu : MonoBehaviour
             ison2 = false;
             but2.GetComponent<Image>().color = new Color(255, 0, 0, 255);
         }
-
-
-        if(isdelay <= 0)
-        {
-            if(isstart && PlayerPrefs.GetInt("start", 0) == 1)
-            {
-                isstart = false;
-                SceneManager.LoadScene("scenestart");
-            }
-            if(isprolog)
-            {
-                isprolog = false;
-                SceneManager.LoadScene("scenetoproblem");
-            }
-        }
-
 
         if(!rocketfall)
         {
@@ -691,10 +671,8 @@ public class menu : MonoBehaviour
 
     public void ViewProlog()
     {
-        isdelay = 1.33f;
-        isprolog = true;
         image.SetActive(true);
-        anim.Play("anim9 0");
+        anim.Play("anim9 2");
     }
 
 
@@ -763,9 +741,8 @@ public class menu : MonoBehaviour
                 }
                 
                 PlayerPrefs.SetInt("coins", coins);
-                isstart = true;
                 image.SetActive(!image.activeSelf);
-                anim.Play("anim9 0");
+                anim.Play("anim9 1");
             }
             else if(turbinsMinus == 0)
             {
@@ -781,12 +758,6 @@ public class menu : MonoBehaviour
             {
                 Dificite.Play("Start");
                 noad.Play();
-            }
-
-            if(r2.isdelayb == true)
-            {  
-                isdelay = 1.33f;
-                isstart = true;
             }
         }
         else if(PlayerPrefs.GetInt("IndexDialogue", 0) == 19 && PlayerPrefs.GetInt("fueltostart", 0) >= 1)

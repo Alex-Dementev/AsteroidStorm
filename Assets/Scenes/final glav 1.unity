@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: f7f800d56bc6c824a9bc54e982d4ed0f, type: 2}
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.822
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -11514,7 +11514,6 @@ MonoBehaviour:
   ad: {fileID: 346243017}
   lifeLostSound: {fileID: 0}
   score: 0
-  allcoins: 0
   livet: {fileID: 0}
   anim2: {fileID: 0}
   isstarttask: 0
@@ -57056,7 +57055,6 @@ MonoBehaviour:
   ad: {fileID: 346243017}
   lifeLostSound: {fileID: 1808921511}
   score: 0
-  allcoins: 0
   livet: {fileID: 1001231539}
   anim2: {fileID: 1979058719}
   isstarttask: 0
@@ -78281,7 +78279,6 @@ MonoBehaviour:
   ad: {fileID: 346243017}
   lifeLostSound: {fileID: 1808921511}
   score: 0
-  allcoins: 0
   livet: {fileID: 1001231539}
   anim2: {fileID: 1979058719}
   isstarttask: 0
@@ -79762,7 +79759,6 @@ MonoBehaviour:
   ad: {fileID: 346243017}
   lifeLostSound: {fileID: 1808921511}
   score: 0
-  allcoins: 0
   livet: {fileID: 1001231539}
   anim2: {fileID: 1979058719}
   isstarttask: 0
@@ -97335,7 +97331,6 @@ MonoBehaviour:
   ad: {fileID: 346243017}
   lifeLostSound: {fileID: 1808921511}
   score: 0
-  allcoins: 0
   livet: {fileID: 1001231539}
   anim2: {fileID: 1979058719}
   isstarttask: 0
@@ -98400,8 +98395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 0
-  m_RequiresDepthTextureOption: 0
-  m_RequiresOpaqueTextureOption: 0
+  m_RequiresDepthTextureOption: 1
+  m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1

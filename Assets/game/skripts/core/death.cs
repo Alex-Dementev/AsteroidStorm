@@ -31,7 +31,6 @@ public class death : MonoBehaviour
     public AudioSource lifeLostSound;
     private float f = 9999999;
     public int score;
-    public int allcoins;
     public Text livet;
     public Animator anim2;
     public bool isstarttask;
@@ -220,6 +219,9 @@ public class death : MonoBehaviour
         MinusFuel += PlayerPrefs.GetFloat("Genertors4Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("TurbinsFuel", 0);
         MinusFuel /= 4;
+
+        PlayerPrefs.SetInt("FuelZero", 0);
+
         if(PlayerPrefs.GetInt("Boost1", 0) >= 1)
             MinusFuel = MinusFuel * 0.65f;
 
@@ -268,10 +270,23 @@ public class death : MonoBehaviour
         isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
 
+        if(fuel >= SliderFuel.maxValue)
+            SliderFuel.maxValue = fuel;
+
         if(fuel <= 5 && !isfuel5)
         {
             fuel5.Play("fuelzerostart");
             isfuel5 = true;
+            PlayerPrefs.SetInt("FuelZero", 1);
+        }
+        else if(isfuel5 && fuel >= 5)
+        {
+            fuel5.Play("fuelzeroidle");
+            isfuel5 = false;
+            PlayerPrefs.SetInt("FuelZero", 0);
+
+            if(PlayerPrefs.GetInt("Ach2Level", 0) == 1)
+                PlayerPrefs.SetInt("Ach2Level", 2);
         }
 
 
@@ -358,7 +373,6 @@ public class death : MonoBehaviour
                     PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
                     score = PlayerPrefs.GetInt("allscore");
                     score += ((int)(player.position.z / 3) + 1000);
-                    allcoins += ((int)(player.position.z / 7) + 400);
                     PlayerPrefs.SetInt("allscore", score);
                     PlayerPrefs.SetInt("youdead", 1);
                 }
@@ -377,6 +391,8 @@ public class death : MonoBehaviour
                 {
                     Vibration.Vibrate(800, 120);
                 }
+                
+                PlayerPrefs.SetInt("FuelZero", 0);
 
                 ad.Play();
                 b = true;
@@ -389,6 +405,11 @@ public class death : MonoBehaviour
     {
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 1");
+
+        float FuelAch = SliderFuel.maxValue - 15;
+        if(PlayerPrefs.GetInt("Ach2Level", 0) == 2 && fuel >= FuelAch)
+            PlayerPrefs.SetInt("Ach2Level", 3);
+
     }
 
     public void restart2()
@@ -405,7 +426,7 @@ public class death : MonoBehaviour
 
     [SerializeField] private Text fineText;
     [SerializeField] private Animator fineAnim;
-    private string[] secretMessages = { "Забей, это просто заранее приготовленные фразы", "ЛОЛ это какие-то 25 монет", "ВОУ, ТЫ НУБ!", "52" };
+    private string[] secretMessages = { "Забей, это просто заранее приготовленные фразы", "67", "ВОУ, ТЫ НУБ!", "52" };
     private string[] fallfineMessages = { "Ракета 1 : 0 Камень", "Астероид проиграл в PvP.", "Ну всё, камень теперь обижен.", "УФ"};
     private string[] fineMessages = { "Отлично!", "Хорошо!", "Неплохо!", "Класс!", "Есть попадание!", "Харошь" };
     private string[] lifeMessages = { "Осторожней!", "Аб-т-т-на!", "Дела не очень.", "Ужас.", "О-нет.", "ЛОЛ!" };
@@ -521,14 +542,6 @@ public class death : MonoBehaviour
                     int rand = Random.Range(0, 2);
                     if (rand == 0 && explosionSound1 != null) explosionSound1.Play();
                     else if (rand == 1 && explosionSound2 != null) explosionSound2.Play();
-
-                    coins = PlayerPrefs.GetInt("coins");
-                    allcoins = PlayerPrefs.GetInt("allcoins");
-                    int reward = 25;
-                    coins += reward;
-                    allcoins += reward;
-                    PlayerPrefs.SetInt("coins", coins);
-                    PlayerPrefs.SetInt("allcoins", allcoins);
 
                     if (PlayerPrefs.GetInt("fall") == 1)
                     {
@@ -671,6 +684,8 @@ public class death : MonoBehaviour
                         {
                             Vibration.Vibrate(800, 120);
                         }
+
+                        PlayerPrefs.SetInt("FuelZero", 0);
 
                         if(fuel >= 20)
                         {

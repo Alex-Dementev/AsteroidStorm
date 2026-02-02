@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GoToAftors : MonoBehaviour
+public class MenuSend : MonoBehaviour
 {
     public void GoToAftorsScene()
     {
@@ -10,5 +10,16 @@ public class GoToAftors : MonoBehaviour
     public void GoToMenuScene()
     {
         SceneManager.LoadScene("main");
+    }
+    public void GoToPrologueScene()
+    {
+        SceneManager.LoadScene("scenetoproblem");
+    }
+    public void GoToGameScene()
+    {
+        if(PlayerPrefs.GetInt("start", 0) == 1)
+        {
+            SceneManager.LoadScene("scenestart");
+        }
     }
 }

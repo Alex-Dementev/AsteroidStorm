@@ -66,9 +66,9 @@ public class cut3 : MonoBehaviour
             coins = PlayerPrefs.GetInt("coins");
             allcoins = PlayerPrefs.GetInt("allcoins");
             score = PlayerPrefs.GetInt("allscore");
-            coins += 10000;
+            coins += 500;
             score += 2000;
-            allcoins += 10000;
+            allcoins += 500;
             PlayerPrefs.SetInt("coins", coins);
             PlayerPrefs.SetInt("allcoins", allcoins);
             PlayerPrefs.SetInt("allscore", score);
@@ -79,18 +79,14 @@ public class cut3 : MonoBehaviour
             coins = PlayerPrefs.GetInt("coins");
             allcoins = PlayerPrefs.GetInt("allcoins");
             score = PlayerPrefs.GetInt("allscore");
-            coins += 300;
+            coins += 30;
             score += 2000;
-            allcoins += 300;
+            allcoins += 30;
             PlayerPrefs.SetInt("coins", coins);
             PlayerPrefs.SetInt("allcoins", allcoins);
             PlayerPrefs.SetInt("allscore", score);
             PlayerPrefs.SetInt("g1passed", 1);
         }
-
-        // ⬇️ Если хочешь запустить затухание сразу — раскомментируй строки ниже:
-        // StartCoroutine(FadeOutAudio(ad1, 6f));
-        // StartCoroutine(FadeOutAudio(ad3, 6f));
     }
 
     public void FadeAd1()

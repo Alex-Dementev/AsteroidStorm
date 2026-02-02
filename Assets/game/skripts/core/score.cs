@@ -132,8 +132,8 @@ public class ScoreCounter : MonoBehaviour
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
         else if (s4 && s4.activeInHierarchy) player = s4.transform;
 
-        ach1 = PlayerPrefs.GetInt("1.5kscore", 0);
-        ach2 = PlayerPrefs.GetInt("450score", 0);
+        ach1 = PlayerPrefs.GetInt("ach2", 0);
+        ach2 = PlayerPrefs.GetInt("ach1", 0);
 
         Vp = PlayerPrefs.GetInt("maxParticles", 31);
         var main = ps1.main;
@@ -323,14 +323,14 @@ public class ScoreCounter : MonoBehaviour
 
         if (ach1 == 0 && spawn >= 850 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
-            PlayerPrefs.SetInt("1.5kscore", 1);
+            PlayerPrefs.SetInt("ach2", 1);
             ach1 = 1;
             achanim2.Play("anim 21");
             ad5.Play();
         }
-        if (ach2 == 0 && spawn >= 500 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        if (ach2 == 0 && spawn >= 350 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
-            PlayerPrefs.SetInt("450score", 1);
+            PlayerPrefs.SetInt("ach1", 1);
             ach2 = 1;
             achanim1.Play("anim20");
             ad5.Play();

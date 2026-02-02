@@ -338,14 +338,18 @@ public class DIalogueActivate : MonoBehaviour
             UIPanels[29].SetActive(true);
         }
 
-        if(PlayerPrefs.GetInt("allgames", 0) >= 20)
+        if(PlayerPrefs.GetInt("allgames", 0) >= 18)
         {
             UIPanels[30].SetActive(true);
         }
 
-        if(PlayerPrefs.GetInt("AchActive", 0) == 1)
+        if(PlayerPrefs.GetInt("allgames", 0) >= 24)
         {
             UIPanels[34].SetActive(true);
+        }
+
+        if(PlayerPrefs.GetInt("AchActive", 0) == 1)
+        {
             UIPanels[36].SetActive(true);
         }
 
@@ -368,7 +372,7 @@ public class DIalogueActivate : MonoBehaviour
         }
 
 
-        if(PlayerPrefs.GetInt("PetsApply", 0) == 0)
+        if(PlayerPrefs.GetInt("PetsDialogue", 0) == 0)
         {
             if(PlayerPrefs.GetInt("P1Buy", 0) == 1)
             {

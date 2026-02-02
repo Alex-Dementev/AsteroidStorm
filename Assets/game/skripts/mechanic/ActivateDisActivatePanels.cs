@@ -4,6 +4,8 @@ public class ActivateDisActivatePanels : MonoBehaviour
 {
     public GameObject go;
     public Animator ActivateAnim;
+
+    public bool IsAch = false;
     
     public void Activate()
     {
@@ -18,6 +20,9 @@ public class ActivateDisActivatePanels : MonoBehaviour
     public void EventDisActivate()
     {
         go.SetActive(false);
+
+        if(IsAch = true)
+            PlayerPrefs.SetInt("IsActivateAchPanel", 0);
     }
 }
 
