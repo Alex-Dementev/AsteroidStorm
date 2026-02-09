@@ -234,12 +234,14 @@ public class death : MonoBehaviour
         
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
         {
+            fuel = PlayerPrefs.GetInt("fueltostart", 0);
+            fuel = fuel * 10 + 10;
+            SliderFuel.maxValue = fuel;
+
             fuel = PlayerPrefs.GetFloat("fueltofinalglav", 0);
 
             if (fuel >= 10)
                 fuel -= 10;
-            
-            SliderFuel.maxValue = fuel;
         }
         
         live = PlayerPrefs.GetInt("live");
@@ -267,6 +269,8 @@ public class death : MonoBehaviour
 
     void Update()
     {
+        PlayerPrefs.SetFloat("fueltofinalglav", fuel);
+
         isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
 
@@ -296,13 +300,6 @@ public class death : MonoBehaviour
         {
             IsDelayFuel = 0.025f;
             fuel -= MinusFuel;
-        }
-
-
-        if (PlayerPrefs.GetInt("GoToFinalGlav", 0) == 1)
-        {
-            PlayerPrefs.SetFloat("fueltofinalglav", fuel);
-            PlayerPrefs.SetInt("GoToFinalGlav", 0);
         }
 
         if (b == true)

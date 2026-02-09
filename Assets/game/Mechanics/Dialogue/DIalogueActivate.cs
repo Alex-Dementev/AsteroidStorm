@@ -397,6 +397,10 @@ public class DIalogueActivate : MonoBehaviour
         }
         else
             UIPanels[40].SetActive(true);
+
+
+        if(PlayerPrefs.GetInt("MoonScanned", 0) == 1)
+            DialoguePanels[13].SetActive(true);
     }
 
     public void ClickButton2()
@@ -552,6 +556,8 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[11].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[5].activeSelf)
             DialoguePanels[5].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[4].activeSelf)
+            DialoguePanels[4].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[6].activeSelf)
             DialoguePanels[6].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[10].activeSelf)
@@ -561,6 +567,10 @@ public class DIalogueActivate : MonoBehaviour
 
         if(DialoguePanels[7].activeSelf)
             DialoguePanels[7].GetComponent<DialogueManager>().Close();
+
+        if(DialoguePanels[13].activeSelf)
+            DialoguePanels[13].GetComponent<DialogueManager>().Close();
+
         if(PlayerPrefs.GetInt("TasksDialogue", 0) == 1)
         {
             UILocked[0].SetActive(false);

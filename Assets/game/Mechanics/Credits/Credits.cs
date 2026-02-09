@@ -28,6 +28,7 @@ public class Credits : MonoBehaviour
     public Text Trables;
     public Animator TrablesAnim;
     private float DisCount;
+    private bool isYes = false;
 
     public GameObject Casino;
 
@@ -43,20 +44,18 @@ public class Credits : MonoBehaviour
             StatusInt = PlayerPrefs.GetInt("StatusPercent", 50);
             Status.text = "Рейтинг: " + StatusInt + "%";
         }
-
-        if(PlayerPrefs.GetInt("NumCredits", 0) >= 1)
-        {
-            if(PlayerPrefs.GetInt("CreditsDialogue", 0) == 0)
-            {
-                Casino.SetActive(true);
-            }
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
         Trables.text = "Следующий кредит можно взять через: " + PlayerPrefs.GetString("DelayCredits_Text", "");
+
+        if(PlayerPrefs.GetInt("NumCredits", 0) >= 1 && PlayerPrefs.GetInt("CreditsDialogue", 0) == 0 && !isYes)
+        {
+            Casino.SetActive(true);
+            isYes = true;
+        }
 
         if(PlayerPrefs.GetInt("CreditsActivee", 0) == 1)
         {

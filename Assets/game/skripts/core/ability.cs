@@ -155,6 +155,15 @@ public class DoubleTapHandler : MonoBehaviour
         isdelay1 -= Time.deltaTime;
         isdelayShield -= Time.deltaTime;
 
+        if(transform.position.z >= 3200)
+        {
+            var main = p.main;
+            main.startSize = 1800;
+
+            if(PlayerPrefs.GetInt("MoonScanned", 0) == 0 && transform.position.z >= 3300 && s2.maxValue >= 4)
+            PlayerPrefs.SetInt("MoonScanned", 1);
+        }
+
         UpdateAbilityIcons();   
 
         HandleShield();

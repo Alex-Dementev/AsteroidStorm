@@ -123,11 +123,12 @@ public class cut3 : MonoBehaviour
     public void issus()
     {
         sus++;
-        if(PlayerPrefs.GetInt("ach5", 0) == 0 && sus == 100 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+
+        if(PlayerPrefs.GetInt("ach5", 0) == 0 && sus == 80 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
-        PlayerPrefs.SetInt("ach5", 1);
-        anim2.Play("anim20");
-        ad4.Play();
+            PlayerPrefs.SetInt("ach5", 1);
+            anim2.Play("anim20");
+            ad4.Play();
         }
     }
 }

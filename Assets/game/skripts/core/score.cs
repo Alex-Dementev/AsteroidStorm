@@ -218,12 +218,16 @@ public class ScoreCounter : MonoBehaviour
 
         if ((int)(player.position.z / 3) >= 1150 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
-            PlayerPrefs.SetInt("GoToFinalGlav", 1);
             image.SetActive(true);
             anim1.Play("anim10 0");
-            isdelay3 = 1f;
+            isdelay3 = 2f;
             isend = true;
             isend2 = true;
+        }
+        if ((int)(player.position.z / 3) >= 1145 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
+        {
+            PlayerPrefs.SetInt("GoToFinalGlav", 1);
+            Debug.Log("Подготовка перехода: " + PlayerPrefs.GetInt("GoToFinalGlav", 0));
         }
         if ((int)(player.position.z / 3) >= 100 && !is100)
         {

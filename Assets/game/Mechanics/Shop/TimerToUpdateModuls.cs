@@ -15,7 +15,7 @@ public class ShopTimerSmart : MonoBehaviour
     public bool startTimer = false;
 
     [Header("Интервал обновления магазина (ЧАСЫ)")]
-    public int UpdateIntervalHours = 4;
+    private int UpdateIntervalHours = 6;
 
     private const string TIMER_STARTED_KEY = "shop_timer_started";
     private const string END_TIME_KEY = "shop_end_time_ticks";

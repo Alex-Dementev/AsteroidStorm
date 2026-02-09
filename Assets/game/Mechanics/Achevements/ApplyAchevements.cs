@@ -35,31 +35,31 @@ public class ApplyAchevements : MonoBehaviour
         {
             Object[0].SetActive(true);
             Anim[0].Play("FirstActivate");
-            PlayerPrefs.SetInt("ach1", 1);
+            PlayerPrefs.SetInt("ach1", 2);
         }
         if(PlayerPrefs.GetInt("ach2", 0) == 1)
         {
             Object[1].SetActive(true);
             Anim[1].Play("FirstActivate");
-            PlayerPrefs.SetInt("ach2", 1);
+            PlayerPrefs.SetInt("ach2", 2);
         }
         if(PlayerPrefs.GetInt("ach3", 0) == 1)
         {
             Object[2].SetActive(true);
             Anim[2].Play("FirstActivate");
-            PlayerPrefs.SetInt("ach3", 1);
+            PlayerPrefs.SetInt("ach3", 2);
         }
         if(PlayerPrefs.GetInt("ach4", 0) == 1)
         {
             Object[3].SetActive(true);
             Anim[3].Play("FirstActivate");
-            PlayerPrefs.SetInt("ach4", 1);
+            PlayerPrefs.SetInt("ach4", 2);
         }
         if(PlayerPrefs.GetInt("ach5", 0) == 1)
         {
             Object[4].SetActive(true);
             Anim[4].Play("FirstActivate");
-            PlayerPrefs.SetInt("ach5", 1);
+            PlayerPrefs.SetInt("ach5", 2);
         }
     }
 }
