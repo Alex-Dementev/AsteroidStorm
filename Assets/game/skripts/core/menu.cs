@@ -276,7 +276,7 @@ public class menu : MonoBehaviour
 
         if(PlayerPrefs.GetInt("yousurwive", 0) == 1)
         {
-            intsurwive = 100;
+            intsurwive = 200;
             ps35.Stop();
         }
 
@@ -371,7 +371,7 @@ public class menu : MonoBehaviour
             panel6.SetActive(!panel6.activeSelf);
         }
 
-        if(intsurwive >= 100 && !isbsurwive)
+        if(intsurwive >= 200 && !isbsurwive)
         {
             PlayerPrefs.SetInt("yousurwive", 1);
             isbsurwive = true;

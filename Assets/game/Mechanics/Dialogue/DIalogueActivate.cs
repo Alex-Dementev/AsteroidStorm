@@ -296,6 +296,7 @@ public class DIalogueActivate : MonoBehaviour
         if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 22)
         {
             UIPanels[20].SetActive(true);
+            UIPanels[35].SetActive(true);
             UIPanels[21].SetActive(true);
         }
 
@@ -343,7 +344,7 @@ public class DIalogueActivate : MonoBehaviour
             UIPanels[30].SetActive(true);
         }
 
-        if(PlayerPrefs.GetInt("allgames", 0) >= 24)
+        if(PlayerPrefs.GetInt("Achevements", 0) == 1)
         {
             UIPanels[34].SetActive(true);
         }

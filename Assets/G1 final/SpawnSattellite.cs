@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SpawnSattellite : MonoBehaviour
 {
@@ -46,9 +47,24 @@ public class SpawnSattellite : MonoBehaviour
             Debug.Log(Ilya + ", " + zDist);
 
             if (zDist <= 350f)
+            {
+                if(PlayerPrefs.GetInt("Ach2Level", 0) == 2)
+                {
+                    PlayerPrefs.SetInt("SattelliteFall", 1);
+                    StartCoroutine(SpawnDelay());
+                }
+
                 return true;
+            }
         }
 
         return false;
+    }
+
+    IEnumerator SpawnDelay()
+    {
+        yield return new WaitForSeconds(8f);
+
+        PlayerPrefs.SetInt("SattelliteFall", 0);
     }
 }

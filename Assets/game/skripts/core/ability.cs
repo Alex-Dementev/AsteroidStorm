@@ -95,6 +95,8 @@ public class DoubleTapHandler : MonoBehaviour
     public GameObject a3;
     public GameObject a4;
 
+    private float ShakeSkan;
+
     public GameObject prefab;
     public Transform spawnTransform;
 
@@ -154,6 +156,15 @@ public class DoubleTapHandler : MonoBehaviour
 
         isdelay1 -= Time.deltaTime;
         isdelayShield -= Time.deltaTime;
+
+        if(otkat2 > 0 && PlayerPrefs.GetInt("ShakePhone", 0) == 1 && PlayerPrefs.GetInt("Ach3Level", 0) == 0 && PlayerPrefs.GetInt("Ach3Level", 0) == 2)
+        {
+            ShakeSkan += Time.deltaTime;
+            if(ShakeSkan >= 2)
+                PlayerPrefs.SetInt("ShakePhone", 1);
+        }
+        else if(otkat2 <= 0)
+            ShakeSkan = 0;
 
         if(transform.position.z >= 3200)
         {
@@ -394,6 +405,11 @@ public class DoubleTapHandler : MonoBehaviour
             effect.Play("slide lr");
             ps.Play();
             GiperAttackAS.Play();
+
+            if (PlayerPrefs.GetInt("vibration") == 0)
+            {
+                Vibration.Vibrate(100, 35);
+            }
         }
     }
 
@@ -413,6 +429,23 @@ public class DoubleTapHandler : MonoBehaviour
             s2.maxValue = isotkat2;
             effect.Play("slide lr");
             SkanerAS.Play();
+
+            if(PlayerPrefs.GetInt("Ach3Level", 0) == 1)
+            {
+                int Count;
+
+                Count = PlayerPrefs.GetInt("CountScan", 0);
+                Count++;
+                PlayerPrefs.SetInt("CountScan", Count);
+
+                if(Count >= 4)
+                    PlayerPrefs.SetInt("Ach3Level", 2);
+            }
+
+            if (PlayerPrefs.GetInt("vibration") == 0)
+            {
+                Vibration.Vibrate(100, 35);
+            }
         }
     }
 
@@ -435,6 +468,11 @@ public class DoubleTapHandler : MonoBehaviour
             effect.Play("slide lr");
             ShieldAS.Play();
             ShieldAnim.Play("startShield");
+
+            if (PlayerPrefs.GetInt("vibration") == 0)
+            {
+                Vibration.Vibrate(100, 35);
+            }
         }
     }
 
@@ -454,6 +492,11 @@ public class DoubleTapHandler : MonoBehaviour
             s4.maxValue = isotkat4;
             effect.Play("slide lr");
             AttackAS.Play();
+
+            if (PlayerPrefs.GetInt("vibration") == 0)
+            {
+                Vibration.Vibrate(200, 65);
+            }
         }
     }
 

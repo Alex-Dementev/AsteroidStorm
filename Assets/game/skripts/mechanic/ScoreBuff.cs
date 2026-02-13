@@ -60,31 +60,31 @@ public class ScoreBuff : MonoBehaviour
             }
             if(PlayerPrefs.GetInt("ScoreNum", 0) == 1)
             {
-                coins += 80;
-                allcoins += 80;
+                coins += 78;
+                allcoins += 78;
                 anim2.SetBool("2", true);
-                PlusT.text = "+80";
+                PlusT.text = "+78";
             }
             if(PlayerPrefs.GetInt("ScoreNum", 0) == 2)
             {
-                coins += 92;
-                allcoins += 92;
+                coins += 88;
+                allcoins += 88;
                 anim2.SetBool("3", true);
-                PlusT.text = "+92";
+                PlusT.text = "+88";
             }
             if(PlayerPrefs.GetInt("ScoreNum", 0) == 3)
             {
-                coins += 105;
-                allcoins += 105;
+                coins += 97;
+                allcoins += 97;
                 anim2.SetBool("4", true);
-                PlusT.text = "+105";
+                PlusT.text = "+97";
             }
             if(PlayerPrefs.GetInt("ScoreNum", 0) >= 4)
             {
-                coins += 120;
-                allcoins += 120;
+                coins += 110;
+                allcoins += 110;
                 anim2.SetBool("5", true);
-                PlusT.text = "+120";
+                PlusT.text = "+110";
             }
 
             PlayerPrefs.SetInt("coins", coins);

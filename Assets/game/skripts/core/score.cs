@@ -334,6 +334,7 @@ public class ScoreCounter : MonoBehaviour
         }
         if (ach2 == 0 && spawn >= 350 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
+            PlayerPrefs.SetInt("Achevements", 1);
             PlayerPrefs.SetInt("ach1", 1);
             ach2 = 1;
             achanim1.Play("anim20");

@@ -12,7 +12,7 @@ public class Ach3 : MonoBehaviour
         if(PlayerPrefs.GetInt("Ach3Level", 0) == 0)
         {
             Level.text = "Этап 1 из 3";
-            Task.text = "Не по делу...";
+            Task.text = "Потрясная способность!";
         }
         else if(PlayerPrefs.GetInt("Ach3Level", 0) == 1)
         {
