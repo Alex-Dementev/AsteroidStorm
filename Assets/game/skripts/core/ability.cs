@@ -195,29 +195,29 @@ public class DoubleTapHandler : MonoBehaviour
         if (ready1 != state1Ready)
         {
             state1Ready = ready1;
-            if (ready1) ability1Animator.Play("anim 28 0");
-            else ability1Animator.Play("anim 28");
+            if (ready1) ability1Animator.CrossFade("anim 28 0", 0.1f);
+            else ability1Animator.CrossFade("anim 28", 0.1f);
         }
 
         if (ready2 != state2Ready)
         {
             state2Ready = ready2;
-            if (ready2) ability2Animator.Play("SkannerStart");
-            else ability2Animator.Play("SkannerIdle");
+            if (ready2) ability2Animator.CrossFade("SkannerStart", 0.1f);
+            else ability2Animator.CrossFade("SkannerIdle", 0.1f);
         }
 
         if (ready3 != state3Ready)
         {
             state3Ready = ready3;
-            if (ready3) ability3Animator.Play("ShieldStart");
-            else ability3Animator.Play("ShieldIdle");
+            if (ready3) ability3Animator.CrossFade("ShieldStart", 0.1f);
+            else ability3Animator.CrossFade("ShieldIdle", 0.1f);
         }
 
         if (ready4 != state4Ready)
         {
             state4Ready = ready4;
-            if (ready4) ability4Animator.Play("ProgectileStart");
-            else ability4Animator.Play("ProgectileIdle");
+            if (ready4) ability4Animator.CrossFade("ProgectileStart", 0.1f);
+            else ability4Animator.CrossFade("ProgectileIdle", 0.1f);
         }
     }
 
@@ -400,9 +400,9 @@ public class DoubleTapHandler : MonoBehaviour
             lightintens = l.intensity;
             l.intensity = 1.5f;
             l.color = new Color(1f, 1f, 0.85f);
-            anim.Play("blue");
+            anim.CrossFade("blue", 0.1f);
             s.maxValue = isotkat;
-            effect.Play("slide lr");
+            effect.CrossFade("slide lr", 0.1f);
             ps.Play();
             GiperAttackAS.Play();
 
@@ -425,9 +425,9 @@ public class DoubleTapHandler : MonoBehaviour
             abilityt++;
             PlayerPrefs.SetInt("abilityt", abilityt);
             otkat2 = isotkat2;
-            anim.Play("blue");
+            anim.CrossFade("blue", 0.1f);
             s2.maxValue = isotkat2;
-            effect.Play("slide lr");
+            effect.CrossFade("slide lr", 0.1f);
             SkanerAS.Play();
 
             if(PlayerPrefs.GetInt("Ach3Level", 0) == 1)
@@ -463,11 +463,11 @@ public class DoubleTapHandler : MonoBehaviour
             isActiveShield = true;
             PlayerPrefs.SetInt("abilityt", abilityt);
             otkat3 = isotkat3;
-            anim.Play("blue");
+            anim.CrossFade("blue", 0.1f);
             s3.maxValue = isotkat3;
-            effect.Play("slide lr");
+            effect.CrossFade("slide lr", 0.1f);
             ShieldAS.Play();
-            ShieldAnim.Play("startShield");
+            ShieldAnim.CrossFade("startShield", 0.1f);
 
             if (PlayerPrefs.GetInt("vibration") == 0)
             {
@@ -488,9 +488,9 @@ public class DoubleTapHandler : MonoBehaviour
             PlayerPrefs.SetInt("abilityt", abilityt);
             otkat4 = isotkat4;
             Instantiate(prefab, spawnTransform.position, prefab.transform.rotation);
-            anim.Play("blue");
+            anim.CrossFade("blue", 0.1f);
             s4.maxValue = isotkat4;
-            effect.Play("slide lr");
+            effect.CrossFade("slide lr", 0.1f);
             AttackAS.Play();
 
             if (PlayerPrefs.GetInt("vibration") == 0)
@@ -508,7 +508,7 @@ public class DoubleTapHandler : MonoBehaviour
         {
             isActiveShield = false;
             ShieldEndAS.Play();
-            ShieldAnim.Play("endShield");
+            ShieldAnim.CrossFade("endShield", 0.1f);
             isActiveShield2 = true;
         }
 

@@ -389,7 +389,8 @@ public class PrefBoxPaste : MonoBehaviour
                 }
             }
 
-            DelayNext = 0.75f;
+            if(IndexModul != "0")
+                DelayNext = 0.75f;
         }
         if(IndexModul == "0" && DelayNext <= 0)
         {
@@ -685,7 +686,7 @@ public class PrefBoxPaste : MonoBehaviour
 
     public void approveSell()
     {
-        approve.Play("Start");
+        approve.CrossFade("Start", 0.1f);
         PlayerPrefs.SetString("SellModul", IndexModul);
         PlayerPrefs.SetInt("SellModulRare", RareLevel);
         if(RareLevel == 1)
@@ -711,7 +712,7 @@ public class PrefBoxPaste : MonoBehaviour
     }
     public void NotApprove()
     {
-        approve.Play("End");
+        approve.CrossFade("End", 0.1f);
     }
     public void sell()
     {
@@ -755,6 +756,6 @@ public class PrefBoxPaste : MonoBehaviour
 
         ApproveAD.Play();
 
-        approve.Play("End");
+        approve.CrossFade("End", 0.1f);
     }
 }

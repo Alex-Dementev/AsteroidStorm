@@ -20,79 +20,79 @@ public class ActivatePastePanels : MonoBehaviour
     public void OpenG()
     {
         GOG.SetActive(true);
-        G.Play("Activate");
-        F.Play("DisActivate");
-        E.Play("DisActivate");
-        GyperJump.Play("DisActivate");
-        Scanner.Play("DisActivate");
-        Shield.Play("DisActivate");
-        Projectile.Play("DisActivate");
+        G.CrossFade("Activate", 0.1f);
+        F.CrossFade("DisActivate", 0.1f);
+        E.CrossFade("DisActivate", 0.1f);
+        GyperJump.CrossFade("DisActivate", 0.1f);
+        Scanner.CrossFade("DisActivate", 0.1f);
+        Shield.CrossFade("DisActivate", 0.1f);
+        Projectile.CrossFade("DisActivate", 0.1f);
     }
     public void OpenF()
     {
         GOF.SetActive(true);
-        G.Play("DisActivate");
-        F.Play("Activate");
-        E.Play("DisActivate");
-        GyperJump.Play("DisActivate");
-        Scanner.Play("DisActivate");
-        Shield.Play("DisActivate");
-        Projectile.Play("DisActivate");
+        G.CrossFade("DisActivate", 0.1f);
+        F.CrossFade("Activate", 0.1f);
+        E.CrossFade("DisActivate", 0.1f);
+        GyperJump.CrossFade("DisActivate", 0.1f);
+        Scanner.CrossFade("DisActivate", 0.1f);
+        Shield.CrossFade("DisActivate", 0.1f);
+        Projectile.CrossFade("DisActivate", 0.1f);
     }
     public void OpenE()
     {
         GOE.SetActive(true);
-        G.Play("DisActivate");
-        F.Play("DisActivate");
-        E.Play("Activate");
-        GyperJump.Play("DisActivate");
-        Scanner.Play("DisActivate");
-        Shield.Play("DisActivate");
-        Projectile.Play("DisActivate");
+        G.CrossFade("DisActivate", 0.1f);
+        F.CrossFade("DisActivate", 0.1f);
+        E.CrossFade("Activate", 0.1f);
+        GyperJump.CrossFade("DisActivate", 0.1f);
+        Scanner.CrossFade("DisActivate", 0.1f);
+        Shield.CrossFade("DisActivate", 0.1f);
+        Projectile.CrossFade("DisActivate", 0.1f);
     }
     public void OpenGyperJump()
     {
         GOGyperJump.SetActive(true);
-        G.Play("DisActivate");
-        F.Play("DisActivate");
-        E.Play("DisActivate");
-        GyperJump.Play("Activate");
-        Scanner.Play("DisActivate");
-        Shield.Play("DisActivate");
-        Projectile.Play("DisActivate");
+        G.CrossFade("DisActivate", 0.1f);
+        F.CrossFade("DisActivate", 0.1f);
+        E.CrossFade("DisActivate", 0.1f);
+        GyperJump.CrossFade("Activate", 0.1f);
+        Scanner.CrossFade("DisActivate", 0.1f);
+        Shield.CrossFade("DisActivate", 0.1f);
+        Projectile.CrossFade("DisActivate", 0.1f);
     }
     public void OpenScanner()
     {
         GOScanner.SetActive(true);
-        G.Play("DisActivate");
-        F.Play("DisActivate");
-        E.Play("DisActivate");
-        GyperJump.Play("DisActivate");
-        Scanner.Play("Activate");
-        Shield.Play("DisActivate");
-        Projectile.Play("DisActivate");
+        G.CrossFade("DisActivate", 0.1f);
+        F.CrossFade("DisActivate", 0.1f);
+        E.CrossFade("DisActivate", 0.1f);
+        GyperJump.CrossFade("DisActivate", 0.1f);
+        Scanner.CrossFade("Activate", 0.1f);
+        Shield.CrossFade("DisActivate", 0.1f);
+        Projectile.CrossFade("DisActivate", 0.1f);
     }
     public void OpenShield()
     {
         GOShield.SetActive(true);
-        G.Play("DisActivate");
-        F.Play("DisActivate");
-        E.Play("DisActivate");
-        GyperJump.Play("DisActivate");
-        Scanner.Play("DisActivate");
-        Shield.Play("Activate");
-        Projectile.Play("DisActivate");
+        G.CrossFade("DisActivate", 0.1f);
+        F.CrossFade("DisActivate", 0.1f);
+        E.CrossFade("DisActivate", 0.1f);
+        GyperJump.CrossFade("DisActivate", 0.1f);
+        Scanner.CrossFade("DisActivate", 0.1f);
+        Shield.CrossFade("Activate", 0.1f);
+        Projectile.CrossFade("DisActivate", 0.1f);
     }
     public void OpenProjectile()
     {
         GOProjectile.SetActive(true);
-        G.Play("DisActivate");
-        F.Play("DisActivate");
-        E.Play("DisActivate");
-        GyperJump.Play("DisActivate");
-        Scanner.Play("DisActivate");
-        Shield.Play("DisActivate");
-        Projectile.Play("Activate");
+        G.CrossFade("DisActivate", 0.1f);
+        F.CrossFade("DisActivate", 0.1f);
+        E.CrossFade("DisActivate", 0.1f);
+        GyperJump.CrossFade("DisActivate", 0.1f);
+        Scanner.CrossFade("DisActivate", 0.1f);
+        Shield.CrossFade("DisActivate", 0.1f);
+        Projectile.CrossFade("Activate", 0.1f);
     }
 
 
@@ -130,12 +130,12 @@ public class ActivatePastePanels : MonoBehaviour
 
     void ClosePanel()
     {
-        G.Play("DisActivate");
-        F.Play("DisActivate");
-        E.Play("DisActivate");
-        GyperJump.Play("DisActivate");
-        Scanner.Play("DisActivate");
-        Shield.Play("DisActivate");
-        Projectile.Play("DisActivate");
+        G.CrossFade("DisActivate", 0.1f);
+        F.CrossFade("DisActivate", 0.1f);
+        E.CrossFade("DisActivate", 0.1f);
+        GyperJump.CrossFade("DisActivate", 0.1f);
+        Scanner.CrossFade("DisActivate", 0.1f);
+        Shield.CrossFade("DisActivate", 0.1f);
+        Projectile.CrossFade("DisActivate", 0.1f);
     }
 }

@@ -56,6 +56,6 @@ public class BuyBoxes : MonoBehaviour
                 PlayerPrefs.SetInt("PriceToBuyBox", Price);
 
             PlayerPrefs.SetString("NameBuyBox", Name);
-            BuyPanel.Play("Start");
+            BuyPanel.CrossFade("Start", 0.1f);
     }
 }

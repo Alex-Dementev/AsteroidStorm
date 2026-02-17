@@ -13,14 +13,14 @@ public class ActivateDisActivatePanels : MonoBehaviour
         if(!go.activeSelf)
         {
             go.SetActive(true);
-            ActivateAnim.Play("Start");
+            ActivateAnim.CrossFade("Start", 0.2f);
         }
     }
 
     public void DisActivate()
     {
         if(isOpen <= 0)
-            ActivateAnim.Play("End");
+            ActivateAnim.CrossFade("End", 0.2f);
     }
     public void EventDisActivate()
     {

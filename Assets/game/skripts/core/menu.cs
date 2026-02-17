@@ -280,20 +280,20 @@ public class menu : MonoBehaviour
             ps35.Stop();
         }
 
-        anim5.Play("anim 2 0");
-        anim6.Play("anim 18");
-        anim7.Play("anim1");
-        anim8.Play("anim12");
-        anim11.Play("4t");
-        anim12.Play("anim5t");
-        anim13.Play("anim13");
-        anim14.Play("anim 22");
-        anim16.Play("anim 24");
-        anim17.Play("anim 26");
-        anim18.Play("audio 0");
-        anim19.Play("anim30");
-        header.Play("header");
-        components.Play("componstart");
+        anim5.CrossFade("anim 2 0", 0.1f);
+        anim6.CrossFade("anim 18", 0.1f);
+        anim7.CrossFade("anim1", 0.1f);
+        anim8.CrossFade("anim12", 0.1f);
+        anim11.CrossFade("4t", 0.1f);
+        anim12.CrossFade("anim5t", 0.1f);
+        anim13.CrossFade("anim13", 0.1f);
+        anim14.CrossFade("anim 22", 0.1f);
+        anim16.CrossFade("anim 24", 0.1f);
+        anim17.CrossFade("anim 26", 0.1f);
+        anim18.CrossFade("audio 0", 0.1f);
+        anim19.CrossFade("anim30", 0.1f);
+        header.CrossFade("header", 0.1f);
+        components.CrossFade("componstart", 0.1f);
     }
 
 
@@ -672,7 +672,7 @@ public class menu : MonoBehaviour
     public void ViewProlog()
     {
         image.SetActive(true);
-        anim.Play("anim9 2");
+        anim.CrossFade("anim9 2", 0.1f);
     }
 
 
@@ -687,7 +687,7 @@ public class menu : MonoBehaviour
     public void Aftors()
     {
         image.SetActive(true);
-        anim.Play("anim9 0 0");
+        anim.CrossFade("anim9 0 0", 0.1f);
     }
 
     public void started()
@@ -695,7 +695,7 @@ public class menu : MonoBehaviour
         if(isdelay2 <= 2)
         {
         panel7.SetActive(!panel7.activeSelf);
-        anim21.Play("anim 32");
+        anim21.CrossFade("anim 32", 0.1f);
         isdelay2 = 3.4f;
         }
     }
@@ -703,7 +703,7 @@ public class menu : MonoBehaviour
     {
         if(isdelay2 <= 2)
         {
-        anim21.Play("anim 32 1");
+        anim21.CrossFade("anim 32 1", 0.1f);
         isdelay2 = 0.85f;
         }
     }
@@ -742,21 +742,21 @@ public class menu : MonoBehaviour
                 
                 PlayerPrefs.SetInt("coins", coins);
                 image.SetActive(!image.activeSelf);
-                anim.Play("anim9 1");
+                anim.CrossFade("anim9 1", 0.1f);
             }
             else if(turbinsMinus == 0)
             {
-                Dificite.Play("Start2");
+                Dificite.CrossFade("Start2", 0.1f);
                 noad.Play();
             }
             else if(Dificitefloat <= 0)
             {
-                Dificite.Play("Start");
+                Dificite.CrossFade("Start", 0.1f);
                 noad.Play();
             }
             else if(PlayerPrefs.GetInt("coins", 0) <= 9)
             {
-                Dificite.Play("Start");
+                Dificite.CrossFade("Start", 0.1f);
                 noad.Play();
             }
         }
@@ -789,14 +789,14 @@ public class menu : MonoBehaviour
             if (isanim1 == false)
             {
                 panel1.SetActive(!panel1.activeSelf);
-                anim1.Play("anim13 0");
-                anim7.Play("anim 1 0");
+                anim1.CrossFade("anim13 0", 0.1f);
+                anim7.CrossFade("anim 1 0", 0.1f);
                 isanim1 = true;     
                 prefs = 0;
             }
             else
             {
-                anim1.Play("anim13 1");
+                anim1.CrossFade("anim13 1", 0.1f);
                 isanim1 = false;
                 prefs = 0;
             }
@@ -815,13 +815,13 @@ public class menu : MonoBehaviour
             if (isanim3 == false)
             {
                 isanim3 = true;
-                anim6.Play("anim 18 0");
-                anim3.Play("19 0");
+                anim6.CrossFade("anim 18 0", 0.1f);
+                anim3.CrossFade("19 0", 0.1f);
             }
             else
             {
-                anim6.Play("anim 18 0");
-                anim3.Play("19 1");
+                anim6.CrossFade("anim 18 0", 0.1f);
+                anim3.CrossFade("19 1", 0.1f);
                 isanim3 = false;
             }
 
@@ -838,25 +838,25 @@ public class menu : MonoBehaviour
             if (isanim2 == false)
             {
                 panel2.SetActive(!panel2.activeSelf);
-                anim2.Play("anim12 1");
+                anim2.CrossFade("anim12 1", 0.1f);
                 isanim2 = true;
-                anim5.Play("2");
+                anim5.CrossFade("2", 0.1f);
             }
             else
             {
-                anim2.Play("anim12 0");
+                anim2.CrossFade("anim12 0", 0.1f);
                 isanim2 = false;
             }
             if (isanim3 == false)
             {
                 isanim3 = true;
-                anim6.Play("anim 18 0");
-                anim3.Play("19 0");
+                anim6.CrossFade("anim 18 0", 0.1f);
+                anim3.CrossFade("19 0", 0.1f);
             }
             else
             {
-                anim6.Play("anim 18 0");
-                anim3.Play("19 1");
+                anim6.CrossFade("anim 18 0", 0.1f);
+                anim3.CrossFade("19 1", 0.1f);
             }
             
             isdelay2 = 0.85f;
@@ -869,26 +869,26 @@ public class menu : MonoBehaviour
             if (isanim2 == false)
             {
                 panel2.SetActive(!panel2.activeSelf);
-                anim2.Play("anim12 1");
+                anim2.CrossFade("anim12 1", 0.1f);
                 isanim2 = true;
-                anim5.Play("2");
+                anim5.CrossFade("2", 0.1f);
             }
             else
             {
-                anim2.Play("anim12 0");
+                anim2.CrossFade("anim12 0", 0.1f);
                 isanim2 = false;
             }
             if (isanim4 == false)
             {
                 panel4.SetActive(!panel4.activeSelf);
-                anim14.Play("anim 22 0");
+                anim14.CrossFade("anim 22 0", 0.1f);
                 isanim4 = true;
-                anim15.Play("anim 23");
+                anim15.CrossFade("anim 23", 0.1f);
             }
             else
             {
-                anim15.Play("anim 23 0");
-                anim14.Play("anim 22 0");
+                anim15.CrossFade("anim 23 0", 0.1f);
+                anim14.CrossFade("anim 22 0", 0.1f);
                 isanim4 = false;
             }
             
@@ -902,27 +902,27 @@ public class menu : MonoBehaviour
             if (isanim5 == false)
             {
                 panel5.SetActive(!panel5.activeSelf);
-                anim16.Play("anim 24 1");
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = true;
-                anim17.Play("anim 25");
+                anim17.CrossFade("anim 25", 0.1f);
             }
             else
             {
-                anim17.Play("anim 25 0");
-                anim16.Play("anim 24 1");
+                anim17.CrossFade("anim 25 0", 0.1f);
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = false;
             }
             if (isanim4 == false)
             {
                 panel4.SetActive(!panel4.activeSelf);
-                anim14.Play("anim 22 0");
+                anim14.CrossFade("anim 22 0", 0.1f);
                 isanim4 = true;
-                anim15.Play("anim 23");
+                anim15.CrossFade("anim 23", 0.1f);
             }
             else
             {
-                anim15.Play("anim 23 0");
-                anim14.Play("anim 22 0");
+                anim15.CrossFade("anim 23 0", 0.1f);
+                anim14.CrossFade("anim 22 0", 0.1f);
                 isanim4 = false;
             }
 
@@ -936,25 +936,25 @@ public class menu : MonoBehaviour
             if (isanim3 == false)
             {
                 isanim3 = true;
-                anim6.Play("anim 18 0");
-                anim3.Play("19 0");
+                anim6.CrossFade("anim 18 0", 0.1f);
+                anim3.CrossFade("19 0", 0.1f);
             }
             else
             {
-                anim6.Play("anim 18 0");
-                anim3.Play("19 1");
+                anim6.CrossFade("anim 18 0", 0.1f);
+                anim3.CrossFade("19 1", 0.1f);
             }
             if (isanim4 == false)
             {
                 panel4.SetActive(!panel4.activeSelf);
-                anim14.Play("anim 22 0");
+                anim14.CrossFade("anim 22 0", 0.1f);
                 isanim4 = true;
-                anim15.Play("anim 23");
+                anim15.CrossFade("anim 23", 0.1f);
             }
             else
             {
-                anim15.Play("anim 23 0");
-                anim14.Play("anim 22 0");
+                anim15.CrossFade("anim 23 0", 0.1f);
+                anim14.CrossFade("anim 22 0", 0.1f);
                 isanim4 = false;
             }
             
@@ -968,26 +968,26 @@ public class menu : MonoBehaviour
             if (isanim2 == false)
             {
                 panel2.SetActive(!panel2.activeSelf);
-                anim2.Play("anim12 1");
+                anim2.CrossFade("anim12 1", 0.1f);
                 isanim2 = true;
-                anim5.Play("2");
+                anim5.CrossFade("2", 0.1f);
             }
             else
             {
-                anim2.Play("anim12 0");
+                anim2.CrossFade("anim12 0", 0.1f);
                 isanim2 = false;
             }
             if (isanim5 == false)
             {
                 panel5.SetActive(!panel5.activeSelf);
-                anim16.Play("anim 24 1");
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = true;
-                anim17.Play("anim 25");
+                anim17.CrossFade("anim 25", 0.1f);
             }
             else
             {
-                anim17.Play("anim 25 0");
-                anim16.Play("anim 24 1");
+                anim17.CrossFade("anim 25 0", 0.1f);
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = false;
             }
             
@@ -1001,25 +1001,25 @@ public class menu : MonoBehaviour
             if (isanim2 == false)
             {
                 panel2.SetActive(!panel2.activeSelf);
-                anim2.Play("anim12 1");
+                anim2.CrossFade("anim12 1", 0.1f);
                 isanim2 = true;
-                anim5.Play("2");
+                anim5.CrossFade("2", 0.1f);
             }
             else
             {
-                anim2.Play("anim12 0");
+                anim2.CrossFade("anim12 0", 0.1f);
                 isanim2 = false;
             }
             if (isanim7 == false)
             {
                 panel8.SetActive(!panel8.activeSelf);
-                componentsp.Play("componentsp");
-                components.Play("componclick");
+                componentsp.CrossFade("componentsp", 0.1f);
+                components.CrossFade("componclick", 0.1f);
                 isanim7 = true;
             }
             else if(isdelay2 <= 0)
             {
-                componentsp.Play("componentsp1");
+                componentsp.CrossFade("componentsp1", 0.1f);
                 isanim7 = false;
             }
             
@@ -1033,25 +1033,25 @@ public class menu : MonoBehaviour
             if (isanim2 == false)
             {
                 panel2.SetActive(!panel2.activeSelf);
-                anim2.Play("anim12 1");
+                anim2.CrossFade("anim12 1", 0.1f);
                 isanim2 = true;
-                anim5.Play("2");
+                anim5.CrossFade("2", 0.1f);
             }
             else
             {
-                anim2.Play("anim12 0");
+                anim2.CrossFade("anim12 0", 0.1f);
                 isanim2 = false;
             }
             if (isCustomPanel == false)
             {
                 panelCustomizate.SetActive(!panelCustomizate.activeSelf);
-                skins.Play("anim 17 0");
-                skinspanel.Play("customization");
+                skins.CrossFade("anim 17 0", 0.1f);
+                skinspanel.CrossFade("customization", 0.1f);
                 isCustomPanel = true;
             }
             else if(isdelay2 <= 0)
             {
-                skinspanel.Play("customization 0");
+                skinspanel.CrossFade("customization 0", 0.1f);
                 isCustomPanel = false;
             }
             
@@ -1065,26 +1065,26 @@ public class menu : MonoBehaviour
             if (isanim3 == false)
             {
                 isanim3 = true;
-                anim6.Play("anim 18 0");
-                anim3.Play("19 0");
+                anim6.CrossFade("anim 18 0", 0.1f);
+                anim3.CrossFade("19 0", 0.1f);
             }
             else
             {
-                anim6.Play("anim 18 0");
-                anim3.Play("19 1");
+                anim6.CrossFade("anim 18 0", 0.1f);
+                anim3.CrossFade("19 1", 0.1f);
                 isanim3 = false;
             }
             if (isanim5 == false)
             {
                 panel5.SetActive(!panel5.activeSelf);
-                anim16.Play("anim 24 1");
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = true;
-                anim17.Play("anim 25");
+                anim17.CrossFade("anim 25", 0.1f);
             }
             else
             {
-                anim17.Play("anim 25 0");
-                anim16.Play("anim 24 1");
+                anim17.CrossFade("anim 25 0", 0.1f);
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = false;
             }
             
@@ -1098,26 +1098,26 @@ public class menu : MonoBehaviour
             if (isanim7 == false)
             {
                 panel8.SetActive(!panel8.activeSelf);
-                componentsp.Play("componentsp");
-                components.Play("componclick");
+                componentsp.CrossFade("componentsp", 0.1f);
+                components.CrossFade("componclick", 0.1f);
                 isanim7 = true;
             }
             else if(isdelay2 <= 0)
             {
-                componentsp.Play("componentsp1");
+                componentsp.CrossFade("componentsp1", 0.1f);
                 isanim7 = false;
             }
             if (isanim5 == false)
             {
                 panel5.SetActive(!panel5.activeSelf);
-                anim16.Play("anim 24 1");
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = true;
-                anim17.Play("anim 25");
+                anim17.CrossFade("anim 25", 0.1f);
             }
             else
             {
-                anim17.Play("anim 25 0");
-                anim16.Play("anim 24 1");
+                anim17.CrossFade("anim 25 0", 0.1f);
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = false;
             }
             
@@ -1131,26 +1131,26 @@ public class menu : MonoBehaviour
             if (isCustomPanel == false)
             {
                 panelCustomizate.SetActive(!panelCustomizate.activeSelf);
-                skins.Play("anim 17 0");
-                skinspanel.Play("customization");
+                skins.CrossFade("anim 17 0", 0.1f);
+                skinspanel.CrossFade("customization", 0.1f);
                 isCustomPanel = true;
             }
             else if(isdelay2 <= 0)
             {
-                skinspanel.Play("customization 0");
+                skinspanel.CrossFade("customization 0", 0.1f);
                 isCustomPanel = false;
             }
             if (isanim7 == false)
             {
                 panel8.SetActive(!panel8.activeSelf);
                 isanim7 = true;
-                componentsp.Play("componentsp");
-                components.Play("componclick");
+                componentsp.CrossFade("componentsp", 0.1f);
+                components.CrossFade("componclick", 0.1f);
             }
             else if (isanim7 == true)
             {
                 isanim7 = false;
-                componentsp.Play("componentsp1");
+                componentsp.CrossFade("componentsp1", 0.1f);
             }
             
             isdelay2 = 0.85f;
@@ -1163,26 +1163,26 @@ public class menu : MonoBehaviour
             if (isCustomPanel == false)
             {
                 panelCustomizate.SetActive(!panelCustomizate.activeSelf);
-                skins.Play("anim 17 0");
-                skinspanel.Play("customization");
+                skins.CrossFade("anim 17 0", 0.1f);
+                skinspanel.CrossFade("customization", 0.1f);
                 isCustomPanel = true;
             }
             else if(isdelay2 <= 0)
             {
-                skinspanel.Play("customization 0");
+                skinspanel.CrossFade("customization 0", 0.1f);
                 isCustomPanel = false;
             }
             if (isanim5 == false)
             {
                 panel5.SetActive(!panel5.activeSelf);
-                anim16.Play("anim 24 1");
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = true;
-                anim17.Play("anim 25");
+                anim17.CrossFade("anim 25", 0.1f);
             }
             else
             {
-                anim17.Play("anim 25 0");
-                anim16.Play("anim 24 1");
+                anim17.CrossFade("anim 25 0", 0.1f);
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = false;
             }
             
@@ -1196,26 +1196,26 @@ public class menu : MonoBehaviour
             if (isBankPanel == false)
             {
                 panelBank.SetActive(!panelBank.activeSelf);
-                Bank.Play("Bankclick");
-                bankpanel.Play("Bank");
+                Bank.CrossFade("Bankclick", 0.1f);
+                bankpanel.CrossFade("Bank", 0.1f);
                 isBankPanel = true;
             }
             else if(isdelay2 <= 0)
             {
-                bankpanel.Play("Bank 0");
+                bankpanel.CrossFade("Bank 0", 0.1f);
                 isBankPanel = false;
             }
             
              if (isLomPanel == false)
             {
                 panelLom.SetActive(!panelLom.activeSelf);
-                lombard.Play("lombardclick");
-                lompanel.Play("Lombard");
+                lombard.CrossFade("lombardclick", 0.1f);
+                lompanel.CrossFade("Lombard", 0.1f);
                 isLomPanel = true;
             }
             else if (isdelay2 <= 0)
             {
-                lompanel.Play("Lombard 0");
+                lompanel.CrossFade("Lombard 0", 0.1f);
                 isLomPanel = false;
             }
             
@@ -1235,14 +1235,14 @@ public class menu : MonoBehaviour
             if (isanim2 == false)
             {
                 panel2.SetActive(!panel2.activeSelf);
-                anim2.Play("anim12 1");
+                anim2.CrossFade("anim12 1", 0.1f);
                 isanim2 = true;
-                anim5.Play("2");
+                anim5.CrossFade("2", 0.1f);
                 one = 0;
             }
             else
             {
-                anim2.Play("anim12 0");
+                anim2.CrossFade("anim12 0", 0.1f);
                 isanim2 = false;
                 one = 0;
             }
@@ -1261,14 +1261,14 @@ public class menu : MonoBehaviour
             if (isanim4 == false)
             {
                 panel4.SetActive(!panel4.activeSelf);
-                anim14.Play("anim 22 0");
+                anim14.CrossFade("anim 22 0", 0.1f);
                 isanim4 = true;
-                anim15.Play("anim 23");
+                anim15.CrossFade("anim 23", 0.1f);
             }
             else
             {
-                anim15.Play("anim 23 0");
-                anim14.Play("anim 22 0");
+                anim15.CrossFade("anim 23 0", 0.1f);
+                anim14.CrossFade("anim 22 0", 0.1f);
                 isanim4 = false;
             }
 
@@ -1286,14 +1286,14 @@ public class menu : MonoBehaviour
             if (isanim5 == false)
             {
                 panel5.SetActive(!panel5.activeSelf);
-                anim16.Play("anim 24 1");
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = true;
-                anim17.Play("anim 25");
+                anim17.CrossFade("anim 25", 0.1f);
             }
             else
             {
-                anim17.Play("anim 25 0");
-                anim16.Play("anim 24 1");
+                anim17.CrossFade("anim 25 0", 0.1f);
+                anim16.CrossFade("anim 24 1", 0.1f);
                 isanim5 = false;
             }
 
@@ -1310,12 +1310,12 @@ public class menu : MonoBehaviour
             if (isanim6 == false)
             {
                 panel6.SetActive(!panel6.activeSelf);
-                anim20.Play("anim 45 1");
+                anim20.CrossFade("anim 45 1", 0.1f);
                 isanim6 = true;
             }
             else if(isdelay2 <= 0)
             {
-                anim20.Play("anim 45 0");
+                anim20.CrossFade("anim 45 0", 0.1f);
                 isanim6 = false;
             }
 
@@ -1330,13 +1330,13 @@ public class menu : MonoBehaviour
             if (isanim7 == false)
             {
                 panel8.SetActive(!panel8.activeSelf);
-                componentsp.Play("componentsp");
-                components.Play("componclick");
+                componentsp.CrossFade("componentsp", 0.1f);
+                components.CrossFade("componclick", 0.1f);
                 isanim7 = true;
             }
             else if(isdelay2 <= 0)
             {
-                componentsp.Play("componentsp1");
+                componentsp.CrossFade("componentsp1", 0.1f);
                 isanim7 = false;
             }
             
@@ -1350,13 +1350,13 @@ public class menu : MonoBehaviour
             if (isCustomPanel == false)
             {
                 panelCustomizate.SetActive(!panelCustomizate.activeSelf);
-                skins.Play("anim 17 0");
-                skinspanel.Play("customization");
+                skins.CrossFade("anim 17 0", 0.1f);
+                skinspanel.CrossFade("customization", 0.1f);
                 isCustomPanel = true;
             }
             else if(isdelay2 <= 0)
             {
-                skinspanel.Play("customization 0");
+                skinspanel.CrossFade("customization 0", 0.1f);
                 isCustomPanel = false;
             }
 
@@ -1370,13 +1370,13 @@ public class menu : MonoBehaviour
             if (isLomPanel == false)
             {
                 panelLom.SetActive(!panelLom.activeSelf);
-                lombard.Play("lombardclick");
-                lompanel.Play("Lombard");
+                lombard.CrossFade("lombardclick", 0.1f);
+                lompanel.CrossFade("Lombard", 0.1f);
                 isLomPanel = true;
             }
             else if(isdelay2 <= 0)
             {
-                lompanel.Play("Lombard 0");
+                lompanel.CrossFade("Lombard 0", 0.1f);
                 isLomPanel = false;
             }
         
@@ -1390,13 +1390,13 @@ public class menu : MonoBehaviour
             if (isBankPanel == false)
             {
                 panelBank.SetActive(!panelBank.activeSelf);
-                Bank.Play("Bankclick");
-                bankpanel.Play("Bank");
+                Bank.CrossFade("Bankclick", 0.1f);
+                bankpanel.CrossFade("Bank", 0.1f);
                 isBankPanel = true;
             }
             else if(isdelay2 <= 0)
             {
-                bankpanel.Play("Bank 0");
+                bankpanel.CrossFade("Bank 0", 0.1f);
                 isBankPanel = false;
             }
             

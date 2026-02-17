@@ -128,7 +128,7 @@ public class ScoreCounterFinal : MonoBehaviour
         if (PlayerPrefs.GetInt("fall") == 1)
             rocketfall = true;
 
-        anim.Play("anim6");
+        anim.CrossFade("anim6", 0.1f);
 
         UpdateObstacleCount();
 
@@ -200,7 +200,7 @@ public class ScoreCounterFinal : MonoBehaviour
         if ((int)(player.position.z / 3) >= 340 && !is340)
         {
             text.text = "Опасности не найдены";
-            anim2.Play("anim 26 1");
+            anim2.CrossFade("anim 26 1", 0.1f);
             is340 = true;
             ad9.Play();
         }
@@ -208,14 +208,14 @@ public class ScoreCounterFinal : MonoBehaviour
         {
             ach3 = 1;
             PlayerPrefs.SetInt("ach3", 1);
-            achanim1.Play("anim20");
+            achanim1.CrossFade("anim20", 0.1f);
             ad5.Play();
         }
         if ((int)(player.position.z / 3) >= 550 && !is550)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
             text.text = "Сканирование: " + selected;
-            anim2.Play("anim 26 1");
+            anim2.CrossFade("anim 26 1", 0.1f);
             is550 = true;
             ad9.Play();
             if (!fogCoroutineStarted) StartCoroutine(EnableFogWithDelay());
@@ -336,15 +336,15 @@ public class ScoreCounterFinal : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             RenderSettings.fogDensity = Mathf.Lerp(0f, 0.03f, elapsed / duration);
-            Lightning.Play("Lightning");
+            Lightning.CrossFade("Lightning", 0.1f);
             yield return null;
         }
 
 
         yield return new WaitForSeconds(14f);
 
-        anim3.Play("smerchStart");
-        anim5.Play("shake");
+        anim3.CrossFade("smerchStart", 0.1f);
+        anim5.CrossFade("shake", 0.1f);
         Destroy(FindObjectOfType<ObstacleSpawner>());
     }
 
@@ -435,13 +435,13 @@ public class ScoreCounterFinal : MonoBehaviour
         if (isHomePanel == false)
         {
             panelHome.SetActive(!panelHome.activeSelf);
-            homepanel.Play("animat");
+            homepanel.CrossFade("animat", 0.1f);
             isHomePanel = true;
             isdelay5 = 1;
         }
         else if (isdelay2 <= 0)
         {
-            homepanel.Play("animat 0");
+            homepanel.CrossFade("animat 0", 0.1f);
             isHomePanel = false;
             homeFloatPanel = 1;
             isCloseHomePanel = true;

@@ -279,13 +279,13 @@ public class death : MonoBehaviour
 
         if(fuel <= 5 && !isfuel5)
         {
-            fuel5.Play("fuelzerostart");
+            fuel5.CrossFade("fuelzerostart", 0.1f);
             isfuel5 = true;
             PlayerPrefs.SetInt("FuelZero", 1);
         }
         else if(isfuel5 && fuel >= 5)
         {
-            fuel5.Play("fuelzeroidle");
+            fuel5.CrossFade("fuelzeroidle", 0.1f);
             isfuel5 = false;
             PlayerPrefs.SetInt("FuelZero", 0);
 
@@ -353,7 +353,7 @@ public class death : MonoBehaviour
             {
                 losePanel.SetActive(true);
                 Distortion.PlayAlphaPulse();
-                anim1.Play("anim11");
+                anim1.CrossFade("anim11", 0.1f);
                 fuelzero.text = "Топливо закончилось";
                 isfuelzero = true;
                 energy.End();
@@ -366,20 +366,20 @@ public class death : MonoBehaviour
                 if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                 {
                     ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
-                    ScoreBuff += ((int)(player.position.z / 3) + 1000);
+                    ScoreBuff += ((int)(player.position.z / 3) + 1150);
                     PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
                     score = PlayerPrefs.GetInt("allscore");
-                    score += ((int)(player.position.z / 3) + 1000);
+                    score += ((int)(player.position.z / 3) + 1150);
                     PlayerPrefs.SetInt("allscore", score);
                     PlayerPrefs.SetInt("youdead", 1);
                 }
                 else
                 {
                     ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
-                    ScoreBuff += ((int)(player.position.z / 3) + 1000);
+                    ScoreBuff += (int)(player.position.z / 3);
                     PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
                     score = PlayerPrefs.GetInt("allscore");
-                    score += ((int)(player.position.z / 3));
+                    score += (int)(player.position.z / 3);
                     PlayerPrefs.SetInt("allscore", score);
                     PlayerPrefs.SetInt("youdead", 1);
                 }
@@ -401,7 +401,7 @@ public class death : MonoBehaviour
     public void restart()
     {
         image.SetActive(!image.activeSelf);
-        anim.Play("anim10 1");
+        anim.CrossFade("anim10 1", 0.1f);
 
         float FuelAch = SliderFuel.maxValue - 15;
         if(PlayerPrefs.GetInt("Ach2Level", 0) == 2 && fuel >= FuelAch)
@@ -412,13 +412,13 @@ public class death : MonoBehaviour
     public void restart2()
     {
         image.SetActive(!image.activeSelf);
-        anim.Play("anim10 2");
+        anim.CrossFade("anim10 2", 0.1f);
     }
 
     public void restart3()
     {
         image.SetActive(!image.activeSelf);
-        anim.Play("anim10 3");
+        anim.CrossFade("anim10 3", 0.1f);
     }
 
     [SerializeField] private Text fineText;
@@ -448,7 +448,7 @@ public class death : MonoBehaviour
         if (Collision.gameObject.CompareTag("bo"))
         {
             adbonus.Play();
-            animbonus.Play("green");
+            animbonus.CrossFade("green", 0.1f);
             fuel = fuel + 8;
 
             if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
@@ -463,7 +463,7 @@ public class death : MonoBehaviour
         if (Collision.gameObject.CompareTag("bb"))
         {
             adbonus.Play();
-            animbonus.Play("green");
+            animbonus.CrossFade("green", 0.1f);
             energy.Bonus();
 
             if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
@@ -479,7 +479,7 @@ public class death : MonoBehaviour
         {
             live += 1;
             adbonus.Play();
-            animbonus.Play("green");
+            animbonus.CrossFade("green", 0.1f);
             livet.text = live.ToString();
             PlayerPrefs.SetInt("live", live);
 
@@ -512,7 +512,7 @@ public class death : MonoBehaviour
                     {
                         ShieldEndAS.Play();
                         PlayerPrefs.SetInt("activeShield", 0);
-                        shield.Play("endShield");
+                        shield.CrossFade("endShield", 0.1f);
                     }
 
                     if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
@@ -581,7 +581,7 @@ public class death : MonoBehaviour
                         PlayerPrefs.SetInt("loseLife", current);
                     }
 
-                    anim3.Play("anim");
+                    anim3.CrossFade("anim", 0.1f);
 
                     if (live >= 1)
                     {
@@ -646,7 +646,7 @@ public class death : MonoBehaviour
                         }
 
                         losePanel.SetActive(true);
-                        anim1.Play("anim11");
+                        anim1.CrossFade("anim11", 0.1f);
                         live -= 1;
                         livet.text = live.ToString();
                         PlayerPrefs.SetInt("live", live);
@@ -661,10 +661,10 @@ public class death : MonoBehaviour
                         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
                         {
                             ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
-                            ScoreBuff += ((int)(player.position.z / 3) + 1000);
+                            ScoreBuff += ((int)(player.position.z / 3) + 1150);
                             PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
                             score = PlayerPrefs.GetInt("allscore");
-                            score += ((int)(player.position.z / 3) + 1000);
+                            score += ((int)(player.position.z / 3) + 1150);
                             PlayerPrefs.SetInt("allscore", score);
                         }
                         else
@@ -706,10 +706,10 @@ public class death : MonoBehaviour
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
         {
             ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
-            ScoreBuff += ((int)(player.position.z / 3) + 1000);
+            ScoreBuff += ((int)(player.position.z / 3) + 1150);
             PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
             score = PlayerPrefs.GetInt("allscore");
-            score += ((int)(player.position.z / 3) + 1000);
+            score += ((int)(player.position.z / 3) + 1150);
             PlayerPrefs.SetInt("allscore", score);
             PlayerPrefs.SetInt("youdead", 1);
         }

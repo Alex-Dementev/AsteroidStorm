@@ -1,102 +1,89 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class ScoreBuff : MonoBehaviour
 {
     private int Score;
     private int coins;
+    private int coinsplus;
     private int allcoins;
     public Slider s;
     public Animator anim;
     public Animator anim2;
-    public Image Subdiv;
     private int SubdivInt;
     public SmartBoostTimer SBT;
     public Text PlusT;
+    private bool Is675;
+    private bool IsOne;
+    private bool IsOne2;
+    private float IsDelay = 0.6f;
 
 
     void Start()
     {
         Score = PlayerPrefs.GetInt("ScoreBuff", 0);
-        s.value = Score;
+        SubdivInt = PlayerPrefs.GetInt("ScoreNum", 0);
 
-        if(PlayerPrefs.GetInt("ScoreNum", 0) == 0)
+        if(SubdivInt == 0)
         {
             anim2.SetBool("1", true);
         }
-        if(PlayerPrefs.GetInt("ScoreNum", 0) == 1)
+        if(SubdivInt == 1)
         {
             anim2.SetBool("2", true);
         }
-        if(PlayerPrefs.GetInt("ScoreNum", 0) == 2)
+        if(SubdivInt == 2)
         {
             anim2.SetBool("3", true);
         }
-        if(PlayerPrefs.GetInt("ScoreNum", 0) == 3)
+        if(SubdivInt == 3)
         {
             anim2.SetBool("4", true);
         }
-        if(PlayerPrefs.GetInt("ScoreNum", 0) == 4)
+        if(SubdivInt >= 4)
         {
             anim2.SetBool("5", true);
         }
 
-        if(Score >= 675)
-        {
-            Score -= 675;
-            s.value = Score;
-            PlayerPrefs.SetInt("ScoreBuff", Score);
-            coins = PlayerPrefs.GetInt("coins", 0);
-            allcoins = PlayerPrefs.GetInt("allcoins", 0);
-            SubdivInt = PlayerPrefs.GetInt("ScoreNum", 0) + 1; 
-            PlayerPrefs.SetInt("ScoreNum", SubdivInt);
+        s.value = PlayerPrefs.GetInt("ScoreLost", 0);
 
-            if(PlayerPrefs.GetInt("ScoreNum", 0) == 0)
-            {
-                coins += 67;
-                allcoins += 67;
-                anim2.SetBool("1", true);
-                PlusT.text = "+67";
-            }
-            if(PlayerPrefs.GetInt("ScoreNum", 0) == 1)
-            {
-                coins += 78;
-                allcoins += 78;
-                anim2.SetBool("2", true);
-                PlusT.text = "+78";
-            }
-            if(PlayerPrefs.GetInt("ScoreNum", 0) == 2)
-            {
-                coins += 88;
-                allcoins += 88;
-                anim2.SetBool("3", true);
-                PlusT.text = "+88";
-            }
-            if(PlayerPrefs.GetInt("ScoreNum", 0) == 3)
-            {
-                coins += 97;
-                allcoins += 97;
-                anim2.SetBool("4", true);
-                PlusT.text = "+97";
-            }
-            if(PlayerPrefs.GetInt("ScoreNum", 0) >= 4)
-            {
-                coins += 110;
-                allcoins += 110;
-                anim2.SetBool("5", true);
-                PlusT.text = "+110";
-            }
-
-            PlayerPrefs.SetInt("coins", coins);
-            PlayerPrefs.SetInt("allcoins", allcoins);
-            anim.Play("start");
-            PlayerPrefs.SetInt("ScoreBuffTimer", 1);
-            SBT.RestartTimer();
-        }
+        Debug.Log("Полученные очки: " + Score);
     }
 
     void Update()
     {
+        IsDelay -= Time.deltaTime;
+
+
+        UpdateBuff();
+
+
+        if(SubdivInt == 0)
+        {
+            anim2.SetBool("1", true);
+        }
+        if(SubdivInt == 1)
+        {
+            anim2.SetBool("2", true);
+            anim2.SetBool("1", false);
+        }
+        if(SubdivInt == 2)
+        {
+            anim2.SetBool("3", true);
+            anim2.SetBool("2", false);
+        }
+        if(SubdivInt == 3)
+        {
+            anim2.SetBool("4", true);
+            anim2.SetBool("3", false);
+        }
+        if(SubdivInt >= 4)
+        {
+            anim2.SetBool("5", true);
+            anim2.SetBool("4", false);
+        }
+
         if(PlayerPrefs.GetInt("ScoreBuffTimer", 0) == 2)
         {
             PlayerPrefs.SetInt("ScoreBuffTimer", 0);
@@ -107,5 +94,99 @@ public class ScoreBuff : MonoBehaviour
             anim2.SetBool("4", false);
             anim2.SetBool("5", false);
         }
+    }
+
+    public void DelayedAction()
+    {
+        coins = PlayerPrefs.GetInt("coins", 0);
+        allcoins = PlayerPrefs.GetInt("allcoins", 0);
+        coins += coinsplus;
+        allcoins += coinsplus;
+        PlayerPrefs.SetInt("coins", coins);
+        PlayerPrefs.SetInt("allcoins", allcoins);
+        PlayerPrefs.SetInt("ScoreBuffTimer", 1);
+        SBT.RestartTimer();
+
+        if(coinsplus != 0)
+        {
+            anim.Play("start");
+            PlusT.text = "+" + coinsplus;
+        }
+
+        coinsplus = 0;
+    }
+
+    private void UpdateBuff()
+    {
+        if(IsDelay <= 0)
+        {
+            if(Is675)
+            {
+                if(!IsOne)
+                {
+                    StartCoroutine(DelayedActionCoroutine());
+                    IsOne = true;
+                }
+
+                if(IsOne2)
+                    s.value = Mathf.MoveTowards(s.value, 0, Time.deltaTime * 500);
+
+                if(s.value <= 1)
+                {
+                    Is675 = false;
+                    IsOne2 = false;
+                }
+            }
+            else if(!Is675)
+            {
+                s.value = Mathf.MoveTowards(s.value, Score, Time.deltaTime * 200);
+
+                if(s.value >= 675)
+                {
+                    IsOne = false;
+                    Is675 = true;
+                    Score -= 675;
+                    PlayerPrefs.SetInt("ScoreBuff", Score);
+                    PlayerPrefs.SetInt("ScoreLost", Score);
+
+                    SubdivInt = PlayerPrefs.GetInt("ScoreNum", 0);
+
+                    if(SubdivInt == 0)
+                    {
+                        coinsplus += 67;
+                    }
+                    if(SubdivInt == 1)
+                    {
+                        coinsplus += 78;
+                    }
+                    if(SubdivInt == 2)
+                    {
+                        coinsplus += 88;
+                    }
+                    if(SubdivInt == 3)
+                    {
+                        coinsplus += 97;
+                    }
+                    if(SubdivInt >= 4)
+                    {
+                        coinsplus += 110;
+                    }
+                    
+                    SubdivInt++;
+                    PlayerPrefs.SetInt("ScoreNum", SubdivInt);
+                    SBT.RestartTimer();
+                    DelayedAction();
+                }
+                else if(Score < 675)
+                    PlayerPrefs.SetInt("ScoreLost", Score);
+            }
+        }
+    }
+
+    IEnumerator DelayedActionCoroutine()
+    {
+        yield return new WaitForSeconds(1.2f);
+        
+        IsOne2 = true;
     }
 }

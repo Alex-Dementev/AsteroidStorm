@@ -145,7 +145,7 @@ public class ScoreCounter : MonoBehaviour
             rocketfall = true;
 
 
-        anim.Play("anim6");
+        anim.CrossFade("anim6", 0.1f);
 
         UpdateObstacleCount();
 
@@ -219,7 +219,7 @@ public class ScoreCounter : MonoBehaviour
         if ((int)(player.position.z / 3) >= 1150 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
             image.SetActive(true);
-            anim1.Play("anim10 0");
+            anim1.CrossFade("anim10 0", 0.1f);
             isdelay3 = 2f;
             isend = true;
             isend2 = true;
@@ -231,14 +231,14 @@ public class ScoreCounter : MonoBehaviour
         }
         if ((int)(player.position.z / 3) >= 100 && !is100)
         {
-            anim2.Play("anim 26 1");
+            anim2.CrossFade("anim 26 1", 0.1f);
             is100 = true;
             ad9.Play();
         }
         if ((int)(player.position.z / 3) >= 925 && !is825)
         {
             text.text = "выход на высокую арбиту луны";
-            anim2.Play("anim 26 1");
+            anim2.CrossFade("anim 26 1", 0.1f);
             is825 = true;
             ad9.Play();
         }
@@ -246,7 +246,7 @@ public class ScoreCounter : MonoBehaviour
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
             text.text = "пол пути пройдено: " + selected;
-            anim2.Play("anim 26 1");
+            anim2.CrossFade("anim 26 1", 0.1f);
             is440 = true;
             ad9.Play();
             PlayerPrefs.SetInt("youcheat", 0);
@@ -286,14 +286,14 @@ public class ScoreCounter : MonoBehaviour
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
             text.text = "Большое количество остеридов: " + selected;
-            anim2.Play("anim 26 1");
+            anim2.CrossFade("anim 26 1", 0.1f);
             is750 = true;
             ad9.Play();
         }
         if ((int)(player.position.z / 3) >= 250 && !is250)
         {
             text.text = "курс стабилен";
-            anim2.Play("anim 26 1");
+            anim2.CrossFade("anim 26 1", 0.1f);
             is250 = true;
             ad9.Play();
         }
@@ -329,7 +329,7 @@ public class ScoreCounter : MonoBehaviour
         {
             PlayerPrefs.SetInt("ach2", 1);
             ach1 = 1;
-            achanim2.Play("anim 21");
+            achanim2.CrossFade("anim 21", 0.1f);
             ad5.Play();
         }
         if (ach2 == 0 && spawn >= 350 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
@@ -337,7 +337,7 @@ public class ScoreCounter : MonoBehaviour
             PlayerPrefs.SetInt("Achevements", 1);
             PlayerPrefs.SetInt("ach1", 1);
             ach2 = 1;
-            achanim1.Play("anim20");
+            achanim1.CrossFade("anim20", 0.1f);
             ad5.Play();
         }
 
@@ -525,13 +525,13 @@ public class ScoreCounter : MonoBehaviour
             if (isHomePanel == false)
             {
                 panelHome.SetActive(!panelHome.activeSelf);
-                homepanel.Play("animat");
+                homepanel.CrossFade("animat", 0.1f);
                 isHomePanel = true;
                 isdelay5 = 1;
             }
             else if(isdelay2 <= 0)
             {
-                homepanel.Play("animat 0");
+                homepanel.CrossFade("animat 0", 0.1f);
                 isHomePanel = false;
                 homeFloatPanel = 1;
                 isCloseHomePanel = true;

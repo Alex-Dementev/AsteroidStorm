@@ -21,6 +21,10 @@
         private float nextZSpeedUpdateTime;
         private float targetX;
 
+        [Header("X Movement Offset")]
+        public float xOffset = 1f; // смещение вправо
+
+
         void Start()
         {
             mainCamera = Camera.main;
@@ -36,16 +40,14 @@
             // Ввод
             if (Input.touchCount > 0 || Input.GetMouseButton(0))
             {
-                Vector2 inputPosition = Input.touchCount > 0
-                                        ? (Vector2)Input.GetTouch(0).position
-                                        : (Vector2)Input.mousePosition;
+                Vector2 inputPosition = Input.touchCount > 0 ? (Vector2)Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
                 // Корректное преобразование экранных координат в мировые
                 float distanceToCamera = transform.position.z - mainCamera.transform.position.z;
                 Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, distanceToCamera));
                 worldPosition += calibrationOffset;
 
-                targetX = Mathf.Clamp(worldPosition.x * sensitivity, -xRange, xRange);
+                targetX = Mathf.Clamp(worldPosition.x * sensitivity + xOffset, -xRange + xOffset, xRange + xOffset);
             }
 
             // Движение по X без возврата

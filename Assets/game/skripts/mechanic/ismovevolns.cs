@@ -23,51 +23,73 @@ public class GameManager : MonoBehaviour
 
     private float currentX = 0f;
     private float targetX = 0f;
-    private bool invertControl = false;
+
     private bool freezeControl = false;
 
+    // Смещение аномалии
+    private float controlOffset = 0f;
+    private float targetOffset = 0f;
+
     [Header("Anomaly Settings")]
-    public float anomalyDuration = 1.2f;
-    public float anomalyBetweenDelay = 0.5f;
+    private float anomalyDuration = 1.5f;      // сколько длится аномалия
+    private float anomalyBetweenDelay = 0.85f; // пауза между аномалиями
+    private float anomalyOffsetAmount = 6.5f;    // сила смещения в юнитах
+    private float anomalySpeed = 40f;          // скорость смещения в юнитах/сек
 
     [Header("Delay Settings")]
-    public float characterCheckDelay = 4f; // время до проверки персонажа
+    public float characterCheckDelay = 4f;
 
     void Start()
     {
-        // Запускаем проверку персонажа через 4 секунды
         StartCoroutine(DelayedStart());
     }
 
     void Update()
     {
-        if (activeCharacter != null)
+        if (activeCharacter == null) return;
+
+        Vector3 position = activeCharacter.transform.position;
+
+        if (!freezeControl)
         {
-            Vector3 position = activeCharacter.transform.position;
-
-            if (!freezeControl)
+            // Управление игроком
+            if (Input.touchCount > 0 || Input.GetMouseButton(0))
             {
-                if (Input.touchCount > 0 || Input.GetMouseButton(0))
-                {
-                    Vector2 inputPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
-                    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, Camera.main.transform.position.y));
-                    worldPosition += calibrationOffset;
+                Vector2 inputPosition =
+                    Input.touchCount > 0
+                        ? Input.GetTouch(0).position
+                        : (Vector2)Input.mousePosition;
 
-                    float clampedX = Mathf.Clamp(worldPosition.x * sensitivity, -xRange, xRange);
-                    targetX = invertControl ? -clampedX : clampedX;
-                }
+                Vector3 worldPosition =
+                    Camera.main.ScreenToWorldPoint(
+                        new Vector3(
+                            inputPosition.x,
+                            inputPosition.y,
+                            Camera.main.transform.position.y
+                        ));
 
-                currentX = Mathf.Lerp(currentX, targetX, smoothFactor);
-                position.x = currentX;
-                activeCharacter.transform.position = position;
+                worldPosition += calibrationOffset;
+
+                float inputX = worldPosition.x * sensitivity;
+                targetX = Mathf.Clamp(inputX, -xRange, xRange);
             }
+
+            // Основное движение игрока
+            currentX = Mathf.Lerp(currentX, targetX, smoothFactor);
+
+            // Плавное смещение аномалии через MoveTowards
+            controlOffset = Mathf.MoveTowards(controlOffset, targetOffset, anomalySpeed * Time.deltaTime);
+
+            // Итоговая позиция с аномалией
+            position.x = currentX + controlOffset;
+
+            activeCharacter.transform.position = position;
         }
     }
 
     IEnumerator DelayedStart()
     {
         yield return new WaitForSeconds(characterCheckDelay);
-
         DetectActiveCharacter();
         StartCoroutine(GameLoop());
     }
@@ -84,35 +106,39 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            float randomTime = Random.Range(25, 65f);
+            float randomTime = Random.Range(25f, 65f);
             yield return new WaitForSeconds(randomTime);
 
-            if (activeCharacter == null) yield break;
+            if (activeCharacter == null)
+                yield break;
 
             textAnimator.Play("anim15 1");
             c.TriggerShake(5, 0.06f);
 
-            bool doReverse = Random.value < 0.5f;
-
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 6; i++)
             {
-                if (doReverse)
+                // случайное смещение ±anomalyOffsetAmount
+                targetOffset = Random.value < 0.5f ? -anomalyOffsetAmount : anomalyOffsetAmount;
+
+                // ждём, пока аномалия идёт
+                float timer = 0f;
+                while (timer < anomalyDuration)
                 {
-                    invertControl = true;
-                    yield return new WaitForSeconds(anomalyDuration);
-                    invertControl = false;
-                }
-                else
-                {
-                    freezeControl = true;
-                    yield return new WaitForSeconds(anomalyDuration);
-                    freezeControl = false;
+                    timer += Time.deltaTime;
+                    yield return null;
                 }
 
-                yield return new WaitForSeconds(anomalyBetweenDelay);
+                // возвращаемся в центр
+                targetOffset = 0f;
+                timer = 0f;
+                while (timer < anomalyBetweenDelay)
+                {
+                    timer += Time.deltaTime;
+                    yield return null;
+                }
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             textAnimator.Play("anim15 2");
         }
     }

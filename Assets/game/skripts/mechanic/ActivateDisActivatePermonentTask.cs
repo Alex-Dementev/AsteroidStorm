@@ -8,12 +8,12 @@ public class ActivateDisActivatePermonentTask : MonoBehaviour
     public void Activate()
     {
         go.SetActive(true);
-        ActivateAnim.Play("Start");
+        ActivateAnim.CrossFade("Start", 0.2f);
     }
 
     public void DisActivate()
     {
-        ActivateAnim.Play("End");
+        ActivateAnim.CrossFade("End", 0.2f);
     }
     public void EventDisActivate()
     {

@@ -95,9 +95,19 @@ public class DIalogueActivate : MonoBehaviour
             Dialogue42.GetComponent<DialogueManager>().Close();
 
         if (DialogueMetals[0].activeSelf)
+        {
             DialogueMetals[0].GetComponent<DialogueManager>().Close();
+            int Coins = PlayerPrefs.GetInt("coins");
+            Coins += 80;
+            PlayerPrefs.SetInt("coins", Coins);
+        }
         if (DialogueMetals[1].activeSelf)
+        {
             DialogueMetals[1].GetComponent<DialogueManager>().Close();
+            int Coins = PlayerPrefs.GetInt("coins");
+            Coins += 80;
+            PlayerPrefs.SetInt("coins", Coins);
+        }
 
         if (DialogueLombardMetals[0].activeSelf)
             DialogueLombardMetals[0].GetComponent<DialogueManager>().Close();
@@ -307,13 +317,6 @@ public class DIalogueActivate : MonoBehaviour
             UIPanels[19].SetActive(true);
         }
 
-        if(PlayerPrefs.GetInt("IndexDialogue", 0) == 24 || PlayerPrefs.GetInt("IndexDialogue", 0) == 25)
-        {
-            int Coins = PlayerPrefs.GetInt("coins");
-            Coins += 80;
-            PlayerPrefs.SetInt("coins", Coins);
-        }
-
         if(PlayerPrefs.GetInt("allgames", 0) >= 2)
         {
             UIPanels[22].SetActive(true);
@@ -373,7 +376,7 @@ public class DIalogueActivate : MonoBehaviour
         }
 
 
-        if(PlayerPrefs.GetInt("PetsDialogue", 0) == 0)
+        if(PlayerPrefs.GetInt("PetsApply", 0) == 0)
         {
             if(PlayerPrefs.GetInt("P1Buy", 0) == 1)
             {
@@ -504,7 +507,7 @@ public class DIalogueActivate : MonoBehaviour
     }
     public void ClickButton14()
     {
-        if(PlayerPrefs.GetInt("PetsDialogue", 0) == 0)
+        if(PlayerPrefs.GetInt("PetsApply", 0) == 0)
         {
             DialoguePanels[12].SetActive(true);
         }

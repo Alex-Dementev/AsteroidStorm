@@ -3,7 +3,7 @@ using UnityEngine;
 public class AsteroidSkript : MonoBehaviour
 {
     [Range(0f, 100f)]
-    private float firstChance = 60f;
+    private float firstChance = 65f;
 
     public Material bronzeMaterial;
     public Material silverMaterial;
@@ -38,12 +38,12 @@ public class AsteroidSkript : MonoBehaviour
                 asteroidType = 4;
                 ApplyMaterial(diamondMaterial);
             }
-            else if (roll2 < 8f)
+            else if (roll2 < 11f)
             {
                 asteroidType = 3;
                 ApplyMaterial(goldMaterial);
             }
-            else if (roll2 < 30f)
+            else if (roll2 < 40f)
             {
                 asteroidType = 2;
                 ApplyMaterial(silverMaterial);
@@ -55,7 +55,7 @@ public class AsteroidSkript : MonoBehaviour
             }
         }
 
-        float rawMass = baseMass - ((baseMass - (Random.Range(-0.5f, 0.5f) * baseMass)) * 0.5f);
+        float rawMass = baseMass - ((baseMass - (Random.Range(-0.4f, 0.5f) * baseMass)) * 0.5f);
         mass = Mathf.Round(rawMass * 100f) / 100f;
     }
 
@@ -68,6 +68,16 @@ public class AsteroidSkript : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("Boost3", 0) >= 1)
             mass *= 1.5f;
+
+        if(asteroidType == 4 && mass >= 0.15f)
+        {
+            mass /= 1.75f;
+
+            if(mass < 0.1f)
+                mass = 0.1f;
+        }
+
+        Debug.Log("Тип: " + asteroidType + ", масса: " + mass);
 
         float totalMass = PlayerPrefs.GetFloat("totalMass", 0f);
         totalMass += mass;
