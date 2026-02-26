@@ -161,9 +161,9 @@ public class Credits : MonoBehaviour
                 PlayerPrefs.SetInt("StatusPercent", StatusInt);
             }
 
-            int NumCredits = PlayerPrefs.GetInt("NumCredits", 0);
+            int NumCredits = PlayerPrefs.GetInt("AllCredits", 0);
             NumCredits++;
-            PlayerPrefs.SetInt("NumCredits", NumCredits);
+            PlayerPrefs.SetInt("AllCredits", NumCredits);
 
             if(PlayerPrefs.GetInt("NumCredits", 0) >= 1)
             {

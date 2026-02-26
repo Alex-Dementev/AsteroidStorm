@@ -59,6 +59,19 @@ public class BuyModuls : MonoBehaviour
                 PlayerPrefs.SetInt("P4Buy", 1);
             if(NamePP == "P5" && PlayerPrefs.GetInt("P5Buy", 0) != 2)
                 PlayerPrefs.SetInt("P5Buy", 1);
+
+            if(NamePP == "P1" || NamePP == "P2" || NamePP == "P3" || NamePP == "P4" || NamePP == "P5")
+            {
+                int Num = PlayerPrefs.GetInt("AllBuyedPets", 0);
+                Num++;
+                PlayerPrefs.SetInt("AllBuyedPets", Num);
+            }
+            else
+            {
+                int Num = PlayerPrefs.GetInt("AllBuyedModuls", 0);
+                Num++;
+                PlayerPrefs.SetInt("AllBuyedModuls", Num);
+            }
         }
         else
             adfail.Play();

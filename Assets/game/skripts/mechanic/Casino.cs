@@ -5,17 +5,20 @@ using UnityEngine.UI;
 public class Casino : MonoBehaviour
 {
     public Slider cointocasinos;
-    public int coins;
-    public int allcoins;
+    private int coins;
+    private int allcoins;
     public Image lightwin;
     public Text coinstocasinot;
-    public int winnercoinsint;
+    private int winnercoinsint;
     public Text winnercoins;
-    public bool isstart;
+    private bool isstart;
     public Text x2text;
-    public int changesLeft;
-    public int start;
-    public bool win;
+    private int changesLeft;
+    private int start;
+    private bool win;
+    private Color targetColor;
+    private bool isStart;
+
 
     [Header("Звуки казино")]
     public AudioSource winSound;
@@ -24,7 +27,7 @@ public class Casino : MonoBehaviour
     void Start()
     {
         x2text.gameObject.SetActive(false);
-        lightwin.color = new Color(0.133f, 0.0f, 0.129f);
+        targetColor = new Color32(34, 0, 33, 255);
 
         // монеты выигрыша загружаем
         winnercoinsint = PlayerPrefs.GetInt("wincoins", 0);
@@ -36,6 +39,13 @@ public class Casino : MonoBehaviour
         cointocasinos.maxValue = PlayerPrefs.GetInt("coins", 0);
         if (!isstart)
             coinstocasinot.text = "Вложить: " + cointocasinos.value + " монет";
+
+        lightwin.color = new Color(
+        Mathf.MoveTowards(lightwin.color.r, targetColor.r, 8f * Time.deltaTime),
+        Mathf.MoveTowards(lightwin.color.g, targetColor.g, 8f * Time.deltaTime),
+        Mathf.MoveTowards(lightwin.color.b, targetColor.b, 8f * Time.deltaTime),
+        Mathf.MoveTowards(lightwin.color.a, targetColor.a, 8f * Time.deltaTime)
+        );
     }
 
     IEnumerator TestForWithDelay()
@@ -61,15 +71,15 @@ public class Casino : MonoBehaviour
         float roll = Random.Range(0f, 100f);
 
         if (roll <= 44f)
-            lightwin.color = Color.red;
+            targetColor = new Color32(255, 0, 0, 255);
         else if (roll <= 55f)
-            lightwin.color = Color.blue;
+            targetColor = new Color32(0, 0, 255, 255);
         else if (roll <= 67f)
-            lightwin.color = Color.yellow;
+            targetColor = new Color32(255, 255, 0, 255);
         else if (roll <= 99f)
-            lightwin.color = Color.green;
+            targetColor = new Color32(0, 255, 0, 255);
         else
-            lightwin.color = new Color(0.56f, 0f, 1f);
+            targetColor = new Color32(143, 0, 255, 255);
     }
 
     public void randomwin()
@@ -78,7 +88,7 @@ public class Casino : MonoBehaviour
 
         if (roll <= 44f)
         {
-            lightwin.color = Color.red;
+            targetColor = new Color32(255, 0, 0, 255);
             start = 0;
             x2text.gameObject.SetActive(true);
             x2text.text = "x0";
@@ -86,7 +96,7 @@ public class Casino : MonoBehaviour
         }
         else if (roll <= 55f)
         {
-            lightwin.color = Color.blue;
+            targetColor = new Color32(0, 0, 255, 255);
             start *= 3;
             x2text.gameObject.SetActive(true);
             x2text.text = "x3";
@@ -94,14 +104,14 @@ public class Casino : MonoBehaviour
         }
         else if (roll <= 67f)
         {
-            lightwin.color = Color.yellow;
+            targetColor = new Color32(255, 255, 0, 255);
             x2text.gameObject.SetActive(true);
             x2text.text = "x1";
             if (loseSound) loseSound.Play();
         }
         else if (roll <= 99f)
         {
-            lightwin.color = Color.green;
+            targetColor = new Color32(0, 255, 0, 255);
             start *= 2;
             x2text.gameObject.SetActive(true);
             x2text.text = "x2";
@@ -125,13 +135,18 @@ public class Casino : MonoBehaviour
 
         // запускаем сброс через 10 секунд
         StartCoroutine(ResetAfterDelay());
+        isStart = false;
     }
 
     IEnumerator ResetAfterDelay()
     {
         yield return new WaitForSeconds(10f);
-        lightwin.color = new Color(0.133f, 0f, 0.129f); // дефолтный цвет
-        x2text.gameObject.SetActive(false);            // убрать множитель
+
+        if(!isStart)
+        {
+            targetColor = new Color32(34, 0, 33, 255);
+            x2text.gameObject.SetActive(false);
+        }
     }
 
     public void startroll()
@@ -146,6 +161,13 @@ public class Casino : MonoBehaviour
             start = Mathf.RoundToInt(cointocasinos.value);
             StartCoroutine(TestForWithDelay());
             x2text.gameObject.SetActive(false);
+            int Num = PlayerPrefs.GetInt("Casino", 0);
+            Num++;
+            PlayerPrefs.SetInt("Casino", Num);
+
+            StopCoroutine("ResetAfterDelay");
+
+            isStart = true;
         }
     }
 
@@ -168,6 +190,13 @@ public class Casino : MonoBehaviour
             PlayerPrefs.Save();
 
             winnercoins.text = "0";
+
+            if(!isStart)
+            {
+                StopCoroutine("ResetAfterDelay");
+                targetColor = new Color32(34, 0, 33, 255);
+                x2text.gameObject.SetActive(false);
+            }
         }
     }
 }

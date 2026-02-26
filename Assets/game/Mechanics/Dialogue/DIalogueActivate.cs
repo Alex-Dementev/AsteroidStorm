@@ -376,7 +376,7 @@ public class DIalogueActivate : MonoBehaviour
         }
 
 
-        if(PlayerPrefs.GetInt("PetsApply", 0) == 0)
+        if(PlayerPrefs.GetInt("PetsBuyDialogue", 0) == 0)
         {
             if(PlayerPrefs.GetInt("P1Buy", 0) == 1)
             {
@@ -405,6 +405,11 @@ public class DIalogueActivate : MonoBehaviour
 
         if(PlayerPrefs.GetInt("MoonScanned", 0) == 1)
             DialoguePanels[13].SetActive(true);
+
+        if(PlayerPrefs.GetInt("CristalDialogue", 0) == 2)
+        {
+            DialoguePanels[15].SetActive(true);
+        }
     }
 
     public void ClickButton2()
@@ -568,6 +573,10 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[10].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[12].activeSelf)
             DialoguePanels[12].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[14].activeSelf)
+            DialoguePanels[14].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[15].activeSelf)
+            DialoguePanels[15].GetComponent<DialogueManager>().Close();
 
         if(DialoguePanels[7].activeSelf)
             DialoguePanels[7].GetComponent<DialogueManager>().Close();

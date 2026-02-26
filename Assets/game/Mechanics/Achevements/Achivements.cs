@@ -13,6 +13,9 @@ public class Achivements : MonoBehaviour
     {
         if(PlayerPrefs.GetInt("ach1", 0) == 2)
             Island.SetActive(true);
+
+        if(PlayerPrefs.GetInt("Ach5Level0", 0) == 4 && PlayerPrefs.GetInt("Ach5Level", 0) == 0)
+            PlayerPrefs.SetInt("Ach5Level", 1);
         
         if(PlayerPrefs.GetInt("ach2", 0) == 2)
         {

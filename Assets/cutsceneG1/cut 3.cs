@@ -23,7 +23,7 @@ public class cut3 : MonoBehaviour
     {
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
         ad1.volume = audios / 14f;
-        ad2.volume = audios / 1.25f;
+        ad2.volume = audios / 2f;
         ad3.volume = audios / 1.5f;
         ad4.volume = audios;
         Lightning.volume = audios;

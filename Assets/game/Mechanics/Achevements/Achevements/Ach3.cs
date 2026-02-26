@@ -26,9 +26,9 @@ public class Ach3 : MonoBehaviour
         }
         else if(PlayerPrefs.GetInt("Ach3Level", 0) >= 3)
         {
-            Level.text = "Пройденно";
+            Level.text = "Пройдено";
             Task.text = "";
-            Revard.text = "Вы получили питомец «Пятно»";
+            Revard.text = "Вы получили ракету «Гол»";
         }
     }
 }

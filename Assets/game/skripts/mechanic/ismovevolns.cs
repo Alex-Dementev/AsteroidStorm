@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
     [Header("Anomaly Settings")]
     private float anomalyDuration = 1.5f;      // сколько длится аномалия
     private float anomalyBetweenDelay = 0.85f; // пауза между аномалиями
-    private float anomalyOffsetAmount = 6.5f;    // сила смещения в юнитах
-    private float anomalySpeed = 40f;          // скорость смещения в юнитах/сек
+    private float anomalyOffsetAmount = 15f;    // сила смещения в юнитах
+    private float anomalySpeed = 30f;          // скорость смещения в юнитах/сек
 
     [Header("Delay Settings")]
     public float characterCheckDelay = 4f;

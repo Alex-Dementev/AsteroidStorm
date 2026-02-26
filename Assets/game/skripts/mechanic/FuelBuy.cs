@@ -108,6 +108,8 @@ public class FuelBuy : MonoBehaviour
 
                     int cans = PlayerPrefs.GetInt("fuel", 0) + 1;
                     PlayerPrefs.SetInt("fuel", cans);
+                    int allCans = PlayerPrefs.GetInt("AllTanks", 0) + 1;
+                    PlayerPrefs.SetInt("AllTanks", allCans);
 
                     plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 1;
                     PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);
@@ -134,6 +136,8 @@ public class FuelBuy : MonoBehaviour
 
                 int cans = PlayerPrefs.GetInt("fuel", 0) + 1;
                 PlayerPrefs.SetInt("fuel", cans);
+                int allCans = PlayerPrefs.GetInt("AllTanks", 0) + 1;
+                PlayerPrefs.SetInt("AllTanks", allCans);
 
                 plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 1;
                 PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);
@@ -165,6 +169,8 @@ public class FuelBuy : MonoBehaviour
 
                 int cans = PlayerPrefs.GetInt("fuel", 0) + 10;
                 PlayerPrefs.SetInt("fuel", cans);
+                int allCans = PlayerPrefs.GetInt("AllTanks", 0) + 10;
+                PlayerPrefs.SetInt("AllTanks", allCans);
 
                 plusFuelBuy = PlayerPrefs.GetInt("PermanentTaskFuel", 0) + 10;
                 PlayerPrefs.SetInt("PermanentTaskFuel", plusFuelBuy);

@@ -27,13 +27,13 @@ public class ScoreCounter : MonoBehaviour
     public bool isbtotask;
 
     public GameObject image;
-    public int Vp;
+    private int Vp;
     public Text scoreText;
     public Light l;
     public ParticleSystem ps;
     public ParticleSystem ps1;
     public ParticleSystem ps2;
-    public int score;
+    private int score;
     public AudioSource ad1;
     public AudioSource ad2;
     public AudioSource ad3;
@@ -54,38 +54,39 @@ public class ScoreCounter : MonoBehaviour
     public AudioSource ad18;
     public ObstacleSpawner o;
     public ObstaclearSpawner oar;
-    public int spawn;
-    public float function;
-    public float isdelay;
-    public float isdelay1;
+    private int spawn;
+    private float function;
+    private float isdelay;
+    private float isdelay1;
     private float isdelay2 = 1;
-    public float isminus;
-    public bool isbportal;
+    private float isminus;
+    private bool isbportal;
     private int ars = 300;
-    public int ach1;
-    public int ach2;
+    private int ach1;
+    private int ach2;
     public Animator achanim1;
     public Animator achanim2;
     public Animator anim;
-    public bool isbtonext;
-    public float isdelay3;
-    public bool isend;
-    public bool isend2;
-    public float isdelay4 = 2f;
+    private bool isbtonext;
+    private float isdelay3;
+    private bool isend;
+    private bool isend2;
+    private float isdelay4 = 2f;
     public Text text;
     public Animator anim2;
-    public bool is100;
-    public bool is825;
-    public bool is440;
-    public bool is250;
-    public bool is750;
-    public bool isstart;
+    private bool is100;
+    private bool is825;
+    private bool is440;
+    private bool is250;
+    private bool is750;
+    private bool isstart;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
     private float spawnVariance = 0.5f;
     private float audios = 0.5f;
-    public bool rocketfall;
+    private bool rocketfall;
+    private bool FirstPressBool;
 
     IEnumerator LoadParticlesWithDelay()
     {
@@ -309,7 +310,7 @@ public class ScoreCounter : MonoBehaviour
         }
 
 
-        if (isdelay1 <= -1)
+        if (isdelay1 <= -4)
         {
             image.SetActive(!image.activeSelf);
             isdelay1 = 99999;
@@ -412,6 +413,14 @@ public class ScoreCounter : MonoBehaviour
             ars += 150;
             oar.SpawnObstaclesar();
         }
+
+        if(PlayerPrefs.GetInt("Ach5Level", 0) == 1 && spawn >= 300 && !FirstPressBool)
+            PlayerPrefs.SetInt("Ach5Level", 2);
+    }
+
+    public void FirstPress()
+    {
+        FirstPressBool = true;
     }
 
     void ScheduleNextSpawn()

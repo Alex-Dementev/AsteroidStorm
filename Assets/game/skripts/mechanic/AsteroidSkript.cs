@@ -77,6 +77,26 @@ public class AsteroidSkript : MonoBehaviour
                 mass = 0.1f;
         }
 
+        if(mass >= 0.9f)
+        {
+            Metals = PlayerPrefs.GetInt("AllDestroyedAsteroids", 0);
+            Metals++;
+            PlayerPrefs.SetInt("AllDestroyedAsteroids", Metals);
+        }
+        else
+        {
+            Metals = PlayerPrefs.GetInt("AllUpperAsteroids", 0);
+            Metals++;
+            PlayerPrefs.SetInt("AllUpperAsteroids", Metals);
+        }
+
+        float AllMass = PlayerPrefs.GetFloat("AllAsteroidsMass", 0);
+        AllMass += mass;
+        PlayerPrefs.SetFloat("AllAsteroidsMass", AllMass);
+
+        if(PlayerPrefs.GetInt("Ach5Level", 0) == 1 && PlayerPrefs.GetInt("Ach5Level0", 0) == asteroidType - 1 && PlayerPrefs.GetInt("ach5", 0) == 2)
+            PlayerPrefs.SetInt("Ach5Level0", asteroidType);
+
         Debug.Log("Тип: " + asteroidType + ", масса: " + mass);
 
         float totalMass = PlayerPrefs.GetFloat("totalMass", 0f);
@@ -87,7 +107,7 @@ public class AsteroidSkript : MonoBehaviour
         Metals++;
         PlayerPrefs.SetInt("PermanentTaskMetalls", Metals);
 
-        if (mass <= 0.6f)
+        if (mass <= 0.9f)
             PlayerPrefs.SetInt("TruekMetalls", 1);
 
         string key = "";

@@ -32969,7 +32969,7 @@ MonoBehaviour:
   s4: {fileID: 1258039495}
   spawnDistance: 165
   rotationSpeedRange: 60
-  spawnHeightOffset: 0.5
+  spawnHeightOffset: 0.375
   xCalibrationOffset: -1
   manualCenterOffset: {x: 0, y: 0, z: 0}
   obstaclesCount: 1
@@ -56926,7 +56926,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
@@ -57220,7 +57220,7 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.015, y: 0.05, z: 0.015}
+  m_Size: {x: 2, y: 2, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1258039502
 MonoBehaviour:
@@ -57260,6 +57260,7 @@ MonoBehaviour:
   gravityFactor: 0.85
   calibrationOffset: {x: 0, y: 0, z: 0}
   zSpeed: 25
+  xOffset: 1
 --- !u!1 &1259312341
 GameObject:
   m_ObjectHideFlags: 0
@@ -78363,7 +78364,7 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.015, y: 0.05, z: 0.015}
+  m_Size: {x: 2, y: 2, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1582142841
 MonoBehaviour:
@@ -78467,6 +78468,7 @@ MonoBehaviour:
   gravityFactor: 0.85
   calibrationOffset: {x: 0, y: 0, z: 0}
   zSpeed: 25
+  xOffset: 1
 --- !u!114 &1582142843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79660,7 +79662,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
         type: 3}
@@ -79816,8 +79818,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.015, y: 0.05, z: 0.015}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.025, y: 0.07, z: 0.0175}
+  m_Center: {x: 0, y: 0.01, z: 0}
 --- !u!54 &1693977093
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79947,6 +79949,7 @@ MonoBehaviour:
   gravityFactor: 0.85
   calibrationOffset: {x: 0, y: 0, z: 0}
   zSpeed: 25
+  xOffset: 1
 --- !u!114 &1693977097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97388,7 +97391,7 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.015, y: 0.05, z: 0.015}
+  m_Size: {x: 0.025, y: 0.07, z: 0.0175}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1936518568
 Rigidbody:
@@ -97519,6 +97522,7 @@ MonoBehaviour:
   gravityFactor: 0.85
   calibrationOffset: {x: 0, y: 0, z: 0}
   zSpeed: 25
+  xOffset: 1
 --- !u!114 &1936518572
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class Ach2 : MonoBehaviour
         }
         else if(PlayerPrefs.GetInt("Ach2Level", 0) >= 3)
         {
-            Level.text = "Пройденно";
+            Level.text = "Пройдено";
             Task.text = "";
             Revard.text = "Вы получили питомец «Пятно»";
         }

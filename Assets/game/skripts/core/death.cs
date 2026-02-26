@@ -218,7 +218,7 @@ public class death : MonoBehaviour
         MinusFuel += PlayerPrefs.GetFloat("Genertors3Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("Genertors4Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("TurbinsFuel", 0);
-        MinusFuel /= 4;
+        MinusFuel *= 10;
 
         PlayerPrefs.SetInt("FuelZero", 0);
 
@@ -293,14 +293,9 @@ public class death : MonoBehaviour
                 PlayerPrefs.SetInt("Ach2Level", 2);
         }
 
-
-        IsDelayFuel -= Time.deltaTime;
+        float MinusFuelDelta = MinusFuel * Time.deltaTime;
+        fuel -= MinusFuelDelta;
         SliderFuel.value = fuel;
-        if(IsDelayFuel <= 0)
-        {
-            IsDelayFuel = 0.025f;
-            fuel -= MinusFuel;
-        }
 
         if (b == true)
         {
@@ -570,6 +565,8 @@ public class death : MonoBehaviour
                     fineText.color = new Color(0.698f, 0.0f, 0.608f);
                     lifeLostSound.Play();
                     live -= 1;
+                    int AllLives = PlayerPrefs.GetInt("AllLives", 0) + 1;
+                    PlayerPrefs.SetInt("AllLives", AllLives);
                     Distortion.PlayAlphaPulse();
                     livet.text = live.ToString();
                     PlayerPrefs.SetInt("live", live);
@@ -648,6 +645,8 @@ public class death : MonoBehaviour
                         losePanel.SetActive(true);
                         anim1.CrossFade("anim11", 0.1f);
                         live -= 1;
+                        int AllLives2 = PlayerPrefs.GetInt("AllLives", 0) + 1;
+                        PlayerPrefs.SetInt("AllLives", AllLives2);
                         livet.text = live.ToString();
                         PlayerPrefs.SetInt("live", live);
                         energy.End();

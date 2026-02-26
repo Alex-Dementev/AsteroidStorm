@@ -2,12 +2,9 @@ using UnityEngine;
 
 public class ChangeMusicButton : MonoBehaviour
 {
+    public MusicManager mm;
     public void OnClickChangeMusic()
     {
-        MusicManager mm = FindObjectOfType<MusicManager>();
-        if (mm != null)
-        {
-            mm.NextMusicManual();
-        }
+        mm.NextMusicManual();
     }
 }
