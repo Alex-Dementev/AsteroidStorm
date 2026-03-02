@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public float smoothFactor = 0.1f;
     public Vector3 calibrationOffset = Vector3.zero;
 
+    [Header("Audio Sources")]
+    public AudioSource ad;
+
     private float currentX = 0f;
     private float targetX = 0f;
 
@@ -113,6 +116,7 @@ public class GameManager : MonoBehaviour
                 yield break;
 
             textAnimator.Play("anim15 1");
+            ad.Play();
             c.TriggerShake(5, 0.06f);
 
             for (int i = 0; i < 6; i++)

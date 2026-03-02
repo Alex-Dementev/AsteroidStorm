@@ -69,6 +69,7 @@ public class DoubleTapHandler : MonoBehaviour
     public Light l;
     public bool is80;
     public AudioSource ad;
+    public AudioSource ad2;
     public Animator anim1;
     public int cb;
     public bool isactivateicon;
@@ -99,6 +100,7 @@ public class DoubleTapHandler : MonoBehaviour
 
     public GameObject prefab;
     public Transform spawnTransform;
+    private bool ProjectileStarted;
 
     private Coroutine waitSecondSwipeCoroutine;
 
@@ -131,11 +133,20 @@ public class DoubleTapHandler : MonoBehaviour
         costAbility3 = PlayerPrefs.GetInt("ShieldEnergy");
         costAbility4 = PlayerPrefs.GetInt("ProjectileEnergy");
 
-        if (PlayerPrefs.GetInt("audio") == 0) ad.enabled = true;
-        else ad.enabled = false;
+        if (PlayerPrefs.GetInt("audio") == 0)
+        {
+            ad.enabled = true;
+            ad2.enabled = true;
+        }
+        else
+        {
+            ad.enabled = false;
+            ad2.enabled = false;
+        }
 
         float audios = PlayerPrefs.GetFloat("audios", 0.5f);
         ad.volume = audios;
+        ad2.volume = audios;
 
         if (PlayerPrefs.GetInt("partic") == 0)
             ps.Stop();
@@ -153,6 +164,17 @@ public class DoubleTapHandler : MonoBehaviour
         s2.value = otkat2;
         s3.value = otkat3;
         s4.value = otkat4;
+
+        if(ad2.time >= 2.1f && ProjectileStarted)
+        {
+            ProjectileSpawn();
+            ProjectileStarted = false;
+        }
+        else if(!ad2.enabled && ProjectileStarted)
+        {
+            Invoke("ProjectileSpawn", 2.1f);
+            ProjectileStarted = false;
+        }
 
         isdelay1 -= Time.deltaTime;
         isdelayShield -= Time.deltaTime;
@@ -180,6 +202,11 @@ public class DoubleTapHandler : MonoBehaviour
         HandleShield();
         HandleBoost();
         DetectTouchesAndSwipes();
+    }
+
+    public void ProjectileSpawn()
+    {
+        Instantiate(prefab, spawnTransform.position, prefab.transform.rotation);
     }
 
     // ======================================================
@@ -487,11 +514,12 @@ public class DoubleTapHandler : MonoBehaviour
             abilityt++;
             PlayerPrefs.SetInt("abilityt", abilityt);
             otkat4 = isotkat4;
-            Instantiate(prefab, spawnTransform.position, prefab.transform.rotation);
             anim.CrossFade("blue", 0.1f);
             s4.maxValue = isotkat4;
             effect.CrossFade("slide lr", 0.1f);
             AttackAS.Play();
+            ad2.Play();
+            ProjectileStarted = true;
 
             if (PlayerPrefs.GetInt("vibration") == 0)
             {

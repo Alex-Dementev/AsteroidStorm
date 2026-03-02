@@ -52,6 +52,7 @@ public class ScoreCounter : MonoBehaviour
     public AudioSource ad16;
     public AudioSource ad17;
     public AudioSource ad18;
+    public AudioSource ad19;
     public ObstacleSpawner o;
     public ObstaclearSpawner oar;
     private int spawn;
@@ -215,6 +216,7 @@ public class ScoreCounter : MonoBehaviour
         ad16.volume = audios;
         ad17.volume = audios;
         ad18.volume = audios;
+        ad19.volume = audios;
 
 
         if ((int)(player.position.z / 3) >= 1150 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
@@ -385,6 +387,7 @@ public class ScoreCounter : MonoBehaviour
             ad16.enabled = true;
             ad17.enabled = true;
             ad18.enabled = true;
+            ad19.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -406,6 +409,7 @@ public class ScoreCounter : MonoBehaviour
             ad16.enabled = false;
             ad17.enabled = false;
             ad18.enabled = false;
+            ad19.enabled = false;
         }
 
         if (spawn >= ars)
