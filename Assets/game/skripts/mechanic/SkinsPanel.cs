@@ -12,6 +12,7 @@ public class SkinsPanel : MonoBehaviour
 
     public Material mat;  // 🔹 Первый материал
     public Material mat2; // 🔹 Второй материал
+    public Renderer Bottle;
 
     public Slider R;
     public Slider G;
@@ -55,6 +56,7 @@ public class SkinsPanel : MonoBehaviour
         ps2.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", c);
         ps3.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", c);
         ps4.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", c);
+        Bottle.material.SetColor("_Color", c);
 
         // 🔹 Применяем цвет к первому материалу
         ApplyColorToMaterial(mat, c);

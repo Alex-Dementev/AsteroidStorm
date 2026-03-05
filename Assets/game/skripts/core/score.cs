@@ -21,6 +21,7 @@ public class ScoreCounter : MonoBehaviour
     public GameObject s2;
     public GameObject s3;
     public GameObject s4;
+    public GameObject s5;
 
     public Animator anim1;
 
@@ -93,7 +94,6 @@ public class ScoreCounter : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         ps1.Play();
-        Debug.Log("ps1 запущен!");
     }
 
 
@@ -133,6 +133,7 @@ public class ScoreCounter : MonoBehaviour
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
         else if (s4 && s4.activeInHierarchy) player = s4.transform;
+        else if (s5 && s5.activeInHierarchy) player = s5.transform;
 
         ach1 = PlayerPrefs.GetInt("ach2", 0);
         ach2 = PlayerPrefs.GetInt("ach1", 0);
@@ -164,6 +165,7 @@ public class ScoreCounter : MonoBehaviour
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
         else if (s4 && s4.activeInHierarchy) player = s4.transform;
+        else if (s5 && s5.activeInHierarchy) player = s5.transform;
 
         if (player == null) return;
 
@@ -230,7 +232,6 @@ public class ScoreCounter : MonoBehaviour
         if ((int)(player.position.z / 3) >= 1145 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
             PlayerPrefs.SetInt("GoToFinalGlav", 1);
-            Debug.Log("Подготовка перехода: " + PlayerPrefs.GetInt("GoToFinalGlav", 0));
         }
         if ((int)(player.position.z / 3) >= 100 && !is100)
         {
@@ -412,9 +413,9 @@ public class ScoreCounter : MonoBehaviour
             ad19.enabled = false;
         }
 
-        if (spawn >= ars)
+        if (spawn >= ars && spawn <= 950)
         {
-            ars += 150;
+            ars += 130;
             oar.SpawnObstaclesar();
         }
 
@@ -505,7 +506,6 @@ public class ScoreCounter : MonoBehaviour
         if (PlayerPrefs.GetInt("vibration") == 0)
         {
             Vibration.Vibrate(80, 20);
-            Debug.Log("sds");
         }
     }
 

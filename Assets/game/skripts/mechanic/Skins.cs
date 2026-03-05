@@ -9,6 +9,7 @@ public class Skins : MonoBehaviour
     public GameObject s2;
     public GameObject s3;
     public GameObject s4;
+    public GameObject s5;
 
     // Названия и описания для каждой ракеты
     public Text s1Name;
@@ -19,6 +20,8 @@ public class Skins : MonoBehaviour
     public Text s3Desc;
     public Text s4Name;
     public Text s4Desc;
+    public Text s5Name;
+    public Text s5Desc;
 
     public float isdelay = 2;
     public Animator anim;
@@ -28,10 +31,13 @@ public class Skins : MonoBehaviour
     void Update()
     {
         isdelay -= Time.deltaTime;
+        PlayerPrefs.SetInt("Skin1", 1);
+        PlayerPrefs.SetInt("Skin2", 1);
+        PlayerPrefs.SetInt("Skin3", 1);
 
-        int SkinsCount = PlayerPrefs.GetInt("Skin1", 0) + PlayerPrefs.GetInt("Skin2", 0) + PlayerPrefs.GetInt("Skin3", 0) + PlayerPrefs.GetInt("Skin4", 0);
-        
-        if(SkinsCount >= 2 && PlayerPrefs.GetInt("SkinsDialogue", 0) == 1)
+        int SkinsCount = PlayerPrefs.GetInt("Skin1", 0) + PlayerPrefs.GetInt("Skin2", 0) + PlayerPrefs.GetInt("Skin3", 0) + PlayerPrefs.GetInt("Skin5", 0);
+
+        if(SkinsCount >= 1 && PlayerPrefs.GetInt("SkinsDialogue", 0) == 1)
         {
             PlayerPrefs.SetInt("SkinsDialogue", 2);
         }
@@ -64,9 +70,9 @@ public class Skins : MonoBehaviour
             HideAll();
 
             // Перебираем доступные скины
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
-                currentSkin = (currentSkin + 1) % 4;
+                currentSkin = (currentSkin + 1) % 5;
 
                 if (currentSkin == 0 && PlayerPrefs.GetInt("Skin1", 0) == 1 && s1)
                 {
@@ -88,6 +94,11 @@ public class Skins : MonoBehaviour
                     ActivateSkin(s4, s4Name, s4Desc, 3);
                     return;
                 }
+                else if (currentSkin == 4 && PlayerPrefs.GetInt("Skin5", 0) == 1 && s5)
+                {
+                    ActivateSkin(s5, s5Name, s5Desc, 4);
+                    return;
+                }
             }
         }
     }
@@ -104,6 +115,8 @@ public class Skins : MonoBehaviour
             ActivateSkin(s3, s3Name, s3Desc, 2);
         else if (index == 3 && s4)
             ActivateSkin(s4, s4Name, s4Desc, 3);
+        else if (index == 4 && PlayerPrefs.GetInt("Skin5", 0) == 1 && s5)
+            ActivateSkin(s5, s5Name, s5Desc, 4);
     }
 
     private void HideAll()
@@ -113,6 +126,7 @@ public class Skins : MonoBehaviour
         if (s2) SetVisual(s2, false);
         if (s3) SetVisual(s3, false);
         if (s4) SetVisual(s4, false);
+        if (s5) SetVisual(s5, false);
 
         // Выключаем все тексты
         if (s1Name) s1Name.gameObject.SetActive(false);
@@ -123,6 +137,8 @@ public class Skins : MonoBehaviour
         if (s3Desc) s3Desc.gameObject.SetActive(false);
         if (s4Name) s4Name.gameObject.SetActive(false);
         if (s4Desc) s4Desc.gameObject.SetActive(false);
+        if (s5Name) s5Name.gameObject.SetActive(false);
+        if (s5Desc) s5Desc.gameObject.SetActive(false);
     }
 
     private void ActivateSkin(GameObject skinObj, Text nameText, Text descText, int skinIndex)

@@ -9,6 +9,7 @@ public class CameraFollowAndShake : MonoBehaviour
     public GameObject s2;
     public GameObject s3;
     public GameObject s4;
+    public GameObject s5;
 
     [SerializeField] private float baseSmoothSpeed = 0.125f;
     [SerializeField] private float speedMultiplier = 0.01f;
@@ -57,6 +58,7 @@ public class CameraFollowAndShake : MonoBehaviour
         else if (s2 && s2.activeInHierarchy) target = s2.transform;
         else if (s3 && s3.activeInHierarchy) target = s3.transform;
         else if (s4 && s4.activeInHierarchy) target = s4.transform;
+        else if (s5 && s5.activeInHierarchy) target = s5.transform;
     }
 
     public IEnumerator Shake(float duration, float magnitude)

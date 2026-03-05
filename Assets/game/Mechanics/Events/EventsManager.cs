@@ -45,6 +45,12 @@ public class EventsManager : MonoBehaviour
             PanelText.text = "С днем рождения Argonaft228!";
             ButtonText.text = "Поздравить";
         }
+        if (System.DateTime.Now.Month == 10 && System.DateTime.Now.Day == 21 && System.DateTime.Now.Year > PlayerPrefs.GetInt("Is4Event", 0))
+        {
+            Panel.SetActive(true);
+            PanelText.text = "С днем рождения DemonAlex!";
+            ButtonText.text = "Поздравить";
+        }
 
         if (System.DateTime.Now.Month == 4 && System.DateTime.Now.Day == 12 && System.DateTime.Now.Year > PlayerPrefs.GetInt("Is4Event", 0))
         {
@@ -69,6 +75,10 @@ public class EventsManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("Is3Event", System.DateTime.Now.Year);
         }
+        if (System.DateTime.Now.Month == 10 && System.DateTime.Now.Day == 21)
+        {
+            PlayerPrefs.SetInt("Is4Event", System.DateTime.Now.Year);
+        }
 
         if (System.DateTime.Now.Month == 4 && System.DateTime.Now.Day == 12)
         {
@@ -84,10 +94,18 @@ public class EventsManager : MonoBehaviour
         PanelAnim.Play("End");
     }
 
-    void Start()
+    void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void Start()
+    {
         StartCoroutine(HalfSecondDelay());
     }
 
@@ -100,11 +118,13 @@ public class EventsManager : MonoBehaviour
     {
         int month = System.DateTime.Now.Month;
         int day = System.DateTime.Now.Day;
+        Debug.Log("Переход");
 
         GameObject go1;
         GameObject go2;
         GameObject go3;
         GameObject go4;
+        GameObject go5;
 
         // 23 февраля
         if (!(month == 2 && day == 23))
@@ -113,11 +133,13 @@ public class EventsManager : MonoBehaviour
             go2 = GameObject.Find("M21");
             go3 = GameObject.Find("M31");
             go4 = GameObject.Find("M41");
+            go5 = GameObject.Find("M51");
 
             if (go1 != null) go1.SetActive(false);
             if (go2 != null) go2.SetActive(false);
             if (go3 != null) go3.SetActive(false);
             if (go4 != null) go4.SetActive(false);
+            if (go5 != null) go5.SetActive(false);
         }
 
         // 8 марта
@@ -127,25 +149,29 @@ public class EventsManager : MonoBehaviour
             go2 = GameObject.Find("M22");
             go3 = GameObject.Find("M32");
             go4 = GameObject.Find("M42");
+            go5 = GameObject.Find("M52");
 
             if (go1 != null) go1.SetActive(false);
             if (go2 != null) go2.SetActive(false);
             if (go3 != null) go3.SetActive(false);
             if (go4 != null) go4.SetActive(false);
+            if (go5 != null) go5.SetActive(false);
         }
 
         // 30 марта
-        if (!(month == 3 && day == 30))
+        if (!(month == 3 && day == 30) && !(month == 10 && day == 21))
         {
             go1 = GameObject.Find("M15");
             go2 = GameObject.Find("M25");
             go3 = GameObject.Find("M35");
             go4 = GameObject.Find("M45");
+            go5 = GameObject.Find("M55");
 
             if (go1 != null) go1.SetActive(false);
             if (go2 != null) go2.SetActive(false);
             if (go3 != null) go3.SetActive(false);
             if (go4 != null) go4.SetActive(false);
+            if (go5 != null) go5.SetActive(false);
         }
 
         // 31 октября
@@ -155,11 +181,13 @@ public class EventsManager : MonoBehaviour
             go2 = GameObject.Find("M26");
             go3 = GameObject.Find("M36");
             go4 = GameObject.Find("M46");
+            go5 = GameObject.Find("M56");
 
             if (go1 != null) go1.SetActive(false);
             if (go2 != null) go2.SetActive(false);
             if (go3 != null) go3.SetActive(false);
             if (go4 != null) go4.SetActive(false);
+            if (go5 != null) go5.SetActive(false);
         }
 
         // 1–3 ноября
@@ -169,11 +197,13 @@ public class EventsManager : MonoBehaviour
             go2 = GameObject.Find("M23");
             go3 = GameObject.Find("M33");
             go4 = GameObject.Find("M43");
+            go5 = GameObject.Find("M53");
 
             if (go1 != null) go1.SetActive(false);
             if (go2 != null) go2.SetActive(false);
             if (go3 != null) go3.SetActive(false);
             if (go4 != null) go4.SetActive(false);
+            if (go5 != null) go5.SetActive(false);
         }
 
         // Новый год (25 декабря – 7 января)
@@ -183,17 +213,19 @@ public class EventsManager : MonoBehaviour
             go2 = GameObject.Find("M24");
             go3 = GameObject.Find("M34");
             go4 = GameObject.Find("M44");
+            go5 = GameObject.Find("M54");
 
             if (go1 != null) go1.SetActive(false);
             if (go2 != null) go2.SetActive(false);
             if (go3 != null) go3.SetActive(false);
             if (go4 != null) go4.SetActive(false);
+            if (go5 != null) go5.SetActive(false);
         }
     }
 
     IEnumerator HalfSecondDelay()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.05f);
 
         ActivateObjects();
     }

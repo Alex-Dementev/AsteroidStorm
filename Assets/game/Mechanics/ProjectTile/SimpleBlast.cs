@@ -17,15 +17,18 @@ public class SimpleBlast : MonoBehaviour
         {
             if (hit.CompareTag("obstacle") && !hitAlready.Contains(hit) || hit.CompareTag("obstraclemini") && !hitAlready.Contains(hit))
             {
-                hitAlready.Add(hit);
-
-                AsteroidSkript asteroid = hit.GetComponent<AsteroidSkript>();
-                if (asteroid != null)
+                if(!hit.name.StartsWith("Terrain"))
                 {
-                    asteroid.asvoid();
-                }
+                    hitAlready.Add(hit);
 
-                Destroy(hit.gameObject);
+                    AsteroidSkript asteroid = hit.GetComponent<AsteroidSkript>();
+                    if (asteroid != null)
+                    {
+                        asteroid.asvoid();
+                    }
+
+                    Destroy(hit.gameObject);
+                }
             }
         }
 

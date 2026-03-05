@@ -10,6 +10,8 @@ public class UpdateModuls : MonoBehaviour
     // ===== КОЛОНКА 3 =====
     public GameObject[] common3, rare3, epic3, legendary3, ultra3;
 
+    private int ultra5Count;
+
     void Start()
     {
         // выключаем всё перед загрузкой
@@ -84,11 +86,12 @@ public class UpdateModuls : MonoBehaviour
 
     public void UpdateAllColumns()
     {
+        ultra5Count = 0;
+
         RefreshColumn(1, common1, rare1, epic1, legendary1, ultra1);
         RefreshColumn(2, common2, rare2, epic2, legendary2, ultra2);
         RefreshColumn(3, common3, rare3, epic3, legendary3, ultra3);
 
-        // ===== ДОБАВЛЕНО ПО ТВОЕЙ ПРОСЬБЕ =====
         PlayerPrefs.SetInt("ResetBuyModuls", 1);
         StartCoroutine(DelayOneSecond());
     }
@@ -108,11 +111,23 @@ public class UpdateModuls : MonoBehaviour
         else { rarity = 4; array = ultra; }
 
         int index = 0;
-        if (array.Length > 0)
+
+        index = Random.Range(0, array.Length);
+
+        if (rarity == 4)
         {
-            index = Random.Range(0, array.Length);
-            array[index].SetActive(true);
+            while ((index == 5 && PlayerPrefs.GetInt("Skin5", 0) == 1) || (index == 5 && ultra5Count >= 1))
+            {
+                index = Random.Range(0, array.Length);
+            }
+
+            if (index == 5)
+            {
+                ultra5Count++;
+            }
         }
+
+        array[index].SetActive(true);
 
         PlayerPrefs.SetInt($"shop_col{id}_rarity", rarity);
         PlayerPrefs.SetInt($"shop_col{id}_index", index);

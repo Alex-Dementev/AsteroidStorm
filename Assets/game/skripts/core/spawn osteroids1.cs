@@ -8,6 +8,7 @@ public class ObstaclearSpawner : MonoBehaviour
     public Transform s2;
     public Transform s3;
     public Transform s4;
+    public Transform s5;
 
     private Transform activePlayer;
 
@@ -30,6 +31,7 @@ public class ObstaclearSpawner : MonoBehaviour
         else if (s2.gameObject.activeInHierarchy) activePlayer = s2;
         else if (s3.gameObject.activeInHierarchy) activePlayer = s3;
         else if (s4.gameObject.activeInHierarchy) activePlayer = s4;
+        else if (s5.gameObject.activeInHierarchy) activePlayer = s5;
     }
 
     public void SpawnObstaclesar()

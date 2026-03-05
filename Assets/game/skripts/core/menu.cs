@@ -14,10 +14,12 @@ public class menu : MonoBehaviour
     public Text n2;
     public Text n3;
     public Text n4;
+    public Text n5;
     public Text d1;
     public Text d2;
     public Text d3;
     public Text d4;
+    public Text d5;
     public float sliderlightfloat;
     public Slider lightgameplay;
     private int one;
@@ -27,11 +29,6 @@ public class menu : MonoBehaviour
     public Image but1;
     public Image but2;
     public Image but3;
-    public Image controller;
-    public Image controller2;
-    public Image controller3;
-    public Image controller4;
-    public Image controller5;
     public GameObject butfall;
     public GameObject panel1;
     public GameObject panel2;
@@ -191,6 +188,7 @@ public class menu : MonoBehaviour
     public RocketBehavior move2;
     public RocketBehavior move3;
     public RocketBehavior move4;
+    public RocketBehavior move5;
 
 
 
@@ -345,10 +343,12 @@ public class menu : MonoBehaviour
             n2.text = "Ёлки-Палки 3000";
             n3.text = "Лунный Порношутер";
             n4.text = "Обычная Ракета";
+            n4.text = "Не бутылка";
             d1.text = "Её выгнали за импостерство, и теперь она просто летает по космосу, подозревая всех вокруг.";
             d2.text = "Нового года не будет, Дед Мороз принял… обернись.";
             d3.text = "Иногда путает Луну с гиганским порно-партнёром и думает, что астероиды — это просто реквизит для свиданий.";
             d4.text = "Эта ракета слишком обычная, чтобы быть необычной, и слишком необычная, чтобы быть скучной… поэтому она просто обычная.";
+            d5.text = "Она клянётся, что не бутылка. Просто цилиндрическая, прозрачная, с подозрительно удобной крышкой и тяжёлым прошлым. В космосе её уважают… или открывают.";
             
             butfall.SetActive(true);
             PlayerPrefs.SetInt("fall", 1);
@@ -546,11 +546,12 @@ public class menu : MonoBehaviour
         n2.text = "Ёлки-Палки";
         n3.text = "Лунолет";
         n4.text = "Ракета";
+        n4.text = "Бутылка";
         d1.text = "Постоянно подозревает все астероиды в саботаже, а её главный двигатель работает на чистом «эх, импостор, ну ты и…». Красная, быстрая и всегда готова нажать на кнопку. просто сделай чтоб было норм";
         d2.text = "Эта ракета — как новогоднее чудо: горит, летит и иногда взрывается так, что Санта нервно курит в сторонке. Игрушки держатся на честном слове, гирлянда питается от ядерного реактора, а запах хвои — это, возможно, дым.";
         d3.text = "Долетел до Луны, плюнул в кратер и вернулся. Теперь уверен, что Земля круглая, а сыр всё-таки твёрдый.";
-        d4.text = "Обычная ракета для необычных ситуаций. Летит прямо… пока не решит, что прямо — это в стену.";
-        
+        d4.text = "Обычная ракета для необычных ситуаций. Летит прямо… пока не решит, что прямо — это в астероид.";
+        d5.text = "Она утверждает, что ракета. Просто без двигателя, без крыльев и с крышкой. Совпадение? Не думаю.";
     }
 
 
@@ -728,6 +729,7 @@ public class menu : MonoBehaviour
                 move2.LaunchRocket();
                 move3.LaunchRocket();
                 move4.LaunchRocket();
+                move5.LaunchRocket();
 
                 if(PlayerPrefs.GetInt("yousurwive", 0) == 0)
                 {

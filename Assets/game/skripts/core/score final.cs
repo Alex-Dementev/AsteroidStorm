@@ -20,6 +20,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public GameObject s2;
     public GameObject s3;
     public GameObject s4;
+    public GameObject s5;
     public Animator anim1;
     public GameObject image;
     public int Vp;
@@ -118,6 +119,7 @@ public class ScoreCounterFinal : MonoBehaviour
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
         else if (s4 && s4.activeInHierarchy) player = s4.transform;
+        else if (s5 && s5.activeInHierarchy) player = s5.transform;
 
         Vp = PlayerPrefs.GetInt("maxParticles", 31);
         var main = ps1.main;
@@ -140,7 +142,7 @@ public class ScoreCounterFinal : MonoBehaviour
         if (s1 && s1.activeInHierarchy) player = s1.transform;
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
-        else if (s4 && s4.activeInHierarchy) player = s4.transform;
+        else if (s5 && s5.activeInHierarchy) player = s5.transform;
 
         if (player == null) return;
 

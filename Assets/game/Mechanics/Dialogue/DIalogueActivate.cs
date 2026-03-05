@@ -381,26 +381,34 @@ public class DIalogueActivate : MonoBehaviour
             if(PlayerPrefs.GetInt("P1Buy", 0) == 1)
             {
                 UIPanels[40].SetActive(true);
+                UILocked[4].SetActive(false);
             }
             if(PlayerPrefs.GetInt("P2Buy", 0) == 1)
             {
                 UIPanels[40].SetActive(true);
+                UILocked[4].SetActive(false);
             }
             if(PlayerPrefs.GetInt("P3Buy", 0) == 1)
             {
                 UIPanels[40].SetActive(true);
+                UILocked[4].SetActive(false);
             }
             if(PlayerPrefs.GetInt("P4Buy", 0) == 1)
             {
                 UIPanels[40].SetActive(true);
+                UILocked[4].SetActive(false);
             }
             if(PlayerPrefs.GetInt("P5Buy", 0) == 1)
             {
                 UIPanels[40].SetActive(true);
+                UILocked[4].SetActive(false);
             }
         }
         else
+        {
             UIPanels[40].SetActive(true);
+            UILocked[4].SetActive(false);
+        }
 
 
         if(PlayerPrefs.GetInt("MoonScanned", 0) == 1)
@@ -409,6 +417,13 @@ public class DIalogueActivate : MonoBehaviour
         if(PlayerPrefs.GetInt("CristalDialogue", 0) == 2)
         {
             DialoguePanels[15].SetActive(true);
+        }
+
+        if (PlayerPrefs.GetInt("SkinsDialogue", 0) >= 1)
+        {
+            UIPanels[38].SetActive(true);
+            UIPanels[39].SetActive(true);
+            UILocked[3].SetActive(false);
         }
     }
 
@@ -596,12 +611,10 @@ public class DIalogueActivate : MonoBehaviour
         if(DialoguePanels[8].activeSelf)
         {
             DialoguePanels[8].GetComponent<DialogueManager>().Close();
-            PlayerPrefs.SetInt("SkinsDialogue", 1);
         }
         if(DialoguePanels[9].activeSelf)
         {
             DialoguePanels[9].GetComponent<DialogueManager>().Close();
-            PlayerPrefs.SetInt("SkinsDialogue", 3);
         }
 
         if(PlayerPrefs.GetInt("CreditsDialogue", 0) == 1)

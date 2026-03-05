@@ -9,6 +9,7 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject s2;
     public GameObject s3;
     public GameObject s4;
+    public GameObject s5;
 
     private Transform player;
 
@@ -48,6 +49,7 @@ public class ObstacleSpawner : MonoBehaviour
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
         else if (s4 && s4.activeInHierarchy) player = s4.transform;
+        else if (s5 && s5.activeInHierarchy) player = s5.transform;
     }
 
     public void SpawnObstacles()

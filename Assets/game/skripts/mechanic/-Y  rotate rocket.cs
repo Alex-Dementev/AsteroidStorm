@@ -44,7 +44,7 @@ public class RotateRocketA : MonoBehaviour
         else if (Input.GetMouseButton(0) && touching)
         {
             Vector2 current = Input.mousePosition;
-            swipeSpeedX = (current.x - lastPos.x) / Time.deltaTime;
+            swipeSpeedX = (current.x - lastPos.x) / Time.deltaTime * -1;
             lastPos = current;
             holdTimer = holdTime;
         }
@@ -64,7 +64,7 @@ public class RotateRocketA : MonoBehaviour
             }
             else if (t.phase == TouchPhase.Moved && touching)
             {
-                swipeSpeedX = t.deltaPosition.x / Time.deltaTime;
+                swipeSpeedX = t.deltaPosition.x / Time.deltaTime * -1;
                 holdTimer = holdTime;
             }
             else if (t.phase == TouchPhase.Ended)
