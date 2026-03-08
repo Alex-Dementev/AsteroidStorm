@@ -185,6 +185,7 @@ public class SmartCreditsTimer : MonoBehaviour
                 PlayerPrefs.SetInt(TimerKey, 2); // завершён
                 finishedSaved = true;
                 PlayerPrefs.Save();
+                PlayerPrefs.SetInt("CreditsNotificationSeconds", 0);
             }
 
             PlayerPrefs.SetString(textKey, "0д 0ч 0м");
@@ -207,6 +208,9 @@ public class SmartCreditsTimer : MonoBehaviour
 
         PlayerPrefs.SetString(textKey, text);
         PlayerPrefs.SetInt(secondsLeftKey, (int)left.TotalSeconds);
+
+        PlayerPrefs.SetInt("CreditsNotificationSeconds", (int)left.TotalSeconds);
+
         PlayerPrefs.Save();
     }
 

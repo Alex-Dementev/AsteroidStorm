@@ -396,7 +396,7 @@ public class death : MonoBehaviour
     public void restart()
     {
         image.SetActive(!image.activeSelf);
-        anim.CrossFade("anim10 1", 0.1f);
+        anim.Play("anim10 1");
 
         float FuelAch = SliderFuel.maxValue - 15;
         if(PlayerPrefs.GetInt("Ach2Level", 0) == 2 && fuel >= FuelAch)
@@ -407,13 +407,13 @@ public class death : MonoBehaviour
     public void restart2()
     {
         image.SetActive(!image.activeSelf);
-        anim.CrossFade("anim10 2", 0.1f);
+        anim.Play("anim10 2");
     }
 
     public void restart3()
     {
         image.SetActive(!image.activeSelf);
-        anim.CrossFade("anim10 3", 0.1f);
+        anim.Play("anim10 3");
     }
 
     [SerializeField] private Text fineText;

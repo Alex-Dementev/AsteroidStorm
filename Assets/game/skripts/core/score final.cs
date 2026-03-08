@@ -432,7 +432,7 @@ public class ScoreCounterFinal : MonoBehaviour
     }
     
 
-          public void activateHomePanel()
+    public void activateHomePanel()
     {
         if (isHomePanel == false)
         {

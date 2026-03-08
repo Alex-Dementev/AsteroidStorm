@@ -23,6 +23,12 @@ public class Wobble : MonoBehaviour
     void Start()
     {
         rend = GetComponent<Renderer>();
+
+        float iR = PlayerPrefs.GetFloat("Red", 0.85f);
+        float iG = PlayerPrefs.GetFloat("Green", 0);
+        float iB = PlayerPrefs.GetFloat("Blue", 0);
+
+        rend.material.SetColor("_Color", new Color(iR, iG, iB));
     }
     private void Update()
     {

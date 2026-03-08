@@ -104,10 +104,10 @@ public class UpdateModuls : MonoBehaviour
         int rarity;
         GameObject[] array;
 
-        if (roll < 25) { rarity = 0; array = common; }
+        if (roll < 30) { rarity = 0; array = common; }
         else if (roll < 60) { rarity = 1; array = rare; }
-        else if (roll < 85) { rarity = 2; array = epic; }
-        else if (roll < 97) { rarity = 3; array = legendary; }
+        else if (roll < 80) { rarity = 2; array = epic; }
+        else if (roll < 93) { rarity = 3; array = legendary; }
         else { rarity = 4; array = ultra; }
 
         int index = 0;

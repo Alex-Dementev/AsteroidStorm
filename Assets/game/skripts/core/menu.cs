@@ -673,7 +673,7 @@ public class menu : MonoBehaviour
     public void ViewProlog()
     {
         image.SetActive(true);
-        anim.CrossFade("anim9 2", 0.1f);
+        anim.Play("anim9 2");
     }
 
 
@@ -688,7 +688,7 @@ public class menu : MonoBehaviour
     public void Aftors()
     {
         image.SetActive(true);
-        anim.CrossFade("anim9 0 0", 0.1f);
+        anim.Play("anim9 0 0");
     }
 
     public void started()
@@ -744,7 +744,7 @@ public class menu : MonoBehaviour
                 
                 PlayerPrefs.SetInt("coins", coins);
                 image.SetActive(!image.activeSelf);
-                anim.CrossFade("anim9 1", 0.1f);
+                anim.Play("anim9 1");
             }
             else if(turbinsMinus == 0)
             {

@@ -147,6 +147,8 @@ public class ShopTimerSmart : MonoBehaviour
         }
 
         TimeSpan left = new TimeSpan(endTicks - now);
+        int secondsLeft = (int)left.TotalSeconds;
+        PlayerPrefs.SetInt("ShopNotificationSeconds", secondsLeft);
         UpdateTimerText(left);
     }
 

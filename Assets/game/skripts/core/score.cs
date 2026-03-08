@@ -224,7 +224,7 @@ public class ScoreCounter : MonoBehaviour
         if ((int)(player.position.z / 3) >= 1150 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
             image.SetActive(true);
-            anim1.CrossFade("anim10 0", 0.1f);
+            anim1.Play("anim10 0");
             isdelay3 = 2f;
             isend = true;
             isend2 = true;
@@ -307,7 +307,7 @@ public class ScoreCounter : MonoBehaviour
             SceneManager.LoadScene("cutsceneG1");
         }
 
-        if (spawn > 840)
+        if (spawn > 1080)
         {
             isbtonext = true;
         }

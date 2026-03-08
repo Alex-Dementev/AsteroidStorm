@@ -12,13 +12,13 @@ public class SpawnSattellite : MonoBehaviour
 
     void Start()
     {
-        Ilya = Random.Range(0, 10);
+        Ilya = Random.Range(1, 10);
         Debug.Log(Ilya);
 
-        if (Ilya == 1)
+        if (Ilya == 1 || Ilya == 3)
             canSpawnS1 = true;
 
-        if (Ilya == 2)
+        if (Ilya == 2 || Ilya == 4)
             canSpawnS2 = true;
     }
 
@@ -44,9 +44,11 @@ public class SpawnSattellite : MonoBehaviour
         foreach (GameObject player in players)
         {
             float zDist = Mathf.Abs(player.transform.position.z - transform.position.z);
-            Debug.Log(Ilya + ", " + zDist);
 
-            if (zDist <= 350f)
+            if(Ilya <= 4)
+                Debug.Log(Ilya + ", " + zDist);
+
+            if (zDist <= 280f)
             {
                 if(PlayerPrefs.GetInt("Ach2Level", 0) == 2)
                 {
