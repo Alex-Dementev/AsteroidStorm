@@ -12,9 +12,9 @@ public class ScoreCounter : MonoBehaviour
     public float isdelay5;
     public ObstacleSpawner spawner;
     public ObstacleSpawner spawnermini;
-    public bool isCloseHomePanel;
+    private bool isCloseHomePanel;
     public float homeFloatPanel;
-    public bool isHomePanel;
+    private bool isHomePanel;
     public Animator homepanel;
     public GameObject panelHome;
     public GameObject s1;
@@ -25,7 +25,7 @@ public class ScoreCounter : MonoBehaviour
 
     public Animator anim1;
 
-    public bool isbtotask;
+    private bool isbtotask;
 
     public GameObject image;
     private int Vp;
@@ -76,11 +76,7 @@ public class ScoreCounter : MonoBehaviour
     private float isdelay4 = 2f;
     public Text text;
     public Animator anim2;
-    private bool is100;
-    private bool is825;
-    private bool is440;
-    private bool is250;
-    private bool is750;
+    private int MessagesID;
     private bool isstart;
 
     private float nextSpawnTime = 0f;
@@ -100,15 +96,25 @@ public class ScoreCounter : MonoBehaviour
 
     private string[] phrases = new string[]
     {
-        "Остерегайтесь космического мусора",
-        "Курс стабилен",
-        "Курс выровнен",
-        "Какать охото",
-        "Наблюдаю Луну на горизонте",
-        "Супер облепиха",
-        "военный мёд",
-        "грустный мёд",
-        "Луна впереди"
+        "Курс стабилен.",
+        "Курс выровнен.",
+        "Супер облепиха.",
+        "военный мёд.",
+        "грустный мёд.",
+        "Показатели корабля в норме.",
+        "Навигация подтверждает курс.",
+        "Связь стабильна.",
+        "Двигатели работают ровно.",
+        "Траектория без отклонений.",
+        "Сканеры чисты.",
+        "Данные телеметрии обновлены.",
+        "Системы работают штатно.",
+        "Проверка курса завершена.",
+        "Параметры полёта стабильны.",
+        "Канал связи чист.",
+        "Отклонений не обнаружено.",
+        "Тяга двигателей в норме.",
+        "Навигационные данные обновлены."
     };
 
 
@@ -221,7 +227,7 @@ public class ScoreCounter : MonoBehaviour
         ad19.volume = audios;
 
 
-        if ((int)(player.position.z / 3) >= 1150 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
+        if (spawn >= 1150 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
             image.SetActive(true);
             anim1.Play("anim10 0");
@@ -229,34 +235,34 @@ public class ScoreCounter : MonoBehaviour
             isend = true;
             isend2 = true;
         }
-        if ((int)(player.position.z / 3) >= 1145 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
+        if (spawn >= 1145 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
             PlayerPrefs.SetInt("GoToFinalGlav", 1);
         }
-        if ((int)(player.position.z / 3) >= 100 && !is100)
+        if (spawn >= 100 && MessagesID == 0)
         {
             anim2.CrossFade("anim 26 1", 0.1f);
-            is100 = true;
+            MessagesID++;
             ad9.Play();
         }
-        if ((int)(player.position.z / 3) >= 925 && !is825)
+        if (spawn >= 925 && MessagesID == 4)
         {
-            text.text = "выход на высокую арбиту луны";
+            text.text = "Сканирование: выход на высокую орбиту луны.";
             anim2.CrossFade("anim 26 1", 0.1f);
-            is825 = true;
+            MessagesID++;
             ad9.Play();
         }
-        if ((int)(player.position.z / 3) >= 440 && !is440)
+        if (spawn >= 440 && MessagesID == 2)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "пол пути пройдено: " + selected;
+            text.text = "Сканирование: " + selected;
             anim2.CrossFade("anim 26 1", 0.1f);
-            is440 = true;
+            MessagesID++;
             ad9.Play();
             PlayerPrefs.SetInt("youcheat", 0);
         }
 
-        if ((int)(player.position.z / 3) >= 750)
+        if (spawn >= 750)
         {
             if (!isbtotask)
             {
@@ -286,19 +292,20 @@ public class ScoreCounter : MonoBehaviour
             }
         }
 
-        if ((int)(player.position.z / 3) >= 750 && !is750)
+        if (spawn >= 750 && MessagesID == 3)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Большое количество остеридов: " + selected;
+            text.text = "Сканирование: " + selected;
             anim2.CrossFade("anim 26 1", 0.1f);
-            is750 = true;
+            MessagesID++;
             ad9.Play();
         }
-        if ((int)(player.position.z / 3) >= 250 && !is250)
+        if (spawn >= 250 && MessagesID == 1)
         {
-            text.text = "курс стабилен";
+            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
+            text.text = "Сканирование: " + selected;
             anim2.CrossFade("anim 26 1", 0.1f);
-            is250 = true;
+            MessagesID++;
             ad9.Play();
         }
 

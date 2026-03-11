@@ -5,15 +5,15 @@ using UnityEngine.UI;
 using RDG;
 using UnityEngine.SceneManagement;
 
-public class ScoreCounterFinal : MonoBehaviour
+public class Score2GFirst : MonoBehaviour
 {
     [SerializeField] public Transform player;
 
     public ObstacleSpawner spawner;
     public float isdelay5;
-    public bool isCloseHomePanel;
+    private bool isCloseHomePanel;
     public float homeFloatPanel;
-    public bool isHomePanel;
+    private bool isHomePanel;
     public Animator homepanel;
     public GameObject panelHome;
     public GameObject s1;
@@ -28,7 +28,6 @@ public class ScoreCounterFinal : MonoBehaviour
     public sceneman s;
     public ParticleSystem ps;
     public ParticleSystem ps1;
-    public ParticleSystem ps3;
     public int score;
     public AudioSource ad1;
     public AudioSource ad2;
@@ -42,7 +41,6 @@ public class ScoreCounterFinal : MonoBehaviour
     public AudioSource ad10;
     public AudioSource ad11;
     public AudioSource ad12;
-    public AudioSource ad13;
     public AudioSource ad14;
     public AudioSource ad15;
     public AudioSource ad16;
@@ -50,7 +48,6 @@ public class ScoreCounterFinal : MonoBehaviour
     public AudioSource ad18;
     public AudioSource ad19;
     public AudioSource ad20;
-    public AudioSource LightningAudio;
     public ObstacleSpawner o;
     public ObstacleSpawner omini;
     public int spawn;
@@ -59,33 +56,28 @@ public class ScoreCounterFinal : MonoBehaviour
     public float isdelay1 = 1;
     private float isdelay2 = 1;
     public float isminus;
-    public bool isbportal;
+    private bool isbportal;
     public int ach3;
     public Animator achanim1;
     public Animator anim;
     public Animator anim2;
-    public bool isbtonext;
+    private bool isbtonext;
     public float isdelay3;
-    public bool isend;
-    public bool isend2;
+    private bool isend;
+    private bool isend2;
     public float isdelay4 = 2f;
     public Text text;
-    public Animator anim3;
     public Animator anim4;
-    public Animator Lightning;
-    public bool is340;
-    public bool is550;
-    public bool rocketfall;
-    public Animator anim5;
+    public int MessagesID;
+    private bool rocketfall;
     public Light l;
-    public bool isstart;
+    private bool isstart;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
     private float spawnVariance = 0.5f;
     private float audios = 0.5f;
 
-    private bool fogCoroutineStarted = false;
 
     IEnumerator LoadParticlesWithDelay()
     {
@@ -96,10 +88,8 @@ public class ScoreCounterFinal : MonoBehaviour
 
     private string[] phrases = new string[]
     {
-        "Что-то не так",
-        "ОПАСНОСТЬ",
-        "Сканирование",
-        "Сегодня без цензуры"
+        "1",
+        "2"
     };
 
     void Start()
@@ -157,7 +147,6 @@ public class ScoreCounterFinal : MonoBehaviour
         {
             ps.Stop();
             ps1.Stop();
-            ps3.Stop();
         }
         else
         {
@@ -189,7 +178,6 @@ public class ScoreCounterFinal : MonoBehaviour
         ad10.volume = audios / 4f;
         ad11.volume = audios;
         ad12.volume = audios / 1.5f;
-        ad13.volume = audios / 1.25f;
         ad14.volume = audios;
         ad15.volume = audios / 1.3f;
         ad16.volume = audios;
@@ -197,30 +185,28 @@ public class ScoreCounterFinal : MonoBehaviour
         ad18.volume = audios;
         ad19.volume = audios;
         ad20.volume = audios;
-        LightningAudio.volume = audios;
 
-        if ((int)(player.position.z / 3) >= 340 && !is340)
+        if (spawn >= 340 && MessagesID == 0)
         {
-            text.text = "Опасности не найдены";
+            text.text = "1";
             anim2.CrossFade("anim 26 1", 0.1f);
-            is340 = true;
             ad9.Play();
+            MessagesID++;
         }
-        if ((int)(player.position.z / 3) >= 720 && ach3 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        if (spawn >= 720 && ach3 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
             ach3 = 1;
             PlayerPrefs.SetInt("ach3", 1);
             achanim1.CrossFade("anim20", 0.1f);
             ad5.Play();
         }
-        if ((int)(player.position.z / 3) >= 550 && !is550)
+        if (spawn >= 550 && MessagesID == 1)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Сканирование: " + selected;
+            text.text = "2" + selected;
             anim2.CrossFade("anim 26 1", 0.1f);
-            is550 = true;
             ad9.Play();
-            if (!fogCoroutineStarted) StartCoroutine(EnableFogWithDelay());
+            MessagesID++;
         }
 
         if (spawn > 840)
@@ -244,7 +230,7 @@ public class ScoreCounterFinal : MonoBehaviour
             }
         }
 
-        score = (int)(player.position.z / 3) + 1000;
+        score = (int)(player.position.z / 3);
         scoreText.text = (score.ToString());
         spawn = ((int)(player.position.z) / 3);
 
@@ -261,9 +247,9 @@ public class ScoreCounterFinal : MonoBehaviour
             }
         }
 
-        if (score >= PlayerPrefs.GetInt("maxScore") + 1000)
+        if (score >= PlayerPrefs.GetInt("maxScore"))
         {
-            PlayerPrefs.SetInt("maxScore", ((int)(player.position.z / 3)) + 1000);
+            PlayerPrefs.SetInt("maxScore", (int)(player.position.z / 3));
         }
 
         scoreText.text = "" + score;
@@ -282,14 +268,12 @@ public class ScoreCounterFinal : MonoBehaviour
             ad10.enabled = true;
             ad11.enabled = true;
             ad12.enabled = true;
-            ad13.enabled = true;
             ad14.enabled = true;
             ad16.enabled = true;
             ad17.enabled = true;
             ad18.enabled = true;
             ad19.enabled = true;
             ad20.enabled = true;
-            LightningAudio.enabled = true;
         }
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
@@ -305,7 +289,6 @@ public class ScoreCounterFinal : MonoBehaviour
             ad10.enabled = false;
             ad11.enabled = false;
             ad12.enabled = false;
-            ad13.enabled = false;
             ad14.enabled = false;
             ad15.volume = 0;
             ad16.enabled = false;
@@ -313,52 +296,6 @@ public class ScoreCounterFinal : MonoBehaviour
             ad18.enabled = false;
             ad19.enabled = false;
             ad20.enabled = false;
-            LightningAudio.enabled = false;
-        }
-    }
-
-    IEnumerator EnableFogWithDelay()
-    {
-        fogCoroutineStarted = true;
-
-        yield return new WaitForSeconds(7f);
-
-        RenderSettings.fog = true;
-        float duration = 3f;
-        float elapsed = 0f;
-        RenderSettings.fogDensity = 0f;
-        var main = ps3.main;
-        main.simulationSpeed = 45f;
-
-
-        ad10.Play();
-        StartCoroutine(FadeVolume(ad10, ad10.volume, 0f, 2f));
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            RenderSettings.fogDensity = Mathf.Lerp(0f, 0.03f, elapsed / duration);
-            Lightning.CrossFade("Lightning", 0.1f);
-            yield return null;
-        }
-
-
-        yield return new WaitForSeconds(14f);
-
-        anim3.CrossFade("smerchStart", 0.1f);
-        anim5.CrossFade("shake", 0.1f);
-        Destroy(FindObjectOfType<ObstacleSpawner>());
-    }
-
-
-    private IEnumerator FadeVolume(AudioSource source, float from, float to, float duration)
-    {
-        float time = 0f;
-        while (time < duration)
-        {
-            source.volume = Mathf.Lerp(from, to, time / duration);
-            time += Time.deltaTime;
-            yield return null;
         }
     }
 
