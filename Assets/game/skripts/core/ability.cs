@@ -193,6 +193,8 @@ public class DoubleTapHandler : MonoBehaviour
             var main = p.main;
             main.startSize = 1800;
 
+            Debug.Log("ScannerBuff");
+
             if(PlayerPrefs.GetInt("MoonScanned", 0) == 0 && transform.position.z >= 3300 && s2.maxValue >= 4)
             PlayerPrefs.SetInt("MoonScanned", 1);
         }

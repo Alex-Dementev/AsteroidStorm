@@ -10,9 +10,9 @@ public class Score2GFirst : MonoBehaviour
     [SerializeField] public Transform player;
 
     public ObstacleSpawner spawner;
-    public float isdelay5;
+    private float isdelay5;
     private bool isCloseHomePanel;
-    public float homeFloatPanel;
+    private float homeFloatPanel;
     private bool isHomePanel;
     public Animator homepanel;
     public GameObject panelHome;
@@ -22,13 +22,12 @@ public class Score2GFirst : MonoBehaviour
     public GameObject s4;
     public GameObject s5;
     public Animator anim1;
-    public GameObject image;
     public int Vp;
     public Text scoreText;
     public sceneman s;
     public ParticleSystem ps;
     public ParticleSystem ps1;
-    public int score;
+    private int score;
     public AudioSource ad1;
     public AudioSource ad2;
     public AudioSource ad3;
@@ -51,13 +50,13 @@ public class Score2GFirst : MonoBehaviour
     public ObstacleSpawner o;
     public ObstacleSpawner omini;
     public int spawn;
-    public float function;
-    public float isdelay;
-    public float isdelay1 = 1;
+    private float function;
+    private float isdelay;
+    private float isdelay1 = 1;
     private float isdelay2 = 1;
     public float isminus;
     private bool isbportal;
-    public int ach3;
+    private int ach6;
     public Animator achanim1;
     public Animator anim;
     public Animator anim2;
@@ -72,6 +71,8 @@ public class Score2GFirst : MonoBehaviour
     private bool rocketfall;
     public Light l;
     private bool isstart;
+    public Animator Disk1;
+    public Animator Disk2;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
@@ -88,15 +89,27 @@ public class Score2GFirst : MonoBehaviour
 
     private string[] phrases = new string[]
     {
-        "1",
-        "2"
+        "Гравитация усиливается",
+        "Скорость держится в пределах нормы",
+        "Двигатели работают ровно",
+        "Системы охлаждения стабилизированы",
+        "Сигнал с корабля чистый",
+        "Траектория без отклонений",
+        "Зафиксировали небольшие колебания",
+        "Энергопотребление в норме",
+        "Навигационный расчёт подтверждён",
+        "Контрольные показатели без критических отклонений",
+        "Обнаружены незначительные помехи",
+        "Полёт проходит в пределах допустимых параметров",
+        "Все модули функционируют корректно"
     };
 
     void Start()
     {
-        PlayerPrefs.SetInt("isfinal1g", 1);
+        PlayerPrefs.SetInt("isfinal1g", 0);
+        PlayerPrefs.SetInt("isfinal2g", 0);
         PlayerPrefs.SetInt("AchActive", 1);
-        ach3 = PlayerPrefs.GetInt("ach3");
+        ach6 = PlayerPrefs.GetInt("ach6");
         
         l.intensity = PlayerPrefs.GetFloat("lightgameplay") / 2;
 
@@ -173,7 +186,7 @@ public class Score2GFirst : MonoBehaviour
         ad5.volume = audios;
         ad6.volume = audios / 3;
         ad7.volume = audios / 3;
-        ad8.volume = audios / 14;
+        ad8.volume = audios / 3.5f;
         ad9.volume = audios / 1.25f;
         ad10.volume = audios / 4f;
         ad11.volume = audios;
@@ -186,24 +199,48 @@ public class Score2GFirst : MonoBehaviour
         ad19.volume = audios;
         ad20.volume = audios;
 
-        if (spawn >= 340 && MessagesID == 0)
+        if (spawn >= 400 && MessagesID == 0)
         {
-            text.text = "1";
+            text.text = "Достигнуто внешнее кольцо аккреционного диска";
+            anim2.CrossFade("anim 26 1", 0.1f);
+            ad9.Play();
+            MessagesID++;
+            Disk1.Play("DisksIncreases");
+        }
+        if (spawn >= 920 && ach6 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        {
+            ach6 = 1;
+            PlayerPrefs.SetInt("ach6", 1);
+            achanim1.CrossFade("anim20", 0.1f);
+            ad5.Play();
+        }
+        if (spawn >= 565 && MessagesID == 1)
+        {
+            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
+            text.text = "Сканирование: " + selected;
             anim2.CrossFade("anim 26 1", 0.1f);
             ad9.Play();
             MessagesID++;
         }
-        if (spawn >= 720 && ach3 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        if (spawn >= 730 && MessagesID == 2)
         {
-            ach3 = 1;
-            PlayerPrefs.SetInt("ach3", 1);
-            achanim1.CrossFade("anim20", 0.1f);
-            ad5.Play();
+            text.text = "Достигнуто внутреннее кольцо аккреционного диска";
+            anim2.CrossFade("anim 26 1", 0.1f);
+            ad9.Play();
+            MessagesID++;
+            Disk2.Play("DisksIncreases");
         }
-        if (spawn >= 550 && MessagesID == 1)
+        if (spawn >= 900 && MessagesID == 3)
+        {
+            text.text = "Сканирование: регистрация радиационных колебаний";
+            anim2.CrossFade("anim 26 1", 0.1f);
+            ad9.Play();
+            MessagesID++;
+        }
+        if (spawn >= 1050 && MessagesID == 4)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "2" + selected;
+            text.text = "Сканирование: " + selected;
             anim2.CrossFade("anim 26 1", 0.1f);
             ad9.Play();
             MessagesID++;
@@ -216,7 +253,6 @@ public class Score2GFirst : MonoBehaviour
 
         if (isdelay1 <= 0)
         {
-            image.SetActive(!image.activeSelf);
             isdelay1 = 99999;
             ps1.Play();
         }

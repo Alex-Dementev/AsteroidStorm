@@ -429,10 +429,10 @@ public class death : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("obstraclemini"))
         {
+            Destroy(Collision.gameObject);
+
             if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
-                Destroy(Collision.gameObject);
-
                 AsteroidSkript AS = Collision.gameObject.GetComponent<AsteroidSkript>();
                 if (AS != null)
                 {
@@ -553,11 +553,6 @@ public class death : MonoBehaviour
 
                     fineText.color = new Color(0.698f, 0.0f, 0.608f);
                     fineAnim.Play("textFine", -1, 0f);
-
-                    if (!Collision.gameObject.name.StartsWith("T"))
-                    {
-                        Destroy(Collision.gameObject);
-                    }
                 }
                 else if (b == false && PlayerPrefs.GetInt("youdead", 0) == 0)
                 {
@@ -626,21 +621,11 @@ public class death : MonoBehaviour
                         }
                         if (explosionEffect != null)
                             Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
-
-                        if (!Collision.gameObject.name.StartsWith("T"))
-                        {
-                            Destroy(Collision.gameObject);
-                        }
                     }
                     else
                     {
                         if (explosionEffect != null)
                             Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
-
-                        if (!Collision.gameObject.name.StartsWith("T"))
-                        {
-                            Destroy(Collision.gameObject);
-                        }
 
                         losePanel.SetActive(true);
                         anim1.CrossFade("anim11", 0.1f);
@@ -697,6 +682,17 @@ public class death : MonoBehaviour
                     }
                 }
             }
+
+            if (!Collision.gameObject.name.StartsWith("T"))
+            {
+                Destroy(Collision.gameObject);
+            }
+            if (PlayerPrefs.GetInt("vibration") == 0)
+            {
+                Vibration.Vibrate(100, 50);
+            }
+            if (explosionEffect != null)
+                Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
         }
     }
 

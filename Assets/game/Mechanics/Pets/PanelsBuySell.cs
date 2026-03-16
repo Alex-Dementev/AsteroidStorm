@@ -19,7 +19,7 @@ public class PanelsBuySell : MonoBehaviour
 
     public void VBuyPanel()
     {
-        BuyPanel.Play("Start");
+        BuyPanel.CrossFade("Start", 0.1f);
         
         if(PlayerPrefs.GetInt("BuySlots", 0) == 3)
         {
@@ -79,11 +79,11 @@ public class PanelsBuySell : MonoBehaviour
     }
     public void VBuyPanelExit()
     {
-        BuyPanel.Play("End");
+        BuyPanel.CrossFade("End", 0.1f);
     }
     public void VSellPanel()
     {
-        SellPanel.Play("Start");
+        SellPanel.CrossFade("Start", 0.1f);
     }
     public void VSell()
     {
@@ -101,11 +101,11 @@ public class PanelsBuySell : MonoBehaviour
 
         pets1.UpdateSlots();
         Yes.Play();
-        SellPanel.Play("End");
+        SellPanel.CrossFade("End", 0.1f);
     }
     public void VSellPanelExit()
     {
-        SellPanel.Play("End");
+        SellPanel.CrossFade("End", 0.1f);
     }
 
 

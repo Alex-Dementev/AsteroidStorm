@@ -124,6 +124,7 @@ public class ScoreCounter : MonoBehaviour
         PlayerPrefs.SetInt("youdead", 0);
         PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
+        PlayerPrefs.SetInt("isfinal2g", 0);
         if (PlayerPrefs.GetInt("isbtotask") == 1)
         {
             isbtotask = true;
@@ -213,7 +214,7 @@ public class ScoreCounter : MonoBehaviour
         ad5.volume = audios;
         ad6.volume = audios / 3;
         ad7.volume = audios / 3;
-        ad8.volume = audios / 14;
+        ad8.volume = audios / 3.5f;
         ad9.volume = audios / 1.25f;
         ad10.volume = audios;
         ad11.volume = audios;

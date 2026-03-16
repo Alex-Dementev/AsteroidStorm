@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Notifications.Android;
 using System;
+using UnityEngine.SceneManagement;
 
 public class ShopNotification : MonoBehaviour
 {
@@ -11,48 +12,33 @@ public class ShopNotification : MonoBehaviour
         "Поступление оборудования: новые модули уже доступны.",
         "Магазин обновился. Добавлены новые модули.",
         "Похоже, привезли свежие модули. Проверь магазин.",
-        "Новые модули уже на складе. Успей посмотреть.",
-        "Обновление ассортимента. Магазин пополнился модулями.",
-        "В продаже появились новые корабельные модули.",
-        "Поставщики привезли новые модули. Загляни в магазин.",
-        "Каталог модулей обновлён. Есть интересные вещи.",
-        "В магазине новые технологии. Возможно пригодятся.",
-        "Обнаружены новые модули в продаже.",
-        "Магазин получил новую партию оборудования.",
-        "Добавлены новые модули. Проверь доступные улучшения.",
-        "Появились дополнительные модули для корабля.",
-        "Склад обновлён. Новые модули уже в магазине.",
-        "Есть новые модули. Может пригодятся в миссии.",
-        "Магазин снова обновился. Посмотри, что привезли.",
-        "Новые компоненты уже доступны для покупки.",
-        "Поступление модулей подтверждено. Загляни в магазин.",
-        "В ассортименте появились новые улучшения.",
-        "Есть новые модули для установки.",
-        "Поставщики не спят. В магазине новые модули.",
-        "Каталог обновился. Доступны новые модули.",
-        "Свежая партия оборудования уже в продаже.",
-        "Проверь магазин. Там появились новые модули.",
-        "Новые модули готовы к установке."
+        "Новые модули уже на складе. Успей посмотреть."
     };
+    private int TimePlus;
 
     void Start()
     {
-        // Регистрируем канал
         var channel = new AndroidNotificationChannel()
         {
             Id = "Shop",
             Name = "Магазин модулей",
             Importance = Importance.Default,
-            Description = "Напоминание об обновлении модулей в магазине",
+            Description = "Напоминание об обновлении модулей"
         };
+
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
 
-        // Удаляем старое уведомление, если есть
-        if (PlayerPrefs.HasKey("ShopNotificationID"))
+        // удаляем старые уведомления
+        for (int i = 0; i < 5; i++)
         {
-            int savedId = PlayerPrefs.GetInt("ShopNotificationID");
-            AndroidNotificationCenter.CancelNotification(savedId);
-            PlayerPrefs.DeleteKey("ShopNotificationID");
+            string key = "ShopNotificationID_" + i;
+
+            if (PlayerPrefs.HasKey(key))
+            {
+                int id = PlayerPrefs.GetInt(key);
+                AndroidNotificationCenter.CancelNotification(id);
+                PlayerPrefs.DeleteKey(key);
+            }
         }
     }
 
@@ -60,34 +46,80 @@ public class ShopNotification : MonoBehaviour
     {
         if (pauseStatus)
         {
-            // Выбираем случайное имя и сообщение
-            int nameIndex = UnityEngine.Random.Range(0, Names.Length);
-            int messageIndex = UnityEngine.Random.Range(0, Messages.Length);
-
-            // Создаем уведомление
-            AndroidNotification notification = new AndroidNotification()
-            {
-                Title = Names[nameIndex],
-                Text = Messages[messageIndex],
-                FireTime = DateTime.Now.AddSeconds(PlayerPrefs.GetInt("ShopNotificationSeconds", 0)),
-                SmallIcon = "app_icon",
-                LargeIcon = "app_icon"
-            };
-
-            // Отправляем и сохраняем ID
-            int id = AndroidNotificationCenter.SendNotification(notification, "Shop");
-            PlayerPrefs.SetInt("CreditsNotificationID", id);
-            PlayerPrefs.Save();
+            if (PlayerPrefs.GetInt("shop_timer_started", 0) == 1)
+                CreateNotification();
         }
         else
         {
-            // Игрок вернулся — удаляем уведомление
-            if (PlayerPrefs.HasKey("ShopNotificationID"))
+            for (int i = 0; i < 5; i++)
             {
-                int savedId = PlayerPrefs.GetInt("ShopNotificationID");
-                AndroidNotificationCenter.CancelNotification(savedId);
-                PlayerPrefs.DeleteKey("ShopNotificationID");
+                string key = "ShopNotificationID_" + i;
+
+                if (PlayerPrefs.HasKey(key))
+                {
+                    int id = PlayerPrefs.GetInt(key);
+                    AndroidNotificationCenter.CancelNotification(id);
+                    PlayerPrefs.DeleteKey(key);
+                }
+            }
+
+            PlayerPrefs.Save();
+        }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (PlayerPrefs.GetInt("shop_timer_started", 0) == 1)
+            CreateNotification();
+    }
+
+    void CreateNotification()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            string key = "ShopNotificationID_" + i;
+
+            if (PlayerPrefs.HasKey(key))
+            {
+                int id = PlayerPrefs.GetInt(key);
+                AndroidNotificationCenter.CancelNotification(id);
+                PlayerPrefs.DeleteKey(key);
             }
         }
+
+            int delay = PlayerPrefs.GetInt("ShopNotificationSeconds", 0);
+
+            TimePlus = 0;
+
+            for (int i = 0; i < 5; i++)
+            {
+                int nameIndex = UnityEngine.Random.Range(0, Names.Length);
+                int messageIndex = UnityEngine.Random.Range(0, Messages.Length);
+
+                AndroidNotification notification = new AndroidNotification()
+                {
+                    Title = Names[nameIndex],
+                    Text = Messages[messageIndex],
+                    FireTime = DateTime.Now.AddSeconds(delay + TimePlus),
+                    SmallIcon = "ic_notification",
+                    LargeIcon = "app_icon"
+                };
+
+                int id = AndroidNotificationCenter.SendNotification(notification, "Shop");
+
+                TimePlus += 21600;
+
+                PlayerPrefs.SetInt("ShopNotificationID_" + i, id);
+            }
     }
 }

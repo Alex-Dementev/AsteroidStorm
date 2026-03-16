@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Notifications.Android;
 using System;
+using UnityEngine.SceneManagement;
 
 public class CreditsNotification : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class CreditsNotification : MonoBehaviour
 
     void Start()
     {
-        // Регистрируем канал
         var channel = new AndroidNotificationChannel()
         {
             Id = "Credits",
@@ -34,12 +34,16 @@ public class CreditsNotification : MonoBehaviour
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
 
-        // Удаляем старое уведомление, если есть
-        if (PlayerPrefs.HasKey("CreditsNotificationID"))
+        for (int i = 0; i < 3; i++)
         {
-            int savedId = PlayerPrefs.GetInt("CreditsNotificationID");
-            AndroidNotificationCenter.CancelNotification(savedId);
-            PlayerPrefs.DeleteKey("CreditsNotificationID");
+            string key = "CreditsNotificationID" + i;
+
+            if (PlayerPrefs.HasKey(key))
+            {
+                int savedId = PlayerPrefs.GetInt(key);
+                AndroidNotificationCenter.CancelNotification(savedId);
+                PlayerPrefs.DeleteKey(key);
+            }
         }
     }
 
@@ -48,40 +52,79 @@ public class CreditsNotification : MonoBehaviour
         if (pauseStatus)
         {
             if(PlayerPrefs.GetInt("CreditsActivee", 0) == 1)
-            {
-                // Выбираем случайное имя и сообщение
-                int nameIndex = UnityEngine.Random.Range(0, Names.Length);
-                int messageIndex = UnityEngine.Random.Range(0, Messages.Length);
-
-                int Seconds = PlayerPrefs.GetInt("CreditsNotificationSeconds", 0);
-                if(Seconds == 0)
-                    Seconds = 21600;
-
-                // Создаем уведомление
-                AndroidNotification notification = new AndroidNotification()
-                {
-                    Title = Names[nameIndex],
-                    Text = Messages[messageIndex],
-                    FireTime = DateTime.Now.AddSeconds(Seconds),
-                    SmallIcon = "app_icon",
-                    LargeIcon = "app_icon"
-                };
-
-                // Отправляем и сохраняем ID
-                int id = AndroidNotificationCenter.SendNotification(notification, "Credits");
-                PlayerPrefs.SetInt("CreditsNotificationID", id);
-                PlayerPrefs.Save();
-            }
+                CreateNotification();
         }
         else
         {
-            // Игрок вернулся — удаляем уведомление
-            if (PlayerPrefs.HasKey("CreditsNotificationID"))
+            for (int i = 0; i < 3; i++)
             {
-                int savedId = PlayerPrefs.GetInt("CreditsNotificationID");
-                AndroidNotificationCenter.CancelNotification(savedId);
-                PlayerPrefs.DeleteKey("CreditsNotificationID");
+                string key = "CreditsNotificationID" + i;
+
+                if (PlayerPrefs.HasKey(key))
+                {
+                    int savedId = PlayerPrefs.GetInt(key);
+                    AndroidNotificationCenter.CancelNotification(savedId);
+                    PlayerPrefs.DeleteKey(key);
+                }
             }
         }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(PlayerPrefs.GetInt("CreditsActivee", 0) == 1)
+            CreateNotification();
+    }
+
+    void CreateNotification()
+    {
+        int Seconds = PlayerPrefs.GetInt("CreditsNotificationSeconds", 0);
+        if (Seconds == 0)
+            Seconds = 129600;
+
+        for (int i = 0; i < 3; i++)
+        {
+            string key = "CreditsNotificationID" + i;
+
+            if (PlayerPrefs.HasKey(key))
+            {
+                int savedId = PlayerPrefs.GetInt(key);
+                AndroidNotificationCenter.CancelNotification(savedId);
+                PlayerPrefs.DeleteKey(key);
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            int nameIndex = UnityEngine.Random.Range(0, Names.Length);
+            int messageIndex = UnityEngine.Random.Range(0, Messages.Length);
+
+            AndroidNotification notification = new AndroidNotification()
+            {
+                Title = Names[nameIndex],
+                Text = Messages[messageIndex],
+                FireTime = DateTime.Now.AddSeconds(Seconds),
+                SmallIcon = "ic_notification",
+                LargeIcon = "app_icon"
+            };
+
+            Seconds += 129600;
+
+            int id = AndroidNotificationCenter.SendNotification(notification, "Credits");
+
+            PlayerPrefs.SetInt("CreditsNotificationID" + i, id);
+        }
+
+        PlayerPrefs.Save();
     }
 }

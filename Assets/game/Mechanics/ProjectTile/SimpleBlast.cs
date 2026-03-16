@@ -22,7 +22,7 @@ public class SimpleBlast : MonoBehaviour
                     hitAlready.Add(hit);
 
                     AsteroidSkript asteroid = hit.GetComponent<AsteroidSkript>();
-                    if (asteroid != null)
+                    if (asteroid != null && PlayerPrefs.GetInt("yousurwive", 0) == 0)
                     {
                         asteroid.asvoid();
                     }

@@ -8,6 +8,8 @@ public class Ach4 : MonoBehaviour
     public Text TextToPush;
     public Text Rest;
     public Text Complete;
+    public AudioSource Yes;
+    public AudioSource No;
 
     public GameObject[] Dialogue;
     public GameObject DisActive;
@@ -33,7 +35,7 @@ public class Ach4 : MonoBehaviour
         if(PlayerPrefs.GetInt("CristalFirstOpen", 0) == 1)
             Dialogue[0].SetActive(true);
 
-        Rest.text = "Собранно: " + PlayerPrefs.GetInt("Rest", 25000) + " из 25000";
+        Rest.text = "Собрать: " + PlayerPrefs.GetInt("Rest", 25000) + " из 25000";
     }
 
     void Update()
@@ -43,28 +45,35 @@ public class Ach4 : MonoBehaviour
 
     public void Push()
     {
-        MinusPush = PlayerPrefs.GetInt("Rest", 25000);
-        MinusPush -= (int)toPush.value;
-        PlayerPrefs.SetInt("Rest", MinusPush);
-        MinusPush = PlayerPrefs.GetInt("coins", 25000);
-        MinusPush -= (int)toPush.value;
-        PlayerPrefs.SetInt("coins", MinusPush);
-
-
-        Rest.text = "Собранно: " + PlayerPrefs.GetInt("Rest", 25000) + "из 25000";
-
-        if(PlayerPrefs.GetInt("Rest", 25000) <= 0 && PlayerPrefs.GetInt("Ach4End", 0) == 0)
-            Dialogue[0].SetActive(true);
-
-        else if(PlayerPrefs.GetInt("Rest", 25000) <= 0)
-        {
-            DisActive.SetActive(false);
-            Complete.text = "Проход к черной дыре открыт! вы готовы?";
-        }
-
-        if(PlayerPrefs.GetInt("coins", 0) >= PlayerPrefs.GetInt("Rest", 25000))
-            toPush.maxValue = PlayerPrefs.GetInt("Rest", 25000);
+        if((int)toPush.value <= 0)
+            No.Play();
         else
-            toPush.maxValue = PlayerPrefs.GetInt("coins", 0);
+        {
+            Yes.Play();
+
+            MinusPush = PlayerPrefs.GetInt("Rest", 25000);
+            MinusPush -= (int)toPush.value;
+            PlayerPrefs.SetInt("Rest", MinusPush);
+            MinusPush = PlayerPrefs.GetInt("coins", 25000);
+            MinusPush -= (int)toPush.value;
+            PlayerPrefs.SetInt("coins", MinusPush);
+
+
+            Rest.text = "Собрать: " + PlayerPrefs.GetInt("Rest", 25000) + "из 25000";
+
+            if(PlayerPrefs.GetInt("Rest", 25000) <= 0 && PlayerPrefs.GetInt("Ach4End", 0) == 0)
+                Dialogue[0].SetActive(true);
+
+            else if(PlayerPrefs.GetInt("Rest", 25000) <= 0)
+            {
+                DisActive.SetActive(false);
+                Complete.text = "Проход к черной дыре открыт! вы готовы?";
+            }
+
+            if(PlayerPrefs.GetInt("coins", 0) >= PlayerPrefs.GetInt("Rest", 25000))
+                toPush.maxValue = PlayerPrefs.GetInt("Rest", 25000);
+            else
+                toPush.maxValue = PlayerPrefs.GetInt("coins", 0);
+        }
     }
 }
