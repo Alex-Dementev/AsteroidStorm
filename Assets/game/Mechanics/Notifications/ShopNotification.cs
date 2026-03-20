@@ -75,6 +75,9 @@ public class ShopNotification : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (PlayerPrefs.GetInt("shop_timer_started", 0) == 1)
+            CreateNotification();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -85,6 +88,8 @@ public class ShopNotification : MonoBehaviour
 
     void CreateNotification()
     {
+        Debug.Log("Shop notifications created");
+        
         for (int i = 0; i < 5; i++)
         {
             string key = "ShopNotificationID_" + i;
@@ -112,7 +117,7 @@ public class ShopNotification : MonoBehaviour
                     Text = Messages[messageIndex],
                     FireTime = DateTime.Now.AddSeconds(delay + TimePlus),
                     SmallIcon = "ic_notification",
-                    LargeIcon = "app_icon"
+                    LargeIcon = "icon"
                 };
 
                 int id = AndroidNotificationCenter.SendNotification(notification, "Shop");

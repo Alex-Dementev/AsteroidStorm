@@ -13,7 +13,8 @@
                 "UnityNotificationRequestAuthorizationForRemoteNotificationsOnAppLaunch",
                 "UnityRemoteNotificationForegroundPresentationOptions",
                 "UnityUseAPSReleaseEnvironment",
-                "UnityUseLocationNotificationTrigger"
+                "UnityUseLocationNotificationTrigger",
+                "UnityAddTimeSensitiveEntitlement"
             ],
             "m_Values": [
                 "True",
@@ -22,6 +23,7 @@
                 "False",
                 "-1",
                 "False",
+                "False",
                 "False"
             ]
         },
@@ -29,14 +31,35 @@
             "m_Keys": [
                 "UnityNotificationAndroidRescheduleOnDeviceRestart",
                 "UnityNotificationAndroidUseCustomActivity",
-                "UnityNotificationAndroidCustomActivityString"
+                "UnityNotificationAndroidCustomActivityString",
+                "UnityNotificationAndroidScheduleExactAlarms"
             ],
             "m_Values": [
                 "False",
                 "False",
-                "com.unity3d.player.UnityPlayerActivity"
+                "com.unity3d.player.UnityPlayerActivity",
+                "0"
             ]
         },
-        "DrawableResources": []
+        "DrawableResources": [
+            {
+                "Id": "ic_notification",
+                "Type": 0,
+                "Asset": {
+                    "fileID": 2800000,
+                    "guid": "701ea2259e1715a45a67fe1bdfb376c5",
+                    "type": 3
+                }
+            },
+            {
+                "Id": "icon",
+                "Type": 1,
+                "Asset": {
+                    "fileID": 2800000,
+                    "guid": "fd766d33df2b281499010824bf67caae",
+                    "type": 3
+                }
+            }
+        ]
     }
 }

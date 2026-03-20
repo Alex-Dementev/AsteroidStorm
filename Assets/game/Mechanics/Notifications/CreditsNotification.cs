@@ -78,6 +78,9 @@ public class CreditsNotification : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if(PlayerPrefs.GetInt("CreditsActivee", 0) == 1)
+            CreateNotification();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -88,6 +91,8 @@ public class CreditsNotification : MonoBehaviour
 
     void CreateNotification()
     {
+        Debug.Log("Credit notifications created");
+
         int Seconds = PlayerPrefs.GetInt("CreditsNotificationSeconds", 0);
         if (Seconds == 0)
             Seconds = 129600;
@@ -115,7 +120,7 @@ public class CreditsNotification : MonoBehaviour
                 Text = Messages[messageIndex],
                 FireTime = DateTime.Now.AddSeconds(Seconds),
                 SmallIcon = "ic_notification",
-                LargeIcon = "app_icon"
+                LargeIcon = "icon"
             };
 
             Seconds += 129600;

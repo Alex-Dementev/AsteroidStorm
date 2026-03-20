@@ -17,6 +17,10 @@ public class ShopTimerSmart : MonoBehaviour
     [Header("Интервал обновления магазина (ЧАСЫ)")]
     private int UpdateIntervalHours = 6;
 
+    [Header("AudioSources")]
+    public AudioSource Yes;
+    public AudioSource No;
+
     private const string TIMER_STARTED_KEY = "shop_timer_started";
     private const string END_TIME_KEY = "shop_end_time_ticks";
     private const string LAST_LOGIN_KEY = "shop_last_login_ticks";
@@ -176,9 +180,8 @@ public class ShopTimerSmart : MonoBehaviour
         EnsureTimer();
     }
 
-    // ================================
-    // ★ ПУБЛИЧЕСКИЙ МЕТОД: СДЕЛАТЬ ОСТАТОК = 5 СЕКУНД
-    // ================================
+    
+    
     public void ReduceTimerBy20Percent()
     {
         int Games = PlayerPrefs.GetInt("ShopStartsGame");
@@ -191,6 +194,8 @@ public class ShopTimerSmart : MonoBehaviour
 
             PlayerPrefs.SetInt("ShopStartsGame", PlayerPrefs.GetInt("allgames"));
             PlayerPrefs.SetInt("ShopBoost", 1);
+
+            Yes.Play();
 
             long endTicks = long.Parse(PlayerPrefs.GetString(END_TIME_KEY));
             long nowTicks = DateTime.UtcNow.Ticks;
@@ -209,6 +214,8 @@ public class ShopTimerSmart : MonoBehaviour
             PlayerPrefs.SetString(END_TIME_KEY, newEndTicks.ToString());
             PlayerPrefs.Save();
         }
+        else
+            No.Play();
     }
 
 }

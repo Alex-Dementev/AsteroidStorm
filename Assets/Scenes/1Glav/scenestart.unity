@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.006
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.5283019, g: 0.36781773, b: 0.12709148, a: 1}
-  m_AmbientEquatorColor: {r: 0.1792453, g: 0.15937577, b: 0.06341225, a: 1}
-  m_AmbientGroundColor: {r: 0.019607844, g: 0.019607844, b: 0.019607844, a: 1}
+  m_AmbientSkyColor: {r: 0.05882353, g: 0.019607844, b: 0.05882353, a: 1}
+  m_AmbientEquatorColor: {r: 1, g: 1, b: 1, a: 1}
+  m_AmbientGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 1
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 8baa8354f213a7c449dd6c96646dc976, type: 2}
   m_HaloStrength: 1
@@ -6097,16 +6097,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99af356a959e0954ab64aade692b3ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 0
-  allfuel: 0
-  allcoins: 0
-  fuelused: 0
-  thispricefuel: 0
-  is1: 0
   d1: {fileID: 310942076}
   d2: {fileID: 814676270}
   d3: {fileID: 1950506764}
   d4: {fileID: 207934576}
+  d5: {fileID: 772358621}
 --- !u!1 &110157431
 GameObject:
   m_ObjectHideFlags: 0
@@ -25266,6 +25261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abaacc6413f95d4f8fa275c9d9ac0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  is2Glav: 0
 --- !u!1 &594198456
 GameObject:
   m_ObjectHideFlags: 0

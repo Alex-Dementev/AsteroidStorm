@@ -36,6 +36,15 @@ public class Ach4 : MonoBehaviour
             Dialogue[0].SetActive(true);
 
         Rest.text = "Собрать: " + PlayerPrefs.GetInt("Rest", 25000) + " из 25000";
+
+
+        if(PlayerPrefs.GetInt("Rest", 25000) <= 0 && PlayerPrefs.GetInt("Ach4End", 0) == 0)
+            Dialogue[1].SetActive(true);
+        if(PlayerPrefs.GetInt("Rest", 25000) <= 0)
+        {
+            DisActive.SetActive(false);
+            Complete.text = "Проход к черной дыре открыт! вы готовы?";
+        }
     }
 
     void Update()
@@ -59,12 +68,11 @@ public class Ach4 : MonoBehaviour
             PlayerPrefs.SetInt("coins", MinusPush);
 
 
-            Rest.text = "Собрать: " + PlayerPrefs.GetInt("Rest", 25000) + "из 25000";
+            Rest.text = "Собрать: " + PlayerPrefs.GetInt("Rest", 25000) + " из 25000";
 
             if(PlayerPrefs.GetInt("Rest", 25000) <= 0 && PlayerPrefs.GetInt("Ach4End", 0) == 0)
-                Dialogue[0].SetActive(true);
-
-            else if(PlayerPrefs.GetInt("Rest", 25000) <= 0)
+                Dialogue[1].SetActive(true);
+            if(PlayerPrefs.GetInt("Rest", 25000) <= 0)
             {
                 DisActive.SetActive(false);
                 Complete.text = "Проход к черной дыре открыт! вы готовы?";

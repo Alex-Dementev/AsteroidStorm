@@ -57,14 +57,10 @@ public class Score2GFirst : MonoBehaviour
     public float isminus;
     private bool isbportal;
     private int ach6;
-    public Animator achanim1;
+    public Animator achanim6;
     public Animator anim;
     public Animator anim2;
     private bool isbtonext;
-    public float isdelay3;
-    private bool isend;
-    private bool isend2;
-    public float isdelay4 = 2f;
     public Text text;
     public Animator anim4;
     public int MessagesID;
@@ -78,6 +74,10 @@ public class Score2GFirst : MonoBehaviour
     private float baseSpawnInterval = 1.3f;
     private float spawnVariance = 0.5f;
     private float audios = 0.5f;
+
+    [Header("Materials")]
+    public Material Display;
+    private float AlphaDisplay;
 
 
     IEnumerator LoadParticlesWithDelay()
@@ -106,6 +106,7 @@ public class Score2GFirst : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
         PlayerPrefs.SetInt("isfinal2g", 0);
         PlayerPrefs.SetInt("AchActive", 1);
@@ -135,6 +136,8 @@ public class Score2GFirst : MonoBehaviour
 
         anim.CrossFade("anim6", 0.1f);
 
+        Display.SetFloat("_Alpha", 0);
+
         UpdateObstacleCount();
 
         ScheduleNextSpawn();
@@ -152,8 +155,6 @@ public class Score2GFirst : MonoBehaviour
         isdelay1 -= Time.deltaTime;
         isdelay -= Time.deltaTime;
         isdelay2 -= Time.deltaTime;
-        isdelay3 -= Time.deltaTime;
-        isdelay4 -= Time.deltaTime;
 
 
         if(isdelay1 >= 0 && !isstart)
@@ -211,7 +212,7 @@ public class Score2GFirst : MonoBehaviour
         {
             ach6 = 1;
             PlayerPrefs.SetInt("ach6", 1);
-            achanim1.CrossFade("anim20", 0.1f);
+            achanim6.CrossFade("anim20", 0.1f);
             ad5.Play();
         }
         if (spawn >= 565 && MessagesID == 1)
@@ -230,23 +231,28 @@ public class Score2GFirst : MonoBehaviour
             MessagesID++;
             Disk2.Play("DisksIncreases");
         }
-        if (spawn >= 900 && MessagesID == 3)
+        if (spawn >= 980 && MessagesID == 3)
         {
             text.text = "Сканирование: регистрация радиационных колебаний";
             anim2.CrossFade("anim 26 1", 0.1f);
             ad9.Play();
             MessagesID++;
         }
-        if (spawn >= 1050 && MessagesID == 4)
+        if (spawn >= 1070 && MessagesID == 4 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
-            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Сканирование: " + selected;
-            anim2.CrossFade("anim 26 1", 0.1f);
-            ad9.Play();
             MessagesID++;
+            anim1.Play("anim10 4");
         }
 
-        if (spawn > 840)
+
+        if (spawn >= 950)
+        {
+            AlphaDisplay = Mathf.MoveTowards(AlphaDisplay, 0.9f, Time.deltaTime / 17);
+            Display.SetFloat("_Alpha", AlphaDisplay);
+        }
+
+
+        if (spawn > 940)
         {
             isbtonext = true;
         }
@@ -343,21 +349,21 @@ public class Score2GFirst : MonoBehaviour
 
     void UpdateObstacleCount()
     {
-        if (spawn < 250)
+        if (spawn < 200)
         {
             spawner.SetObstacleCount(2);
         }
-        else if (spawn < 500)
+        else if (spawn < 400)
         {
             spawner.SetObstacleCount(3);
         }
-        if (spawn < 250)
+        if (spawn < 730)
         {
             omini.SetObstacleCount(4);
         }
-        else if (spawn < 500)
+        else if (spawn < 1050)
         {
-            omini.SetObstacleCount(6);
+            omini.SetObstacleCount(5);
         }
     }
 

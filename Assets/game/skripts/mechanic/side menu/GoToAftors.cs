@@ -19,7 +19,12 @@ public class MenuSend : MonoBehaviour
     {
         if(PlayerPrefs.GetInt("start", 0) == 1)
         {
-            SceneManager.LoadScene("scenestart");
+            if(PlayerPrefs.GetInt("g2passed", 0) == 1)
+                SceneManager.LoadScene("3GlavStart");
+            else if(PlayerPrefs.GetInt("g1passed", 0) == 1 && PlayerPrefs.GetInt("Rest", 25000) <= 0)
+                SceneManager.LoadScene("2GlavStart");
+            else 
+                SceneManager.LoadScene("scenestart");
         }
     }
 }

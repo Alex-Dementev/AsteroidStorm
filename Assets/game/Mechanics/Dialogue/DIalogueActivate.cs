@@ -560,6 +560,13 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[11].SetActive(true);
         }
     }
+    public void ClickButton18()
+    {
+        if(PlayerPrefs.GetInt("2GlavStarted", 0) == 0 && PlayerPrefs.GetInt("g1passed", 0) == 1 && PlayerPrefs.GetInt("Rest", 25000) <= 0)
+        {
+            DialoguePanels[16].SetActive(true);
+        }
+    }
     public void ClickButton13()
     {
         if(PlayerPrefs.GetInt("SkinsDialogue", 0) == 0)
@@ -592,6 +599,8 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[14].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[15].activeSelf)
             DialoguePanels[15].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[16].activeSelf)
+            DialoguePanels[16].GetComponent<DialogueManager>().Close();
 
         if(DialoguePanels[7].activeSelf)
             DialoguePanels[7].GetComponent<DialogueManager>().Close();

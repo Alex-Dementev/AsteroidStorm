@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class RestartFuel : MonoBehaviour
 {
-    public int coins;
-    public int allfuel;
-    public int allcoins;
-    public int fuelused;
-    public int thispricefuel;
-    public bool is1;
+    private int coins;
+    private int allfuel;
+    private int allcoins;
+    private int fuelused;
+    private int thispricefuel;
+    private bool is1;
     public death d1;
     public death d2;
     public death d3;
     public death d4;
+    public death d5;
 
     void Start()
     {
@@ -25,20 +26,23 @@ public class RestartFuel : MonoBehaviour
 
     public void restart()
     {
-        if(allfuel >= fuelused && coins >= 3 && !is1)
+        if(allfuel >= fuelused && coins >= 10 && !is1)
         {
             is1 = true;
             allfuel -= fuelused;
-            coins -= 3;
+            coins -= 10;
             d1.restart3();
             d2.restart3();
             d3.restart3();
             d4.restart3();
+            d5.restart3();
+            PlayerPrefs.SetInt("fuel", allfuel);
+            PlayerPrefs.SetInt("coins", coins);
         }
-        else if(allfuel <= fuelused && coins >= 3 && !is1)
+        else if(allfuel <= fuelused && coins >= 10 && !is1)
         {
             fuelused = fuelused - allfuel;
-            fuelused = fuelused * thispricefuel + 3;
+            fuelused = fuelused * thispricefuel + 10;
 
             if(coins >= fuelused)
             {
@@ -49,6 +53,8 @@ public class RestartFuel : MonoBehaviour
                 d2.restart3();
                 d3.restart3();
                 d4.restart3();
+                d5.restart3();
+                is1 = true;
             }
         }
     }

@@ -141,29 +141,29 @@ public class menu : MonoBehaviour
     public ParticleSystem rocketstart3;
     public ParticleSystem rocketstart4;
 
-    public bool ison;
-    public bool ison1;
-    public bool ison2;
-    public bool ison3;
-    public bool isCustomPanel;
-    public int allgames;
-    public int is11;
-    public int is12;
-    public int is13;
-    public int is14;
-    public int is15;
-    public int maxcoins;
-    public int allgamesPermanentTask;
+    private bool ison;
+    private bool ison1;
+    private bool ison2;
+    private bool ison3;
+    private bool isCustomPanel;
+    private int allgames;
+    private int is11;
+    private int is12;
+    private int is13;
+    private int is14;
+    private int is15;
+    private int maxcoins;
+    private int allgamesPermanentTask;
 
-    public float RR;
-    public int Vp;
+    private float RR;
+    private int Vp;
     public Slider S;
     public Slider Sm;
     public Slider Sa;
     public Slider Sp;
-    public float musics;
-    public float audios;
-    public bool is6;
+    private float musics;
+    private float audios;
+    private bool is6;
     public Text logo;
     public Text logo2;
     public Text logo3;
@@ -195,7 +195,7 @@ public class menu : MonoBehaviour
 
 
     void Start()
-    {   
+    {
         PlayerPrefs.SetInt("isstopmusictocutscene", 0);
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
         musics = PlayerPrefs.GetFloat("musics", 0.5f);
@@ -292,6 +292,19 @@ public class menu : MonoBehaviour
         anim19.CrossFade("anim30", 0.1f);
         header.CrossFade("header", 0.1f);
         components.CrossFade("componstart", 0.1f);
+
+        StartCoroutine(Norifications());
+    }
+
+    IEnumerator Norifications()
+    {
+        panel2.SetActive(true);
+        panelBank.SetActive(true);
+
+        yield return new WaitForSeconds(0.1f);
+
+        panel2.SetActive(false);
+        panelBank.SetActive(false);
     }
 
 
@@ -766,18 +779,6 @@ public class menu : MonoBehaviour
         {
             DialogueStart.SetActive(true);
         }
-    }
-    public void is2g()
-    {
-        
-    }
-    public void is3g()
-    {
-        
-    }
-    public void is4g()
-    {
-
     }
 
     public void activatepanel1()

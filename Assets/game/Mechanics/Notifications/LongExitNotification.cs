@@ -50,6 +50,8 @@ public class LongExitNotification : MonoBehaviour
     {
         if (pauseStatus)
         {
+            Debug.Log("Long exit notifications created");
+
             float[] delays = { 43200, 129600, 155520};
 
             for (int i = 0; i < delays.Length; i++)
@@ -62,7 +64,7 @@ public class LongExitNotification : MonoBehaviour
                 notification.Text = Messages[MessagesInt];
                 notification.FireTime = DateTime.Now.AddSeconds(delays[i]);
                 notification.SmallIcon = "ic_notification";
-                notification.LargeIcon = "app_icon";
+                notification.LargeIcon = "icon";
 
                 int id = AndroidNotificationCenter.SendNotification(notification, "default");
                 PlayerPrefs.SetInt("DefaultNotificationID" + (i + 1), id);

@@ -19,4 +19,8 @@ public class DeathGo : MonoBehaviour
     {
         SceneManager.LoadScene("main");
     }
+    public void GoToNextPart()
+    {
+        SceneManager.LoadScene("2Glav2Part");
+    }
 }
