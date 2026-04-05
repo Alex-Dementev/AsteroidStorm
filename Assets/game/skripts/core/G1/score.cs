@@ -125,10 +125,9 @@ public class ScoreCounter : MonoBehaviour
         PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
         PlayerPrefs.SetInt("isfinal2g", 0);
+        
         if (PlayerPrefs.GetInt("isbtotask") == 1)
-        {
             isbtotask = true;
-        }
 
         l.intensity = PlayerPrefs.GetFloat("lightgameplay");
 
@@ -283,7 +282,7 @@ public class ScoreCounter : MonoBehaviour
         }
         if (!isbtotask)
         {
-            if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == 3)
+            if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == PlayerPrefs.GetInt("LifeToStart", 1))
             {
                 PlayerPrefs.SetInt("scoreNoDamage", (int)(player.position.z / 3));
             }

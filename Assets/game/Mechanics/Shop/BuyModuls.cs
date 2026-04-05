@@ -17,6 +17,14 @@ public class BuyModuls : MonoBehaviour
     
     void Start()
     {
+        if(PlayerPrefs.GetInt(Index + "Coins", 0) == 0)
+        {
+            CoinsToBuy = Mathf.RoundToInt(CoinsToBuy * Random.Range(0.9f, 1.125f));
+            PlayerPrefs.SetInt(Index + "Coins", CoinsToBuy);
+        }
+        else
+            CoinsToBuy = PlayerPrefs.GetInt(Index + "Coins", 0);
+
         CoinsTextToBuy.text = "" + CoinsToBuy;
 
         IndexStatus = PlayerPrefs.GetInt(Index, 0);
@@ -39,6 +47,7 @@ public class BuyModuls : MonoBehaviour
         coins = PlayerPrefs.GetInt("coins", 0);
         if(coins >= CoinsToBuy)
         {
+            YouBuy.SetActive(true);
             coins -= CoinsToBuy;
             PlayerPrefs.SetInt("coins", coins);
             IndexStatus = 1;
@@ -46,7 +55,6 @@ public class BuyModuls : MonoBehaviour
             Quantity = PlayerPrefs.GetInt(NamePP, 0);
             Quantity++;
             PlayerPrefs.SetInt(NamePP, Quantity);
-            YouBuy.SetActive(true);
             ad.Play();
 
             if(NamePP == "P1" && PlayerPrefs.GetInt("P1Buy", 0) != 2)

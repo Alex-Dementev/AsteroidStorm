@@ -26,11 +26,21 @@ public class RestartFuel : MonoBehaviour
 
     public void restart()
     {
-        if(allfuel >= fuelused && coins >= 10 && !is1)
+        int Price;
+
+        if(PlayerPrefs.GetInt("g2passed", 0) == 1)
+            Price = 15 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+        else if(PlayerPrefs.GetInt("g1passed", 0) == 1 && PlayerPrefs.GetInt("Rest", 25000) <= 0)
+            Price = 11 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+        else
+            Price = 7 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+
+
+        if(allfuel >= fuelused && coins >= Price && !is1)
         {
             is1 = true;
             allfuel -= fuelused;
-            coins -= 10;
+            coins -= Price;
             d1.restart3();
             d2.restart3();
             d3.restart3();
@@ -39,10 +49,10 @@ public class RestartFuel : MonoBehaviour
             PlayerPrefs.SetInt("fuel", allfuel);
             PlayerPrefs.SetInt("coins", coins);
         }
-        else if(allfuel <= fuelused && coins >= 10 && !is1)
+        else if(allfuel <= fuelused && coins >= Price && !is1)
         {
             fuelused = fuelused - allfuel;
-            fuelused = fuelused * thispricefuel + 10;
+            fuelused = fuelused * thispricefuel + Price;
 
             if(coins >= fuelused)
             {

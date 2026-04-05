@@ -14,7 +14,6 @@ public class fueltostart : MonoBehaviour
     public Animator zeroTanks;
     private float delay;
     private bool isdelay;
-    public DIalogueActivate DA;
 
     void Start()
     {
@@ -74,8 +73,6 @@ public class fueltostart : MonoBehaviour
                 {
                     fuel2 = 0;
                     text.text = "0";
-
-                    DA.ClickButton7();
                 }
             }
         }

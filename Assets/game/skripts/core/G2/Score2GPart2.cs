@@ -56,13 +56,14 @@ public class Score2GPart2 : MonoBehaviour
     private float isdelay2 = 1;
     public float isminus;
     private bool isbportal;
-    private int ach6;
-    public Animator achanim6;
+    private int ach7;
+    public Animator achanim7;
     public Animator anim;
     public Animator anim2;
     private bool isbtonext;
     public Text text;
     public Animator anim4;
+    public Animator anim5;
     public int MessagesID;
     private bool rocketfall;
     public Light l;
@@ -100,10 +101,9 @@ public class Score2GPart2 : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.SetInt("isfinal1g", 0);
-        PlayerPrefs.SetInt("isfinal2g", 0);
+        PlayerPrefs.SetInt("isfinal1g", 1);
         PlayerPrefs.SetInt("AchActive", 1);
-        ach6 = PlayerPrefs.GetInt("ach6");
+        ach7 = PlayerPrefs.GetInt("ach7");
         
         l.intensity = PlayerPrefs.GetFloat("lightgameplay") / 2;
 
@@ -191,21 +191,26 @@ public class Score2GPart2 : MonoBehaviour
         ad19.volume = audios;
         ad20.volume = audios;
 
-        if (spawn >= 400 && MessagesID == 0)
+        if (spawn >= 1450 && MessagesID == 0)
         {
-            text.text = "Достигнуто внешнее кольцо аккреционного диска";
+            text.text = "Приближение первых ворот пространства";
             anim2.CrossFade("anim 26 1", 0.1f);
             ad9.Play();
             MessagesID++;
         }
-        if (spawn >= 920 && ach6 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        if (spawn >= 2020 && ach7 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
-            ach6 = 1;
-            PlayerPrefs.SetInt("ach6", 1);
-            achanim6.CrossFade("anim20", 0.1f);
+            ach7 = 1;
+            PlayerPrefs.SetInt("ach7", 1);
+            achanim7.CrossFade("anim20", 0.1f);
             ad5.Play();
         }
-        if (spawn >= 565 && MessagesID == 1)
+        if (spawn >= 1587 && MessagesID == 1)
+        {
+            anim5.Play("WhiteScreen");
+            MessagesID++;
+        }
+        if (spawn >= 1830 && MessagesID == 2)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
             text.text = "Сканирование: " + selected;
@@ -213,28 +218,22 @@ public class Score2GPart2 : MonoBehaviour
             ad9.Play();
             MessagesID++;
         }
-        if (spawn >= 730 && MessagesID == 2)
+        if (spawn >= 2080 && MessagesID == 3)
         {
-            text.text = "Достигнуто внутреннее кольцо аккреционного диска";
+            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
+            text.text = "Сканирование: " + selected;
             anim2.CrossFade("anim 26 1", 0.1f);
             ad9.Play();
             MessagesID++;
         }
-        if (spawn >= 980 && MessagesID == 3)
-        {
-            text.text = "Сканирование: регистрация радиационных колебаний";
-            anim2.CrossFade("anim 26 1", 0.1f);
-            ad9.Play();
-            MessagesID++;
-        }
-        if (spawn >= 1070 && MessagesID == 4 && PlayerPrefs.GetInt("youdead", 0) == 0)
+        if (spawn >= 2170 && MessagesID == 4 && PlayerPrefs.GetInt("youdead", 0) == 0)
         {
             MessagesID++;
             anim1.Play("anim10 4");
         }
 
 
-        if (spawn > 940)
+        if (spawn > 2040)
         {
             isbtonext = true;
         }
@@ -254,9 +253,9 @@ public class Score2GPart2 : MonoBehaviour
             }
         }
 
-        score = (int)(player.position.z / 3);
+        score = (int)(player.position.z / 2) + 1100;
         scoreText.text = (score.ToString());
-        spawn = ((int)(player.position.z) / 3);
+        spawn = ((int)(player.position.z) / 2) + 1100;
 
         UpdateObstacleCount();
 

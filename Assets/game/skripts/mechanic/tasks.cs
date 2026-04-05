@@ -83,9 +83,9 @@ public class tasks : MonoBehaviour
         switch (currentTask2)
         {
             case 0:
-                task2Text.text = "Пробить 2 препятствия способностью за один раз";
-                task2Slider.maxValue = 2;
-                task2Slider.value = PlayerPrefs.GetInt("breakObstacles", 0);
+                task2Text.text = "3 раза закончи вылет окончанием топлива";
+                task2Slider.maxValue = 3;
+                task2Slider.value = PlayerPrefs.GetInt("DeathOnFuel", 0);
                 break;
             case 1:
                 task2Text.text = "Собрать бонус 10 раз";
@@ -138,7 +138,7 @@ public class tasks : MonoBehaviour
         bool completed = false;
         switch (currentTask2)
         {
-            case 0: if (PlayerPrefs.GetInt("breakObstacles", 0) >= 2) completed = true; break;
+            case 0: if (PlayerPrefs.GetInt("DeathOnFuel", 0) >= 3) completed = true; break;
             case 1: if (PlayerPrefs.GetInt("collectBonus", 0) >= 10) completed = true; break;
             case 2: if (PlayerPrefs.GetInt("loseLife", 0) >= 15) completed = true; break;
             case 3: if (PlayerPrefs.GetInt("abilityOver80", 0) >= 1) completed = true; break;
@@ -149,11 +149,34 @@ public class tasks : MonoBehaviour
 
     void HandleAnimation()
     {
-        if(task1Completed || task2Completed)
-        {
-            PlayerPrefs.SetInt("isDisActivateAnimTask1", 1);
+        bool hasSimpleTask = task1Completed || task2Completed;
+        bool hasPermanentTask = CheckPermanentTasks();
+
+        if (hasSimpleTask || hasPermanentTask)
             TaskAttract.SetBool("IsTrue", true);
-        }
+        else
+            TaskAttract.SetBool("IsTrue", false);
+    }
+
+    bool CheckPermanentTasks()
+    {
+        if(PlayerPrefs.GetInt("LevelTask1", 0) == 0 && PlayerPrefs.GetInt("PermanentTaskFuel", 0) >= 300) return true;
+        if(PlayerPrefs.GetInt("LevelTask1", 0) == 1 && PlayerPrefs.GetInt("PermanentTaskFuel", 0) >= 800) return true;
+        if(PlayerPrefs.GetInt("LevelTask1", 0) == 2 && PlayerPrefs.GetInt("PermanentTaskFuel", 0) >= 2000) return true;
+
+        if(PlayerPrefs.GetInt("LevelTask2", 0) == 0 && PlayerPrefs.GetInt("PermanentTaskEnergy", 0) >= 1200) return true;
+        if(PlayerPrefs.GetInt("LevelTask2", 0) == 1 && PlayerPrefs.GetInt("PermanentTaskEnergy", 0) >= 3500) return true;
+        if(PlayerPrefs.GetInt("LevelTask2", 0) == 2 && PlayerPrefs.GetInt("PermanentTaskEnergy", 0) >= 10000) return true;
+
+        if(PlayerPrefs.GetInt("LevelTask3", 0) == 0 && PlayerPrefs.GetInt("PermanentTaskLife", 0) >= 30) return true;
+        if(PlayerPrefs.GetInt("LevelTask3", 0) == 1 && PlayerPrefs.GetInt("PermanentTaskLife", 0) >= 95) return true;
+        if(PlayerPrefs.GetInt("LevelTask3", 0) == 2 && PlayerPrefs.GetInt("PermanentTaskLife", 0) >= 200) return true;
+
+        if(PlayerPrefs.GetInt("LevelTask4", 0) == 0 && PlayerPrefs.GetInt("PermanentTaskMetalls", 0) >= 500) return true;
+        if(PlayerPrefs.GetInt("LevelTask4", 0) == 1 && PlayerPrefs.GetInt("PermanentTaskMetalls", 0) >= 850) return true;
+        if(PlayerPrefs.GetInt("LevelTask4", 0) == 2 && PlayerPrefs.GetInt("PermanentTaskMetalls", 0) >= 1450) return true;
+
+        return false;
     }
 
     public void CollectTask1Reward()
@@ -162,11 +185,6 @@ public class tasks : MonoBehaviour
 
         GiveReward(rewardsBlock1[currentTask1]);
         task1Completed = false;
-
-        PlayerPrefs.SetInt("isDisActivateAnimTask1", 1);
-
-        if(PlayerPrefs.GetInt("isDisActivateAnimTask2", 0) == 1)
-            TaskAttract.SetBool("IsTrue", false);
 
         int[] remaining = RemainingTasks(block1, currentTask1);
         currentTask1 = remaining[Random.Range(0, remaining.Length)];
@@ -181,11 +199,6 @@ public class tasks : MonoBehaviour
 
         GiveReward(rewardsBlock2[currentTask2]);
         task2Completed = false;
-
-        PlayerPrefs.SetInt("isDisActivateAnimTask1", 0);
-
-        if(PlayerPrefs.GetInt("isDisActivateAnimTask2", 0) == 0)
-            TaskAttract.SetBool("IsTrue", false);
 
         int[] remaining = RemainingTasks(block2, currentTask2);
         currentTask2 = remaining[Random.Range(0, remaining.Length)];
@@ -229,7 +242,7 @@ public class tasks : MonoBehaviour
     {
         switch (currentTask2)
         {
-            case 0: PlayerPrefs.SetInt("breakObstacles", 0); break;
+            case 0: PlayerPrefs.SetInt("DeathOnFuel", 0); break;
             case 1: PlayerPrefs.SetInt("collectBonus", 0); break;
             case 2: PlayerPrefs.SetInt("loseLife", 0); break;
             case 3: PlayerPrefs.SetInt("abilityOver80", 0); break;

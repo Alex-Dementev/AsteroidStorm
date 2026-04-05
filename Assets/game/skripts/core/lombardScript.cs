@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class lombardScript : MonoBehaviour
 {
@@ -126,8 +127,8 @@ public class lombardScript : MonoBehaviour
     {
         txt.text = percent + "%";
         Color green, red, standard;
-        ColorUtility.TryParseHtmlString("#00DB7C", out green);
-        ColorUtility.TryParseHtmlString("#DB004C", out red);
+        ColorUtility.TryParseHtmlString("#20AE2B", out green);
+        ColorUtility.TryParseHtmlString("#FF327D", out red);
         ColorUtility.TryParseHtmlString("#FA32FF", out standard);
 
         if (percent <= 90) txt.color = red;
@@ -144,19 +145,20 @@ public class lombardScript : MonoBehaviour
 
         string lastTime = PlayerPrefs.GetString("lastUpdateLombard", "");
         DateTime lastUpdate;
+
         if (DateTime.TryParse(lastTime, out lastUpdate))
         {
             TimeSpan diff = DateTime.Now - lastUpdate;
-            if (diff.TotalHours >= 1)
+
+            if (diff.TotalMinutes >= 10)
             {
-                int hours = (int)diff.TotalHours;
-                for (int i = 0; i < hours; i++)
+                int steps = (int)(diff.TotalMinutes / 10);
+
+                for (int i = 0; i < steps; i++)
                 {
-                    pricePercent1 = ChangePercent(pricePercent1);
-                    pricePercent2 = ChangePercent(pricePercent2);
-                    pricePercent3 = ChangePercent(pricePercent3);
-                    pricePercent4 = ChangePercent(pricePercent4);
+                    UpdateMarketStep();
                 }
+
                 PlayerPrefs.SetString("lastUpdateLombard", DateTime.Now.ToString());
             }
         }
@@ -164,13 +166,69 @@ public class lombardScript : MonoBehaviour
         {
             PlayerPrefs.SetString("lastUpdateLombard", DateTime.Now.ToString());
         }
+
         SavePercents();
+    }
+
+    void UpdateMarketStep()
+    {
+        int[] percents = { pricePercent1, pricePercent2, pricePercent3, pricePercent4 };
+
+        // 1. Плавное изменение
+        for (int i = 0; i < 4; i++)
+        {
+            int change = UnityEngine.Random.Range(-12, 15);
+            if (UnityEngine.Random.value < 0.25f)
+                change += UnityEngine.Random.Range(-40, 41);
+            if (UnityEngine.Random.value < 0.1f)
+                change += UnityEngine.Random.Range(-50, 45);
+            percents[i] = Mathf.Clamp(percents[i] + change, 50, 175);
+        }
+
+        // 2. Считаем зелёные (>=102)
+        List<int> greenIndexes = new List<int>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (percents[i] >= 102)
+                greenIndexes.Add(i);
+        }
+
+        // 3. Ограничиваем до 2 зелёных
+        while (greenIndexes.Count > 2)
+        {
+            int index = greenIndexes[UnityEngine.Random.Range(0, greenIndexes.Count)];
+
+            // уводим в нейтраль (98–101)
+            percents[index] = UnityEngine.Random.Range(98, 102);
+
+            greenIndexes.Remove(index);
+        }
+
+        // 4. Иногда всё падает (в красную зону ≤98)
+        if (UnityEngine.Random.value < 0.2f)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                percents[i] = Mathf.Clamp(
+                    percents[i] - UnityEngine.Random.Range(5, 15),
+                    50,
+                    98
+                );
+            }
+        }
+
+        // сохраняем
+        pricePercent1 = percents[0];
+        pricePercent2 = percents[1];
+        pricePercent3 = percents[2];
+        pricePercent4 = percents[3];
     }
 
     int ChangePercent(int oldValue)
     {
         int change = UnityEngine.Random.Range(-20, 21);
-        return Mathf.Clamp(oldValue + change, 50, 250);
+        return Mathf.Clamp(oldValue + change, 50, 175);
     }
 
     void SavePercents()

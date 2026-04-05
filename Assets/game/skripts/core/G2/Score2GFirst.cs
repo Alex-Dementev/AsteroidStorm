@@ -50,6 +50,7 @@ public class Score2GFirst : MonoBehaviour
     public ObstacleSpawner o;
     public ObstacleSpawner omini;
     public int spawn;
+    private bool isbtotask;
     private float function;
     private float isdelay;
     private float isdelay1 = 1;
@@ -106,11 +107,14 @@ public class Score2GFirst : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("youdead", 0);
         PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
-        PlayerPrefs.SetInt("isfinal2g", 0);
         PlayerPrefs.SetInt("AchActive", 1);
         ach6 = PlayerPrefs.GetInt("ach6");
+
+        if (PlayerPrefs.GetInt("isbtotask") == 1)
+            isbtotask = true;
         
         l.intensity = PlayerPrefs.GetFloat("lightgameplay") / 2;
 
@@ -137,6 +141,8 @@ public class Score2GFirst : MonoBehaviour
         anim.CrossFade("anim6", 0.1f);
 
         Display.SetFloat("_Alpha", 0);
+
+        PlayerPrefs.SetInt("live", PlayerPrefs.GetInt("LifeToStart", 1));
 
         UpdateObstacleCount();
 
@@ -249,6 +255,36 @@ public class Score2GFirst : MonoBehaviour
         {
             AlphaDisplay = Mathf.MoveTowards(AlphaDisplay, 0.9f, Time.deltaTime / 17);
             Display.SetFloat("_Alpha", AlphaDisplay);
+        }
+
+        if (spawn >= 750)
+        {
+            if (!isbtotask)
+            {
+                if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == 3)
+                {
+                    isbtotask = true;
+                    PlayerPrefs.SetInt("scoreNoDamage", 700);
+                    PlayerPrefs.SetInt("isbtotask", 1);
+                }
+                else if (PlayerPrefs.GetInt("currentTask1", -1) == 3 && PlayerPrefs.GetInt("isabilityuse") == 0)
+                {
+                    isbtotask = true;
+                    PlayerPrefs.SetInt("scoreNoAbility", 700);
+                    PlayerPrefs.SetInt("isbtotask", 1);
+                }
+            }
+        }
+        if (!isbtotask)
+        {
+            if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == PlayerPrefs.GetInt("LifeToStart", 1))
+            {
+                PlayerPrefs.SetInt("scoreNoDamage", (int)(player.position.z / 3));
+            }
+            else if (PlayerPrefs.GetInt("currentTask1", -1) == 3 && PlayerPrefs.GetInt("isabilityuse") == 0)
+            {
+                PlayerPrefs.SetInt("scoreNoAbility", (int)(player.position.z / 3));
+            }
         }
 
 

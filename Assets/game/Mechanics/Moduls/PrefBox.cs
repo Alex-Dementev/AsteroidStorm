@@ -158,6 +158,10 @@ public class PrefBoxPaste : MonoBehaviour
 
     public void ApplyDesc()
     {
+        if(!gameObject.activeInHierarchy)
+            return;
+        
+        
         DescText.text = "" + Desc;
         DescPositive.text = "" + DescPos;
         DescNegative.text = "" + DescNegat;
@@ -325,6 +329,7 @@ public class PrefBoxPaste : MonoBehaviour
                     PlayerPrefs.SetInt("GyperJump", 1);
                     PlayerPrefs.SetInt("GyperJumpEnergy", energyAbility);
                     PlayerPrefs.SetInt("GyperJumpOtkat", otkat);
+                    PlayerPrefs.SetInt("PriceToPlayGyperJump", maxFuel);
                 }
             }
             if (TypeIndex == 5)
@@ -345,7 +350,7 @@ public class PrefBoxPaste : MonoBehaviour
                     PlayerPrefs.SetInt("ScannerEnergy", energyAbility);
                     PlayerPrefs.SetInt("ScannerOtkat", otkat);
                     PlayerPrefs.SetInt("ScannerLenght", ScannerLenght);
-                    
+                    PlayerPrefs.SetInt("PriceToPlayScanner", maxFuel);
                 }
             }
             if (TypeIndex == 6)
@@ -365,6 +370,7 @@ public class PrefBoxPaste : MonoBehaviour
                     PlayerPrefs.SetInt("Shield", 1);
                     PlayerPrefs.SetInt("ShieldEnergy", energyAbility);
                     PlayerPrefs.SetInt("ShieldOtkat", otkat);
+                    PlayerPrefs.SetInt("PriceToPlayShield", maxFuel);
                 }
             }
             if (TypeIndex == 7)
@@ -385,7 +391,7 @@ public class PrefBoxPaste : MonoBehaviour
                     PlayerPrefs.SetInt("ProjectileEnergy", energyAbility);
                     PlayerPrefs.SetInt("ProjectileOtkat", otkat);
                     PlayerPrefs.SetInt("ProjectileRadius", ProjectileRadius);
-
+                    PlayerPrefs.SetInt("PriceToPlayProjectile", maxFuel);
                 }
             }
 
@@ -610,10 +616,9 @@ public class PrefBoxPaste : MonoBehaviour
             {
                 twoclicks = 0;
                 
-                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 && PlayerPrefs.GetString("Fuel1IndexModule", "") != "0"|| PlayerPrefs.GetString("Fuel2IndexModule", "") != "0" && PlayerPrefs.GetInt("FuelTanksCount", 0) != 0)
+                if((PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 && PlayerPrefs.GetString("Fuel1IndexModule", "") != "0") || PlayerPrefs.GetString("Fuel2IndexModule", "") != "0")
                 {
-                    if(PlayerPrefs.GetInt("FuelTanksCount", 0) != 0)
-                        approveSell();
+                    approveSell();
                 }
             }
         }
@@ -627,10 +632,9 @@ public class PrefBoxPaste : MonoBehaviour
             {
                 twoclicks2 = 0;
 
-                if(PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 && PlayerPrefs.GetString("Fuel2IndexModule", "") != "0"|| PlayerPrefs.GetString("Fuel1IndexModule", "") != "0" && PlayerPrefs.GetInt("FuelTanksCount", 0) != 0)
+                if((PlayerPrefs.GetInt("FuelTanksCount", 0) >= 1 && PlayerPrefs.GetString("Fuel2IndexModule", "") != "0") || PlayerPrefs.GetString("Fuel1IndexModule", "") != "0")
                 {
-                    if(PlayerPrefs.GetInt("FuelTanksCount", 0) != 0)
-                        approveSell();
+                    approveSell();
                 }
             }
         }
@@ -727,28 +731,28 @@ public class PrefBoxPaste : MonoBehaviour
 
         if(raresell == 1)
         {
-            coins += 200;
-            allcoins += 200;
+            coins += 250;
+            allcoins += 250;
         }
         if(raresell == 2)
         {
-            coins += 370;
-            allcoins += 370;
+            coins += 400;
+            allcoins += 400;
         }
         if(raresell == 3)
         {
-            coins += 680;
-            allcoins += 680;
+            coins += 690;
+            allcoins += 690;
         }
         if(raresell == 4)
         {
-            coins += 1050;
-            allcoins += 1050;
+            coins += 1080;
+            allcoins += 1080;
         }
         if(raresell == 5)
         {
-            coins += 1500;
-            allcoins += 1500;
+            coins += 1700;
+            allcoins += 1700;
         }
 
         PlayerPrefs.SetInt("coins", coins);

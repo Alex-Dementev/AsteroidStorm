@@ -439,6 +439,11 @@ public class DoubleTapHandler : MonoBehaviour
             {
                 Vibration.Vibrate(100, 35);
             }
+
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
+            {
+                PlayerPrefs.SetInt("abilityOver80", 1);
+            }
         }
     }
 
@@ -475,6 +480,11 @@ public class DoubleTapHandler : MonoBehaviour
             {
                 Vibration.Vibrate(100, 35);
             }
+
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
+            {
+                PlayerPrefs.SetInt("abilityOver80", 1);
+            }
         }
     }
 
@@ -502,6 +512,11 @@ public class DoubleTapHandler : MonoBehaviour
             {
                 Vibration.Vibrate(100, 35);
             }
+
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
+            {
+                PlayerPrefs.SetInt("abilityOver80", 1);
+            }
         }
     }
 
@@ -526,6 +541,11 @@ public class DoubleTapHandler : MonoBehaviour
             if (PlayerPrefs.GetInt("vibration") == 0)
             {
                 Vibration.Vibrate(200, 65);
+            }
+
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
+            {
+                PlayerPrefs.SetInt("abilityOver80", 1);
             }
         }
     }

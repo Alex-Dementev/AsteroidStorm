@@ -190,6 +190,8 @@ public class menu : MonoBehaviour
     public RocketBehavior move4;
     public RocketBehavior move5;
 
+    public Text PriceToStart;
+
 
 
 
@@ -203,7 +205,6 @@ public class menu : MonoBehaviour
         PlayerPrefs.SetInt("youcheat", 1);
         PlayerPrefs.SetInt("youdead", 0);
         PlayerPrefs.SetInt("GoToFinalGlav", 0);
-
 
         if (PlayerPrefs.GetInt("fall") == 1)
             rocketfall = true;
@@ -293,16 +294,8 @@ public class menu : MonoBehaviour
         header.CrossFade("header", 0.1f);
         components.CrossFade("componstart", 0.1f);
 
-        StartCoroutine(Norifications());
-    }
-
-    IEnumerator Norifications()
-    {
         panel2.SetActive(true);
         panelBank.SetActive(true);
-
-        yield return new WaitForSeconds(0.1f);
-
         panel2.SetActive(false);
         panelBank.SetActive(false);
     }
@@ -465,6 +458,18 @@ public class menu : MonoBehaviour
             RR = 1000;
             PlayerPrefs.SetFloat("R Rotate Speed", 1000);
         }
+
+
+        int Price;
+
+        if(PlayerPrefs.GetInt("g2passed", 0) == 1)
+            Price = 15 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+        else if(PlayerPrefs.GetInt("g1passed", 0) == 1 && PlayerPrefs.GetInt("Rest", 25000) <= 0)
+            Price = 11 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+        else
+            Price = 7 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+        
+        PriceToStart.text = "Цена: " + Price + "    ";
     }
 
 
@@ -744,9 +749,20 @@ public class menu : MonoBehaviour
                 move4.LaunchRocket();
                 move5.LaunchRocket();
 
+
+                int Price;
+
+                if(PlayerPrefs.GetInt("g2passed", 0) == 1)
+                    Price = 15 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+                else if(PlayerPrefs.GetInt("g1passed", 0) == 1 && PlayerPrefs.GetInt("Rest", 25000) <= 0)
+                    Price = 11 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+                else
+                    Price = 7 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+
+
                 if(PlayerPrefs.GetInt("yousurwive", 0) == 0)
                 {
-                    coins -= 10;
+                    coins -= Price;
                     allgames = PlayerPrefs.GetInt("allgames", 0);
                     allgames++;
                     PlayerPrefs.SetInt("allgames", allgames);

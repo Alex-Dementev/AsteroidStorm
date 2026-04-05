@@ -66,22 +66,9 @@ public class cut3 : MonoBehaviour
             coins = PlayerPrefs.GetInt("coins");
             allcoins = PlayerPrefs.GetInt("allcoins");
             score = PlayerPrefs.GetInt("allscore");
-            coins += 500;
+            coins += 150;
             score += 2000;
-            allcoins += 500;
-            PlayerPrefs.SetInt("coins", coins);
-            PlayerPrefs.SetInt("allcoins", allcoins);
-            PlayerPrefs.SetInt("allscore", score);
-            PlayerPrefs.SetInt("g1passed", 1);
-        }
-        if (PlayerPrefs.GetInt("youcheat", 1) == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 1)
-        {
-            coins = PlayerPrefs.GetInt("coins");
-            allcoins = PlayerPrefs.GetInt("allcoins");
-            score = PlayerPrefs.GetInt("allscore");
-            coins += 30;
-            score += 2000;
-            allcoins += 30;
+            allcoins += 150;
             PlayerPrefs.SetInt("coins", coins);
             PlayerPrefs.SetInt("allcoins", allcoins);
             PlayerPrefs.SetInt("allscore", score);

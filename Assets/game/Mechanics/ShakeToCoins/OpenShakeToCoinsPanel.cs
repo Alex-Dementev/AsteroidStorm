@@ -10,7 +10,7 @@ public class OpenShakeToCoinsPanel : MonoBehaviour
     {
         Coll++;
 
-        if(Coll >= 50)
+        if(Coll >= 50 && PlayerPrefs.GetInt("IndexDialogue", 0) >= 21)
         {
             go.SetActive(true);
             ActivateAnim.Play("Start");

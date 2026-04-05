@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 
 public class death : MonoBehaviour
 {
-    [SerializeField] public Text quoteText;
+    public Text quoteText;
     [SerializeField] public GameObject losePanel;
     [SerializeField] public Transform player;
     public int coins;
@@ -17,8 +17,8 @@ public class death : MonoBehaviour
     public float isdelay2;
     public Image liveimage;
     private int live = 3;
-    public bool b;
-    public int cb;
+    private bool b;
+    private int cb;
     public Distortion Distortion;
     public AudioSource adbonus;
     public Animator animbonus;
@@ -52,6 +52,9 @@ public class death : MonoBehaviour
     public AudioSource explosionSound2;
 
     public GameObject[] go20;
+
+    public Text fineText;
+    public Animator fineAnim;
 
     string[] deathQuotes = {
         "Ну вот и всё, капитан кефир.",
@@ -206,7 +209,7 @@ public class death : MonoBehaviour
         "Экран становится тёплым… ты это чувствуешь?",
         "Почему ты моргнул? Я видел.",
         "Ты не один…",
-        "Батарея садится быстрее, чем должна.",
+        "Батарея на твоем телефоне садится быстрее, чем должна.",
         "Не смотри в отражение экрана.",
         "Ты уверен, что игра закрыта, когда выходишь?"
     };
@@ -326,21 +329,7 @@ public class death : MonoBehaviour
             liveimage.color = new Color(0.322f, 0.322f, 0.322f);
             livet.color = new Color(0.322f, 0.322f, 0.322f);
         }
-
-        if (isdelay2 <= 0 && is2 >= 2)
-        {
-            is2 = 0;
-            PlayerPrefs.SetInt("breakObstacles", 2);
-        }
-        else if (isdelay2 <= 0 && is2 == 1)
-        {
-            isstarttask = false;
-            is2 = 0;
-            PlayerPrefs.SetInt("breakObstacles", 1);
-        }
         
-
-
 
         if (b == false && fuel <= -1 && isfuelzero == false)
         {
@@ -352,6 +341,11 @@ public class death : MonoBehaviour
                 fuelzero.text = "Топливо закончилось";
                 isfuelzero = true;
                 energy.End();
+
+                if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
+                {
+                    PlayerPrefs.SetInt("DeathOnFuel", PlayerPrefs.GetInt("DeathOnFuel", 0) + 1);
+                }
 
                 if(PlayerPrefs.GetInt("IndexDialogue", 0) == 20)
                 {
@@ -416,8 +410,6 @@ public class death : MonoBehaviour
         anim.Play("anim10 3");
     }
 
-    [SerializeField] private Text fineText;
-    [SerializeField] private Animator fineAnim;
     private string[] secretMessages = { "Забей, это просто заранее приготовленные фразы", "67", "ВОУ, ТЫ НУБ!", "52" };
     private string[] fallfineMessages = { "Ракета 1 : 0 Камень", "Астероид проиграл в PvP.", "Ну всё, камень теперь обижен.", "УФ"};
     private string[] fineMessages = { "Отлично!", "Хорошо!", "Неплохо!", "Класс!", "Есть попадание!", "Харошь" };
@@ -508,16 +500,6 @@ public class death : MonoBehaviour
                         ShieldEndAS.Play();
                         PlayerPrefs.SetInt("activeShield", 0);
                         shield.CrossFade("endShield", 0.1f);
-                    }
-
-                    if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
-                    {
-                        is2++;
-                        if (!isstarttask)
-                        {
-                            isstarttask = true;
-                            isdelay2 = 3;
-                        }
                     }
 
 

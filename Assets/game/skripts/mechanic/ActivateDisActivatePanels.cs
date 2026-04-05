@@ -7,11 +7,18 @@ public class ActivateDisActivatePanels : MonoBehaviour
     private float isOpen;
 
     public bool IsAch = false;
+    public bool BlockOnIndexDialogue = false;
     
     public void Activate()
     {
         if(!go.activeSelf)
         {
+            if(BlockOnIndexDialogue)
+            {
+                if(PlayerPrefs.GetInt("IndexDialogue", 0) <= 20)
+                    return;
+            }
+            
             go.SetActive(true);
             ActivateAnim.CrossFade("Start", 0.2f);
         }

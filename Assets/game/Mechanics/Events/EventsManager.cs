@@ -11,6 +11,7 @@ public class EventsManager : MonoBehaviour
     public Text PanelText;
     private float Delay;
     public Text ButtonText;
+    private int random;
 
     void Update()
     {
@@ -33,8 +34,12 @@ public class EventsManager : MonoBehaviour
 
         if (System.DateTime.Now.Month == 4 && System.DateTime.Now.Day == 1 && System.DateTime.Now.Year > PlayerPrefs.GetInt("Is2Event", 0))
         {
-            int random = UnityEngine.Random.Range(15, 26);
-            random *= 10000;
+            if(random == 0)
+            {
+                random = UnityEngine.Random.Range(15, 26);
+                random *= 10000;
+            }
+
             Panel.SetActive(true);
             PanelText.text = "Сегодня у меня хорошее настроение, поэтому мы дарим вам: " + random;
         }
@@ -48,7 +53,7 @@ public class EventsManager : MonoBehaviour
         if (System.DateTime.Now.Month == 10 && System.DateTime.Now.Day == 21 && System.DateTime.Now.Year > PlayerPrefs.GetInt("Is4Event", 0))
         {
             Panel.SetActive(true);
-            PanelText.text = "С днем рождения DemonAlex!";
+            PanelText.text = "С днем рождения MrGameDragon!";
             ButtonText.text = "Поздравить";
         }
 
@@ -56,7 +61,7 @@ public class EventsManager : MonoBehaviour
         {
             Panel.SetActive(true);
             PanelText.text = "Сегодня международный день космонавтики!";
-            ButtonText.text = "Хорошо";
+            ButtonText.text = "Радоваться";
         }
 
 
@@ -88,7 +93,8 @@ public class EventsManager : MonoBehaviour
         if (System.DateTime.Now.Month == 4 && System.DateTime.Now.Day == 1)
         {
             PlayerPrefs.SetInt("Is2Event", System.DateTime.Now.Year);
-            PanelText.text = "Шучу!";
+            PanelText.text = "С первым апреля!";
+            PanelText.color = Color.red;
         }
 
         PanelAnim.Play("End");
