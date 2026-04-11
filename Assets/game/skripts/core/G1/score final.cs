@@ -42,7 +42,6 @@ public class ScoreCounterFinal : MonoBehaviour
     public AudioSource ad10;
     public AudioSource ad11;
     public AudioSource ad12;
-    public AudioSource ad13;
     public AudioSource ad14;
     public AudioSource ad15;
     public AudioSource ad16;
@@ -199,8 +198,7 @@ public class ScoreCounterFinal : MonoBehaviour
         ad9.volume = audios / 1.25f;
         ad10.volume = audios / 4f;
         ad11.volume = audios;
-        ad12.volume = audios / 1.5f;
-        ad13.volume = audios / 1.25f;
+        ad12.volume = audios / 1.85f;
         ad14.volume = audios;
         ad15.volume = audios / 1.3f;
         ad16.volume = audios;
@@ -224,7 +222,7 @@ public class ScoreCounterFinal : MonoBehaviour
             achanim1.CrossFade("anim20", 0.1f);
             ad5.Play();
         }
-        if (spawn >= 550 && !is550)
+        if (spawn >= 590 && !is550)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
             text.text = "Сканирование: " + selected;
@@ -293,7 +291,6 @@ public class ScoreCounterFinal : MonoBehaviour
             ad10.enabled = true;
             ad11.enabled = true;
             ad12.enabled = true;
-            ad13.enabled = true;
             ad14.enabled = true;
             ad16.enabled = true;
             ad17.enabled = true;
@@ -316,7 +313,6 @@ public class ScoreCounterFinal : MonoBehaviour
             ad10.enabled = false;
             ad11.enabled = false;
             ad12.enabled = false;
-            ad13.enabled = false;
             ad14.enabled = false;
             ad15.volume = 0;
             ad16.enabled = false;
@@ -354,7 +350,7 @@ public class ScoreCounterFinal : MonoBehaviour
         }
 
 
-        yield return new WaitForSeconds(14f);
+        yield return new WaitForSeconds(17f);
 
         anim3.CrossFade("smerchStart", 0.1f);
         anim5.CrossFade("shake", 0.1f);

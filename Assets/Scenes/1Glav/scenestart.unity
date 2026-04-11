@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &69028637
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5879,16 +5879,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac3e5eb269f1b6498a0267d60ba50e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyfloat: 0
   energyint: 0
   s: {fileID: 433290491}
-  floatt: 0
   isfinal1g: 0
   SliderAnim: {fileID: 433290492}
-  PermanentTaskEnergy: 0
-  PermanentTaskEnergySet: 0
   DeActivateEnergySet: 0
-  isDelayEnergySet: 0
+  EnergyObject: {fileID: 433290489}
 --- !u!114 &104172369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6150,7 +6146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6166,7 +6162,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &110157434
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6876,7 +6872,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &207934574
 MonoBehaviour:
@@ -6958,6 +6954,10 @@ MonoBehaviour:
   a2: {fileID: 1345806351}
   a3: {fileID: 1166743411}
   a4: {fileID: 1181075919}
+  as1: {fileID: 1754099355}
+  as2: {fileID: 1243912032}
+  as3: {fileID: 339006409}
+  as4: {fileID: 99789169}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 207934569}
 --- !u!114 &207934576
@@ -12805,7 +12805,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &310942072
 MonoBehaviour:
@@ -12887,6 +12887,10 @@ MonoBehaviour:
   a2: {fileID: 1345806351}
   a3: {fileID: 1166743411}
   a4: {fileID: 1181075919}
+  as1: {fileID: 1754099355}
+  as2: {fileID: 1243912032}
+  as3: {fileID: 339006409}
+  as4: {fileID: 99789169}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 310942066}
 --- !u!114 &310942073
@@ -36502,6 +36506,10 @@ MonoBehaviour:
   a2: {fileID: 1345806351}
   a3: {fileID: 1166743411}
   a4: {fileID: 1181075919}
+  as1: {fileID: 1754099355}
+  as2: {fileID: 1243912032}
+  as3: {fileID: 339006409}
+  as4: {fileID: 99789169}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 772358617}
 --- !u!114 &772358623
@@ -36551,7 +36559,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &774939085
 GameObject:
@@ -36891,7 +36899,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &814676266
 MonoBehaviour:
@@ -36973,6 +36981,10 @@ MonoBehaviour:
   a2: {fileID: 1345806351}
   a3: {fileID: 1166743411}
   a4: {fileID: 1181075919}
+  as1: {fileID: 1754099355}
+  as2: {fileID: 1243912032}
+  as3: {fileID: 339006409}
+  as4: {fileID: 99789169}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 814676260}
 --- !u!114 &814676267
@@ -38197,7 +38209,7 @@ MonoBehaviour:
   s3: {fileID: 1950506757}
   s4: {fileID: 207934567}
   s5: {fileID: 772358616}
-  baseSmoothSpeed: 0.3
+  baseSmoothSpeed: 2
   speedMultiplier: 0.2
   offset: {x: 0, y: 8, z: -30}
 --- !u!82 &963194230
@@ -63819,7 +63831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.056069776, g: 0.15161456, b: 0.26415092, a: 0.003921569}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -63835,7 +63847,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &1640031945
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -79974,7 +79986,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &1950506760
 BoxCollider:
@@ -80077,6 +80089,10 @@ MonoBehaviour:
   a2: {fileID: 1345806351}
   a3: {fileID: 1166743411}
   a4: {fileID: 1181075919}
+  as1: {fileID: 1754099355}
+  as2: {fileID: 1243912032}
+  as3: {fileID: 339006409}
+  as4: {fileID: 99789169}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1950506756}
 --- !u!114 &1950506763
@@ -81007,7 +81023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -81023,7 +81039,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &2025634088
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -81848,7 +81864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -81864,7 +81880,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &2144178105
 CanvasRenderer:
   m_ObjectHideFlags: 0

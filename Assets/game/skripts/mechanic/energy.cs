@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class energy : MonoBehaviour
 {
-    public float energyfloat;
+    private float energyfloat;
     public float energyint;
     public Slider s;
-    public float floatt;
+    private float floatt;
     public bool isfinal1g;
     public Animator SliderAnim;
-    public float PermanentTaskEnergy;
-    public float PermanentTaskEnergySet;
+    private float PermanentTaskEnergy;
+    private float PermanentTaskEnergySet;
     public bool DeActivateEnergySet;
-    public float isDelayEnergySet;
-
+    private float isDelayEnergySet;
+    public GameObject EnergyObject;
 
 
     void Update()
@@ -67,6 +67,10 @@ public class energy : MonoBehaviour
         floatt += PlayerPrefs.GetFloat("Generators2Energy", 0);
         floatt += PlayerPrefs.GetFloat("Generators3Energy", 0);
         floatt += PlayerPrefs.GetFloat("Generators4Energy", 0);
+
+        if(floatt <= 0.002)
+            EnergyObject.SetActive(false);
+
         floatt -= PlayerPrefs.GetFloat("TurbinsEnergy", 0);
 
         if(PlayerPrefs.GetInt("Boost2", 0) >= 1)

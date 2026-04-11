@@ -10,7 +10,6 @@ public class cut3 : MonoBehaviour
     public int allcoins;
     public int score;
     public AudioSource ad1;
-    public AudioSource ad2;
     public AudioSource ad3;
     public AudioSource ad4;
     public AudioSource Lightning;
@@ -23,8 +22,7 @@ public class cut3 : MonoBehaviour
     {
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
         ad1.volume = audios / 14f;
-        ad2.volume = audios / 2f;
-        ad3.volume = audios / 1.5f;
+        ad3.volume = audios / 1.85f;
         ad4.volume = audios;
         Lightning.volume = audios;
 
@@ -38,7 +36,6 @@ public class cut3 : MonoBehaviour
         if (PlayerPrefs.GetInt("audio") == 0)
         {
             ad1.enabled = true;
-            ad2.enabled = true;
             ad3.enabled = true;
             ad4.enabled = true;
             Lightning.enabled = true;
@@ -46,7 +43,6 @@ public class cut3 : MonoBehaviour
         else if (PlayerPrefs.GetInt("audio") == 1)
         {
             ad1.enabled = false;
-            ad2.enabled = false;
             ad3.enabled = false;
             ad4.enabled = false;
             Lightning.enabled = false;

@@ -13,14 +13,14 @@ public class tasks : MonoBehaviour
     public Text task1RewardText;
     public Text task2RewardText;
 
-    public int[] rewardsBlock1 = new int[4];
-    public int[] rewardsBlock2 = new int[4];
+    public int[] rewardsBlock1 = new int[6];
+    public int[] rewardsBlock2 = new int[6];
 
     public AudioSource rewardSound;
     public Animator TaskAttract;
 
-    private int[] block1 = { 0, 1, 2, 3 };
-    private int[] block2 = { 0, 1, 2, 3 };
+    private int[] block1 = { 0, 1, 2, 3, 4, 5 };
+    private int[] block2 = { 0, 1, 2, 3, 4, 5 };
 
     private int currentTask1 = -1;
     private int currentTask2 = -1;
@@ -39,8 +39,18 @@ public class tasks : MonoBehaviour
         currentTask1 = PlayerPrefs.GetInt("currentTask1", -1);
         currentTask2 = PlayerPrefs.GetInt("currentTask2", -1);
 
-        if (currentTask1 == -1) currentTask1 = RandomTask(block1);
-        if (currentTask2 == -1) currentTask2 = RandomTask(block2);
+        if (currentTask1 == -1)
+        {
+            currentTask1 = RandomTask(block1);
+            PlayerPrefs.SetInt("ScoreTask", PlayerPrefs.GetInt("allscore", 0));
+            PlayerPrefs.SetInt("CasinoTask", PlayerPrefs.GetInt("Casino", 0));
+        }
+        if (currentTask2 == -1)
+        {
+            currentTask2 = RandomTask(block2);
+            PlayerPrefs.SetInt("AllBuyedModulsTask", PlayerPrefs.GetInt("AllBuyedModuls", 0));
+            PlayerPrefs.SetFloat("diamondMassTask", PlayerPrefs.GetFloat("diamondMass", 0));
+        }
 
         PlayerPrefs.SetInt("currentTask1", currentTask1);
         PlayerPrefs.SetInt("currentTask2", currentTask2);
@@ -76,6 +86,16 @@ public class tasks : MonoBehaviour
                 task1Slider.maxValue = 700;
                 task1Slider.value = PlayerPrefs.GetInt("scoreNoAbility", 0);
                 break;
+            case 4:
+                task1Text.text = "Набрать 2500 очков";
+                task1Slider.maxValue = 2500;
+                task1Slider.value = PlayerPrefs.GetInt("allallscore", 0) - PlayerPrefs.GetInt("ScoreTask", 0);
+                break;
+            case 5:
+                task1Text.text = "Сыграть в казино 7 раз";
+                task1Slider.maxValue = 50;
+                task1Slider.value = PlayerPrefs.GetInt("Casino", 0) - PlayerPrefs.GetInt("CasinoTask", 0);
+                break;
         }
         task1RewardText.text = "Награда: " + rewardsBlock1[currentTask1] + " монет";
 
@@ -102,6 +122,16 @@ public class tasks : MonoBehaviour
                 task2Slider.maxValue = 1;
                 task2Slider.value = PlayerPrefs.GetInt("abilityOver80", 0);
                 break;
+            case 4:
+                task2Text.text = "Купить 2 новых модуля";
+                task2Slider.maxValue = 2;
+                task2Slider.value = PlayerPrefs.GetInt("AllBuyedModuls", 0) - PlayerPrefs.GetInt("AllBuyedModulsTask", 0);
+                break;
+            case 5:
+                task2Text.text = "Собрать алмазы";
+                task2Slider.maxValue = 0.1f;
+                task2Slider.value = PlayerPrefs.GetFloat("diamondMass", 0) - PlayerPrefs.GetFloat("diamondMassTask", 0);
+                break;
         }
         task2RewardText.text = "Награда: " + rewardsBlock2[currentTask2] + " монет";
     }
@@ -116,7 +146,7 @@ public class tasks : MonoBehaviour
 
     void CheckTask1Completion()
     {
-        if (task1Completed) return; // уже выполнено, ждем сбор
+        if (task1Completed) return;
 
         bool completed = false;
         switch (currentTask1)
@@ -124,8 +154,10 @@ public class tasks : MonoBehaviour
             case 0: if (PlayerPrefs.GetInt("abilityt", 0) >= 10) completed = true; break;
             case 1: if (PlayerPrefs.GetFloat("taskTime", 0) >= 600) completed = true; break;
             case 2: if (PlayerPrefs.GetInt("scoreNoDamage", 0) >= 700 && PlayerPrefs.GetInt("isbtotask") == 1)
-                    { completed = true; PlayerPrefs.SetInt("isbtotask", 0); } break;
+                { completed = true; PlayerPrefs.SetInt("isbtotask", 0); } break;
             case 3: if (PlayerPrefs.GetInt("scoreNoAbility", 0) >= 700) completed = true; break;
+            case 4: if (PlayerPrefs.GetInt("allscore", 0) - PlayerPrefs.GetInt("ScoreTask", 0) >= 2500) completed = true; break;
+            case 5: if (PlayerPrefs.GetInt("Casino", 0) - PlayerPrefs.GetInt("CasinoTask", 0) >= 7) completed = true; break;
         }
 
         if (completed) task1Completed = true;
@@ -133,7 +165,7 @@ public class tasks : MonoBehaviour
 
     void CheckTask2Completion()
     {
-        if (task2Completed) return; // уже выполнено, ждем сбор
+        if (task2Completed) return;
 
         bool completed = false;
         switch (currentTask2)
@@ -142,6 +174,8 @@ public class tasks : MonoBehaviour
             case 1: if (PlayerPrefs.GetInt("collectBonus", 0) >= 10) completed = true; break;
             case 2: if (PlayerPrefs.GetInt("loseLife", 0) >= 15) completed = true; break;
             case 3: if (PlayerPrefs.GetInt("abilityOver80", 0) >= 1) completed = true; break;
+            case 4: if (PlayerPrefs.GetInt("AllBuyedModuls", 0) - PlayerPrefs.GetInt("AllBuyedModulsTask", 0) >= 2) completed = true; break;
+            case 5: if (PlayerPrefs.GetFloat("diamondMass", 0) - PlayerPrefs.GetFloat("diamondMassTask", 0) >= 0.1f) completed = true; break;
         }
 
         if (completed) task2Completed = true;
@@ -190,6 +224,10 @@ public class tasks : MonoBehaviour
         currentTask1 = remaining[Random.Range(0, remaining.Length)];
         PlayerPrefs.SetInt("currentTask1", currentTask1);
         ResetTask1Progress();
+
+        PlayerPrefs.SetInt("ScoreTask", PlayerPrefs.GetInt("allscore", 0));
+        PlayerPrefs.SetInt("CasinoTask", PlayerPrefs.GetInt("Casino", 0));
+
         UpdateUI();
     }
 
@@ -204,6 +242,10 @@ public class tasks : MonoBehaviour
         currentTask2 = remaining[Random.Range(0, remaining.Length)];
         PlayerPrefs.SetInt("currentTask2", currentTask2);
         ResetTask2Progress();
+        
+        PlayerPrefs.SetInt("AllBuyedModulsTask", PlayerPrefs.GetInt("AllBuyedModuls", 0));
+        PlayerPrefs.SetFloat("diamondMassTask", PlayerPrefs.GetFloat("diamondMass", 0));
+
         UpdateUI();
     }
 
@@ -235,6 +277,8 @@ public class tasks : MonoBehaviour
             case 1: PlayerPrefs.SetFloat("taskTime", 0); break;
             case 2: PlayerPrefs.SetInt("scoreNoDamage", 0); break;
             case 3: PlayerPrefs.SetInt("scoreNoAbility", 0); break;
+            case 4: PlayerPrefs.SetInt("ScoreTask", 0); break;
+            case 5: PlayerPrefs.SetInt("CasinoTask", 0); break;
         }
     }
 
@@ -246,6 +290,8 @@ public class tasks : MonoBehaviour
             case 1: PlayerPrefs.SetInt("collectBonus", 0); break;
             case 2: PlayerPrefs.SetInt("loseLife", 0); break;
             case 3: PlayerPrefs.SetInt("abilityOver80", 0); break;
+            case 4: PlayerPrefs.SetInt("AllBuyedModulsTask", 0); break;
+            case 5: PlayerPrefs.SetFloat("diamondMassTask", 0); break;
         }
     }
 }

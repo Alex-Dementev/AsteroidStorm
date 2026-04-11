@@ -13,6 +13,7 @@ public class BuyModuls : MonoBehaviour
     public int Quantity;
     public AudioSource ad;
     public AudioSource adfail;
+    public int Column;
 
     
     void Start()
@@ -27,7 +28,7 @@ public class BuyModuls : MonoBehaviour
 
         CoinsTextToBuy.text = "" + CoinsToBuy;
 
-        IndexStatus = PlayerPrefs.GetInt(Index, 0);
+        IndexStatus = PlayerPrefs.GetInt(Index + Column, 0);
         if(IndexStatus == 1)
             YouBuy.SetActive(true);
     }
@@ -37,7 +38,7 @@ public class BuyModuls : MonoBehaviour
     {
         if(PlayerPrefs.GetInt("ResetBuyModuls", 0) == 1)
         {
-            PlayerPrefs.SetInt(Index, 0);
+            PlayerPrefs.SetInt(Index + Column, 0);
             YouBuy.SetActive(false);
         }
     }
@@ -51,7 +52,7 @@ public class BuyModuls : MonoBehaviour
             coins -= CoinsToBuy;
             PlayerPrefs.SetInt("coins", coins);
             IndexStatus = 1;
-            PlayerPrefs.SetInt(Index, IndexStatus);
+            PlayerPrefs.SetInt(Index + Column, IndexStatus);
             Quantity = PlayerPrefs.GetInt(NamePP, 0);
             Quantity++;
             PlayerPrefs.SetInt(NamePP, Quantity);

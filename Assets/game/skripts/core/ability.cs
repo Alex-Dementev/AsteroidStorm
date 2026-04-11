@@ -95,6 +95,10 @@ public class DoubleTapHandler : MonoBehaviour
     public GameObject a2;
     public GameObject a3;
     public GameObject a4;
+    public GameObject as1;
+    public GameObject as2;
+    public GameObject as3;
+    public GameObject as4;
 
     private float ShakeSkan;
 
@@ -123,6 +127,14 @@ public class DoubleTapHandler : MonoBehaviour
             a3.SetActive(false);
         if(PlayerPrefs.GetInt("Projectile", 0) == 0)
             a4.SetActive(false);
+        if(PlayerPrefs.GetInt("GyperJump", 0) == 0)
+            as1.SetActive(false);
+        if(PlayerPrefs.GetInt("Scanner", 0) == 0)
+            as2.SetActive(false);
+        if(PlayerPrefs.GetInt("Shield", 0) == 0)
+            as3.SetActive(false);
+        if(PlayerPrefs.GetInt("Projectile", 0) == 0)
+            as4.SetActive(false);
 
         isotkat = PlayerPrefs.GetInt("GyperJumpOtkat");
         isotkat2 = PlayerPrefs.GetInt("ScannerOtkat");
@@ -411,6 +423,11 @@ public class DoubleTapHandler : MonoBehaviour
 
         if(PlayerPrefs.GetInt("GyperJump", 0) == 1)
         {
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
+            {
+                PlayerPrefs.SetInt("abilityOver80", 1);
+            }
+            
             PlayerPrefs.SetInt("isabilityuse", 1);
             b = true;
             e.energyint -= costAbility1;
@@ -439,11 +456,6 @@ public class DoubleTapHandler : MonoBehaviour
             {
                 Vibration.Vibrate(100, 35);
             }
-
-            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
-            {
-                PlayerPrefs.SetInt("abilityOver80", 1);
-            }
         }
     }
 
@@ -453,6 +465,11 @@ public class DoubleTapHandler : MonoBehaviour
 
         if(PlayerPrefs.GetInt("Scanner", 0) == 1)
         {
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
+            {
+                PlayerPrefs.SetInt("abilityOver80", 1);
+            }
+
             PlayerPrefs.SetInt("isabilityuse", 1);
             Skanner.Play();
             e.energyint -= costAbility2;
@@ -480,11 +497,6 @@ public class DoubleTapHandler : MonoBehaviour
             {
                 Vibration.Vibrate(100, 35);
             }
-
-            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
-            {
-                PlayerPrefs.SetInt("abilityOver80", 1);
-            }
         }
     }
 
@@ -494,6 +506,11 @@ public class DoubleTapHandler : MonoBehaviour
 
         if(PlayerPrefs.GetInt("Shield", 0) == 1)
         {
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
+            {
+                PlayerPrefs.SetInt("abilityOver80", 1);
+            }
+
             PlayerPrefs.SetInt("isabilityuse", 1);
             e.energyint -= costAbility3;
             abilityt++;
@@ -512,11 +529,6 @@ public class DoubleTapHandler : MonoBehaviour
             {
                 Vibration.Vibrate(100, 35);
             }
-
-            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
-            {
-                PlayerPrefs.SetInt("abilityOver80", 1);
-            }
         }
     }
 
@@ -526,6 +538,11 @@ public class DoubleTapHandler : MonoBehaviour
 
         if(PlayerPrefs.GetInt("Projectile", 0) == 1)
         {
+            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
+            {
+                PlayerPrefs.SetInt("abilityOver80", 1);
+            }
+
             PlayerPrefs.SetInt("isabilityuse", 1);
             e.energyint -= costAbility4;
             abilityt++;
@@ -541,11 +558,6 @@ public class DoubleTapHandler : MonoBehaviour
             if (PlayerPrefs.GetInt("vibration") == 0)
             {
                 Vibration.Vibrate(200, 65);
-            }
-
-            if (PlayerPrefs.GetInt("currentTask2", -1) == 3 && e.energyint >= 80)
-            {
-                PlayerPrefs.SetInt("abilityOver80", 1);
             }
         }
     }

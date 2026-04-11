@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &621698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7403,16 +7403,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac3e5eb269f1b6498a0267d60ba50e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyfloat: 0
   energyint: 0
   s: {fileID: 612056731}
-  floatt: 0
   isfinal1g: 0
   SliderAnim: {fileID: 612056730}
-  PermanentTaskEnergy: 0
-  PermanentTaskEnergySet: 0
   DeActivateEnergySet: 1
-  isDelayEnergySet: 0
+  EnergyObject: {fileID: 612056728}
 --- !u!114 &144783076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25057,7 +25053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -25073,7 +25069,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &373966539
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -43749,7 +43745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -43765,7 +43761,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &856776574
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -56124,7 +56120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -56140,7 +56136,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &1058766965
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58916,6 +58912,10 @@ MonoBehaviour:
   a2: {fileID: 1193520562}
   a3: {fileID: 50800885}
   a4: {fileID: 355636261}
+  as1: {fileID: 121248599}
+  as2: {fileID: 1632017985}
+  as3: {fileID: 1951746762}
+  as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1258039496}
 --- !u!54 &1258039500
@@ -58943,7 +58943,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &1258039501
 BoxCollider:
@@ -65031,7 +65031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -65047,7 +65047,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &1390093278
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -71021,6 +71021,10 @@ MonoBehaviour:
   a2: {fileID: 1193520562}
   a3: {fileID: 50800885}
   a4: {fileID: 355636261}
+  as1: {fileID: 121248599}
+  as2: {fileID: 1632017985}
+  as3: {fileID: 1951746762}
+  as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1502605991}
 --- !u!65 &1502605995
@@ -71108,7 +71112,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &1525398994
 GameObject:
@@ -81363,7 +81367,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &1582142839
 BoxCollider:
@@ -81466,6 +81470,10 @@ MonoBehaviour:
   a2: {fileID: 1193520562}
   a3: {fileID: 50800885}
   a4: {fileID: 355636261}
+  as1: {fileID: 121248599}
+  as2: {fileID: 1632017985}
+  as3: {fileID: 1951746762}
+  as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1582142835}
 --- !u!114 &1582142842
@@ -83089,7 +83097,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1693977095
 MonoBehaviour:
@@ -83171,6 +83179,10 @@ MonoBehaviour:
   a2: {fileID: 1193520562}
   a3: {fileID: 50800885}
   a4: {fileID: 355636261}
+  as1: {fileID: 121248599}
+  as2: {fileID: 1632017985}
+  as3: {fileID: 1951746762}
+  as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1693977089}
 --- !u!114 &1693977096
@@ -106490,7 +106502,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 52
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1936518570
 MonoBehaviour:
@@ -106572,6 +106584,10 @@ MonoBehaviour:
   a2: {fileID: 1193520562}
   a3: {fileID: 50800885}
   a4: {fileID: 355636261}
+  as1: {fileID: 121248599}
+  as2: {fileID: 1632017985}
+  as3: {fileID: 1951746762}
+  as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1936518564}
 --- !u!114 &1936518571
@@ -107468,7 +107484,7 @@ MonoBehaviour:
   s3: {fileID: 1582142836}
   s4: {fileID: 1258039495}
   s5: {fileID: 1502605992}
-  baseSmoothSpeed: 0.3
+  baseSmoothSpeed: 2
   speedMultiplier: 0.2
   offset: {x: 0, y: 8, z: -30}
 --- !u!114 &1979058721

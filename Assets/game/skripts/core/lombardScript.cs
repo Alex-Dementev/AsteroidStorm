@@ -179,9 +179,16 @@ public class lombardScript : MonoBehaviour
         {
             int change = UnityEngine.Random.Range(-12, 15);
             if (UnityEngine.Random.value < 0.25f)
-                change += UnityEngine.Random.Range(-40, 41);
+                change += UnityEngine.Random.Range(-35, 36);
             if (UnityEngine.Random.value < 0.1f)
                 change += UnityEngine.Random.Range(-50, 45);
+            if(change <= 65 && UnityEngine.Random.value < 0.5f)
+                change += UnityEngine.Random.Range(0, 65);
+            if(change <= 90 && UnityEngine.Random.value < 0.3f)
+                change += UnityEngine.Random.Range(0, 15);
+            if(change >= 135 && UnityEngine.Random.value < 0.25f)
+                change += UnityEngine.Random.Range(-70, 5);
+
             percents[i] = Mathf.Clamp(percents[i] + change, 50, 175);
         }
 

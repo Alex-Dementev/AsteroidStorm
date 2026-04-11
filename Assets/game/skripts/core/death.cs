@@ -221,7 +221,7 @@ public class death : MonoBehaviour
         MinusFuel += PlayerPrefs.GetFloat("Genertors3Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("Genertors4Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("TurbinsFuel", 0);
-        MinusFuel *= 10;
+        MinusFuel *= 11;
 
         PlayerPrefs.SetInt("FuelZero", 0);
 
@@ -231,14 +231,14 @@ public class death : MonoBehaviour
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 0)
         {
             fuel = PlayerPrefs.GetInt("fueltostart", 0);
-            fuel = fuel * 10 + 10;
+            fuel = fuel * 11 + 10;
             SliderFuel.maxValue = fuel;
         }
         
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
         {
             fuel = PlayerPrefs.GetInt("fueltostart", 0);
-            fuel = fuel * 10 + 10;
+            fuel = fuel * 11 + 10;
             SliderFuel.maxValue = fuel;
 
             fuel = PlayerPrefs.GetFloat("fueltofinalglav", 0);
@@ -704,7 +704,7 @@ public class death : MonoBehaviour
         if(fuel >= 20)
         {
             fuel -= 10;
-            fuel /= 10;
+            fuel /= 11;
             fuel += PlayerPrefs.GetInt("fuel", 0);
             PlayerPrefs.SetInt("Fuel", (int)fuel);
         }

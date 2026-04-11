@@ -49,6 +49,17 @@ public class ScoreBuff : MonoBehaviour
         s.value = PlayerPrefs.GetInt("ScoreLost", 0);
 
         Debug.Log("Полученные очки: " + Score);
+
+        if(PlayerPrefs.GetInt("ScoreBuffTimer", 0) == 2)
+        {
+            PlayerPrefs.SetInt("ScoreBuffTimer", 0);
+            PlayerPrefs.SetInt("ScoreNum", 0);
+            anim2.SetBool("1", false);
+            anim2.SetBool("2", false);
+            anim2.SetBool("3", false);
+            anim2.SetBool("4", false);
+            anim2.SetBool("5", false);
+        }
     }
 
     void Update()
