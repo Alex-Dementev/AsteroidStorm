@@ -12,6 +12,9 @@ public class UpdateModuls : MonoBehaviour
 
     private int ultra5Count;
 
+    public AudioSource Apply;
+    public AudioSource DontApply;
+
     void Start()
     {
         // выключаем всё перед загрузкой
@@ -80,6 +83,16 @@ public class UpdateModuls : MonoBehaviour
     // ==========================
     public void ForceRefresh()
     {
+        if(PlayerPrefs.GetInt("coins", 0) >= 70 && PlayerPrefs.GetInt("IndexDialogue", 0) >= 20)
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) - 70);
+        else
+        {
+            DontApply.Play();
+            return;
+        }
+
+        Apply.Play();
+        
         UpdateAllColumns();
         PlayerPrefs.Save();
     }

@@ -206,9 +206,6 @@ public class DoubleTapHandler : MonoBehaviour
             main.startSize = 1800;
 
             Debug.Log("ScannerBuff");
-
-            if(PlayerPrefs.GetInt("MoonScanned", 0) == 0 && transform.position.z >= 3300 && s2.maxValue >= 4)
-            PlayerPrefs.SetInt("MoonScanned", 1);
         }
 
         UpdateAbilityIcons();   
@@ -480,6 +477,9 @@ public class DoubleTapHandler : MonoBehaviour
             s2.maxValue = isotkat2;
             effect.CrossFade("slide lr", 0.1f);
             SkanerAS.Play();
+
+            if(PlayerPrefs.GetInt("MoonScanned", 0) == 0 && transform.position.z >= 3300 && s2.maxValue >= 4)
+                PlayerPrefs.SetInt("MoonScanned", 1);
 
             if(PlayerPrefs.GetInt("Ach3Level", 0) == 1)
             {

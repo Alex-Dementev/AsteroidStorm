@@ -62,6 +62,8 @@ public class PrefPets : MonoBehaviour
     {
         loop = StartCoroutine(TimerLoop());
 
+        if(Secret == null) return;
+         
         if(PlayerPrefs.GetInt(IndexPets + "Buy", 0) == 1)
             Secret.SetActive(true);
         else

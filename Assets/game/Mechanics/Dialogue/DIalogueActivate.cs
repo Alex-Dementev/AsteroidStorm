@@ -35,7 +35,7 @@ public class DIalogueActivate : MonoBehaviour
 
 
 
-    void Start()
+    public void Start()
     {
         UIPanels[16].GetComponent<Text>().text = "Продолжить";
 
@@ -43,6 +43,17 @@ public class DIalogueActivate : MonoBehaviour
         {
             PlayerPrefs.DeleteAll();
             UIPanels[16].GetComponent<Text>().text = "Начать";
+        }
+        else if(PlayerPrefs.GetInt("g2passed", 0) == 1 && PlayerPrefs.GetInt("2GlavEnd", 0) == 0)
+        {
+            DialoguePanels[17].SetActive(true);
+
+            foreach (GameObject msg in UIPanels)
+            {
+                msg.SetActive(false);
+            }
+
+            return;
         }
 
         foreach (GameObject msg in UIPanels)
@@ -63,6 +74,11 @@ public class DIalogueActivate : MonoBehaviour
         {
             ShopT.startTimer = true;
         }
+    }
+
+    public void start()
+    {
+        Start();
     }
 
     public void DeActivate()
@@ -206,7 +222,7 @@ public class DIalogueActivate : MonoBehaviour
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 3)
         {
             TutorialTexts[0].text = "Зайти в банк";
-            PlayerPrefs.SetInt("coins", 26);
+            PlayerPrefs.SetInt("coins", 46);
             UIPanels[2].SetActive(true);
         }
 
@@ -347,13 +363,10 @@ public class DIalogueActivate : MonoBehaviour
             UIPanels[30].SetActive(true);
         }
 
+        Debug.Log(PlayerPrefs.GetInt("Achevements", 0));
         if(PlayerPrefs.GetInt("Achevements", 0) == 1)
         {
             UIPanels[34].SetActive(true);
-        }
-
-        if(PlayerPrefs.GetInt("AchActive", 0) == 1)
-        {
             UIPanels[36].SetActive(true);
         }
 
@@ -425,6 +438,9 @@ public class DIalogueActivate : MonoBehaviour
             UIPanels[39].SetActive(true);
             UILocked[3].SetActive(false);
         }
+
+        if(PlayerPrefs.GetInt("g1passed", 0) == 1 && PlayerPrefs.GetInt("FinalG1Dialogue", 0) == 0)
+            DialoguePanels[18].SetActive(true);
     }
 
     public void ClickButton2()
@@ -601,6 +617,10 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[15].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[16].activeSelf)
             DialoguePanels[16].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[17].activeSelf)
+            DialoguePanels[17].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[18].activeSelf)
+            DialoguePanels[18].GetComponent<DialogueManager>().Close();
 
         if(DialoguePanels[7].activeSelf)
             DialoguePanels[7].GetComponent<DialogueManager>().Close();

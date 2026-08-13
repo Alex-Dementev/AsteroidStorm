@@ -193,12 +193,12 @@ public class Score2GPart2 : MonoBehaviour
 
         if (spawn >= 1450 && MessagesID == 0)
         {
-            text.text = "Приближение первых ворот пространства";
+            text.text = "Приближение ворот пространства";
             anim2.CrossFade("anim 26 1", 0.1f);
             ad9.Play();
             MessagesID++;
         }
-        if (spawn >= 2020 && ach7 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        if (spawn >= 1300 && ach7 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
             ach7 = 1;
             PlayerPrefs.SetInt("ach7", 1);
@@ -210,33 +210,7 @@ public class Score2GPart2 : MonoBehaviour
             anim5.Play("WhiteScreen");
             MessagesID++;
         }
-        if (spawn >= 1830 && MessagesID == 2)
-        {
-            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Сканирование: " + selected;
-            anim2.CrossFade("anim 26 1", 0.1f);
-            ad9.Play();
-            MessagesID++;
-        }
-        if (spawn >= 2080 && MessagesID == 3)
-        {
-            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Сканирование: " + selected;
-            anim2.CrossFade("anim 26 1", 0.1f);
-            ad9.Play();
-            MessagesID++;
-        }
-        if (spawn >= 2170 && MessagesID == 4 && PlayerPrefs.GetInt("youdead", 0) == 0)
-        {
-            MessagesID++;
-            anim1.Play("anim10 4");
-        }
-
-
-        if (spawn > 2040)
-        {
-            isbtonext = true;
-        }
+        
 
         if (isdelay1 <= 0)
         {

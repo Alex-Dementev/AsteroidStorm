@@ -51,7 +51,7 @@ public class Credits : MonoBehaviour
     {
         Trables.text = "Следующий кредит можно взять через: " + PlayerPrefs.GetString("DelayCredits_Text", "");
 
-        if(PlayerPrefs.GetInt("NumCredits", 0) >= 1 && PlayerPrefs.GetInt("CreditsDialogue", 0) == 0 && !isYes)
+        if(PlayerPrefs.GetInt("AllCredits", 0) >= 1 && PlayerPrefs.GetInt("CreditsDialogue", 0) == 0 && !isYes)
         {
             Casino.SetActive(true);
             isYes = true;
@@ -165,7 +165,7 @@ public class Credits : MonoBehaviour
             NumCredits++;
             PlayerPrefs.SetInt("AllCredits", NumCredits);
 
-            if(PlayerPrefs.GetInt("NumCredits", 0) >= 1)
+            if(PlayerPrefs.GetInt("AllCredits", 0) >= 1)
             {
                 if(PlayerPrefs.GetInt("CreditsDialogue", 0) == 0)
                 {

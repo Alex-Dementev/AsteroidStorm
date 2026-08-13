@@ -8,6 +8,8 @@ public class ActivateDisActivatePanels : MonoBehaviour
 
     public bool IsAch = false;
     public bool BlockOnIndexDialogue = false;
+
+    public bool isActivate;
     
     public void Activate()
     {
@@ -21,11 +23,14 @@ public class ActivateDisActivatePanels : MonoBehaviour
             
             go.SetActive(true);
             ActivateAnim.CrossFade("Start", 0.2f);
+            isActivate = true;
         }
     }
 
     public void DisActivate()
     {
+        isActivate = false;
+
         if(isOpen <= 0)
             ActivateAnim.CrossFade("End", 0.2f);
     }

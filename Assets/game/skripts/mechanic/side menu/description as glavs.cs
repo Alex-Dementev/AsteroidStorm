@@ -66,6 +66,7 @@ public class descriptionasglavs : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("g1passed: " + PlayerPrefs.GetInt("g1passed", 0));
         if(PlayerPrefs.GetInt("g1passed", 0) == 1)
         {
             CI1.color = new Color(0, 106/255f, 8/255f);

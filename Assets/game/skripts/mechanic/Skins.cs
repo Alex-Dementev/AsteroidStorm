@@ -31,9 +31,6 @@ public class Skins : MonoBehaviour
     void Update()
     {
         isdelay -= Time.deltaTime;
-        PlayerPrefs.SetInt("Skin1", 1);
-        PlayerPrefs.SetInt("Skin2", 1);
-        PlayerPrefs.SetInt("Skin3", 1);
 
         int SkinsCount = PlayerPrefs.GetInt("Skin1", 0) + PlayerPrefs.GetInt("Skin2", 0) + PlayerPrefs.GetInt("Skin3", 0) + PlayerPrefs.GetInt("Skin5", 0);
 
@@ -164,5 +161,10 @@ public class Skins : MonoBehaviour
             else
                 ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
+    }
+
+    public void PlusAllGames()
+    {
+        PlayerPrefs.SetInt("allgames", PlayerPrefs.GetInt("allgames") + 1);
     }
 }

@@ -39,10 +39,13 @@ public class Boosts : MonoBehaviour
     {
         IndexUpdate = PlayerPrefs.GetInt("IndexBoost", 0);
         
-        if(PlayerPrefs.GetInt(NameTimerPlayerPrefs, 0) == 1)
-            Timer.text = PlayerPrefs.GetString(NameTimerPlayerPrefs + "Timer_Text");
-        else
-            Timer.text = "";
+        if(Timer != null)
+        {
+            if(PlayerPrefs.GetInt(NameTimerPlayerPrefs, 0) == 1)
+                Timer.text = PlayerPrefs.GetString(NameTimerPlayerPrefs + "Timer_Text");
+            else
+                Timer.text = "";
+        }
 
         if(IndexUpdate == 1 && PlayerPrefs.GetInt("Boost1", 0) == 1)
         {

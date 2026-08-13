@@ -232,13 +232,15 @@ public class death : MonoBehaviour
         {
             fuel = PlayerPrefs.GetInt("fueltostart", 0);
             fuel = fuel * 11 + 10;
-            SliderFuel.maxValue = fuel;
+            if(SliderFuel != null)
+                SliderFuel.maxValue = fuel;
         }
         
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
         {
             fuel = PlayerPrefs.GetInt("fueltostart", 0);
             fuel = fuel * 11 + 10;
+            if(SliderFuel != null)
             SliderFuel.maxValue = fuel;
 
             fuel = PlayerPrefs.GetFloat("fueltofinalglav", 0);
@@ -248,6 +250,7 @@ public class death : MonoBehaviour
         }
         
         live = PlayerPrefs.GetInt("live");
+        if(livet != null)
         livet.text = live.ToString();
         b = false;
 
@@ -277,8 +280,11 @@ public class death : MonoBehaviour
         isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
 
-        if(fuel >= SliderFuel.maxValue)
-            SliderFuel.maxValue = fuel;
+        if(SliderFuel != null)
+        {
+            if(fuel >= SliderFuel.maxValue)
+                SliderFuel.maxValue = fuel;
+        }
 
         if(fuel <= 5 && !isfuel5)
         {
@@ -298,6 +304,7 @@ public class death : MonoBehaviour
 
         float MinusFuelDelta = MinusFuel * Time.deltaTime;
         fuel -= MinusFuelDelta;
+        if(SliderFuel != null)
         SliderFuel.value = fuel;
 
         if (b == true)
@@ -309,25 +316,33 @@ public class death : MonoBehaviour
             }
         }
 
-        if (live == 3)
+        if(liveimage != null && livet != null)
         {
-            liveimage.color = new Color(1f, 0f, 0.3f);
-            livet.color = new Color(1f, 0f, 0.35f);
-        }
-        else if (live == 2)
-        {
-            liveimage.color = new Color(0.749f, 0.223f, 0.478f);
-            livet.color = new Color(0.749f, 0.223f, 0.5f);
-        }
-        else if (live == 1)
-        {
-            liveimage.color = new Color(0.671f, 0.376f, 0.522f);
-            livet.color = new Color(0.671f, 0.376f, 0.522f);
-        }
-        else
-        {
-            liveimage.color = new Color(0.322f, 0.322f, 0.322f);
-            livet.color = new Color(0.322f, 0.322f, 0.322f);
+            if (live == 4)
+            {
+                liveimage.color = new Color(1f, 0f, 0.3f);
+                livet.color = new Color(1f, 0f, 0f);
+            }
+            else if (live == 3)
+            {
+                liveimage.color = new Color(1f, 0f, 0.3f);
+                livet.color = new Color(1f, 0f, 0.35f);
+            }
+            else if (live == 2)
+            {
+                liveimage.color = new Color(0.749f, 0.223f, 0.478f);
+                livet.color = new Color(0.749f, 0.223f, 0.5f);
+            }
+            else if (live == 1)
+            {
+                liveimage.color = new Color(0.671f, 0.376f, 0.522f);
+                livet.color = new Color(0.671f, 0.376f, 0.522f);
+            }
+            else
+            {
+                liveimage.color = new Color(0.322f, 0.322f, 0.322f);
+                livet.color = new Color(0.322f, 0.322f, 0.322f);
+            }
         }
         
 
@@ -561,40 +576,28 @@ public class death : MonoBehaviour
                     {
                         if(PlayerPrefs.GetInt("LifeToStart", 1) >= 3)
                         {
-                            if (live >= 3)
-                            {
+                            if (live == 4)
+                                fineText.color = new Color(1f, 0f, 0f);
+                            else if (live == 3)
                                 fineText.color = new Color(1f, 0f, 0.3f);
-                            }
                             else if (live == 2)
-                            {
                                 fineText.color = new Color(0.749f, 0.223f, 0.478f);
-                            }
                             else
-                            {
                                 fineText.color = new Color(0.671f, 0.376f, 0.522f);
-                            }
                         }
                         if(PlayerPrefs.GetInt("LifeToStart", 1) == 2)
                         {
                             if (live == 2)
-                            {
                                 fineText.color = new Color(1f, 0f, 0.3f);
-                            }
                             else
-                            {
                                 fineText.color = new Color(0.749f, 0.223f, 0.478f);
-                            }
                         }
                         if(PlayerPrefs.GetInt("LifeToStart", 1) == 1)
                         {
                             if (live == 1)
-                            {
                                 fineText.color = new Color(1f, 0f, 0.3f);
-                            }
                             else
-                            {
                                 fineText.color = new Color(0.749f, 0.223f, 0.478f);
-                            }
                         }
 
                         if (PlayerPrefs.GetInt("vibration") == 0)

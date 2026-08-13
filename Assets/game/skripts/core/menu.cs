@@ -754,7 +754,7 @@ public class menu : MonoBehaviour
 
                 if(PlayerPrefs.GetInt("g2passed", 0) == 1)
                     Price = 15 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
-                else if(PlayerPrefs.GetInt("g1passed", 0) == 1 && PlayerPrefs.GetInt("Rest", 25000) <= 0)
+                else if(PlayerPrefs.GetInt("g1passed", 0) == 1)
                     Price = 11 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
                 else
                     Price = 7 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);

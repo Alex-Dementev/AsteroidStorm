@@ -35,19 +35,27 @@ public class DialogueManager : MonoBehaviour
     public AudioSource SMS;
 
     public string PPString;
+    private bool Opened;
 
-    void Start()
-    {
-        foreach (GameObject msg in Message)
-        {
-            msg.SetActive(false);
-        }
+    public DIalogueActivate dialogueActivate;
 
-        StartDialogue();
-    }
 
     void Update()
     {
+        if(Activate.isActivate == false)
+        {
+            foreach (GameObject msg in Message)
+            {
+                msg.SetActive(false);
+            }
+
+            StartDialogue();
+        }
+        else
+
+        if(Opened == false)
+            return;
+
         if(Max == false)
             Delay -= Time.deltaTime;
 
@@ -212,11 +220,15 @@ public class DialogueManager : MonoBehaviour
 
         UpdateDialogue.UpdateDialogue();
 
+        if(PPString == "2GlavEnd")
+            dialogueActivate.start();
+
         gameObject.SetActive(false);
     }
     public void StartDialogue()
     {
         Activate.Activate();
         anim.Play("AnswerStart");
+        Opened = true;
     }
 }

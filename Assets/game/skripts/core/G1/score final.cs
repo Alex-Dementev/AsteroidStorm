@@ -152,6 +152,7 @@ public class ScoreCounterFinal : MonoBehaviour
         if (s1 && s1.activeInHierarchy) player = s1.transform;
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
+        else if (s4 && s4.activeInHierarchy) player = s4.transform;
         else if (s5 && s5.activeInHierarchy) player = s5.transform;
 
         if (player == null) return;

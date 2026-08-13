@@ -11,6 +11,7 @@ public class sceneman : MonoBehaviour
     void Update()
     {
         coins = PlayerPrefs.GetInt("coins");
+        if(ctext != null)
         ctext.text = "" + coins + " монет";
     }
 }

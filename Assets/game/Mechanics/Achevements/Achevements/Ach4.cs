@@ -15,7 +15,7 @@ public class Ach4 : MonoBehaviour
     public GameObject DisActive;
 
 
-    void Start()
+    void OnEnable()
     {
         if(PlayerPrefs.GetInt("Ach4Start", 0) == 0)
             Dialogue[0].SetActive(true);

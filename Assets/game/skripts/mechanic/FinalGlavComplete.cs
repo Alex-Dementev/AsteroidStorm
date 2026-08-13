@@ -9,6 +9,7 @@ public class FinalGlavComplete : MonoBehaviour
     public AudioSource ad;
     public GameObject BS;
     public Animator ABS;
+    public bool CutSceneFinal2Chapter;
     public void Audio()
     {
         ad.Play();
@@ -21,6 +22,11 @@ public class FinalGlavComplete : MonoBehaviour
     public void End()
     {
         if (PlayerPrefs.GetInt("youdead", 0) == 0)
-            SceneManager.LoadScene("final g1");
+        {
+            if (CutSceneFinal2Chapter == true)
+                SceneManager.LoadScene("final g2");
+            else
+                SceneManager.LoadScene("final g1");
+        }
     }
 }

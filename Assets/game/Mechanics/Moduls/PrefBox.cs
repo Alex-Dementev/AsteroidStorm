@@ -140,7 +140,8 @@ public class PrefBoxPaste : MonoBehaviour
                 Detected.color = new Color(147/255f, 15/255f, 128/255f);
         }
 
-        QuantityText.text = "" + PlayerPrefs.GetInt(IndexModul);
+        if(QuantityText != null)
+            QuantityText.text = "" + PlayerPrefs.GetInt(IndexModul);
 
 
 
