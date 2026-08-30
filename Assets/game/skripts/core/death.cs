@@ -16,7 +16,7 @@ public class death : MonoBehaviour
     public Text fuelzero;
     public float isdelay2;
     public Image liveimage;
-    private int live = 3;
+    [HideInInspector]public int live = 3;
     private bool b;
     private int cb;
     public Distortion Distortion;
@@ -46,8 +46,10 @@ public class death : MonoBehaviour
     public float IsDelayFuel;
     public float MinusFuel;
     public energy energy;
+    private Transform targetTransform;
 
     public GameObject explosionEffect;
+    public GameObject explosionEffect2;
     public AudioSource explosionSound1;
     public AudioSource explosionSound2;
 
@@ -55,6 +57,20 @@ public class death : MonoBehaviour
 
     public Text fineText;
     public Animator fineAnim;
+
+    public bool Is3G;
+    public bool Is3G2P;
+    public AudioSource Music;
+
+    private GameObject SpawnedPrefab;
+    public GameObject prefab;
+
+    public GameObject[] models;
+
+    private Vector3 pos;
+    public GameObject Escape;
+
+
 
     string[] deathQuotes = {
         "Ну вот и всё, капитан кефир.",
@@ -216,6 +232,12 @@ public class death : MonoBehaviour
 
     void Start()
     {
+        if(fuel5 == null) return;
+
+
+        
+        targetTransform = GetComponent<Transform>();
+
         MinusFuel = PlayerPrefs.GetFloat("Genertors1Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("Genertors2Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("Genertors3Fuel", 0);
@@ -228,28 +250,20 @@ public class death : MonoBehaviour
         if(PlayerPrefs.GetInt("Boost1", 0) >= 1)
             MinusFuel = MinusFuel * 0.65f;
 
-        if (PlayerPrefs.GetInt("isfinal1g", 0) == 0)
-        {
-            fuel = PlayerPrefs.GetInt("fueltostart", 0);
-            fuel = fuel * 11 + 10;
-            if(SliderFuel != null)
-                SliderFuel.maxValue = fuel;
-        }
+        fuel = PlayerPrefs.GetInt("fueltostart", 0);
+
+        fuel = fuel * 11 + 10;
+
+        if(SliderFuel != null)
+            SliderFuel.maxValue = fuel;
         
+        live = PlayerPrefs.GetInt("live", 1);
+
         if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
         {
-            fuel = PlayerPrefs.GetInt("fueltostart", 0);
-            fuel = fuel * 11 + 10;
-            if(SliderFuel != null)
-            SliderFuel.maxValue = fuel;
-
             fuel = PlayerPrefs.GetFloat("fueltofinalglav", 0);
-
-            if (fuel >= 10)
-                fuel -= 10;
         }
         
-        live = PlayerPrefs.GetInt("live");
         if(livet != null)
         livet.text = live.ToString();
         b = false;
@@ -261,38 +275,45 @@ public class death : MonoBehaviour
         }
 
         int chance = Random.Range(1, 250);
-        if (chance == 1)
+        if (chance == 1 && quoteText != null)
         {
             quoteText.text = "ТЫ НИЧТОЖЕСТВО";
             quoteText.color = Color.red;
         }
-        else
+        else if(quoteText != null)
         {
             quoteText.text = deathQuotes[Random.Range(0, deathQuotes.Length)];
             quoteText.color = Color.white;
         }
+
+        if(Is3G2P && SliderFuel != null || Is3G && SliderFuel != null)
+            SliderFuel.maxValue = 20;
     }
 
     void Update()
     {
+        if(fuel5 == null) return;
+
+
+
         PlayerPrefs.SetFloat("fueltofinalglav", fuel);
 
         isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
 
-        if(SliderFuel != null)
+        if(SliderFuel != null && !Is3G2P && !Is3G)
         {
             if(fuel >= SliderFuel.maxValue)
                 SliderFuel.maxValue = fuel;
         }
 
-        if(fuel <= 5 && !isfuel5)
+        if(fuel <= 5 && !isfuel5 && fuel >= 0)
         {
             fuel5.CrossFade("fuelzerostart", 0.1f);
             isfuel5 = true;
             PlayerPrefs.SetInt("FuelZero", 1);
         }
-        else if(isfuel5 && fuel >= 5)
+        else if(isfuel5 && fuel >= 5 || isfuel5 && fuel <= 0)
         {
             fuel5.CrossFade("fuelzeroidle", 0.1f);
             isfuel5 = false;
@@ -303,9 +324,20 @@ public class death : MonoBehaviour
         }
 
         float MinusFuelDelta = MinusFuel * Time.deltaTime;
-        fuel -= MinusFuelDelta;
+        if(!Is3G2P && !Is3G)
+            fuel -= MinusFuelDelta;
+        else if(Is3G2P)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, Music.time / 30 * 800 + 160f);
+            fuel = 20 - (transform.position.z / 950 * 20);
+        }
+        else if(Is3G)
+        {
+            fuel = 20 - (transform.position.z / 5550 * 15);
+        }
+
         if(SliderFuel != null)
-        SliderFuel.value = fuel;
+            SliderFuel.value = fuel;
 
         if (b == true)
         {
@@ -345,60 +377,90 @@ public class death : MonoBehaviour
             }
         }
         
-
-        if (b == false && fuel <= -1 && isfuelzero == false)
+        if(isfuelzero)
         {
-            if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
+            transform.position = pos;
+            fuel = -1;
+        }
+
+        if (b == false && fuel <= -0.05f && isfuelzero == false)
+        {
+            if(Is3G2P && Music.time > 31)
             {
-                losePanel.SetActive(true);
-                Distortion.PlayAlphaPulse();
-                anim1.CrossFade("anim11", 0.1f);
-                fuelzero.text = "Топливо закончилось";
+                Instantiate(explosionEffect2, transform.position, Quaternion.identity);
+                pos = transform.position;
+
+                foreach(GameObject model in models)
+                {
+                    model.SetActive(false);
+                }
+
+                Escape.SetActive(true);
+
                 isfuelzero = true;
-                energy.End();
-
-                if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
-                {
-                    PlayerPrefs.SetInt("DeathOnFuel", PlayerPrefs.GetInt("DeathOnFuel", 0) + 1);
-                }
-
-                if(PlayerPrefs.GetInt("IndexDialogue", 0) == 20)
-                {
-                    PlayerPrefs.SetInt("IndexDialogue", 21);
-                }
-
-                if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
-                {
-                    ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
-                    ScoreBuff += ((int)(player.position.z / 3) + 1150);
-                    PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
-                    score = PlayerPrefs.GetInt("allscore");
-                    score += ((int)(player.position.z / 3) + 1150);
-                    PlayerPrefs.SetInt("allscore", score);
-                    PlayerPrefs.SetInt("youdead", 1);
-                }
-                else
-                {
-                    ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
-                    ScoreBuff += (int)(player.position.z / 3);
-                    PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
-                    score = PlayerPrefs.GetInt("allscore");
-                    score += (int)(player.position.z / 3);
-                    PlayerPrefs.SetInt("allscore", score);
-                    PlayerPrefs.SetInt("youdead", 1);
-                }
-
-                if (PlayerPrefs.GetInt("vibration") == 0)
-                {
-                    Vibration.Vibrate(800, 120);
-                }
-                
-                PlayerPrefs.SetInt("FuelZero", 0);
-
-                ad.Play();
-                b = true;
-                f = 11;
             }
+            else if(!Is3G2P)
+            {
+                if (PlayerPrefs.GetInt("yousurwive", 0) == 0)
+                {
+                    losePanel.SetActive(true);
+                    Distortion.PlayAlphaPulse();
+                    anim1.CrossFade("anim11", 0.1f);
+                    fuelzero.text = "Топливо закончилось";
+                    isfuelzero = true;
+                    energy.End();
+
+                    if (PlayerPrefs.GetInt("currentTask2", -1) == 0)
+                    {
+                        PlayerPrefs.SetInt("DeathOnFuel", PlayerPrefs.GetInt("DeathOnFuel", 0) + 1);
+                    }
+
+                    if(PlayerPrefs.GetInt("IndexDialogue", 0) == 20)
+                    {
+                        PlayerPrefs.SetInt("IndexDialogue", 21);
+                    }
+
+                    if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
+                    {
+                        ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
+                        ScoreBuff += ((int)(player.position.z / 3) + 1150);
+                        PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
+                        score = PlayerPrefs.GetInt("allscore");
+                        score += ((int)(player.position.z / 3) + 1150);
+                        PlayerPrefs.SetInt("allscore", score);
+                        PlayerPrefs.SetInt("youdead", 1);
+                    }
+                    else
+                    {
+                        ScoreBuff = PlayerPrefs.GetInt("ScoreBuff");
+                        ScoreBuff += (int)(player.position.z / 3);
+                        PlayerPrefs.SetInt("ScoreBuff", ScoreBuff);
+                        score = PlayerPrefs.GetInt("allscore");
+                        score += (int)(player.position.z / 3);
+                        PlayerPrefs.SetInt("allscore", score);
+                        PlayerPrefs.SetInt("youdead", 1);
+                    }
+
+                    if (PlayerPrefs.GetInt("vibration") == 0)
+                    {
+                        Vibration.Vibrate(800, 120);
+                    }
+                    
+                    PlayerPrefs.SetInt("FuelZero", 0);
+
+                    ad.Play();
+                    b = true;
+                    f = 11;
+                }
+            }
+        }
+
+        if(Is3G && SpawnedPrefab == null && live < PlayerPrefs.GetInt("LifeToStart", 1))
+        {
+                SpawnedPrefab = Instantiate(prefab, targetTransform.position + new Vector3(0f, 0f, -60f), Quaternion.Euler(0f, -90f, 0f));
+                TargetPursuer TP = SpawnedPrefab.GetComponent<TargetPursuer>();
+                TP.target = targetTransform;
+                TP.death = this;
         }
     }
 
@@ -432,6 +494,18 @@ public class death : MonoBehaviour
     private string[] falllifeMessages = { "Жизни улетучиваются быстрее зарплаты.", "Хочешь жизнь? А ЖИЗНЬ ТЕБЯ НЕ ХОЧЕТ!!! (смех за кадром)", "Я ГЕРКУНУ! скафандер мо...", "Супер облепиха!"};
 
 
+    public void Bonus(bool li)
+    {
+        adbonus.Play();
+        animbonus.CrossFade("green", 0.1f);
+
+        if(!li) return;
+
+        livet.text = live.ToString();
+        PlayerPrefs.SetInt("live", live);
+    }
+
+
     private void OnCollisionEnter(Collision Collision)
     {
         if (Collision.gameObject.CompareTag("obstraclemini"))
@@ -444,6 +518,20 @@ public class death : MonoBehaviour
                 if (AS != null)
                 {
                     AS.asvoid();
+
+                    if(Is3G)
+                    {
+                        if(AS.asteroidType == 1)
+                            Score2GFirst.Quality += 0.4f;
+                        else if(AS.asteroidType == 2)
+                            Score2GFirst.Quality += 0.12f;
+                        else if(AS.asteroidType == 3)
+                            Score2GFirst.Quality += 0.05f;
+                        else if(AS.asteroidType == 4)
+                            Score2GFirst.Quality += 0.03f;
+                        else
+                            Score2GFirst.Quality += 0.014f;
+                    }
                 }
             }
         }
@@ -468,6 +556,9 @@ public class death : MonoBehaviour
             animbonus.CrossFade("green", 0.1f);
             energy.Bonus();
 
+            if(Is3G)
+                Score2GFirst.Quality += 0.2f;
+
             if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
             {
                 cb = PlayerPrefs.GetInt("collectBonus", 0);
@@ -485,6 +576,9 @@ public class death : MonoBehaviour
             livet.text = live.ToString();
             PlayerPrefs.SetInt("live", live);
 
+            if(Is3G)
+                Score2GFirst.Quality += 0.2f;
+
             if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
             {
                 cb = PlayerPrefs.GetInt("collectBonus", 0);
@@ -496,6 +590,9 @@ public class death : MonoBehaviour
         }
         else if (Collision.gameObject.CompareTag("br"))
         {
+            if(Is3G)
+                Score2GFirst.Quality += 0.2f;
+            
             Destroy(Collision.gameObject);
         }
 
@@ -507,7 +604,24 @@ public class death : MonoBehaviour
                 if (AS != null)
                 {
                     AS.asvoid();
+
+                    if(Is3G)
+                    {
+                        Score2GFirst.Quality -= 6f;
+                        Score2GFirst.Quality = Mathf.Clamp(Score2GFirst.Quality, 0, 1000);
+                    }
                 }
+
+                bool Is1Live = false;
+
+                if(live == 1 && Is3G)
+                {
+                    PlayerPrefs.SetInt("activeShield", 1);
+                    Score2GFirst.Quality -= 4f;
+                    Score2GFirst.Quality = Mathf.Clamp(Score2GFirst.Quality, 0, 1000);
+                    Is1Live = true;
+                }
+                
                 if (d.b == true || PlayerPrefs.GetInt("activeShield", 0) == 1)
                 {
                     if(PlayerPrefs.GetInt("activeShield", 0) == 1)
@@ -517,13 +631,15 @@ public class death : MonoBehaviour
                         shield.CrossFade("endShield", 0.1f);
                     }
 
+                    if(!Is1Live)
+                    {
+                        if (PlayerPrefs.GetInt("fall") == 1)
+                            fineText.text = falllifeMessages[Random.Range(0, lifeMessages.Length)];
+                        else
+                            fineText.text = lifeMessages[Random.Range(0, lifeMessages.Length)];
 
-                    if (PlayerPrefs.GetInt("fall") == 1)
-                        fineText.text = falllifeMessages[Random.Range(0, lifeMessages.Length)];
-                    else
-                        fineText.text = lifeMessages[Random.Range(0, lifeMessages.Length)];
-
-                    fineAnim.Play("textFine", -1, 0f);
+                        fineAnim.Play("textFine", -1, 0f);
+                    }
 
                     if (explosionEffect != null)
                         Instantiate(explosionEffect, Collision.transform.position, Quaternion.identity);
@@ -532,24 +648,27 @@ public class death : MonoBehaviour
                     if (rand == 0 && explosionSound1 != null) explosionSound1.Play();
                     else if (rand == 1 && explosionSound2 != null) explosionSound2.Play();
 
-                    if (PlayerPrefs.GetInt("fall") == 1)
+                    if(!Is1Live)
                     {
-                        fineText.text = fallfineMessages[Random.Range(0, fallfineMessages.Length)];
-                    }
-                    else if (PlayerPrefs.GetInt("fall") == 0)
-                    {
-                        if (Random.Range(0f, 100f) < 5f)
+                        if (PlayerPrefs.GetInt("fall") == 1)
                         {
-                            fineText.text = secretMessages[Random.Range(0, secretMessages.Length)];
+                            fineText.text = fallfineMessages[Random.Range(0, fallfineMessages.Length)];
                         }
-                        else
+                        else if (PlayerPrefs.GetInt("fall") == 0)
                         {
-                            fineText.text = fineMessages[Random.Range(0, fineMessages.Length)];
+                            if (Random.Range(0f, 100f) < 5f)
+                            {
+                                fineText.text = secretMessages[Random.Range(0, secretMessages.Length)];
+                            }
+                            else
+                            {
+                                fineText.text = fineMessages[Random.Range(0, fineMessages.Length)];
+                            }
                         }
-                    }
 
-                    fineText.color = new Color(0.698f, 0.0f, 0.608f);
-                    fineAnim.Play("textFine", -1, 0f);
+                        fineText.color = new Color(0.698f, 0.0f, 0.608f);
+                        fineAnim.Play("textFine", -1, 0f);
+                    }
                 }
                 else if (b == false && PlayerPrefs.GetInt("youdead", 0) == 0)
                 {

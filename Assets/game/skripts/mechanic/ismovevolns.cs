@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject s2;
     public GameObject s3;
     public GameObject s4;
+    public GameObject s5;
 
     private GameObject activeCharacter;
 
@@ -34,9 +35,9 @@ public class GameManager : MonoBehaviour
     private float targetOffset = 0f;
 
     [Header("Anomaly Settings")]
-    private float anomalyDuration = 1.5f;      // сколько длится аномалия
-    private float anomalyBetweenDelay = 0.85f; // пауза между аномалиями
-    private float anomalyOffsetAmount = 15f;    // сила смещения в юнитах
+    private float anomalyDuration = 1.15f;      // сколько длится аномалия
+    private float anomalyBetweenDelay = 0.6f; // пауза между аномалиями
+    private float anomalyOffsetAmount = 19f;    // сила смещения в юнитах
     private float anomalySpeed = 30f;          // скорость смещения в юнитах/сек
 
     [Header("Delay Settings")]
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour
         else if (s2.activeInHierarchy) activeCharacter = s2;
         else if (s3.activeInHierarchy) activeCharacter = s3;
         else if (s4.activeInHierarchy) activeCharacter = s4;
+        else if (s5.activeInHierarchy) activeCharacter = s5;
     }
 
     IEnumerator GameLoop()
@@ -119,7 +121,7 @@ public class GameManager : MonoBehaviour
             ad.Play();
             c.TriggerShake(5, 0.06f);
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 8; i++)
             {
                 // случайное смещение ±anomalyOffsetAmount
                 targetOffset = Random.value < 0.5f ? -anomalyOffsetAmount : anomalyOffsetAmount;

@@ -86,6 +86,8 @@ public class ScoreCounter : MonoBehaviour
     private bool rocketfall;
     private bool FirstPressBool;
 
+    public bool IsAIntermediateScene;
+
     IEnumerator LoadParticlesWithDelay()
     {
         yield return new WaitForSeconds(0.1f);
@@ -114,7 +116,25 @@ public class ScoreCounter : MonoBehaviour
         "Канал связи чист.",
         "Отклонений не обнаружено.",
         "Тяга двигателей в норме.",
-        "Навигационные данные обновлены."
+        "Навигационные данные обновлены.",
+        "Потяни за пальчик.",
+        "Ало, это прачечная?"
+    };
+
+    private string[] phrases2 = new string[]
+    {
+        "Навигация: мы в космосе.",
+        "Колобок повесился.",
+        "Внимание: включен режим полёта.",
+        "Сок «Моя Семья» не обнаружен.",
+        "Здесь могла быть ваша реклама.",
+        "Осторожно, пришельцы кусаются.",
+        "Чайник закипел.",
+        "Потяни за пальчик.",
+        "Русалка села на шпагат.",
+        "Ало, это прачечная?",
+        "Нажмите Alt+F4",
+        "Доставка пиццы через 5 минут.",
     };
 
 
@@ -218,7 +238,7 @@ public class ScoreCounter : MonoBehaviour
         ad10.volume = audios;
         ad11.volume = audios;
         ad12.volume = audios;
-        ad13.volume = audios / 1.3f;
+        ad13.volume = audios / 1.8f;
         ad14.volume = audios;
         ad15.volume = audios;
         ad16.volume = audios;
@@ -227,46 +247,132 @@ public class ScoreCounter : MonoBehaviour
         ad19.volume = audios;
 
 
-        if (spawn >= 1150 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
+        if(!IsAIntermediateScene)
         {
-            image.SetActive(true);
-            anim1.Play("anim10 0");
-            isdelay3 = 2f;
-            isend = true;
-            isend2 = true;
+            if (spawn >= 790 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
+            {
+                image.SetActive(true);
+                anim1.Play("anim10 0");
+                isdelay3 = 2f;
+                isend = true;
+                isend2 = true;
+            }
+            if (spawn >= 770 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
+            {
+                PlayerPrefs.SetInt("GoToFinalGlav", 1);
+            }
+            if (spawn >= 100 && MessagesID == 0)
+            {
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 715 && MessagesID == 4)
+            {
+                text.text = "Сканирование: выход на высокую орбиту луны.";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 250 && MessagesID == 2)
+            {
+                string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
+                text.text = "Сканирование: " + selected;
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+                PlayerPrefs.SetInt("youcheat", 0);
+            }
+
+            if (!isbtotask)
+            {
+                if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == PlayerPrefs.GetInt("LifeToStart", 1))
+                {
+                    isbtotask = true;
+                    PlayerPrefs.SetInt("scoreNoDamage", 700);
+                    PlayerPrefs.SetInt("isbtotask", 1);
+                }
+                else if (PlayerPrefs.GetInt("currentTask1", -1) == 3 && PlayerPrefs.GetInt("isabilityuse") == 0)
+                {
+                    isbtotask = true;
+                    PlayerPrefs.SetInt("scoreNoAbility", 700);
+                    PlayerPrefs.SetInt("isbtotask", 1);
+                }
+            }
         }
-        if (spawn >= 1145 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
+        else
         {
-            PlayerPrefs.SetInt("GoToFinalGlav", 1);
-        }
-        if (spawn >= 100 && MessagesID == 0)
-        {
-            anim2.CrossFade("anim 26 1", 0.1f);
-            MessagesID++;
-            ad9.Play();
-        }
-        if (spawn >= 925 && MessagesID == 4)
-        {
-            text.text = "Сканирование: выход на высокую орбиту луны.";
-            anim2.CrossFade("anim 26 1", 0.1f);
-            MessagesID++;
-            ad9.Play();
-        }
-        if (spawn >= 440 && MessagesID == 2)
-        {
-            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Сканирование: " + selected;
-            anim2.CrossFade("anim 26 1", 0.1f);
-            MessagesID++;
-            ad9.Play();
-            PlayerPrefs.SetInt("youcheat", 0);
+            if(PlayerPrefs.GetInt("Ach5Level", 0) == 1 && spawn >= 300 && !FirstPressBool)
+                PlayerPrefs.SetInt("Ach5Level", 2);
+
+            if (spawn >= 280 && MessagesID == 0)
+            {
+                string selected = phrases2[UnityEngine.Random.Range(0, phrases2.Length)];
+                text.text = selected;
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 580 && MessagesID == 1)
+            {
+                string selected = phrases2[UnityEngine.Random.Range(0, phrases2.Length)];
+                text.text = selected;
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 850 && MessagesID == 2)
+            {
+                text.text = "ВНИМАНИЕ! Обнаружено плотное кольцо астероидов.";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 1050 && MessagesID == 3)
+            {
+                text.text = "Вы прошли кольцо астероидов.";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 1200 && MessagesID == 4)
+            {
+                string selected = phrases2[UnityEngine.Random.Range(0, phrases2.Length)];
+                text.text = selected;
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 1400 && MessagesID == 5)
+            {
+                string selected = phrases2[UnityEngine.Random.Range(0, phrases2.Length)];
+                text.text = selected;
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 1600 && MessagesID == 6)
+            {
+                string selected = phrases2[UnityEngine.Random.Range(0, phrases2.Length)];
+                text.text = selected;
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 2000 && MessagesID == 7)
+            {
+                text.text = "Связь нестабильна, сообщения больше не будут приходить.";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
         }
 
-        if (spawn >= 750)
+        if (spawn >= 700)
         {
             if (!isbtotask)
             {
-                if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == 3)
+                if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == PlayerPrefs.GetInt("LifeToStart", 1))
                 {
                     isbtotask = true;
                     PlayerPrefs.SetInt("scoreNoDamage", 700);
@@ -292,31 +398,34 @@ public class ScoreCounter : MonoBehaviour
             }
         }
 
-        if (spawn >= 750 && MessagesID == 3)
+        if(!IsAIntermediateScene)
         {
-            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Сканирование: " + selected;
-            anim2.CrossFade("anim 26 1", 0.1f);
-            MessagesID++;
-            ad9.Play();
-        }
-        if (spawn >= 250 && MessagesID == 1)
-        {
-            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Сканирование: " + selected;
-            anim2.CrossFade("anim 26 1", 0.1f);
-            MessagesID++;
-            ad9.Play();
-        }
+            if (spawn >= 550 && MessagesID == 3)
+            {
+                string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
+                text.text = "Сканирование: " + selected;
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
+            if (spawn >= 250 && MessagesID == 1)
+            {
+                string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
+                text.text = "Сканирование: " + selected;
+                anim2.CrossFade("anim 26 1", 0.1f);
+                MessagesID++;
+                ad9.Play();
+            }
 
-        if (isdelay3 <= 0 && isend)
-        {
-            SceneManager.LoadScene("cutsceneG1");
-        }
+            if (isdelay3 <= 0 && isend)
+            {
+                SceneManager.LoadScene("cutsceneG1");
+            }
 
-        if (spawn > 1080)
-        {
-            isbtonext = true;
+            if (spawn > 780)
+            {
+                isbtonext = true;
+            }
         }
 
 
@@ -336,14 +445,14 @@ public class ScoreCounter : MonoBehaviour
             }
         }
 
-        if (ach1 == 0 && spawn >= 850 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        if (ach1 == 0 && spawn >= 680 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
             PlayerPrefs.SetInt("ach2", 1);
             ach1 = 1;
             achanim2.CrossFade("anim 21", 0.1f);
             ad5.Play();
         }
-        if (ach2 == 0 && spawn >= 350 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        if (ach2 == 0 && spawn >= 400 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
             PlayerPrefs.SetInt("Achevements", 1);
             PlayerPrefs.SetInt("ach1", 1);
@@ -443,53 +552,88 @@ public class ScoreCounter : MonoBehaviour
 
     void UpdateObstacleCount()
     {
-        if (spawn < 150)
+        if(!IsAIntermediateScene)
         {
-            spawner.SetObstacleCount(1);
-        }
-        else if (spawn < 300)
-        {
-            spawner.SetObstacleCount(2);
-        }
-        else if (spawn < 450)
-        {
-            spawner.SetObstacleCount(4);
-        }
-        else if (spawn < 600)
-        {
-            spawner.SetObstacleCount(5);
-        }
-        else if (spawn < 765)
-        {
-            spawner.SetObstacleCount(4);
+            if (spawn < 150)
+            {
+                spawner.SetObstacleCount(1);
+            }
+            else if (spawn < 300)
+            {
+                spawner.SetObstacleCount(2);
+            }
+            else if (spawn < 450)
+            {
+                spawner.SetObstacleCount(3);
+            }
+            else if (spawn < 600)
+            {
+                spawner.SetObstacleCount(4);
+            }
+            else
+            {
+                spawner.SetObstacleCount(2);
+            }
+            if (spawn < 150)
+            {
+                spawnermini.SetObstacleCount(3);
+            }
+            else if (spawn < 300)
+            {
+                spawnermini.SetObstacleCount(4);
+            }
+            else if (spawn < 450)
+            {
+                spawnermini.SetObstacleCount(5);
+            }
+            else if (spawn < 600)
+            {
+                spawnermini.SetObstacleCount(6);
+            }
+            else
+            {
+                spawnermini.SetObstacleCount(5);
+            }
         }
         else
         {
-            spawner.SetObstacleCount(3);
-        }
-        if (spawn < 150)
-        {
-            spawnermini.SetObstacleCount(3);
-        }
-        else if (spawn < 300)
-        {
-            spawnermini.SetObstacleCount(4);
-        }
-        else if (spawn < 450)
-        {
-            spawnermini.SetObstacleCount(5);
-        }
-        else if (spawn < 600)
-        {
-            spawnermini.SetObstacleCount(6);
-        }
-        else if (spawn < 765)
-        {
-            spawnermini.SetObstacleCount(5);
-        }
-        else
-        {
-            spawnermini.SetObstacleCount(4);
+            if (spawn < 300)
+            {
+                spawner.SetObstacleCount(2);
+            }
+            else if (spawn < 500)
+            {
+                spawner.SetObstacleCount(3);
+            }
+            else if (spawn < 850)
+            {
+                spawner.SetObstacleCount(6);
+            }
+            else if (spawn < 1000)
+            {
+                spawner.SetObstacleCount(11);
+            }
+            else
+            {
+                spawner.SetObstacleCount(3);
+            }
+
+            if (spawn < 300)
+            {
+                spawnermini.SetObstacleCount(3);
+            }
+            else if (spawn < 500)
+            {
+                spawnermini.SetObstacleCount(6);
+            }
+            else if (spawn < 850)
+            {
+                spawnermini.SetObstacleCount(10);
+            }
+            else
+            {
+                spawnermini.SetObstacleCount(7);
+            }
         }
     }
 

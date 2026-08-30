@@ -184,38 +184,27 @@ public class ShopTimerSmart : MonoBehaviour
     
     public void ReduceTimerBy20Percent()
     {
-        int Games = PlayerPrefs.GetInt("ShopStartsGame");
-        Games += 2;
+        if (!PlayerPrefs.HasKey(END_TIME_KEY))
+            return;
 
-        if(PlayerPrefs.GetInt("ShopBoost", 0) == 2 && PlayerPrefs.GetInt("ShopStartsGame") < PlayerPrefs.GetInt("allgames"))
-        {
-            if (!PlayerPrefs.HasKey(END_TIME_KEY))
-                return;
+        Yes.Play();
 
-            PlayerPrefs.SetInt("ShopStartsGame", PlayerPrefs.GetInt("allgames"));
-            PlayerPrefs.SetInt("ShopBoost", 1);
+        long endTicks = long.Parse(PlayerPrefs.GetString(END_TIME_KEY));
+        long nowTicks = DateTime.UtcNow.Ticks;
 
-            Yes.Play();
+        // сколько осталось
+        long remainingTicks = endTicks - nowTicks;
 
-            long endTicks = long.Parse(PlayerPrefs.GetString(END_TIME_KEY));
-            long nowTicks = DateTime.UtcNow.Ticks;
+        if (remainingTicks <= 0)
+            return;
 
-            // сколько осталось
-            long remainingTicks = endTicks - nowTicks;
+        // минус 60% от времени
+        long reducedTicks = (long)(remainingTicks * 0.4f);
 
-            if (remainingTicks <= 0)
-                return;
+        long newEndTicks = nowTicks + reducedTicks;
 
-            // минус 20%
-            long reducedTicks = (long)(remainingTicks * 0.65f);
-
-            long newEndTicks = nowTicks + reducedTicks;
-
-            PlayerPrefs.SetString(END_TIME_KEY, newEndTicks.ToString());
-            PlayerPrefs.Save();
-        }
-        else
-            No.Play();
+        PlayerPrefs.SetString(END_TIME_KEY, newEndTicks.ToString());
+        PlayerPrefs.Save();
     }
 
 }

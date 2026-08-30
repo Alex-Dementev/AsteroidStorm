@@ -37,8 +37,6 @@ public class DialogueManager : MonoBehaviour
     public string PPString;
     private bool Opened;
 
-    public DIalogueActivate dialogueActivate;
-
 
     void Update()
     {
@@ -220,9 +218,6 @@ public class DialogueManager : MonoBehaviour
 
         UpdateDialogue.UpdateDialogue();
 
-        if(PPString == "2GlavEnd")
-            dialogueActivate.start();
-
         gameObject.SetActive(false);
     }
     public void StartDialogue()
@@ -230,5 +225,10 @@ public class DialogueManager : MonoBehaviour
         Activate.Activate();
         anim.Play("AnswerStart");
         Opened = true;
+    }
+
+    void Start()
+    {
+        Debug.Log("new string[] {\n\"" + string.Join("\",\n\"", Dialogue) + "\"\n};");
     }
 }

@@ -105,8 +105,11 @@ public class DoubleTapHandler : MonoBehaviour
     public GameObject prefab;
     public Transform spawnTransform;
     private bool ProjectileStarted;
+    private int AchScannerCounter;
 
     private Coroutine waitSecondSwipeCoroutine;
+
+    public bool IsASceneStart;
 
     void Start()
     {
@@ -191,7 +194,7 @@ public class DoubleTapHandler : MonoBehaviour
         isdelay1 -= Time.deltaTime;
         isdelayShield -= Time.deltaTime;
 
-        if(otkat2 > 0 && PlayerPrefs.GetInt("ShakePhone", 0) == 1 && PlayerPrefs.GetInt("Ach3Level", 0) == 0 && PlayerPrefs.GetInt("Ach3Level", 0) == 2)
+        if(otkat2 > 0 && PlayerPrefs.GetInt("ShakePhone", 0) == 1 && PlayerPrefs.GetInt("Ach3Level", 0) == 0)
         {
             ShakeSkan += Time.deltaTime;
             if(ShakeSkan >= 2)
@@ -200,7 +203,7 @@ public class DoubleTapHandler : MonoBehaviour
         else if(otkat2 <= 0)
             ShakeSkan = 0;
 
-        if(transform.position.z >= 3200)
+        if(transform.position.z >= 3200 && IsASceneStart)
         {
             var main = p.main;
             main.startSize = 1800;
@@ -458,6 +461,27 @@ public class DoubleTapHandler : MonoBehaviour
 
     public void ActivateSwipeUpAbility()
     {
+        if(PlayerPrefs.GetInt("Scanner", 0) == 0 && PlayerPrefs.GetInt("Ach3Level", 0) == 2)
+        {
+            AchScannerCounter++;
+
+            if(AchScannerCounter == 6)
+            {
+                PlayerPrefs.SetInt("Ach3Level", 3);
+
+                Skanner.Play();
+                SkanerAS.Play();
+
+                if(IsASceneStart && PlayerPrefs.GetInt("MoonScanned", 0) == 0 && transform.position.z >= 2200 && s2.maxValue >= 4)
+                    PlayerPrefs.SetInt("MoonScanned", 1);
+
+                if (PlayerPrefs.GetInt("vibration") == 0)
+                {
+                    Vibration.Vibrate(100, 35);
+                }
+            }
+        }
+
         if (otkat2 > 0 || e.energyint < costAbility2) return;
 
         if(PlayerPrefs.GetInt("Scanner", 0) == 1)
@@ -478,8 +502,12 @@ public class DoubleTapHandler : MonoBehaviour
             effect.CrossFade("slide lr", 0.1f);
             SkanerAS.Play();
 
-            if(PlayerPrefs.GetInt("MoonScanned", 0) == 0 && transform.position.z >= 3300 && s2.maxValue >= 4)
+            if(IsASceneStart && PlayerPrefs.GetInt("MoonScanned", 0) == 0 && transform.position.z >= 2200)
+            {
                 PlayerPrefs.SetInt("MoonScanned", 1);
+                var mainModule = Skanner.main;
+                mainModule.startSize = 1850f;
+            }
 
             if(PlayerPrefs.GetInt("Ach3Level", 0) == 1)
             {

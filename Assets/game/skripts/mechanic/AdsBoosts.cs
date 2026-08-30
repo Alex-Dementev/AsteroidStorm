@@ -60,6 +60,15 @@ public class AdsBoosts : MonoBehaviour
         if(Not >= 16)
             NotText.text = "УЛЬТРА спасибо!";
 
+        if(Not == 5)
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 125);
+        if(Not == 10)
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 250);
+        if(Not == 15)
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 500);
+        if(Not == 20)
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 1000);
+
         if(Not >= 1)
             NotTextYes.text = "Помочь проекту!";
 

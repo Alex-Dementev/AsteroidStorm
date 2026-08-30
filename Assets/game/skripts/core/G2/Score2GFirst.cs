@@ -27,7 +27,7 @@ public class Score2GFirst : MonoBehaviour
     public sceneman s;
     public ParticleSystem ps;
     public ParticleSystem ps1;
-    private int score;
+    [HideInInspector]public int score;
     public AudioSource ad1;
     public AudioSource ad2;
     public AudioSource ad3;
@@ -79,6 +79,14 @@ public class Score2GFirst : MonoBehaviour
     [Header("Materials")]
     public Material Display;
     private float AlphaDisplay;
+    private bool FirstPressBool;
+
+    public bool Is3G;
+
+    public static bool Is3Glav;
+    public static float Quality = 80;
+
+    public Text EndText;
 
 
     IEnumerator LoadParticlesWithDelay()
@@ -107,10 +115,15 @@ public class Score2GFirst : MonoBehaviour
 
     void Start()
     {
+        Quality = 80;
+
+        Is3Glav = Is3G;
+        Display.SetFloat("_Alpha", 0);
         PlayerPrefs.SetInt("youdead", 0);
         PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
         PlayerPrefs.SetInt("AchActive", 1);
+        PlayerPrefs.SetInt("live", PlayerPrefs.GetInt("LifeToStart", 1));
         ach6 = PlayerPrefs.GetInt("ach6");
 
         if (PlayerPrefs.GetInt("isbtotask") == 1)
@@ -140,8 +153,6 @@ public class Score2GFirst : MonoBehaviour
 
         anim.CrossFade("anim6", 0.1f);
 
-        Display.SetFloat("_Alpha", 0);
-
         PlayerPrefs.SetInt("live", PlayerPrefs.GetInt("LifeToStart", 1));
 
         UpdateObstacleCount();
@@ -154,6 +165,7 @@ public class Score2GFirst : MonoBehaviour
         if (s1 && s1.activeInHierarchy) player = s1.transform;
         else if (s2 && s2.activeInHierarchy) player = s2.transform;
         else if (s3 && s3.activeInHierarchy) player = s3.transform;
+        else if (s4 && s4.activeInHierarchy) player = s4.transform;
         else if (s5 && s5.activeInHierarchy) player = s5.transform;
 
         if (player == null) return;
@@ -165,7 +177,8 @@ public class Score2GFirst : MonoBehaviour
 
         if(isdelay1 >= 0 && !isstart)
         {
-            ps.Stop();
+            if(ps != null)
+                ps.Stop();
             ps1.Stop();
         }
         else
@@ -196,72 +209,125 @@ public class Score2GFirst : MonoBehaviour
         ad8.volume = audios / 3.5f;
         ad9.volume = audios / 1.25f;
         ad10.volume = audios / 4f;
-        ad11.volume = audios;
+        if(ad11 != null)
+            ad11.volume = audios;
         ad12.volume = audios / 1.5f;
         ad14.volume = audios;
-        ad15.volume = audios / 1.3f;
+        ad15.volume = audios / 1.8f;
         ad16.volume = audios;
         ad17.volume = audios;
         ad18.volume = audios;
         ad19.volume = audios;
         ad20.volume = audios;
 
-        if (spawn >= 400 && MessagesID == 0)
+        if (Is3G)
         {
-            text.text = "Достигнуто внешнее кольцо аккреционного диска";
-            anim2.CrossFade("anim 26 1", 0.1f);
-            ad9.Play();
-            MessagesID++;
-            Disk1.Play("DisksIncreases");
+            if (spawn >= 650 && MessagesID == 0)
+            {
+                text.text = "Достигнуто внешнее кольцо аккреционного диска";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                ad9.Play();
+                MessagesID++;
+                Disk1.Play("DisksIncreases");
+                PlayerPrefs.SetInt("youcheat", 0);
+            }
+            if (spawn >= 1300 && MessagesID == 1)
+            {
+                text.text = "Достигнуто внутреннее кольцо аккреционного диска";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                ad9.Play();
+                MessagesID++;
+                Disk2.Play("DisksIncreases");
+            }
+            if (spawn >= 1730)
+            {
+                AlphaDisplay = Mathf.MoveTowards(AlphaDisplay, 0.9f, Time.deltaTime / 17);
+                Display.SetFloat("_Alpha", AlphaDisplay);
+                isbtonext = true;
+            }
+            if (spawn > 1850 && PlayerPrefs.GetInt("youdead", 0) == 0 && MessagesID == 2)
+            {
+                if(rocketfall)
+                {
+                    if(Quality >= 40)
+                        EndText.text = "Полёт прошёл так идеально, что Чёрная Дыра только что поставила этому маршруту 5 звёзд на Яндекс Картах!";
+                    else
+                        EndText.text = "Мне этот полёт вообще не понравился, вернись и пролети заново!!!";
+                }
+                else
+                {
+                    if(Quality >= 40)
+                        EndText.text = "Всё удалось! Полёт в черную дыру прошёл успешно!";
+                    else
+                        EndText.text = "Полёт был как у ребёнка. В любом случае, это несерьёзно. Просыпайся и лети.";
+                }
+
+                anim1.Play("anim10 4");
+            }
         }
-        if (spawn >= 920 && ach6 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        else
         {
-            ach6 = 1;
-            PlayerPrefs.SetInt("ach6", 1);
-            achanim6.CrossFade("anim20", 0.1f);
-            ad5.Play();
-        }
-        if (spawn >= 565 && MessagesID == 1)
-        {
-            string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
-            text.text = "Сканирование: " + selected;
-            anim2.CrossFade("anim 26 1", 0.1f);
-            ad9.Play();
-            MessagesID++;
-        }
-        if (spawn >= 730 && MessagesID == 2)
-        {
-            text.text = "Достигнуто внутреннее кольцо аккреционного диска";
-            anim2.CrossFade("anim 26 1", 0.1f);
-            ad9.Play();
-            MessagesID++;
-            Disk2.Play("DisksIncreases");
-        }
-        if (spawn >= 980 && MessagesID == 3)
-        {
-            text.text = "Сканирование: регистрация радиационных колебаний";
-            anim2.CrossFade("anim 26 1", 0.1f);
-            ad9.Play();
-            MessagesID++;
-        }
-        if (spawn >= 1070 && MessagesID == 4 && PlayerPrefs.GetInt("youdead", 0) == 0)
-        {
-            MessagesID++;
-            anim1.Play("anim10 4");
+            if (spawn >= 400 && MessagesID == 0)
+            {
+                text.text = "Достигнуто внешнее кольцо аккреционного диска";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                ad9.Play();
+                MessagesID++;
+                Disk1.Play("DisksIncreases");
+                PlayerPrefs.SetInt("youcheat", 0);
+            }
+            if (spawn >= 920 && ach6 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+            {
+                ach6 = 1;
+                PlayerPrefs.SetInt("ach6", 1);
+                achanim6.CrossFade("anim20", 0.1f);
+                ad5.Play();
+            }
+            if (spawn >= 565 && MessagesID == 1)
+            {
+                string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
+                text.text = "Сканирование: " + selected;
+                anim2.CrossFade("anim 26 1", 0.1f);
+                ad9.Play();
+                MessagesID++;
+            }
+            if (spawn >= 730 && MessagesID == 2)
+            {
+                text.text = "Достигнуто внутреннее кольцо аккреционного диска";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                ad9.Play();
+                MessagesID++;
+                Disk2.Play("DisksIncreases");
+            }
+            if (spawn >= 980 && MessagesID == 4)
+            {
+                text.text = "Сканирование: регистрация радиационных колебаний";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                ad9.Play();
+                MessagesID++;
+            }
+            if (spawn >= 1070 && MessagesID == 4 && PlayerPrefs.GetInt("youdead", 0) == 0)
+            {
+                MessagesID++;
+                anim1.Play("anim10 4");
+            }
+            if (spawn >= 960)
+            {
+                AlphaDisplay = Mathf.MoveTowards(AlphaDisplay, 0.9f, Time.deltaTime / 17);
+                Display.SetFloat("_Alpha", AlphaDisplay);
+            }
+            if (spawn > 900 && MessagesID == 3)
+            {
+                isbtonext = true;
+                MessagesID++;
+            }
         }
 
-
-        if (spawn >= 950)
-        {
-            AlphaDisplay = Mathf.MoveTowards(AlphaDisplay, 0.9f, Time.deltaTime / 17);
-            Display.SetFloat("_Alpha", AlphaDisplay);
-        }
-
-        if (spawn >= 750)
+        if (spawn >= 700)
         {
             if (!isbtotask)
             {
-                if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == 3)
+                if (PlayerPrefs.GetInt("currentTask1", -1) == 2 && PlayerPrefs.GetInt("live") == PlayerPrefs.GetInt("LifeToStart", 1))
                 {
                     isbtotask = true;
                     PlayerPrefs.SetInt("scoreNoDamage", 700);
@@ -287,12 +353,6 @@ public class Score2GFirst : MonoBehaviour
             }
         }
 
-
-        if (spawn > 940)
-        {
-            isbtonext = true;
-        }
-
         if (isdelay1 <= 0)
         {
             isdelay1 = 99999;
@@ -309,7 +369,8 @@ public class Score2GFirst : MonoBehaviour
         }
 
         score = (int)(player.position.z / 3);
-        scoreText.text = (score.ToString());
+        if(Is3G)
+            scoreText.text = "Качество полета: " + Quality.ToString("0.#") + "%";
         spawn = ((int)(player.position.z) / 3);
 
         UpdateObstacleCount();
@@ -325,12 +386,16 @@ public class Score2GFirst : MonoBehaviour
             }
         }
 
+        if(PlayerPrefs.GetInt("Ach5Level", 0) == 1 && spawn >= 300 && !FirstPressBool)
+            PlayerPrefs.SetInt("Ach5Level", 2);
+
         if (score >= PlayerPrefs.GetInt("maxScore"))
         {
             PlayerPrefs.SetInt("maxScore", (int)(player.position.z / 3));
         }
-
-        scoreText.text = "" + score;
+        
+        if(!Is3G)
+            scoreText.text = "" + score;
 
         if (PlayerPrefs.GetInt("audio") == 0)
         {
@@ -344,7 +409,8 @@ public class Score2GFirst : MonoBehaviour
             ad8.enabled = true;
             ad9.enabled = true;
             ad10.enabled = true;
-            ad11.enabled = true;
+            if(ad11 != null)
+                ad11.enabled = true;
             ad12.enabled = true;
             ad14.enabled = true;
             ad16.enabled = true;
@@ -385,15 +451,11 @@ public class Score2GFirst : MonoBehaviour
 
     void UpdateObstacleCount()
     {
-        if (spawn < 200)
-        {
-            spawner.SetObstacleCount(2);
-        }
-        else if (spawn < 400)
+        if (spawn < 400)
         {
             spawner.SetObstacleCount(3);
         }
-        if (spawn < 730)
+        else if (spawn < 730)
         {
             omini.SetObstacleCount(4);
         }
@@ -401,15 +463,40 @@ public class Score2GFirst : MonoBehaviour
         {
             omini.SetObstacleCount(5);
         }
+        else
+        {
+            omini.SetObstacleCount(4);
+        }
+
+        if (spawn < 300)
+        {
+            spawner.SetObstacleCount(2);
+        }
+        else if (spawn < 700)
+        {
+            spawner.SetObstacleCount(3);
+        }
+        else if (spawn < 1200)
+        {
+            spawner.SetObstacleCount(4);
+        }
+        else
+        {
+            spawner.SetObstacleCount(3);
+        }
     }
 
     public void startps()
     {
+        if(ps == null) return;
+
         ps.Play();
     }
 
     public void stopps()
     {
+        if(ps == null) return;
+
         ps.Stop();
     }
 
@@ -463,5 +550,10 @@ public class Score2GFirst : MonoBehaviour
             homeFloatPanel = 1;
             isCloseHomePanel = true;
         }
+    }
+
+    public void FirstPress()
+    {
+        FirstPressBool = true;
     }
 }

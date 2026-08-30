@@ -59,7 +59,7 @@ public class PanelsBuySell : MonoBehaviour
             Yes.Play();
             VBuyPanelExit();
         }
-        else if(PlayerPrefs.GetInt("BuySlots", 0) == 1 && PlayerPrefs.GetInt("coins", 0) >= 2000)
+        else if(PlayerPrefs.GetInt("BuySlots", 0) == 1 && PlayerPrefs.GetInt("coins", 0) >= 1500)
         {
             BuySlot1.SetActive(false);
             BuySlot2.SetActive(false);

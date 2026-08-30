@@ -73,12 +73,19 @@ public class DIalogueActivate : MonoBehaviour
         if(PlayerPrefs.GetInt("allgames") >= 2)
         {
             ShopT.startTimer = true;
+            UIPanels[41].SetActive(true);
         }
-    }
 
-    public void start()
-    {
-        Start();
+        if(PlayerPrefs.GetInt("Ach4End2") == 1)
+        {
+            UIPanels[42].SetActive(false);
+            UIPanels[43].SetActive(false);
+        }
+        else
+        {
+            UIPanels[42].SetActive(true);
+            UIPanels[43].SetActive(true);
+        }
     }
 
     public void DeActivate()
@@ -578,7 +585,7 @@ public class DIalogueActivate : MonoBehaviour
     }
     public void ClickButton18()
     {
-        if(PlayerPrefs.GetInt("2GlavStarted", 0) == 0 && PlayerPrefs.GetInt("g1passed", 0) == 1 && PlayerPrefs.GetInt("Rest", 25000) <= 0)
+        if(PlayerPrefs.GetInt("2GlavStarted", 0) == 0 && PlayerPrefs.GetInt("g1passed", 0) == 1 && PlayerPrefs.GetInt("Rest", 12000) <= 0)
         {
             DialoguePanels[16].SetActive(true);
         }
@@ -592,6 +599,13 @@ public class DIalogueActivate : MonoBehaviour
         if(PlayerPrefs.GetInt("SkinsDialogue", 0) == 2)
         {
             DialoguePanels[9].SetActive(true);
+        }
+    }
+    public void ClickButton19()
+    {
+        if(PlayerPrefs.GetInt("allgames") >= 2 && PlayerPrefs.GetInt("ShopTutorial") == 0)
+        {
+            DialoguePanels[19].SetActive(true);
         }
     }
 
@@ -617,10 +631,43 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[15].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[16].activeSelf)
             DialoguePanels[16].GetComponent<DialogueManager>().Close();
+
         if(DialoguePanels[17].activeSelf)
+        {
             DialoguePanels[17].GetComponent<DialogueManager>().Close();
+
+            VoidDialoguesPanel();
+
+            UIPanels[16].SetActive(true);
+
+            if(PlayerPrefs.GetInt("IndexDialogue", 0) <= 20)
+                Invoke(nameof(UpdateDialogue), 7f);
+            if(PlayerPrefs.GetInt("IndexDialogue", 0) >= 20)
+                UpdateDialogue();
+
+            if(PlayerPrefs.GetInt("allgames") >= 2)
+            {
+                ShopT.startTimer = true;
+                UIPanels[41].SetActive(true);
+            }
+        }
         if(DialoguePanels[18].activeSelf)
             DialoguePanels[18].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[19].activeSelf)
+            DialoguePanels[19].GetComponent<DialogueManager>().Close();
+            
+        if(DialoguePanels[20].activeSelf)
+            DialoguePanels[20].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[21].activeSelf)
+            DialoguePanels[21].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[22].activeSelf)
+        {
+            DialoguePanels[22].GetComponent<DialogueManager>().Close();
+
+            menu.is1g();
+        }
+        if(DialoguePanels[23].activeSelf)
+            DialoguePanels[23].GetComponent<DialogueManager>().Close();
 
         if(DialoguePanels[7].activeSelf)
             DialoguePanels[7].GetComponent<DialogueManager>().Close();

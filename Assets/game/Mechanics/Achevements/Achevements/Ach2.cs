@@ -12,17 +12,17 @@ public class Ach2 : MonoBehaviour
         if(PlayerPrefs.GetInt("Ach2Level", 0) == 0)
         {
             Level.text = "Этап 1 из 3";
-            Task.text = "Не жди конца...";
+            Task.text = "Не жди конца, сдавайся...";
         }
         else if(PlayerPrefs.GetInt("Ach2Level", 0) == 1)
         {
             Level.text = "Этап 2 из 3";
-            Task.text = "На нервах.";
+            Task.text = "Отдали свою смерть перед смертью.";
         }
         else if(PlayerPrefs.GetInt("Ach2Level", 0) == 2)
         {
             Level.text = "Этап 3 из 3";
-            Task.text = "Максимум, но забыл.";
+            Task.text = "Максимум, но забыл и вернулся.";
         }
         else if(PlayerPrefs.GetInt("Ach2Level", 0) >= 3)
         {

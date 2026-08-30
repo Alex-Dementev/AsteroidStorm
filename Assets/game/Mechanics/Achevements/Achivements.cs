@@ -11,8 +11,7 @@ public class Achivements : MonoBehaviour
 
     void Start()
     {
-
-        if(PlayerPrefs.GetInt("Ach5Level0", 0) == 4 && PlayerPrefs.GetInt("Ach5Level", 0) == 0)
+        if(PlayerPrefs.GetInt("Ach5Level0", 0) >= 3 && PlayerPrefs.GetInt("Ach5Level", 0) == 0)
             PlayerPrefs.SetInt("Ach5Level", 1);
         
         if(PlayerPrefs.GetInt("ach2", 0) == 2)

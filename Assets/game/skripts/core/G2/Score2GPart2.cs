@@ -27,6 +27,7 @@ public class Score2GPart2 : MonoBehaviour
     public sceneman s;
     public ParticleSystem ps;
     public ParticleSystem ps1;
+    public ParticleSystem ps2;
     private int score;
     public AudioSource ad1;
     public AudioSource ad2;
@@ -68,11 +69,16 @@ public class Score2GPart2 : MonoBehaviour
     private bool rocketfall;
     public Light l;
     private bool isstart;
+    public AudioSource Music;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
     private float spawnVariance = 0.5f;
     private float audios = 0.5f;
+    [HideInInspector] public death death;
+
+
+    public bool Is3G;
 
 
     IEnumerator LoadParticlesWithDelay()
@@ -129,6 +135,20 @@ public class Score2GPart2 : MonoBehaviour
 
         anim.CrossFade("anim6", 0.1f);
 
+        Music.volume = PlayerPrefs.GetFloat("musics", 0.5f);
+        if(PlayerPrefs.GetInt("music") == 0)
+            Music.volume = 0;
+
+
+        if (s1 && s1.activeInHierarchy) player = s1.transform;
+        else if (s2 && s2.activeInHierarchy) player = s2.transform;
+        else if (s3 && s3.activeInHierarchy) player = s3.transform;
+        else if (s4 && s4.activeInHierarchy) player = s4.transform;
+        else if (s5 && s5.activeInHierarchy) player = s5.transform;
+
+        death = player.GetComponent<death>();
+
+
         UpdateObstacleCount();
 
         ScheduleNextSpawn();
@@ -136,11 +156,6 @@ public class Score2GPart2 : MonoBehaviour
 
     void Update()
     {
-        if (s1 && s1.activeInHierarchy) player = s1.transform;
-        else if (s2 && s2.activeInHierarchy) player = s2.transform;
-        else if (s3 && s3.activeInHierarchy) player = s3.transform;
-        else if (s5 && s5.activeInHierarchy) player = s5.transform;
-
         if (player == null) return;
 
         isdelay1 -= Time.deltaTime;
@@ -150,7 +165,8 @@ public class Score2GPart2 : MonoBehaviour
 
         if(isdelay1 >= 0 && !isstart)
         {
-            ps.Stop();
+            if(ps != null)
+                ps.Stop();
             ps1.Stop();
         }
         else
@@ -174,41 +190,54 @@ public class Score2GPart2 : MonoBehaviour
         ad1.volume = audios / 3.5f;
         ad2.volume = audios / 2;
         ad3.volume = audios / 2;
-        ad4.volume = audios / 2.5f;
+        if(ad4 != null)
+            ad4.volume = audios / 2.5f;
         ad5.volume = audios;
         ad6.volume = audios / 3;
         ad7.volume = audios / 3;
         ad8.volume = audios / 3.5f;
         ad9.volume = audios / 1.25f;
         ad10.volume = audios / 4f;
-        ad11.volume = audios;
+        if(ad11 != null)
+            ad11.volume = audios;
         ad12.volume = audios / 1.5f;
         ad14.volume = audios;
-        ad15.volume = audios / 1.3f;
+        ad15.volume = audios / 1.9f;
         ad16.volume = audios;
         ad17.volume = audios;
         ad18.volume = audios;
         ad19.volume = audios;
         ad20.volume = audios;
 
-        if (spawn >= 1450 && MessagesID == 0)
+        if(!Is3G)
         {
-            text.text = "Приближение ворот пространства";
-            anim2.CrossFade("anim 26 1", 0.1f);
-            ad9.Play();
-            MessagesID++;
+            if (spawn >= 1450 && MessagesID == 0)
+            {
+                text.text = "Приближение ворот пространства";
+                anim2.CrossFade("anim 26 1", 0.1f);
+                ad9.Play();
+                MessagesID++;
+            }
+            if (spawn >= 1300 && ach7 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+            {
+                ach7 = 1;
+                PlayerPrefs.SetInt("ach7", 1);
+                achanim7.CrossFade("anim20", 0.1f);
+                ad5.Play();
+            }
+            if (spawn >= 1587 && MessagesID == 1)
+            {
+                anim5.Play("WhiteScreen");
+                MessagesID++;
+            }
         }
-        if (spawn >= 1300 && ach7 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        else
         {
-            ach7 = 1;
-            PlayerPrefs.SetInt("ach7", 1);
-            achanim7.CrossFade("anim20", 0.1f);
-            ad5.Play();
-        }
-        if (spawn >= 1587 && MessagesID == 1)
-        {
-            anim5.Play("WhiteScreen");
-            MessagesID++;
+            if (spawn >= 1587 && MessagesID == 0)
+            {
+                anim5.Play("WhiteScreen2");
+                MessagesID++;
+            }
         }
         
 
@@ -249,6 +278,9 @@ public class Score2GPart2 : MonoBehaviour
             PlayerPrefs.SetInt("maxScore", (int)(player.position.z / 3));
         }
 
+        if(ps2 != null && death.Music.time > 31)
+            ps2.Stop();
+
         scoreText.text = "" + score;
 
         if (PlayerPrefs.GetInt("audio") == 0)
@@ -263,7 +295,8 @@ public class Score2GPart2 : MonoBehaviour
             ad8.enabled = true;
             ad9.enabled = true;
             ad10.enabled = true;
-            ad11.enabled = true;
+            if(ad11 != null)
+                ad11.enabled = true;
             ad12.enabled = true;
             ad14.enabled = true;
             ad16.enabled = true;
@@ -284,7 +317,8 @@ public class Score2GPart2 : MonoBehaviour
             ad8.enabled = false;
             ad9.enabled = false;
             ad10.enabled = false;
-            ad11.enabled = false;
+            if(ad11 != null)
+                ad11.enabled = false;
             ad12.enabled = false;
             ad14.enabled = false;
             ad15.volume = 0;
@@ -304,32 +338,36 @@ public class Score2GPart2 : MonoBehaviour
 
     void UpdateObstacleCount()
     {
+        if(Is3G) return;
+
         if (spawn < 200)
         {
-            spawner.SetObstacleCount(2);
+            spawner.SetObstacleCount(1);
         }
         else if (spawn < 400)
         {
-            spawner.SetObstacleCount(3);
+            spawner.SetObstacleCount(2);
         }
-        if (spawn < 730)
+        if (spawn < 800)
         {
-            omini.SetObstacleCount(4);
+            omini.SetObstacleCount(3);
         }
         else if (spawn < 1050)
         {
-            omini.SetObstacleCount(5);
+            omini.SetObstacleCount(4);
         }
     }
 
     public void startps()
     {
-        ps.Play();
+        if(ps != null)
+            ps.Play();
     }
 
     public void stopps()
     {
-        ps.Stop();
+        if(ps != null)
+            ps.Stop();
     }
 
     public void isvibration()

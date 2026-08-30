@@ -5869,7 +5869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4433962, g: 0.26152122, b: 0.035555363, a: 0.003921569}
+  m_Color: {r: 0.4433962, g: 0.26152122, b: 0.035555363, a: 0.4509804}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5885,7 +5885,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &40328207
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7374,6 +7374,7 @@ MonoBehaviour:
   fuelzero: {fileID: 0}
   isdelay2: 0
   liveimage: {fileID: 0}
+  live: 3
   Distortion: {fileID: 0}
   adbonus: {fileID: 0}
   animbonus: {fileID: 0}
@@ -7401,11 +7402,17 @@ MonoBehaviour:
   MinusFuel: 0
   energy: {fileID: 0}
   explosionEffect: {fileID: 0}
+  explosionEffect2: {fileID: 0}
   explosionSound1: {fileID: 0}
   explosionSound2: {fileID: 0}
   go20: []
   fineText: {fileID: 0}
   fineAnim: {fileID: 0}
+  Is3G: 0
+  Is3G2P: 0
+  Music: {fileID: 0}
+  prefab: {fileID: 0}
+  models: []
 --- !u!114 &144783074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7503,6 +7510,7 @@ MonoBehaviour:
   s: {fileID: 144783076}
   ps: {fileID: 558634753}
   ps1: {fileID: 2015941815}
+  score: 0
   ad1: {fileID: 1979058714}
   ad2: {fileID: 1589038332}
   ad3: {fileID: 2131777372}
@@ -7536,6 +7544,8 @@ MonoBehaviour:
   Disk1: {fileID: 1183446927}
   Disk2: {fileID: 1186906483}
   Display: {fileID: 2100000, guid: 5c1486159cb01dc408e45159c2161ffb, type: 2}
+  Is3G: 0
+  EndText: {fileID: 0}
 --- !u!1001 &168276900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17813,7 +17823,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &180931209
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17957,7 +17967,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &192034198
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26680,6 +26690,7 @@ MonoBehaviour:
   ad: {fileID: 0}
   BS: {fileID: 540669386}
   ABS: {fileID: 540669390}
+  CutSceneFinal2Chapter: 0
 --- !u!114 &540669392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26693,6 +26704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is2Glav: 1
+  isIntermediate: 0
 --- !u!1 &544277822
 GameObject:
   m_ObjectHideFlags: 0
@@ -44998,7 +45010,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &939864639
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -56378,7 +56390,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0421\u043A\u0432\u043E\u0437\u044C \u0442\u0443\u043C\u0430\u043D"
+  m_Text: "\u0410\u043D\u043E\u043C\u0430\u043B\u0438\u044F."
 --- !u!222 &1094729586
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58900,6 +58912,7 @@ MonoBehaviour:
   fuelzero: {fileID: 738050545}
   isdelay2: 0
   liveimage: {fileID: 2054539713}
+  live: 3
   Distortion: {fileID: 168598286}
   adbonus: {fileID: 67334523}
   animbonus: {fileID: 67334520}
@@ -58928,6 +58941,7 @@ MonoBehaviour:
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
     type: 3}
+  explosionEffect2: {fileID: 0}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 1678625022}
   go20:
@@ -58935,6 +58949,11 @@ MonoBehaviour:
   - {fileID: 1987259064}
   fineText: {fileID: 1259312344}
   fineAnim: {fileID: 1259312343}
+  Is3G: 0
+  Is3G2P: 0
+  Music: {fileID: 0}
+  prefab: {fileID: 0}
+  models: []
 --- !u!114 &1258039499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59021,6 +59040,7 @@ MonoBehaviour:
   as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1258039496}
+  IsASceneStart: 0
 --- !u!54 &1258039500
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -59098,10 +59118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 21
+  initialZSpeed: 17
   zSpeedIncrement: 0.5
   zSpeedUpdateInterval: 13
-  xRange: 9
+  xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
@@ -64358,6 +64378,7 @@ GameObject:
   - component: {fileID: 1318062575}
   - component: {fileID: 1318062574}
   - component: {fileID: 1318062573}
+  - component: {fileID: 1318062576}
   m_Layer: 5
   m_Name: FullScreen
   m_TagString: Untagged
@@ -64410,7 +64431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 22c519b36d72e9c41836ca2d3914c9ed, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -64434,6 +64455,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318062571}
   m_CullTransparentMesh: 1
+--- !u!114 &1318062576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318062571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1318062574}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 144783080}
+        m_TargetAssemblyTypeName: Score2GFirst, Assembly-CSharp
+        m_MethodName: FirstPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1318620164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71109,6 +71186,7 @@ MonoBehaviour:
   fuelzero: {fileID: 738050545}
   isdelay2: 0
   liveimage: {fileID: 2054539713}
+  live: 3
   Distortion: {fileID: 168598286}
   adbonus: {fileID: 1001231537}
   animbonus: {fileID: 67334520}
@@ -71137,6 +71215,7 @@ MonoBehaviour:
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
     type: 3}
+  explosionEffect2: {fileID: 0}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 1678625022}
   go20:
@@ -71144,6 +71223,11 @@ MonoBehaviour:
   - {fileID: 1987259064}
   fineText: {fileID: 1259312344}
   fineAnim: {fileID: 1259312343}
+  Is3G: 0
+  Is3G2P: 0
+  Music: {fileID: 0}
+  prefab: {fileID: 0}
+  models: []
 --- !u!114 &1502605994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71230,6 +71314,7 @@ MonoBehaviour:
   as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1502605991}
+  IsASceneStart: 0
 --- !u!65 &1502605995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71283,7 +71368,7 @@ MonoBehaviour:
   initialZSpeed: 17
   zSpeedIncrement: 0.5
   zSpeedUpdateInterval: 13
-  xRange: 9
+  xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
@@ -81516,6 +81601,7 @@ MonoBehaviour:
   fuelzero: {fileID: 738050545}
   isdelay2: 0
   liveimage: {fileID: 2054539713}
+  live: 3
   Distortion: {fileID: 168598286}
   adbonus: {fileID: 1001231537}
   animbonus: {fileID: 67334520}
@@ -81544,6 +81630,7 @@ MonoBehaviour:
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
     type: 3}
+  explosionEffect2: {fileID: 0}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 1678625022}
   go20:
@@ -81551,6 +81638,11 @@ MonoBehaviour:
   - {fileID: 1987259064}
   fineText: {fileID: 1259312344}
   fineAnim: {fileID: 1259312343}
+  Is3G: 0
+  Is3G2P: 0
+  Music: {fileID: 0}
+  prefab: {fileID: 0}
+  models: []
 --- !u!54 &1582142838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -81685,6 +81777,7 @@ MonoBehaviour:
   as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1582142835}
+  IsASceneStart: 0
 --- !u!114 &1582142842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81697,10 +81790,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 21
+  initialZSpeed: 17
   zSpeedIncrement: 0.5
   zSpeedUpdateInterval: 13
-  xRange: 9
+  xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
@@ -82848,7 +82941,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &1676690337
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -83231,6 +83324,7 @@ MonoBehaviour:
   fuelzero: {fileID: 738050545}
   isdelay2: 0
   liveimage: {fileID: 2054539713}
+  live: 3
   Distortion: {fileID: 168598286}
   adbonus: {fileID: 67334523}
   animbonus: {fileID: 67334520}
@@ -83259,6 +83353,7 @@ MonoBehaviour:
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
     type: 3}
+  explosionEffect2: {fileID: 0}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 1678625022}
   go20:
@@ -83266,6 +83361,11 @@ MonoBehaviour:
   - {fileID: 1987259064}
   fineText: {fileID: 1259312344}
   fineAnim: {fileID: 1259312343}
+  Is3G: 0
+  Is3G2P: 0
+  Music: {fileID: 0}
+  prefab: {fileID: 0}
+  models: []
 --- !u!65 &1693977092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -83400,6 +83500,7 @@ MonoBehaviour:
   as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1693977089}
+  IsASceneStart: 0
 --- !u!114 &1693977096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83412,10 +83513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 21
+  initialZSpeed: 17
   zSpeedIncrement: 0.5
   zSpeedUpdateInterval: 13
-  xRange: 9
+  xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
@@ -88732,7 +88833,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: af1a5e24299a94940be12022373bc5d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4ab0ac265652c141937dbb693640418, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -101256,7 +101357,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &1891882122
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -106681,6 +106782,7 @@ MonoBehaviour:
   fuelzero: {fileID: 738050545}
   isdelay2: 0
   liveimage: {fileID: 2054539713}
+  live: 3
   Distortion: {fileID: 168598286}
   adbonus: {fileID: 1001231537}
   animbonus: {fileID: 67334520}
@@ -106709,6 +106811,7 @@ MonoBehaviour:
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
     type: 3}
+  explosionEffect2: {fileID: 0}
   explosionSound1: {fileID: 401635281}
   explosionSound2: {fileID: 1678625022}
   go20:
@@ -106716,6 +106819,11 @@ MonoBehaviour:
   - {fileID: 1987259064}
   fineText: {fileID: 1259312344}
   fineAnim: {fileID: 1259312343}
+  Is3G: 0
+  Is3G2P: 0
+  Music: {fileID: 0}
+  prefab: {fileID: 0}
+  models: []
 --- !u!65 &1936518567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -106850,6 +106958,7 @@ MonoBehaviour:
   as4: {fileID: 1808111827}
   prefab: {fileID: 1652372636091411632, guid: f117d108e7ef5a14b9a752a53cbc168e, type: 3}
   spawnTransform: {fileID: 1936518564}
+  IsASceneStart: 0
 --- !u!114 &1936518571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106862,10 +106971,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 21
+  initialZSpeed: 17
   zSpeedIncrement: 0.5
   zSpeedUpdateInterval: 13
-  xRange: 9
+  xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
@@ -107467,15 +107576,15 @@ RectTransform:
   - {fileID: 573620532}
   - {fileID: 51455681}
   - {fileID: 168598285}
-  - {fileID: 1350524495}
   - {fileID: 1049145393}
   - {fileID: 28995408}
   - {fileID: 1259312342}
   - {fileID: 1132852902}
   - {fileID: 1883183354}
   - {fileID: 1784157979}
-  - {fileID: 2130700145}
   - {fileID: 1318062572}
+  - {fileID: 1350524495}
+  - {fileID: 2130700145}
   - {fileID: 346243016}
   m_Father: {fileID: 1592378833}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107838,7 +107947,7 @@ MonoBehaviour:
   s5: {fileID: 1502605992}
   baseSmoothSpeed: 2
   speedMultiplier: 0.2
-  offset: {x: 0, y: 8, z: -30}
+  offset: {x: -0.5, y: 8.5, z: -37.5}
 --- !u!114 &1979058721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124461,7 +124570,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.3
 --- !u!222 &2139157296
 CanvasRenderer:
   m_ObjectHideFlags: 0

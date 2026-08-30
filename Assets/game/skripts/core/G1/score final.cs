@@ -78,6 +78,7 @@ public class ScoreCounterFinal : MonoBehaviour
     public Animator anim5;
     public Light l;
     private bool isstart;
+    public AudioSource Music;
 
     private float nextSpawnTime = 0f;
     private float baseSpawnInterval = 1.3f;
@@ -142,6 +143,9 @@ public class ScoreCounterFinal : MonoBehaviour
 
         anim.CrossFade("anim6", 0.1f);
 
+        Music.volume = PlayerPrefs.GetFloat("musics", 0.5f);
+        Music.enabled = PlayerPrefs.GetInt("music") == 0;
+
         UpdateObstacleCount();
 
         ScheduleNextSpawn();
@@ -201,7 +205,7 @@ public class ScoreCounterFinal : MonoBehaviour
         ad11.volume = audios;
         ad12.volume = audios / 1.85f;
         ad14.volume = audios;
-        ad15.volume = audios / 1.3f;
+        ad15.volume = audios / 1.8f;
         ad16.volume = audios;
         ad17.volume = audios;
         ad18.volume = audios;
@@ -209,21 +213,21 @@ public class ScoreCounterFinal : MonoBehaviour
         ad20.volume = audios;
         LightningAudio.volume = audios;
 
-        if (spawn >= 340 && !is340)
+        if (spawn >= 240 && !is340)
         {
             text.text = "Сканирование: опасности не найдены.";
             anim2.CrossFade("anim 26 1", 0.1f);
             is340 = true;
             ad9.Play();
         }
-        if (spawn >= 720 && ach3 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+        if (spawn >= 520 && ach3 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
         {
             ach3 = 1;
             PlayerPrefs.SetInt("ach3", 1);
             achanim1.CrossFade("anim20", 0.1f);
             ad5.Play();
         }
-        if (spawn >= 590 && !is550)
+        if (spawn >= 460 && !is550)
         {
             string selected = phrases[UnityEngine.Random.Range(0, phrases.Length)];
             text.text = "Сканирование: " + selected;
@@ -233,7 +237,7 @@ public class ScoreCounterFinal : MonoBehaviour
             if (!fogCoroutineStarted) StartCoroutine(EnableFogWithDelay());
         }
 
-        if (spawn > 840)
+        if (spawn > 550)
         {
             isbtonext = true;
         }
@@ -351,11 +355,12 @@ public class ScoreCounterFinal : MonoBehaviour
         }
 
 
-        yield return new WaitForSeconds(17f);
+        yield return new WaitForSeconds(12f);
 
         anim3.CrossFade("smerchStart", 0.1f);
         anim5.CrossFade("shake", 0.1f);
-        Destroy(FindObjectOfType<ObstacleSpawner>());
+
+        yield return new WaitForSeconds(8f);
     }
 
 
@@ -386,13 +391,17 @@ public class ScoreCounterFinal : MonoBehaviour
         {
             spawner.SetObstacleCount(3);
         }
-        if (spawn < 250)
+        else
         {
-            omini.SetObstacleCount(4);
+            spawner.SetObstacleCount(1);
+        }
+        if (spawn < 350)
+        {
+            omini.SetObstacleCount(3);
         }
         else if (spawn < 500)
         {
-            omini.SetObstacleCount(6);
+            omini.SetObstacleCount(4);
         }
     }
 

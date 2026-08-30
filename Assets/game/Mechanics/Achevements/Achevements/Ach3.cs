@@ -12,17 +12,17 @@ public class Ach3 : MonoBehaviour
         if(PlayerPrefs.GetInt("Ach3Level", 0) == 0)
         {
             Level.text = "Этап 1 из 3";
-            Task.text = "Потрясная способность!";
+            Task.text = "Потрясный сканнер!";
         }
         else if(PlayerPrefs.GetInt("Ach3Level", 0) == 1)
         {
             Level.text = "Этап 2 из 3";
-            Task.text = "Не пренабрегай этим!";
+            Task.text = "Люблю сканировать!";
         }
         else if(PlayerPrefs.GetInt("Ach3Level", 0) == 2)
         {
             Level.text = "Этап 3 из 3";
-            Task.text = " Испугался и вышел до начала...";
+            Task.text = "А если уберешь сканнер но попробуешь снова? Раз в год и палка стреляет!";
         }
         else if(PlayerPrefs.GetInt("Ach3Level", 0) >= 3)
         {

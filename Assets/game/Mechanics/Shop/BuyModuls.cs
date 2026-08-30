@@ -26,6 +26,7 @@ public class BuyModuls : MonoBehaviour
         else
             CoinsToBuy = PlayerPrefs.GetInt(Index + "Coins", 0);
 
+        if(CoinsTextToBuy != null)
         CoinsTextToBuy.text = "" + CoinsToBuy;
 
         IndexStatus = PlayerPrefs.GetInt(Index + Column, 0);

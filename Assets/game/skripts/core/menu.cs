@@ -51,6 +51,7 @@ public class menu : MonoBehaviour
     public AudioSource ad8;
     public AudioSource ad9;
     public AudioSource SMS;
+    public AudioSource SMS2;
     public AudioSource yesad;
     public AudioSource noad;
     private float isdelay1 = 1.5f;
@@ -183,6 +184,7 @@ public class menu : MonoBehaviour
     private float Dificitefloat;
 
     public GameObject DialogueStart;
+    public GameObject DialogueStart2;
 
     public RocketBehavior move1;
     public RocketBehavior move2;
@@ -224,6 +226,7 @@ public class menu : MonoBehaviour
         ad9.volume = audios;
         yesad.volume = audios / 2;
         SMS.volume = audios / 1.4f;
+        SMS2.volume = audios / 1.4f;
         noad.volume = audios / 2;
 
         ps16.Stop();
@@ -323,6 +326,7 @@ public class menu : MonoBehaviour
         ad9.volume = audios;
         yesad.volume = audios / 2;
         SMS.volume = audios / 1.4f;
+        SMS2.volume = audios / 1.4f;
         noad.volume = audios / 2;
 
         Dificitefloat = PlayerPrefs.GetFloat("Generators1Energy", 0);
@@ -416,6 +420,7 @@ public class menu : MonoBehaviour
             yesad.enabled = true;
             noad.enabled = true;
             SMS.enabled = true;
+            SMS2.enabled = true;
             ison1 = true;
             but1.GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
@@ -433,6 +438,7 @@ public class menu : MonoBehaviour
             yesad.enabled = false;
             noad.enabled = false;
             SMS.enabled = false;
+            SMS2.enabled = false;
             ison1 = false;
             but1.GetComponent<Image>().color = new Color(255, 0, 0, 255);
         }
@@ -728,8 +734,26 @@ public class menu : MonoBehaviour
     }
     public void is1g()
     {
+        if(PlayerPrefs.GetInt("Ach4End2", 0) == 1 && PlayerPrefs.GetInt("3GlavStarted", 0) == 0)
+        {
+            DialogueStart2.SetActive(true);
+            
+            return;
+        }
+
+
         if(PlayerPrefs.GetInt("IndexDialogue", 0) != 19)
         {
+            int Price;
+
+            if(PlayerPrefs.GetInt("g2passed", 0) == 1)
+                Price = 15 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+            else if(PlayerPrefs.GetInt("g1passed", 0) == 1)
+                Price = 11 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+            else
+                Price = 7 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
+            
+            
             float turbinsMinus;
             turbinsMinus = PlayerPrefs.GetFloat("TurbinsEnergy", 0);
             turbinsMinus += PlayerPrefs.GetFloat("TurbinsFuel", 0);
@@ -748,16 +772,6 @@ public class menu : MonoBehaviour
                 move3.LaunchRocket();
                 move4.LaunchRocket();
                 move5.LaunchRocket();
-
-
-                int Price;
-
-                if(PlayerPrefs.GetInt("g2passed", 0) == 1)
-                    Price = 15 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
-                else if(PlayerPrefs.GetInt("g1passed", 0) == 1)
-                    Price = 11 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
-                else
-                    Price = 7 + PlayerPrefs.GetInt("PriceToPlayProjectile", 0) + PlayerPrefs.GetInt("PriceToPlayShield", 0) + PlayerPrefs.GetInt("PriceToPlayScanner", 0) + PlayerPrefs.GetInt("PriceToPlayGyperJump", 0);
 
 
                 if(PlayerPrefs.GetInt("yousurwive", 0) == 0)
@@ -785,13 +799,13 @@ public class menu : MonoBehaviour
                 Dificite.CrossFade("Start", 0.1f);
                 noad.Play();
             }
-            else if(PlayerPrefs.GetInt("coins", 0) <= 9)
+            else if(PlayerPrefs.GetInt("coins", 0) <= Price)
             {
-                Dificite.CrossFade("Start", 0.1f);
+                Dificite.CrossFade("Dificite5", 0.1f);
                 noad.Play();
             }
         }
-        else if(PlayerPrefs.GetInt("IndexDialogue", 0) == 19 && PlayerPrefs.GetInt("fueltostart", 0) >= 1)
+        else if(PlayerPrefs.GetInt("IndexDialogue", 0) == 19 && PlayerPrefs.GetInt("fueltostart", 0) == 5)
         {
             DialogueStart.SetActive(true);
         }
