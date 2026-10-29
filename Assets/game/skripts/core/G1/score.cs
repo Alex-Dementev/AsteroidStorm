@@ -144,7 +144,6 @@ public class ScoreCounter : MonoBehaviour
         PlayerPrefs.SetInt("youdead", 0);
         PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
-        PlayerPrefs.SetInt("isfinal2g", 0);
         
         if (PlayerPrefs.GetInt("isbtotask") == 1)
             isbtotask = true;
@@ -251,15 +250,12 @@ public class ScoreCounter : MonoBehaviour
         {
             if (spawn >= 790 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
             {
+                PlayerPrefs.SetInt("isfinal1g", 1);
                 image.SetActive(true);
                 anim1.Play("anim10 0");
                 isdelay3 = 2f;
                 isend = true;
                 isend2 = true;
-            }
-            if (spawn >= 770 && !isend2 && PlayerPrefs.GetInt("youdead", 0) == 0)
-            {
-                PlayerPrefs.SetInt("GoToFinalGlav", 1);
             }
             if (spawn >= 100 && MessagesID == 0)
             {

@@ -726,6 +726,10 @@ public class PrefBoxPaste : MonoBehaviour
         Quantity -= 1;
         PlayerPrefs.SetInt(LoadIndexModul, Quantity);
 
+        Debug.Log(PlayerPrefs.GetString("Ach6Level2Status", "") + "/" + LoadIndexModul);
+        if(PlayerPrefs.GetString("Ach6Level2Status", "") == LoadIndexModul && PlayerPrefs.GetInt("Ach6Level", 0) == 1)
+            PlayerPrefs.SetInt("Ach6Level", 2);
+
         int raresell = PlayerPrefs.GetInt("SellModulRare", 0);
         coins = PlayerPrefs.GetInt("coins", 0);
         allcoins = PlayerPrefs.GetInt("allcoins", 0);

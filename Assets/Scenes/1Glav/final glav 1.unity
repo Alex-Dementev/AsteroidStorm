@@ -11540,7 +11540,6 @@ MonoBehaviour:
   fuel5: {fileID: 0}
   ShieldEndAS: {fileID: 0}
   shield: {fileID: 0}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 0}
   explosionEffect: {fileID: 0}
@@ -11555,6 +11554,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!114 &144783074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34228,6 +34228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is2Glav: 0
   isIntermediate: 0
+  isFinal: 0
+  anim: {fileID: 0}
 --- !u!1 &544277822
 GameObject:
   m_ObjectHideFlags: 0
@@ -63164,7 +63166,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 1178286100}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -63182,6 +63183,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!114 &1258039499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63346,15 +63348,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 15
-  zSpeedIncrement: 0.75
-  zSpeedUpdateInterval: 20
+  initialZSpeed: 17
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 9
   xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: 0, y: 0, z: 0}
-  zSpeed: 15
+  calibrationOffset: {x: -3, y: 0, z: 0}
+  zSpeed: 1
   xOffset: 1
 --- !u!1 &1259312341
 GameObject:
@@ -74763,7 +74765,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 180733729}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -74781,6 +74782,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!114 &1502605994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74918,15 +74920,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 15
-  zSpeedIncrement: 0.75
-  zSpeedUpdateInterval: 20
+  initialZSpeed: 17
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 9
   xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: -1, y: 0, z: 0}
-  zSpeed: 15
+  calibrationOffset: {x: -3, y: 0, z: 0}
+  zSpeed: 1
   xOffset: 1
 --- !u!54 &1502605998
 Rigidbody:
@@ -84910,7 +84912,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 842111931}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -84928,6 +84929,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!54 &1582142838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -85075,15 +85077,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 15
-  zSpeedIncrement: 0.75
-  zSpeedUpdateInterval: 20
+  initialZSpeed: 17
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 9
   xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: 0, y: 0, z: 0}
-  zSpeed: 15
+  calibrationOffset: {x: -3, y: 0, z: 0}
+  zSpeed: 1
   xOffset: 1
 --- !u!114 &1582142843
 MonoBehaviour:
@@ -86535,7 +86537,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 1940768020}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -86553,6 +86554,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!65 &1693977092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86700,15 +86702,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 15
-  zSpeedIncrement: 0.75
-  zSpeedUpdateInterval: 20
+  initialZSpeed: 17
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 9
   xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: 0, y: 0, z: 0}
-  zSpeed: 15
+  calibrationOffset: {x: -3, y: 0, z: 0}
+  zSpeed: 1
   xOffset: 1
 --- !u!114 &1693977097
 MonoBehaviour:
@@ -104328,7 +104330,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 896813987}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -104346,6 +104347,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!65 &1936518567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104493,15 +104495,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 15
-  zSpeedIncrement: 0.75
-  zSpeedUpdateInterval: 20
+  initialZSpeed: 17
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 9
   xRange: 11
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: 0, y: 0, z: 0}
-  zSpeed: 15
+  calibrationOffset: {x: -3, y: 0, z: 0}
+  zSpeed: 1
   xOffset: 1
 --- !u!114 &1936518572
 MonoBehaviour:

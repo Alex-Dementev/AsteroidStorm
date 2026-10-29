@@ -43,32 +43,26 @@ public class death : MonoBehaviour
     public Animator fuel5;
     public AudioSource ShieldEndAS;
     public Animator shield;
-    public float IsDelayFuel;
+    private float IsDelayFuel = 15f;
     public float MinusFuel;
     public energy energy;
     private Transform targetTransform;
-
     public GameObject explosionEffect;
     public GameObject explosionEffect2;
     public AudioSource explosionSound1;
     public AudioSource explosionSound2;
-
     public GameObject[] go20;
-
     public Text fineText;
     public Animator fineAnim;
-
     public bool Is3G;
     public bool Is3G2P;
     public AudioSource Music;
-
     private GameObject SpawnedPrefab;
     public GameObject prefab;
-
     public GameObject[] models;
-
     private Vector3 pos;
     public GameObject Escape;
+    private bool Escaped = false;
 
 
 
@@ -230,8 +224,22 @@ public class death : MonoBehaviour
         "Ты уверен, что игра закрыта, когда выходишь?"
     };
 
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            if(PlayerPrefs.GetInt("ach6", 0) == 2 && PlayerPrefs.GetInt("Ach6Level", 0) == 0)
+                PlayerPrefs.SetInt("Ach6Level", 1);
+        }
+    }
+
     void Start()
     {
+        if(PlayerPrefs.GetFloat("audios", 0.5f) <= 0.05f && PlayerPrefs.GetFloat("musics", 0.5f) <= 0.05f && PlayerPrefs.GetInt("Ach7Level", 0) == 0 && PlayerPrefs.GetInt("ach7", 0) == 2)
+            PlayerPrefs.SetInt("Ach7Level", 1);
+
+
         if(fuel5 == null) return;
 
 
@@ -300,6 +308,7 @@ public class death : MonoBehaviour
 
         isdelay2 -= Time.deltaTime;
         f -= Time.deltaTime;
+        IsDelayFuel -= Time.deltaTime;
 
         if(SliderFuel != null && !Is3G2P && !Is3G)
         {
@@ -469,10 +478,8 @@ public class death : MonoBehaviour
         image.SetActive(!image.activeSelf);
         anim.Play("anim10 1");
 
-        float FuelAch = SliderFuel.maxValue - 15;
-        if(PlayerPrefs.GetInt("Ach2Level", 0) == 2 && fuel >= FuelAch)
+        if(PlayerPrefs.GetInt("Ach2Level", 0) == 2 && IsDelayFuel > 0)
             PlayerPrefs.SetInt("Ach2Level", 3);
-
     }
 
     public void restart2()

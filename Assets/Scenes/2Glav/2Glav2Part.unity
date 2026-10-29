@@ -6632,7 +6632,6 @@ MonoBehaviour:
   fuel5: {fileID: 0}
   ShieldEndAS: {fileID: 0}
   shield: {fileID: 0}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 0}
   explosionEffect: {fileID: 0}
@@ -6647,6 +6646,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!114 &144783074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6777,6 +6777,7 @@ MonoBehaviour:
   MessagesID: 0
   l: {fileID: 2131777373}
   Music: {fileID: 0}
+  death: {fileID: 0}
   Is3G: 0
 --- !u!1 &168598284
 GameObject:
@@ -17244,11 +17245,12 @@ Transform:
   m_GameObject: {fileID: 320563847}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6, y: 9.2, z: 1000}
-  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_LocalPosition: {x: 1.6, y: 9.2, z: 1000}
+  m_LocalScale: {x: 9.9, y: 10.40353, z: 10.40353}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2087978157}
+  - {fileID: 1828559434}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &341318631
@@ -19463,6 +19465,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is2Glav: 1
   isIntermediate: 0
+  isFinal: 0
+  anim: {fileID: 0}
 --- !u!1 &544277822
 GameObject:
   m_ObjectHideFlags: 0
@@ -38729,7 +38733,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 1178286100}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -38747,6 +38750,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!114 &1258039499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38911,14 +38915,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 25
-  zSpeedIncrement: 0.5
-  zSpeedUpdateInterval: 13
-  xRange: 11
+  initialZSpeed: 20
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 10
+  xRange: 10
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: 0, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 25
   xOffset: 1
 --- !u!1 &1259312341
@@ -45485,7 +45489,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bae054264daf84b44b6837b5701007a0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bae054264daf84b44b6837b5701007a0,
         type: 3}
@@ -45592,7 +45596,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 180733729}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -45610,6 +45613,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!114 &1502605994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45747,14 +45751,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 25
-  zSpeedIncrement: 0.5
-  zSpeedUpdateInterval: 13
-  xRange: 11
+  initialZSpeed: 20
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 10
+  xRange: 10
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: -1, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 17
   xOffset: 1
 --- !u!54 &1502605998
@@ -55581,7 +55585,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 01b5a8571b318de4c8529d2dcbdffb76,
         type: 3}
@@ -55739,7 +55743,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 842111931}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -55757,6 +55760,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!54 &1582142838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -55904,14 +55908,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 25
-  zSpeedIncrement: 0.5
-  zSpeedUpdateInterval: 13
-  xRange: 11
+  initialZSpeed: 20
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 10
+  xRange: 10
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: 0, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 25
   xOffset: 1
 --- !u!114 &1582142843
@@ -57098,7 +57102,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 1940768020}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -57116,6 +57119,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!65 &1693977092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57263,14 +57267,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 25
-  zSpeedIncrement: 0.5
-  zSpeedUpdateInterval: 13
-  xRange: 11
+  initialZSpeed: 20
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 10
+  xRange: 10
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: 0, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 25
   xOffset: 1
 --- !u!114 &1693977097
@@ -63779,6 +63783,110 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &1828559433
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 320563849}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.78
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c1c86c34445f55c44b73c1abee897fc9, type: 2}
+    - target: {fileID: -1461304994638716399, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 065bb4bdd24b0974fb348996f0ca4a21, type: 2}
+    - target: {fileID: 919132149155446097, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+        type: 3}
+      propertyPath: m_Name
+      value: Portal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a461bf38d2f5f9f4faa42c3293ea7bb6, type: 3}
+--- !u!4 &1828559434 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a461bf38d2f5f9f4faa42c3293ea7bb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1828559433}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1845824863
 GameObject:
   m_ObjectHideFlags: 0
@@ -69764,7 +69872,6 @@ MonoBehaviour:
   fuel5: {fileID: 1883183355}
   ShieldEndAS: {fileID: 700807435}
   shield: {fileID: 896813987}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 144783074}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -69782,6 +69889,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!65 &1936518567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69929,14 +70037,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe980557391fe64da5657106cb4bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialZSpeed: 25
-  zSpeedIncrement: 0.5
-  zSpeedUpdateInterval: 13
-  xRange: 11
+  initialZSpeed: 20
+  zSpeedIncrement: 1
+  zSpeedUpdateInterval: 10
+  xRange: 10
   sensitivity: 1.2
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: 0, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 25
   xOffset: 1
 --- !u!114 &1936518572

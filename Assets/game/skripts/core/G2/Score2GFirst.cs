@@ -124,7 +124,7 @@ public class Score2GFirst : MonoBehaviour
         PlayerPrefs.SetInt("isfinal1g", 0);
         PlayerPrefs.SetInt("AchActive", 1);
         PlayerPrefs.SetInt("live", PlayerPrefs.GetInt("LifeToStart", 1));
-        ach6 = PlayerPrefs.GetInt("ach6");
+        ach6 = PlayerPrefs.GetInt("ach7");
 
         if (PlayerPrefs.GetInt("isbtotask") == 1)
             isbtotask = true;
@@ -279,7 +279,7 @@ public class Score2GFirst : MonoBehaviour
             if (spawn >= 920 && ach6 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
                 ach6 = 1;
-                PlayerPrefs.SetInt("ach6", 1);
+                PlayerPrefs.SetInt("ach7", 1);
                 achanim6.CrossFade("anim20", 0.1f);
                 ad5.Play();
             }
@@ -299,16 +299,17 @@ public class Score2GFirst : MonoBehaviour
                 MessagesID++;
                 Disk2.Play("DisksIncreases");
             }
-            if (spawn >= 980 && MessagesID == 4)
+            if (spawn >= 980 && MessagesID == 3)
             {
                 text.text = "Сканирование: регистрация радиационных колебаний";
                 anim2.CrossFade("anim 26 1", 0.1f);
                 ad9.Play();
                 MessagesID++;
             }
-            if (spawn >= 1070 && MessagesID == 4 && PlayerPrefs.GetInt("youdead", 0) == 0)
+            if (spawn >= 1070 && MessagesID == 5 && PlayerPrefs.GetInt("youdead", 0) == 0)
             {
                 MessagesID++;
+                PlayerPrefs.SetInt("isfinal1g", 1);
                 anim1.Play("anim10 4");
             }
             if (spawn >= 960)
@@ -316,7 +317,7 @@ public class Score2GFirst : MonoBehaviour
                 AlphaDisplay = Mathf.MoveTowards(AlphaDisplay, 0.9f, Time.deltaTime / 17);
                 Display.SetFloat("_Alpha", AlphaDisplay);
             }
-            if (spawn > 900 && MessagesID == 3)
+            if (spawn > 900 && MessagesID == 4)
             {
                 isbtonext = true;
                 MessagesID++;

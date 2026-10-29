@@ -42,8 +42,8 @@ public class PrefPets : MonoBehaviour
             {
                 if(Clicks <= 1)
                 {
-                Clicks++;
-                TimerClicks = 0.5f;
+                    Clicks++;
+                    TimerClicks = 0.5f;
                 }
 
                 if(Clicks >= 2)

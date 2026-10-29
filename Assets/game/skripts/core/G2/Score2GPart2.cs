@@ -107,9 +107,8 @@ public class Score2GPart2 : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.SetInt("isfinal1g", 1);
         PlayerPrefs.SetInt("AchActive", 1);
-        ach7 = PlayerPrefs.GetInt("ach7");
+        ach7 = PlayerPrefs.GetInt("ach6");
         
         l.intensity = PlayerPrefs.GetFloat("lightgameplay") / 2;
 
@@ -135,9 +134,12 @@ public class Score2GPart2 : MonoBehaviour
 
         anim.CrossFade("anim6", 0.1f);
 
-        Music.volume = PlayerPrefs.GetFloat("musics", 0.5f);
-        if(PlayerPrefs.GetInt("music") == 0)
-            Music.volume = 0;
+        if(Music != null)
+        {
+            Music.volume = PlayerPrefs.GetFloat("musics", 0.5f);
+            if(PlayerPrefs.GetInt("music") == 0)
+                Music.volume = 0;
+        }
 
 
         if (s1 && s1.activeInHierarchy) player = s1.transform;
@@ -202,7 +204,10 @@ public class Score2GPart2 : MonoBehaviour
             ad11.volume = audios;
         ad12.volume = audios / 1.5f;
         ad14.volume = audios;
-        ad15.volume = audios / 1.9f;
+        if(Is3G)
+            ad15.volume = audios / 2.6f;
+        else
+            ad15.volume = audios / 1.9f;
         ad16.volume = audios;
         ad17.volume = audios;
         ad18.volume = audios;
@@ -211,21 +216,21 @@ public class Score2GPart2 : MonoBehaviour
 
         if(!Is3G)
         {
-            if (spawn >= 1450 && MessagesID == 0)
+            if (spawn >= 150 && MessagesID == 0)
             {
                 text.text = "Приближение ворот пространства";
                 anim2.CrossFade("anim 26 1", 0.1f);
                 ad9.Play();
                 MessagesID++;
             }
-            if (spawn >= 1300 && ach7 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+            if (spawn >= 250 && ach7 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
                 ach7 = 1;
-                PlayerPrefs.SetInt("ach7", 1);
+                PlayerPrefs.SetInt("ach6", 1);
                 achanim7.CrossFade("anim20", 0.1f);
                 ad5.Play();
             }
-            if (spawn >= 1587 && MessagesID == 1)
+            if (spawn >= 333 && MessagesID == 1)
             {
                 anim5.Play("WhiteScreen");
                 MessagesID++;
@@ -256,9 +261,9 @@ public class Score2GPart2 : MonoBehaviour
             }
         }
 
-        score = (int)(player.position.z / 2) + 1100;
+        score = (int)(player.position.z / 3) + 1100;
         scoreText.text = (score.ToString());
-        spawn = ((int)(player.position.z) / 2) + 1100;
+        spawn = ((int)(player.position.z) / 3);
 
         UpdateObstacleCount();
 
@@ -288,7 +293,8 @@ public class Score2GPart2 : MonoBehaviour
             ad1.enabled = true;
             ad2.enabled = true;
             ad3.enabled = true;
-            ad4.enabled = true;
+            if(ad4 != null)
+                ad4.enabled = true;
             ad5.enabled = true;
             ad6.enabled = true;
             ad7.enabled = true;
@@ -310,7 +316,8 @@ public class Score2GPart2 : MonoBehaviour
             ad1.enabled = false;
             ad2.enabled = false;
             ad3.enabled = false;
-            ad4.enabled = false;
+            if(ad4 != null)
+                ad4.enabled = false;
             ad5.enabled = false;
             ad6.enabled = false;
             ad7.enabled = false;

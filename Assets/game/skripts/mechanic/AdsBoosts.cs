@@ -49,6 +49,16 @@ public class AdsBoosts : MonoBehaviour
         Not++;
         PlayerPrefs.SetInt("AdsNot", Not);
 
+        if(PlayerPrefs.GetInt("Ach6Level", 0) == 2)
+        {
+            PlayerPrefs.SetInt("Ach6Level3Status", PlayerPrefs.GetInt("Ach6Level3Status", 0) + 1);
+
+            if(PlayerPrefs.GetInt("Ach6Level3Status", 0) >= 2)
+            {
+                PlayerPrefs.SetInt("Ach6Level", 3);
+            }
+        }
+
         if(Not >= 1 && Not <= 3)
             NotText.text = "Спасибо!";
         if(Not >= 4 && Not <= 6)

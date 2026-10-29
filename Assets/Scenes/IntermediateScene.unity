@@ -5966,7 +5966,6 @@ MonoBehaviour:
   fuel5: {fileID: 0}
   ShieldEndAS: {fileID: 0}
   shield: {fileID: 0}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 0}
   explosionEffect: {fileID: 0}
@@ -5981,6 +5980,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!82 &104172371
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6817,11 +6817,11 @@ MonoBehaviour:
   initialZSpeed: 11
   zSpeedIncrement: 1
   zSpeedUpdateInterval: 10
-  xRange: 9.5
+  xRange: 10.5
   sensitivity: 1
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: -3.5, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 20
   xOffset: 1
 --- !u!4 &207934569 stripped
@@ -7025,7 +7025,6 @@ MonoBehaviour:
   fuel5: {fileID: 1447584851}
   ShieldEndAS: {fileID: 627188301}
   shield: {fileID: 2042601540}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 104172367}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -7043,6 +7042,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!1 &216131185
 GameObject:
   m_ObjectHideFlags: 0
@@ -12855,11 +12855,11 @@ MonoBehaviour:
   initialZSpeed: 11
   zSpeedIncrement: 1
   zSpeedUpdateInterval: 10
-  xRange: 9.5
+  xRange: 10.5
   sensitivity: 1
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: -4, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 20
   xOffset: 1
 --- !u!114 &310942076
@@ -12905,7 +12905,6 @@ MonoBehaviour:
   fuel5: {fileID: 1447584851}
   ShieldEndAS: {fileID: 627188301}
   shield: {fileID: 401081131}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 104172367}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -12923,6 +12922,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!1 &337523263
 GameObject:
   m_ObjectHideFlags: 0
@@ -25176,6 +25176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is2Glav: 0
   isIntermediate: 1
+  isFinal: 0
+  anim: {fileID: 0}
 --- !u!1 &594198456
 GameObject:
   m_ObjectHideFlags: 0
@@ -36314,7 +36316,6 @@ MonoBehaviour:
   fuel5: {fileID: 1447584851}
   ShieldEndAS: {fileID: 627188301}
   shield: {fileID: 2084713222}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 104172367}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -36332,6 +36333,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!114 &772358622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36438,7 +36440,7 @@ MonoBehaviour:
   sensitivity: 1
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: -1.5, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 20
   xOffset: 1
 --- !u!54 &772358624
@@ -36910,11 +36912,11 @@ MonoBehaviour:
   initialZSpeed: 11
   zSpeedIncrement: 1
   zSpeedUpdateInterval: 10
-  xRange: 9.5
+  xRange: 10.5
   sensitivity: 1
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: -4, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 20
   xOffset: 1
 --- !u!114 &814676270
@@ -36960,7 +36962,6 @@ MonoBehaviour:
   fuel5: {fileID: 1447584851}
   ShieldEndAS: {fileID: 627188301}
   shield: {fileID: 661785907}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 104172367}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -36978,6 +36979,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!1 &821548567
 GameObject:
   m_ObjectHideFlags: 0
@@ -80154,11 +80156,11 @@ MonoBehaviour:
   initialZSpeed: 11
   zSpeedIncrement: 1
   zSpeedUpdateInterval: 10
-  xRange: 9.5
+  xRange: 10.5
   sensitivity: 1
   intensityMultiplier: 1
   gravityFactor: 0.85
-  calibrationOffset: {x: -3.5, y: 0, z: 0}
+  calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 20
   xOffset: 1
 --- !u!114 &1950506764
@@ -80204,7 +80206,6 @@ MonoBehaviour:
   fuel5: {fileID: 1447584851}
   ShieldEndAS: {fileID: 627188301}
   shield: {fileID: 2030853426}
-  IsDelayFuel: 0
   MinusFuel: 0
   energy: {fileID: 104172367}
   explosionEffect: {fileID: 6701108715378698953, guid: 75026bd7bb66a2b45a9b147fa5be99d8,
@@ -80222,6 +80223,7 @@ MonoBehaviour:
   Music: {fileID: 0}
   prefab: {fileID: 0}
   models: []
+  Escape: {fileID: 0}
 --- !u!1 &1974808080
 GameObject:
   m_ObjectHideFlags: 0

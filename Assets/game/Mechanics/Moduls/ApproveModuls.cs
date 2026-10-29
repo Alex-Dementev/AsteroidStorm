@@ -135,7 +135,7 @@ public class ApproveModuls : MonoBehaviour
             if(Rare == 3)
                 rareBox.color = new Color(88/255f, 16/255f, 82/255f);
             if(Rare == 4)
-                rareBox.color = new Color(125/255f, 132/255f, 0/255f);
+                rareBox.color = new Color(108/255f, 113/255f, 33/255f);
             if(Rare == 5)
                 rareBox.color = new Color(114/255f, 15/255f, 61/255f);
 

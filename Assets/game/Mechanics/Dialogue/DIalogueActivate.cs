@@ -76,7 +76,7 @@ public class DIalogueActivate : MonoBehaviour
             UIPanels[41].SetActive(true);
         }
 
-        if(PlayerPrefs.GetInt("Ach4End2") == 1)
+        if(PlayerPrefs.GetInt("Ach4End2") == 1 && PlayerPrefs.GetInt("isfinal", 0) == 0)
         {
             UIPanels[42].SetActive(false);
             UIPanels[43].SetActive(false);
@@ -141,6 +141,8 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[2].GetComponent<DialogueManager>().Close();
         if (DialoguePanels[3].activeSelf)
             DialoguePanels[3].GetComponent<DialogueManager>().Close();
+        if (DialoguePanels[24].activeSelf)
+            DialoguePanels[24].GetComponent<DialogueManager>().Close();
 
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 20)
             menu.is1g();

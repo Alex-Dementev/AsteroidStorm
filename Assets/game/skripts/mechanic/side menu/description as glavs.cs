@@ -52,7 +52,7 @@ public class descriptionasglavs : MonoBehaviour
     public void click3()
     {
         if(PlayerPrefs.GetInt("g2passed", 0) == 1)
-            t.text = "Мы влетаем в чёрную дыру — пространство теряет форму. Я вижу белый портал, влетаю и оказываюсь в палате.";
+            t.text = "Я влетаю в чёрную дыру. Я вижу белый портал, влетаю и оказываюсь в палате.";
         else
             t.text = "Никто не знает что тут будет, пока ты не разведаешь!";
 
@@ -77,10 +77,10 @@ public class descriptionasglavs : MonoBehaviour
     }   
     public void click5()
     {
-        if(PlayerPrefs.GetInt("g3passed", 0) == 1)
-            t.text = "";
+        if(PlayerPrefs.GetInt("isfinal", 0) == 1)
+            t.text = "Я влетаю в аномалию, я очень близко. Топливо кончается, я вижу точку аномалии, но не дотягиваюсь.";
         else
-            t.text = "Я влетаю в аномалию, системы отказывают, я запрашиваю возвращение но связи нет. Топливо кончается, я вижу точку аномалии, но не дотягиваюсь.";
+            t.text = "Никто не знает что тут будет, пока ты не разведаешь!";
 
         I5.color = new Color(0, 106/255f, 8/255f);
         I2.color = new Color(106/255f, 0, 87/255f);
@@ -127,7 +127,7 @@ public class descriptionasglavs : MonoBehaviour
             CI4.color = new Color(0, 106/255f, 8/255f);
             C4.color = new Color(0, 106/255f, 8/255f);
         }
-        if(PlayerPrefs.GetInt("g3passed", 0) == 1)
+        if(PlayerPrefs.GetInt("isfinal", 0) == 1)
         {
             CI5.color = new Color(0, 106/255f, 8/255f);
             C5.color = new Color(0, 106/255f, 8/255f);
@@ -156,7 +156,7 @@ public class descriptionasglavs : MonoBehaviour
             CI4.color = new Color(0, 106/255f, 8/255f);
             C4.color = new Color(0, 106/255f, 8/255f);
         }
-        if(PlayerPrefs.GetInt("g3passed", 0) == 1)
+        if(PlayerPrefs.GetInt("isfinal", 0) == 1)
         {
             CI5.color = new Color(0, 106/255f, 8/255f);
             C5.color = new Color(0, 106/255f, 8/255f);

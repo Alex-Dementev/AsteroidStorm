@@ -16,6 +16,10 @@ public class SkinsPaste : MonoBehaviour
 
     private void ShowSkin(int index)
     {
+        PlayerPrefs.SetInt("Skin1", 1);
+        PlayerPrefs.SetInt("Skin2", 1);
+        PlayerPrefs.SetInt("Skin3", 1);
+        PlayerPrefs.SetInt("Skin5", 1);
         // Выключаем все скины
         if (s1) s1.SetActive(false);
         if (s2) s2.SetActive(false);

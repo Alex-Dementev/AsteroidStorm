@@ -82,6 +82,8 @@ public class DoubleTapHandler : MonoBehaviour
     public bool isActiveShield2;
     public AudioSource ShieldEndAS;
     public Animator ShieldAnim;
+    private float Ach7Level3Delay;
+    private float Ach7Level3Price;
 
     public float lastTapTime = 0;
     public bool isWaitingForSecondTap = false;
@@ -113,6 +115,10 @@ public class DoubleTapHandler : MonoBehaviour
 
     void Start()
     {
+        if(PlayerPrefs.GetInt("Ach7Level", 0) == 1 && PlayerPrefs.GetInt("Projectile", 0) == 0 && PlayerPrefs.GetInt("Shield", 0) == 0 && PlayerPrefs.GetInt("Scanner", 0) == 0 && PlayerPrefs.GetInt("GyperJump", 0) == 0)
+            PlayerPrefs.SetInt("Ach7Level", 2);
+
+
         var main = p.main;
         main.startSize = PlayerPrefs.GetInt("ScannerLenght", 200);
         
@@ -169,6 +175,8 @@ public class DoubleTapHandler : MonoBehaviour
 
     void Update()
     {
+        Ach7Level3Delay -= Time.deltaTime;
+
         // === Откаты ===
         otkat -= Time.deltaTime;
         otkat2 -= Time.deltaTime;
@@ -206,7 +214,7 @@ public class DoubleTapHandler : MonoBehaviour
         if(transform.position.z >= 3200 && IsASceneStart)
         {
             var main = p.main;
-            main.startSize = 1800;
+            main.startSize = 2000;
 
             Debug.Log("ScannerBuff");
         }
@@ -431,6 +439,21 @@ public class DoubleTapHandler : MonoBehaviour
             PlayerPrefs.SetInt("isabilityuse", 1);
             b = true;
             e.energyint -= costAbility1;
+            if(PlayerPrefs.GetInt("Ach7Level", 0) == 2)
+            {
+                if(Ach7Level3Delay <= 0)
+                {
+                    Ach7Level3Delay = 3;
+                    Ach7Level3Price = costAbility1;
+                }
+                else
+                {
+                    Ach7Level3Delay += 0.5f;
+                    Ach7Level3Price += costAbility1;
+                    if(Ach7Level3Price >= 80)
+                        PlayerPrefs.SetInt("Ach7Level", 3);
+                }
+            }
             abilityt++;
             PlayerPrefs.SetInt("abilityt", abilityt);
             speed = r.zSpeed;
@@ -461,7 +484,7 @@ public class DoubleTapHandler : MonoBehaviour
 
     public void ActivateSwipeUpAbility()
     {
-        if(PlayerPrefs.GetInt("Scanner", 0) == 0 && PlayerPrefs.GetInt("Ach3Level", 0) == 2)
+        if(PlayerPrefs.GetInt("Scanner", 0) == 0 && PlayerPrefs.GetInt("Ach3Level", 0) == 2 && PlayerPrefs.GetInt("Scanner", 0) == 0)
         {
             AchScannerCounter++;
 
@@ -471,9 +494,7 @@ public class DoubleTapHandler : MonoBehaviour
 
                 Skanner.Play();
                 SkanerAS.Play();
-
-                if(IsASceneStart && PlayerPrefs.GetInt("MoonScanned", 0) == 0 && transform.position.z >= 2200 && s2.maxValue >= 4)
-                    PlayerPrefs.SetInt("MoonScanned", 1);
+                effect.CrossFade("slide lr", 0.1f);
 
                 if (PlayerPrefs.GetInt("vibration") == 0)
                 {
@@ -481,6 +502,9 @@ public class DoubleTapHandler : MonoBehaviour
                 }
             }
         }
+
+        if(IsASceneStart && PlayerPrefs.GetInt("MoonScanned", 0) == 0 && transform.position.z >= 2200 && s2.value <= 1)
+            PlayerPrefs.SetInt("MoonScanned", 1);
 
         if (otkat2 > 0 || e.energyint < costAbility2) return;
 
@@ -494,6 +518,21 @@ public class DoubleTapHandler : MonoBehaviour
             PlayerPrefs.SetInt("isabilityuse", 1);
             Skanner.Play();
             e.energyint -= costAbility2;
+            if(PlayerPrefs.GetInt("Ach7Level", 0) == 2)
+            {
+                if(Ach7Level3Delay <= 0)
+                {
+                    Ach7Level3Delay = 3;
+                    Ach7Level3Price = costAbility2;
+                }
+                else
+                {
+                    Ach7Level3Delay += 0.5f;
+                    Ach7Level3Price += costAbility2;
+                    if(Ach7Level3Price >= 80)
+                        PlayerPrefs.SetInt("Ach7Level", 3);
+                }
+            }
             abilityt++;
             PlayerPrefs.SetInt("abilityt", abilityt);
             otkat2 = isotkat2;
@@ -541,6 +580,21 @@ public class DoubleTapHandler : MonoBehaviour
 
             PlayerPrefs.SetInt("isabilityuse", 1);
             e.energyint -= costAbility3;
+            if(PlayerPrefs.GetInt("Ach7Level", 0) == 2)
+            {
+                if(Ach7Level3Delay <= 0)
+                {
+                    Ach7Level3Delay = 3;
+                    Ach7Level3Price = costAbility3;
+                }
+                else
+                {
+                    Ach7Level3Delay += 0.5f;
+                    Ach7Level3Price += costAbility3;
+                    if(Ach7Level3Price >= 80)
+                        PlayerPrefs.SetInt("Ach7Level", 3);
+                }
+            }
             abilityt++;
             PlayerPrefs.SetInt("activeShield", 1);
             isdelayShield = 5;
@@ -573,6 +627,21 @@ public class DoubleTapHandler : MonoBehaviour
 
             PlayerPrefs.SetInt("isabilityuse", 1);
             e.energyint -= costAbility4;
+            if(PlayerPrefs.GetInt("Ach7Level", 0) == 2)
+            {
+                if(Ach7Level3Delay <= 0)
+                {
+                    Ach7Level3Delay = 3;
+                    Ach7Level3Price = costAbility4;
+                }
+                else
+                {
+                    Ach7Level3Delay += 0.5f;
+                    Ach7Level3Price += costAbility4;
+                    if(Ach7Level3Price >= 80)
+                        PlayerPrefs.SetInt("Ach7Level", 3);
+                }
+            }
             abilityt++;
             PlayerPrefs.SetInt("abilityt", abilityt);
             otkat4 = isotkat4;

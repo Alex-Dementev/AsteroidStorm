@@ -27,6 +27,14 @@ public class ApplyAchevements : MonoBehaviour
         {
             Object[4].SetActive(true);
         }
+        if(PlayerPrefs.GetInt("ach6", 0) == 2)
+        {
+            Object[5].SetActive(true);
+        }
+        if(PlayerPrefs.GetInt("ach7", 0) == 2)
+        {
+            Object[6].SetActive(true);
+        }
     }
 
     public void Apply()
@@ -60,6 +68,18 @@ public class ApplyAchevements : MonoBehaviour
             Object[4].SetActive(true);
             Anim[4].Play("FirstActivate");
             PlayerPrefs.SetInt("ach5", 2);
+        }
+        if(PlayerPrefs.GetInt("ach6", 0) == 1)
+        {
+            Object[5].SetActive(true);
+            Anim[5].Play("FirstActivate");
+            PlayerPrefs.SetInt("ach6", 2);
+        }
+        if(PlayerPrefs.GetInt("ach7", 0) == 1)
+        {
+            Object[6].SetActive(true);
+            Anim[6].Play("FirstActivate");
+            PlayerPrefs.SetInt("ach7", 2);
         }
     }
 }

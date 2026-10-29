@@ -49,6 +49,9 @@ public class BuyModuls : MonoBehaviour
         coins = PlayerPrefs.GetInt("coins", 0);
         if(coins >= CoinsToBuy)
         {
+            if(PlayerPrefs.GetInt("Ach6Level", 0) == 1)
+                PlayerPrefs.SetString("Ach6Level2Status", NamePP);
+
             YouBuy.SetActive(true);
             coins -= CoinsToBuy;
             PlayerPrefs.SetInt("coins", coins);

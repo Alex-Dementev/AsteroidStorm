@@ -83,16 +83,10 @@ public class StepCounter : MonoBehaviour
                 PlayerPrefs.SetInt("StepsAch", stepsAchNow);
             }
 
-            if(PlayerPrefs.GetInt("StepsAch", 0) >= 5000)
+            if(PlayerPrefs.GetInt("StepsAch", 0) >= 1000)
             {
                 if(PlayerPrefs.GetInt("Ach5Level", 0) == 2)
                 PlayerPrefs.SetInt("Ach5Level", 3);
-
-                if(PlayerPrefs.GetInt("Ach5Level", 0) == 3)
-                {
-                    PlayerPrefs.SetInt("Ach5Level", 4);
-                    PlayerPrefs.SetInt("Skin1", 1);
-                }
             }
         }
     }

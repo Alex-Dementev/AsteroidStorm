@@ -18,16 +18,6 @@ public class Achivements : MonoBehaviour
         {
             if(PlayerPrefs.GetInt("FuelZero", 0) == 1 && PlayerPrefs.GetInt("Ach2Level", 0) == 0)
                 PlayerPrefs.SetInt("Ach2Level", 1);
-
-            if(PlayerPrefs.GetInt("Ach2Level", 0) == 3)
-            {
-                PlayerPrefs.SetInt("Ach2Level", 4);
-                PetsButton.SetActive(true);
-                int Pet = PlayerPrefs.GetInt("P3", 0);
-                Pet++;
-                PlayerPrefs.SetInt("P3", Pet);
-                PlayerPrefs.SetInt("P3Buy", 1);
-            }
         }
 
         if(PlayerPrefs.GetInt("SattelliteFall", 0) == 1 && PlayerPrefs.GetInt("Ach3Level", 0) == 3)
@@ -48,5 +38,15 @@ public class Achivements : MonoBehaviour
     {
         Camera.Play("Camera 0");
         Canvass.Play("AchAnim 0");
+    }
+
+    public void UpdateAch2()
+    {
+        PlayerPrefs.SetInt("Ach2Level", 4);
+        PetsButton.SetActive(true);
+        int Pet = PlayerPrefs.GetInt("P3", 0);
+        Pet++;
+        PlayerPrefs.SetInt("P3", Pet);
+        PlayerPrefs.SetInt("P3Buy", 1);
     }
 }

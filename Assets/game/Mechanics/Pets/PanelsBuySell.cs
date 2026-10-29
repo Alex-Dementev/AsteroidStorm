@@ -92,6 +92,9 @@ public class PanelsBuySell : MonoBehaviour
         Coll -= 1;
         PlayerPrefs.SetInt(PlayerPrefs.GetString("BackPet" + Slot, ""), Coll);
 
+        if(PlayerPrefs.GetString("Ach6Level2Status", "") == PlayerPrefs.GetString("BackPet" + Slot, ""))
+            PlayerPrefs.SetInt("Ach6Level", 2);
+
         CoinsInt = PlayerPrefs.GetInt("coins", 0);
         CoinsInt += 1650;
         PlayerPrefs.SetInt("coins", CoinsInt);
