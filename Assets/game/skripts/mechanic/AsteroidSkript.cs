@@ -20,9 +20,19 @@ public class AsteroidSkript : MonoBehaviour
     public bool happened = false;
     public int asteroidType = 0;
     public float mass;
+    private float isDelay = 4;
+    private bool isBoom;
+    public GameObject boom;
 
     void Start()
     {
+        if(PlayerPrefs.GetInt("intermediate", 0) == 1)
+        {
+            int random = Random.Range(0, 50);
+            if(random <= 1 && PlayerPrefs.GetInt("g1passed", 0) == 1)
+                isBoom = true;
+        }
+
         asteroidType = 0;
 
         mainRenderer.sharedMaterial = defaultMaterial;
@@ -62,6 +72,21 @@ public class AsteroidSkript : MonoBehaviour
     void ApplyMaterial(Material mat)
     {
         mainRenderer.sharedMaterial = mat;
+    }
+
+    void Update()
+    {
+        if(isBoom)
+        {
+            isDelay -= Time.deltaTime;
+
+            if(isDelay <= 0)
+            {
+                GameObject spawnedBoom = Instantiate(boom, transform.position, transform.rotation, transform);
+                spawnedBoom.transform.SetParent(null);
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void asvoid()

@@ -20,7 +20,7 @@ public class MenuSend : MonoBehaviour
         if(PlayerPrefs.GetInt("start", 0) == 1)
         {
             if(PlayerPrefs.GetInt("isfinal", 0) == 1)
-                SceneManager.LoadScene("IntermediateScene2");
+                SceneManager.LoadScene("IntermediateScene");
             else if(PlayerPrefs.GetInt("g2passed", 0) == 1 && PlayerPrefs.GetInt("Rest2", 16000) <= 0)
                 SceneManager.LoadScene("3GlavStart");
             else if(PlayerPrefs.GetInt("Rest2", 16000) != 0 && PlayerPrefs.GetInt("g2passed", 0) == 1)

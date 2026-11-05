@@ -12,10 +12,10 @@ public class lombardScript : MonoBehaviour
     public float floatton1, floatton2, floatton3, floatton4;
 
     private float basePrice1, basePrice2, basePrice3, basePrice4;
-    private float BasePrice1 = 22;
-    private float BasePrice2 = 40;
-    private float BasePrice3 = 80;
-    private float BasePrice4 = 170;
+    private float BasePrice1 = 20;
+    private float BasePrice2 = 35;
+    private float BasePrice3 = 70;
+    private float BasePrice4 = 145;
 
     [Header("Сколько продаём, слайдер")]
     public Slider SliderSell1, SliderSell2, SliderSell3, SliderSell4;

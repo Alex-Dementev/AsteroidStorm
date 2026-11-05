@@ -136,8 +136,8 @@ public class Score2GPart2 : MonoBehaviour
 
         if(Music != null)
         {
-            Music.volume = PlayerPrefs.GetFloat("musics", 0.5f);
-            if(PlayerPrefs.GetInt("music") == 0)
+            Music.volume = PlayerPrefs.GetFloat("musics", 0.5f) * 1.15f;
+            if(PlayerPrefs.GetInt("music") == 1)
                 Music.volume = 0;
         }
 
@@ -216,21 +216,21 @@ public class Score2GPart2 : MonoBehaviour
 
         if(!Is3G)
         {
-            if (spawn >= 150 && MessagesID == 0)
+            if (spawn >= 250 && MessagesID == 0)
             {
                 text.text = "Приближение ворот пространства";
                 anim2.CrossFade("anim 26 1", 0.1f);
                 ad9.Play();
                 MessagesID++;
             }
-            if (spawn >= 250 && ach7 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
+            if (spawn >= 550 && ach7 == 0 && PlayerPrefs.GetInt("yousurwive", 0) == 0)
             {
                 ach7 = 1;
                 PlayerPrefs.SetInt("ach6", 1);
                 achanim7.CrossFade("anim20", 0.1f);
                 ad5.Play();
             }
-            if (spawn >= 333 && MessagesID == 1)
+            if (spawn >= 800 && MessagesID == 1)
             {
                 anim5.Play("WhiteScreen");
                 MessagesID++;

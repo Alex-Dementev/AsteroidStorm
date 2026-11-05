@@ -58,6 +58,7 @@ public class statistick : MonoBehaviour
             MinusFuel += PlayerPrefs.GetFloat("Genertors3Fuel", 0);
             MinusFuel += PlayerPrefs.GetFloat("Genertors4Fuel", 0);
             MinusFuel += PlayerPrefs.GetFloat("TurbinsFuel", 0);
+            MinusFuel *= PlayerPrefs.GetFloat("DeBuffFuel", 1f);
             fuelminusT.text = MinusFuel.ToString() + "к";
 
             float MinusEnergy = PlayerPrefs.GetFloat("Generators1Energy", 0);
@@ -68,7 +69,7 @@ public class statistick : MonoBehaviour
             energyminusT.text = MinusEnergy.ToString() + "ед";
 
 
-            Delay = 1f;
+            Delay = 5f;
         }
     }
 }

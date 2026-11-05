@@ -95,8 +95,8 @@ public class Credits : MonoBehaviour
             PercentToSlider = PlayerPrefs.GetFloat("CreditMaxCoins", 1);
             StatusFloat = StatusInt;
             StatusFloat = StatusFloat / 50;
-            GetSlider.minValue = ((int)(800 * PercentToSlider * (StatusFloat + ((1 - StatusFloat) * 0.25)))) / 3;
-            GetSlider.maxValue = (int)(800 * PercentToSlider * (StatusFloat + ((1 - StatusFloat) * 0.25)));
+            GetSlider.minValue = ((int)(1200 * PercentToSlider * (StatusFloat + ((1 - StatusFloat) * 0.25)))) / 3;
+            GetSlider.maxValue = (int)(1200 * PercentToSlider * (StatusFloat + ((1 - StatusFloat) * 0.25)));
             CoinsGive.text = "" + GetSlider.value;
             Percent.text = "проценты: " + Mathf.RoundToInt(PlayerPrefs.GetInt("CreditsPercent", 7) * (1f + ((50f - PlayerPrefs.GetInt("StatusPercent", 50)) / 100f))) + "%";
             Debug.Log(PlayerPrefs.GetInt("CreditsPercent", 7));
@@ -183,7 +183,7 @@ public class Credits : MonoBehaviour
         {
             PlayerPrefs.SetInt("CreditsActivee", 1);
             PercentCalc = PlayerPrefs.GetInt("CreditsPercent", 7);
-            PercentCalc = Mathf.RoundToInt((PercentCalc * (1f + ((50f - PlayerPrefs.GetInt("StatusPercent", 50)) / 100f)) / 100f) * GetSlider.value);
+            PercentCalc = Mathf.RoundToInt(PercentCalc * (1f + ((50f - PlayerPrefs.GetInt("StatusPercent", 50)) / 100f)) / 100f * GetSlider.value);
             int sum = (int)(PercentCalc + GetSlider.value);
             PlayerPrefs.SetInt("CreditNumber", sum);
             goGet.SetActive(false);
@@ -202,7 +202,7 @@ public class Credits : MonoBehaviour
         {
             PlayerPrefs.SetInt("CreditsActivee", 1);
             PercentCalc = PlayerPrefs.GetInt("CreditsPercent", 7);
-            PercentCalc = Mathf.RoundToInt((PercentCalc * (1f + ((50f - PlayerPrefs.GetInt("StatusPercent", 50)) / 100f)) / 100f) * GetSlider.value);
+            PercentCalc = Mathf.RoundToInt(PercentCalc * (1f + ((50f - PlayerPrefs.GetInt("StatusPercent", 50)) / 100f)) / 100f * GetSlider.value);
             int sum = (int)(PercentCalc + GetSlider.value);
             PlayerPrefs.SetInt("CreditNumber", sum);
             goGet.SetActive(false);

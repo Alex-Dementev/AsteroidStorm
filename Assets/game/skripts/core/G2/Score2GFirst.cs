@@ -85,6 +85,7 @@ public class Score2GFirst : MonoBehaviour
 
     public static bool Is3Glav;
     public static float Quality = 80;
+    public AudioSource MUSIC;
 
     public Text EndText;
 
@@ -116,6 +117,21 @@ public class Score2GFirst : MonoBehaviour
     void Start()
     {
         Quality = 80;
+
+        if(PlayerPrefs.GetInt("music") == 0)
+        {
+            MUSIC.enabled = true;
+            MUSIC.Play();
+        }
+        else
+        {
+            MUSIC.enabled = false;
+            MUSIC.Stop();
+        }
+
+        float musics = PlayerPrefs.GetFloat("musics", 0.5f);
+        MUSIC.volume = musics;
+
 
         Is3Glav = Is3G;
         Display.SetFloat("_Alpha", 0);

@@ -193,6 +193,7 @@ public class menu : MonoBehaviour
     public RocketBehavior move5;
 
     public Text PriceToStart;
+    private float delayUpdate;
 
 
 
@@ -200,6 +201,7 @@ public class menu : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("intermediate", 0);
         PlayerPrefs.SetInt("isstopmusictocutscene", 0);
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
         musics = PlayerPrefs.GetFloat("musics", 0.5f);
@@ -306,6 +308,21 @@ public class menu : MonoBehaviour
 
     void Update()
     {
+        delayUpdate += Time.deltaTime;
+
+        if(delayUpdate >= 2f)
+        {
+            delayUpdate = 0f;
+            if(PlayerPrefs.GetInt("isfinal", 0) == 1)
+                PlayerPrefs.SetFloat("DeBuffFuel", 1.2f);
+            else if(PlayerPrefs.GetInt("g2passed", 0) == 1 && PlayerPrefs.GetInt("Rest2", 16000) <= 0)
+                PlayerPrefs.SetFloat("DeBuffFuel", 1.6f);
+            else if(PlayerPrefs.GetInt("Rest", 12000) == 0)
+                PlayerPrefs.SetFloat("DeBuffFuel", 1.2f);
+            else if(PlayerPrefs.GetInt("g1passed", 0) == 0 || (PlayerPrefs.GetInt("Rest", 12000) != 0 && PlayerPrefs.GetInt("g1passed", 0) == 1) || (PlayerPrefs.GetInt("Rest2", 16000) != 0 && PlayerPrefs.GetInt("g2passed", 0) == 1))
+                PlayerPrefs.SetFloat("DeBuffFuel", 1.0f);
+        }
+        
         isdelay2 -= Time.deltaTime;
         isdelay1 -= Time.deltaTime;
         isdelay5 -= Time.deltaTime;

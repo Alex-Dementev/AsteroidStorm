@@ -202,7 +202,7 @@ public class DoubleTapHandler : MonoBehaviour
         isdelay1 -= Time.deltaTime;
         isdelayShield -= Time.deltaTime;
 
-        if(otkat2 > 0 && PlayerPrefs.GetInt("ShakePhone", 0) == 1 && PlayerPrefs.GetInt("Ach3Level", 0) == 0)
+        if(otkat2 > 0 && PlayerPrefs.GetInt("ShakePhone", 0) == 1 && PlayerPrefs.GetInt("Ach3Level", 0) == 0 && PlayerPrefs.GetInt("ach3", 0) == 2)
         {
             ShakeSkan += Time.deltaTime;
             if(ShakeSkan >= 2)

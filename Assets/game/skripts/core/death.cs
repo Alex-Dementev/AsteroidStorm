@@ -236,7 +236,7 @@ public class death : MonoBehaviour
 
     void Start()
     {
-        if(PlayerPrefs.GetFloat("audios", 0.5f) <= 0.05f && PlayerPrefs.GetFloat("musics", 0.5f) <= 0.05f && PlayerPrefs.GetInt("Ach7Level", 0) == 0 && PlayerPrefs.GetInt("ach7", 0) == 2)
+        if((PlayerPrefs.GetFloat("audios", 0.5f) <= 0.05f || PlayerPrefs.GetInt("audio") == 1) && (PlayerPrefs.GetFloat("musics", 0.5f) <= 0.05f || PlayerPrefs.GetInt("music") == 1) && PlayerPrefs.GetInt("Ach7Level", 0) == 0 && PlayerPrefs.GetInt("ach7", 0) == 2)
             PlayerPrefs.SetInt("Ach7Level", 1);
 
 
@@ -251,6 +251,7 @@ public class death : MonoBehaviour
         MinusFuel += PlayerPrefs.GetFloat("Genertors3Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("Genertors4Fuel", 0);
         MinusFuel += PlayerPrefs.GetFloat("TurbinsFuel", 0);
+        MinusFuel *= PlayerPrefs.GetFloat("FuelBuff", 1f);
         MinusFuel *= 11;
 
         PlayerPrefs.SetInt("FuelZero", 0);
@@ -321,6 +322,8 @@ public class death : MonoBehaviour
             fuel5.CrossFade("fuelzerostart", 0.1f);
             isfuel5 = true;
             PlayerPrefs.SetInt("FuelZero", 1);
+            if(PlayerPrefs.GetInt("Ach2Level", 0) == 0 && PlayerPrefs.GetInt("ach2", 0) == 2)
+                PlayerPrefs.SetInt("Ach2Level2Status", 1);
         }
         else if(isfuel5 && fuel >= 5 || isfuel5 && fuel <= 0)
         {
@@ -546,7 +549,7 @@ public class death : MonoBehaviour
         {
             adbonus.Play();
             animbonus.CrossFade("green", 0.1f);
-            fuel = fuel + 8;
+            fuel = fuel + 18;
 
             if (PlayerPrefs.GetInt("currentTask2", -1) == 1)
             {

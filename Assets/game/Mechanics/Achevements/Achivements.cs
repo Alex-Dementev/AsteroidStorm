@@ -20,12 +20,8 @@ public class Achivements : MonoBehaviour
                 PlayerPrefs.SetInt("Ach2Level", 1);
         }
 
-        if(PlayerPrefs.GetInt("SattelliteFall", 0) == 1 && PlayerPrefs.GetInt("Ach3Level", 0) == 3)
-        {
-            PlayerPrefs.SetInt("Ach3Level", 4);
-            PlayerPrefs.SetInt("SattelliteFall", 0);
-            PlayerPrefs.SetInt("Skin3", 1);
-        }
+        if(PlayerPrefs.GetInt("Ach2Level2Status", 0) == 1 && PlayerPrefs.GetInt("Ach2Level", 0) == 0)
+            PlayerPrefs.SetInt("Ach2Level", 1);
     }
 
     public void Open()

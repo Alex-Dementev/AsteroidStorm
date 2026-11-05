@@ -141,6 +141,9 @@ public class ScoreCounter : MonoBehaviour
 
     void Start()
     {
+        if(IsAIntermediateScene)
+            PlayerPrefs.SetInt("intermediate", 1);
+
         PlayerPrefs.SetInt("youdead", 0);
         PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);

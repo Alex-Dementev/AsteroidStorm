@@ -142,11 +142,11 @@ public class Boosts : MonoBehaviour
             {
                 GoSlider.SetActive(false);
 
-                DescTimerPrice.text = "Цена: 850    ";
+                DescTimerPrice.text = "Цена: 1200    ";
                 GoMoney.SetActive(true);
                 Buy.text = "Купить";
 
-                if(PlayerPrefs.GetInt("coins", 0) >= 775)
+                if(PlayerPrefs.GetInt("coins", 0) >= 1200)
                     BuyImage.color = new Color(135f/255f, 0f, 138f/255f);
                 else
                     BuyImage.color = new Color(121f/255f, 78f/255f, 119f/255f);

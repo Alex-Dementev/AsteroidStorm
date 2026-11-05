@@ -88,10 +88,10 @@ public class BuyBoosts : MonoBehaviour
         else if(Index == 2 && PlayerPrefs.GetInt("coins", 0) <= 700 || Index == 2 && PlayerPrefs.GetInt("Boost2", 0) == 1)
             No.Play();
 
-        if(Index == 3 && PlayerPrefs.GetInt("Boost3", 0) == 0 && PlayerPrefs.GetInt("coins", 0) >= 850)
+        if(Index == 3 && PlayerPrefs.GetInt("Boost3", 0) == 0 && PlayerPrefs.GetInt("coins", 0) >= 1200)
         {
             Coins = PlayerPrefs.GetInt("coins", 0);
-            Coins -= 775;
+            Coins -= 1200;
             PlayerPrefs.SetInt("coins", Coins);
             Yes.Play();
             PlayerPrefs.SetInt("Boost3", 1);

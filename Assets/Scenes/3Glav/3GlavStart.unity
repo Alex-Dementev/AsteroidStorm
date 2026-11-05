@@ -6055,12 +6055,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55864101}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -55.940792, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 476913502}
+  m_Father: {fileID: 1592378833}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &55864103
 AudioSource:
@@ -6073,8 +6073,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_Resource: {fileID: 8300000, guid: 586081ec486f72c4caa8c9cdb53c198a, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -7351,6 +7351,7 @@ MonoBehaviour:
   Disk2: {fileID: 1186906483}
   Display: {fileID: 2100000, guid: 5c1486159cb01dc408e45159c2161ffb, type: 2}
   Is3G: 1
+  MUSIC: {fileID: 0}
   EndText: {fileID: 2064417086}
 --- !u!1001 &168276900
 PrefabInstance:
@@ -26081,7 +26082,6 @@ Transform:
   - {fileID: 1716155052}
   - {fileID: 544277823}
   - {fileID: 1154910853}
-  - {fileID: 55864102}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &476913503
@@ -53371,7 +53371,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 51268198bc0d3b346b2a28743bb91ca4,
         type: 3}
@@ -76258,6 +76258,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 55864102}
   - {fileID: 1258039496}
   - {fileID: 1693977089}
   - {fileID: 1582142835}
@@ -77446,7 +77447,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b79e86830eeb4b64da64c6b23cf079fa,
         type: 3}
@@ -100818,7 +100819,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cd4d7b672404adf41a6985a99779200a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cd4d7b672404adf41a6985a99779200a,
         type: 3}
