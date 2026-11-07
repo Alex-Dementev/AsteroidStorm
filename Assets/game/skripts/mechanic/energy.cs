@@ -36,11 +36,8 @@ public class energy : MonoBehaviour
 
         if(!isfinal1g)
         {
-            if (PlayerPrefs.GetInt("isfinal1g", 0) == 1)
-            {
-                energyint = PlayerPrefs.GetFloat("energytofinalglav");
-                isfinal1g = true;
-            }
+            energyint = PlayerPrefs.GetFloat("energytofinalglav");
+            isfinal1g = true;
         }
 
         if(energyfloat <= 0)
@@ -48,37 +45,57 @@ public class energy : MonoBehaviour
             if(energyint <= 100)
             {
                 energyint += floatt;
+                if(energyint != 0)
+                    energyint -= energyint * 0.0023f;
                 PermanentTaskEnergy += floatt;
+                energyfloat = 0.025f;
+            }
+            else
+            {
+                energyint -= energyint * 0.0023f;
                 energyfloat = 0.025f;
             }
         }
 
-        if (PlayerPrefs.GetInt("GoToFinalGlav", 0) == 1)
-        {
-            PlayerPrefs.SetFloat("energytofinalglav", energyint);
-            PlayerPrefs.SetInt("GoToFinalGlav", 0);
-        }
+        PlayerPrefs.SetFloat("energytofinalglav", energyint);
     }
 
     void Start()
     {
         energyfloat = 0.1f;
-        floatt = PlayerPrefs.GetFloat("Generators1Energy", 0);
-        floatt += PlayerPrefs.GetFloat("Generators2Energy", 0);
-        floatt += PlayerPrefs.GetFloat("Generators3Energy", 0);
-        floatt += PlayerPrefs.GetFloat("Generators4Energy", 0);
+        
+        EnergyReset(true);
+    }
 
-        if(floatt <= 0.002)
-            EnergyObject.SetActive(false);
+    public void EnergyReset(bool EnableGenerators)
+    {
+        if(EnableGenerators)
+        {
+            floatt = PlayerPrefs.GetFloat("Generators1Energy", 0);
+            floatt += PlayerPrefs.GetFloat("Generators2Energy", 0);
+            floatt += PlayerPrefs.GetFloat("Generators3Energy", 0);
+            floatt += PlayerPrefs.GetFloat("Generators4Energy", 0);
+
+            if(floatt <= 0.002 && floatt >= -0.002)
+                EnergyObject.SetActive(false);
+
+            if(floatt != 0)
+            {
+                if(PlayerPrefs.GetInt("Boost2", 0) >= 1)
+                    floatt = floatt * (PlayerPrefs.GetFloat("ProductivityOnEnergy", 1f) + 0.5f);
+                else
+                    floatt = floatt * PlayerPrefs.GetFloat("ProductivityOnEnergy", 1f);
+            }
+        }
+        else
+        {
+            floatt = 0;
+        }
 
         floatt -= PlayerPrefs.GetFloat("TurbinsEnergy", 0);
 
-        if(PlayerPrefs.GetInt("Boost2", 0) >= 1)
-            floatt = floatt * (PlayerPrefs.GetFloat("ProductivityOnEnergy", 1f) + 0.5f);
-        else
-            floatt = floatt * PlayerPrefs.GetFloat("ProductivityOnEnergy", 1f);
-
-        floatt = floatt / 40;
+        if(floatt != 0)
+            floatt = floatt / 40;
     }
 
     public void Bonus()

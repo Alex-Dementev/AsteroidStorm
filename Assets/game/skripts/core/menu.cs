@@ -201,6 +201,8 @@ public class menu : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetFloat("energytofinalglav", 0);
+        PlayerPrefs.SetInt("EnableGenerators", 1);
         PlayerPrefs.SetInt("intermediate", 0);
         PlayerPrefs.SetInt("isstopmusictocutscene", 0);
         audios = PlayerPrefs.GetFloat("audios", 0.5f);

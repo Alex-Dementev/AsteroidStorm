@@ -696,23 +696,23 @@ public class PrefBoxPaste : MonoBehaviour
         PlayerPrefs.SetInt("SellModulRare", RareLevel);
         if(RareLevel == 1)
         {
-            Sellcoins.text = "+200";
+            Sellcoins.text = "+500";
         }
         if(RareLevel == 2)
         {
-            Sellcoins.text = "+370";
+            Sellcoins.text = "+1000";
         }
         if(RareLevel == 3)
         {
-            Sellcoins.text = "+680";
+            Sellcoins.text = "+1500";
         }
         if(RareLevel == 4)
         {
-            Sellcoins.text = "+1050";
+            Sellcoins.text = "+3000";
         }
         if(RareLevel == 5)
         {
-            Sellcoins.text = "+1500";
+            Sellcoins.text = "+5000";
         }
     }
     public void NotApprove()
@@ -736,28 +736,28 @@ public class PrefBoxPaste : MonoBehaviour
 
         if(raresell == 1)
         {
-            coins += 250;
-            allcoins += 250;
+            coins += 500;
+            allcoins += 500;
         }
         if(raresell == 2)
         {
-            coins += 400;
-            allcoins += 400;
+            coins += 1000;
+            allcoins += 1000;
         }
         if(raresell == 3)
         {
-            coins += 690;
-            allcoins += 690;
+            coins += 1500;
+            allcoins += 1500;
         }
         if(raresell == 4)
         {
-            coins += 1080;
-            allcoins += 1080;
+            coins += 3000;
+            allcoins += 3000;
         }
         if(raresell == 5)
         {
-            coins += 1700;
-            allcoins += 1700;
+            coins += 5000;
+            allcoins += 5000;
         }
 
         PlayerPrefs.SetInt("coins", coins);

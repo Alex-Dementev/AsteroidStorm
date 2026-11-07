@@ -25,7 +25,6 @@ public class Score2GPart2 : MonoBehaviour
     public int Vp;
     public Text scoreText;
     public sceneman s;
-    public ParticleSystem ps;
     public ParticleSystem ps1;
     public ParticleSystem ps2;
     private int score;
@@ -109,12 +108,17 @@ public class Score2GPart2 : MonoBehaviour
     {
         PlayerPrefs.SetInt("AchActive", 1);
         ach7 = PlayerPrefs.GetInt("ach6");
+
+        if(PlayerPrefs.GetInt("music") == 1)
+            Music.volume = 0;
+
+        float musics = PlayerPrefs.GetFloat("musics", 0.5f);
+        Music.volume = musics;
         
         l.intensity = PlayerPrefs.GetFloat("lightgameplay") / 2;
 
         RenderSettings.fog = false;
         StartCoroutine(LoadParticlesWithDelay());
-        stopps();
         isminus = 25;
 
         if (s1 && s1.activeInHierarchy) player = s1.transform;
@@ -167,8 +171,6 @@ public class Score2GPart2 : MonoBehaviour
 
         if(isdelay1 >= 0 && !isstart)
         {
-            if(ps != null)
-                ps.Stop();
             ps1.Stop();
         }
         else
@@ -363,18 +365,6 @@ public class Score2GPart2 : MonoBehaviour
         {
             omini.SetObstacleCount(4);
         }
-    }
-
-    public void startps()
-    {
-        if(ps != null)
-            ps.Play();
-    }
-
-    public void stopps()
-    {
-        if(ps != null)
-            ps.Stop();
     }
 
     public void isvibration()

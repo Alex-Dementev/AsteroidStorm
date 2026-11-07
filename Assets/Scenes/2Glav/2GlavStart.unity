@@ -7508,7 +7508,6 @@ MonoBehaviour:
   Vp: 0
   scoreText: {fileID: 28995410}
   s: {fileID: 144783076}
-  ps: {fileID: 558634753}
   ps1: {fileID: 2015941815}
   score: 0
   ad1: {fileID: 1979058714}
@@ -57563,6 +57562,269 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Activate: {fileID: 17147641}
   DisActivate: {fileID: 1186906478}
+--- !u!1 &1190771207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1190771208}
+  - component: {fileID: 1190771213}
+  - component: {fileID: 1190771212}
+  - component: {fileID: 1190771211}
+  - component: {fileID: 1190771210}
+  - component: {fileID: 1190771214}
+  m_Layer: 5
+  m_Name: Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1190771208
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190771207}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1960535840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -221, y: 170}
+  m_SizeDelta: {x: 220, y: 220}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1190771210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190771207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652ca215ba08fa945afb60e75ee11d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Generator
+--- !u!114 &1190771211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190771207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.50672513, b: 0.504094, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1190771212}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1190771210}
+        m_TargetAssemblyTypeName: Generator, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1258039497}
+        m_TargetAssemblyTypeName: death, Assembly-CSharp
+        m_MethodName: ChangeEnableGenerators
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1693977091}
+        m_TargetAssemblyTypeName: death, Assembly-CSharp
+        m_MethodName: ChangeEnableGenerators
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1582142837}
+        m_TargetAssemblyTypeName: death, Assembly-CSharp
+        m_MethodName: ChangeEnableGenerators
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1936518566}
+        m_TargetAssemblyTypeName: death, Assembly-CSharp
+        m_MethodName: ChangeEnableGenerators
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1502605993}
+        m_TargetAssemblyTypeName: death, Assembly-CSharp
+        m_MethodName: ChangeEnableGenerators
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1190771212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190771207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8679245, g: 0.46262014, b: 0.80480653, a: 0.78431374}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 7d52708bdbc3936468553b87146f6dc0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1190771213
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190771207}
+  m_CullTransparentMesh: 1
+--- !u!114 &1190771214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190771207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 144783080}
+          m_TargetAssemblyTypeName: Score2GFirst, Assembly-CSharp
+          m_MethodName: isvibration1
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 144783080}
+          m_TargetAssemblyTypeName: Score2GFirst, Assembly-CSharp
+          m_MethodName: ad2in
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 144783080}
+          m_TargetAssemblyTypeName: Score2GFirst, Assembly-CSharp
+          m_MethodName: ad3end
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1193520562
 GameObject:
   m_ObjectHideFlags: 0
@@ -59130,6 +59392,9 @@ MonoBehaviour:
   calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 1
   xOffset: 1
+  ignoreBottomPercent: 0.15
+  ignoreRightPercent: 0.33
+  ignoreTopPercent: 0.1
 --- !u!1 &1259312341
 GameObject:
   m_ObjectHideFlags: 0
@@ -64952,18 +65217,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 144783080}
-          m_TargetAssemblyTypeName: Score2GFirst, Assembly-CSharp
-          m_MethodName: startps
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 4
     callback:
       m_PersistentCalls:
@@ -64971,22 +65224,6 @@ MonoBehaviour:
         - m_Target: {fileID: 144783080}
           m_TargetAssemblyTypeName: Score2GFirst, Assembly-CSharp
           m_MethodName: ad3end
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 144783080}
-          m_TargetAssemblyTypeName: Score2GFirst, Assembly-CSharp
-          m_MethodName: stopps
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -71377,6 +71614,9 @@ MonoBehaviour:
   calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 1
   xOffset: 1
+  ignoreBottomPercent: 0.15
+  ignoreRightPercent: 0.33
+  ignoreTopPercent: 0.1
 --- !u!54 &1502605998
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -81802,6 +82042,9 @@ MonoBehaviour:
   calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 1
   xOffset: 1
+  ignoreBottomPercent: 0.15
+  ignoreRightPercent: 0.33
+  ignoreTopPercent: 0.1
 --- !u!114 &1582142843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83526,6 +83769,9 @@ MonoBehaviour:
   calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 1
   xOffset: 1
+  ignoreBottomPercent: 0.15
+  ignoreRightPercent: 0.33
+  ignoreTopPercent: 0.1
 --- !u!114 &1693977097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106984,6 +107230,9 @@ MonoBehaviour:
   calibrationOffset: {x: -3, y: 0, z: 0}
   zSpeed: 1
   xOffset: 1
+  ignoreBottomPercent: 0.15
+  ignoreRightPercent: 0.33
+  ignoreTopPercent: 0.1
 --- !u!114 &1936518572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107583,10 +107832,11 @@ RectTransform:
   - {fileID: 28995408}
   - {fileID: 1259312342}
   - {fileID: 1132852902}
-  - {fileID: 1883183354}
   - {fileID: 1784157979}
   - {fileID: 1318062572}
+  - {fileID: 1190771208}
   - {fileID: 1350524495}
+  - {fileID: 1883183354}
   - {fileID: 2130700145}
   - {fileID: 346243016}
   m_Father: {fileID: 1592378833}

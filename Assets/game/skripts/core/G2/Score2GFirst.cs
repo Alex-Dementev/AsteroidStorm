@@ -25,7 +25,6 @@ public class Score2GFirst : MonoBehaviour
     public int Vp;
     public Text scoreText;
     public sceneman s;
-    public ParticleSystem ps;
     public ParticleSystem ps1;
     [HideInInspector]public int score;
     public AudioSource ad1;
@@ -114,6 +113,15 @@ public class Score2GFirst : MonoBehaviour
         "Все модули функционируют корректно"
     };
 
+    void Awake()
+    {
+        if(Is3G)
+        {
+            PlayerPrefs.SetInt("EnableGenerators", 1);
+            PlayerPrefs.SetFloat("energytofinalglav", 0);
+        }
+    }
+
     void Start()
     {
         Quality = 80;
@@ -149,7 +157,6 @@ public class Score2GFirst : MonoBehaviour
 
         RenderSettings.fog = false;
         StartCoroutine(LoadParticlesWithDelay());
-        stopps();
         isminus = 25;
 
         if (s1 && s1.activeInHierarchy) player = s1.transform;
@@ -193,8 +200,6 @@ public class Score2GFirst : MonoBehaviour
 
         if(isdelay1 >= 0 && !isstart)
         {
-            if(ps != null)
-                ps.Stop();
             ps1.Stop();
         }
         else
@@ -501,20 +506,6 @@ public class Score2GFirst : MonoBehaviour
         {
             spawner.SetObstacleCount(3);
         }
-    }
-
-    public void startps()
-    {
-        if(ps == null) return;
-
-        ps.Play();
-    }
-
-    public void stopps()
-    {
-        if(ps == null) return;
-
-        ps.Stop();
     }
 
     public void isvibration()

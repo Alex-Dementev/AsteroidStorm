@@ -62,6 +62,7 @@ public class death : MonoBehaviour
     public GameObject[] models;
     private Vector3 pos;
     public GameObject Escape;
+    private bool EnableGenerators = true;
     private bool Escaped = false;
 
 
@@ -236,13 +237,20 @@ public class death : MonoBehaviour
 
     void Start()
     {
+        EnableGenerators = PlayerPrefs.GetInt("EnableGenerators", 1) == 1;
+
+        if(EnableGenerators)
+            EnableGenerators = false;
+        else
+            EnableGenerators = true;
+            
+        ChangeEnableGenerators();
+
         if((PlayerPrefs.GetFloat("audios", 0.5f) <= 0.05f || PlayerPrefs.GetInt("audio") == 1) && (PlayerPrefs.GetFloat("musics", 0.5f) <= 0.05f || PlayerPrefs.GetInt("music") == 1) && PlayerPrefs.GetInt("Ach7Level", 0) == 0 && PlayerPrefs.GetInt("ach7", 0) == 2)
             PlayerPrefs.SetInt("Ach7Level", 1);
 
 
         if(fuel5 == null) return;
-
-
         
         targetTransform = GetComponent<Transform>();
 
@@ -302,8 +310,6 @@ public class death : MonoBehaviour
     void Update()
     {
         if(fuel5 == null) return;
-
-
 
         PlayerPrefs.SetFloat("fueltofinalglav", fuel);
 
@@ -395,7 +401,7 @@ public class death : MonoBehaviour
             fuel = -1;
         }
 
-        if (b == false && fuel <= -0.05f && isfuelzero == false)
+        if (b == false && isfuelzero == false && (fuel <= -0.05f || energy.energyint <= -1))
         {
             if(Is3G2P && Music.time > 31)
             {
@@ -418,7 +424,10 @@ public class death : MonoBehaviour
                     losePanel.SetActive(true);
                     Distortion.PlayAlphaPulse();
                     anim1.CrossFade("anim11", 0.1f);
-                    fuelzero.text = "Топливо закончилось";
+                    if(energy.energyint <= -1)
+                        fuelzero.text = "Турбине не хватило энергии";
+                    else
+                        fuelzero.text = "Топливо закончилось";
                     isfuelzero = true;
                     energy.End();
 
@@ -615,7 +624,7 @@ public class death : MonoBehaviour
                 {
                     AS.asvoid();
 
-                    if(Is3G)
+                    if(Is3G && (d.b == false || PlayerPrefs.GetInt("activeShield", 0) == 0))
                     {
                         Score2GFirst.Quality -= 6f;
                         Score2GFirst.Quality = Mathf.Clamp(Score2GFirst.Quality, 0, 1000);
@@ -624,7 +633,7 @@ public class death : MonoBehaviour
 
                 bool Is1Live = false;
 
-                if(live == 1 && Is3G)
+                if(live == 1 && Is3G && (d.b == false || PlayerPrefs.GetInt("activeShield", 0) == 0))
                 {
                     PlayerPrefs.SetInt("activeShield", 1);
                     Score2GFirst.Quality -= 4f;
@@ -840,5 +849,32 @@ public class death : MonoBehaviour
             fuel += PlayerPrefs.GetInt("fuel", 0);
             PlayerPrefs.SetInt("Fuel", (int)fuel);
         }
+    }
+
+
+    public void ChangeEnableGenerators()
+    {
+        if(EnableGenerators)
+        {
+            EnableGenerators = false;
+            MinusFuel = PlayerPrefs.GetFloat("TurbinsFuel", 0);
+            MinusFuel *= PlayerPrefs.GetFloat("FuelBuff", 1f);
+            MinusFuel *= 11;
+            energy.EnergyReset(false);
+        }
+        else
+        {
+            EnableGenerators = true;
+            MinusFuel = PlayerPrefs.GetFloat("Genertors1Fuel", 0);
+            MinusFuel += PlayerPrefs.GetFloat("Genertors2Fuel", 0);
+            MinusFuel += PlayerPrefs.GetFloat("Genertors3Fuel", 0);
+            MinusFuel += PlayerPrefs.GetFloat("Genertors4Fuel", 0);
+            MinusFuel += PlayerPrefs.GetFloat("TurbinsFuel", 0);
+            MinusFuel *= PlayerPrefs.GetFloat("FuelBuff", 1f);
+            MinusFuel *= 11;
+            energy.EnergyReset(true);
+        }
+
+        PlayerPrefs.SetInt("EnableGenerators", EnableGenerators ? 1 : 0);
     }
 }

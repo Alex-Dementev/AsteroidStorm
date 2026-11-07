@@ -164,23 +164,23 @@ public class ScoreBuff : MonoBehaviour
 
                     if(SubdivInt == 0)
                     {
-                        coinsplus += 67;
+                        coinsplus += 150;
                     }
                     if(SubdivInt == 1)
                     {
-                        coinsplus += 78;
+                        coinsplus += 175;
                     }
                     if(SubdivInt == 2)
                     {
-                        coinsplus += 88;
+                        coinsplus += 200;
                     }
                     if(SubdivInt == 3)
                     {
-                        coinsplus += 97;
+                        coinsplus += 250;
                     }
                     if(SubdivInt >= 4)
                     {
-                        coinsplus += 110;
+                        coinsplus += 400;
                     }
                     
                     SubdivInt++;

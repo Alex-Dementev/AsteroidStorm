@@ -31,9 +31,7 @@ public class ScoreCounter : MonoBehaviour
     private int Vp;
     public Text scoreText;
     public Light l;
-    public ParticleSystem ps;
     public ParticleSystem ps1;
-    public ParticleSystem ps2;
     private int score;
     public AudioSource ad1;
     public AudioSource ad2;
@@ -154,7 +152,6 @@ public class ScoreCounter : MonoBehaviour
         l.intensity = PlayerPrefs.GetFloat("lightgameplay");
 
         StartCoroutine(LoadParticlesWithDelay());
-        stopps();
         isminus = 25;
 
         if (s1 && s1.activeInHierarchy) player = s1.transform;
@@ -206,9 +203,7 @@ public class ScoreCounter : MonoBehaviour
 
         if(isdelay1 >= 0 && !isstart)
         {
-            ps.Stop();
             ps1.Stop();
-            ps2.Stop();
         }
         else
         {
@@ -634,21 +629,6 @@ public class ScoreCounter : MonoBehaviour
                 spawnermini.SetObstacleCount(7);
             }
         }
-    }
-
-    public void startps()
-    {
-        ps.Play();
-    }
-    public void startps2()
-    {
-        ps2.Play();
-    }
-
-    public void stopps()
-    {
-        ps.Stop();
-        ps2.Stop();
     }
 
     public void isvibration()

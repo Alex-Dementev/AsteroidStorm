@@ -26,7 +26,6 @@ public class ScoreCounterFinal : MonoBehaviour
     public int Vp;
     public Text scoreText;
     public sceneman s;
-    public ParticleSystem ps;
     public ParticleSystem ps1;
     public ParticleSystem ps3;
     public int score;
@@ -123,7 +122,6 @@ public class ScoreCounterFinal : MonoBehaviour
 
         RenderSettings.fog = false;
         StartCoroutine(LoadParticlesWithDelay());
-        stopps();
         isminus = 25;
 
         if (s1 && s1.activeInHierarchy) player = s1.transform;
@@ -170,7 +168,6 @@ public class ScoreCounterFinal : MonoBehaviour
 
         if(isdelay1 >= 0 && !isstart)
         {
-            ps.Stop();
             ps1.Stop();
             ps3.Stop();
         }
@@ -403,16 +400,6 @@ public class ScoreCounterFinal : MonoBehaviour
         {
             omini.SetObstacleCount(4);
         }
-    }
-
-    public void startps()
-    {
-        ps.Play();
-    }
-
-    public void stopps()
-    {
-        ps.Stop();
     }
 
     public void isvibration()
