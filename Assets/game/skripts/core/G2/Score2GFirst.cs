@@ -115,6 +115,8 @@ public class Score2GFirst : MonoBehaviour
 
     void Awake()
     {
+        PlayerPrefs.SetInt("live", PlayerPrefs.GetInt("LifeToStart", 1));
+        
         if(Is3G)
         {
             PlayerPrefs.SetInt("EnableGenerators", 1);
@@ -125,6 +127,9 @@ public class Score2GFirst : MonoBehaviour
     void Start()
     {
         Quality = 80;
+
+        if(Is3G)
+            PlayerPrefs.SetInt("yousurwive", 0);
 
         if(PlayerPrefs.GetInt("music") == 0)
         {
@@ -147,7 +152,6 @@ public class Score2GFirst : MonoBehaviour
         PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetInt("isfinal1g", 0);
         PlayerPrefs.SetInt("AchActive", 1);
-        PlayerPrefs.SetInt("live", PlayerPrefs.GetInt("LifeToStart", 1));
         ach6 = PlayerPrefs.GetInt("ach7");
 
         if (PlayerPrefs.GetInt("isbtotask") == 1)

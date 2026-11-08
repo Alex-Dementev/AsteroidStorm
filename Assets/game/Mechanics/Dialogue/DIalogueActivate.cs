@@ -452,6 +452,9 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[18].SetActive(true);
     }
 
+
+
+
     public void ClickButton2()
     {
         if(PlayerPrefs.GetInt("IndexDialogue", 0) == 3)
@@ -610,6 +613,32 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[19].SetActive(true);
         }
     }
+    public void ClickButton20()
+    {
+        if(PlayerPrefs.GetInt("GeneratorDialogue", 0) == 0 && (PlayerPrefs.GetFloat("Generators1Energy", 0) != 0 || PlayerPrefs.GetFloat("Generators2Energy", 0) != 0 || PlayerPrefs.GetFloat("Generators3Energy", 0) != 0 || PlayerPrefs.GetFloat("Generators4Energy", 0) != 0))
+            DialoguePanels[25].SetActive(true);
+    }
+
+    public void ClickButton21(int index = 0)
+    {
+        if(index == 0 && PlayerPrefs.GetInt("GyperAttackDialogue") == 0)
+            DialoguePanels[26].SetActive(true);
+        else if(index == 1 && PlayerPrefs.GetInt("ScannerDialogue") == 0)
+            DialoguePanels[27].SetActive(true);
+        else if(index == 2 && PlayerPrefs.GetInt("ShieldDialogue") == 0)
+            DialoguePanels[28].SetActive(true);
+        else if(index == 3 && PlayerPrefs.GetInt("ProjectileDialogue") == 0)
+            DialoguePanels[29].SetActive(true);
+    }
+
+    public void ClickButton22()
+    {
+        if(PlayerPrefs.GetInt("RustModuls", 0) == 0)
+            DialoguePanels[30].SetActive(true);
+    }
+
+
+
 
     public void VoidDialoguesPanel()
     {
@@ -657,6 +686,21 @@ public class DIalogueActivate : MonoBehaviour
             DialoguePanels[18].GetComponent<DialogueManager>().Close();
         if(DialoguePanels[19].activeSelf)
             DialoguePanels[19].GetComponent<DialogueManager>().Close();
+
+        if(DialoguePanels[25].activeSelf)
+            DialoguePanels[25].GetComponent<DialogueManager>().Close();
+
+        if(DialoguePanels[26].activeSelf)
+            DialoguePanels[26].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[27].activeSelf)
+            DialoguePanels[27].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[28].activeSelf)
+            DialoguePanels[28].GetComponent<DialogueManager>().Close();
+        if(DialoguePanels[29].activeSelf)
+            DialoguePanels[29].GetComponent<DialogueManager>().Close();
+
+        if(DialoguePanels[30].activeSelf)
+            DialoguePanels[30].GetComponent<DialogueManager>().Close();
             
         if(DialoguePanels[20].activeSelf)
             DialoguePanels[20].GetComponent<DialogueManager>().Close();

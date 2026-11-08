@@ -95,8 +95,8 @@ public class Credits : MonoBehaviour
             PercentToSlider = PlayerPrefs.GetFloat("CreditMaxCoins", 1);
             StatusFloat = StatusInt;
             StatusFloat = StatusFloat / 50;
-            GetSlider.minValue = ((int)(1800 * PercentToSlider * (StatusFloat + ((1 - StatusFloat) * 0.25)))) / 3;
-            GetSlider.maxValue = (int)(1800 * PercentToSlider * (StatusFloat + ((1 - StatusFloat) * 0.25)));
+            GetSlider.minValue = ((int)(1900 * PercentToSlider * (StatusFloat + ((1 - StatusFloat) * 0.25)))) / 3;
+            GetSlider.maxValue = (int)(1900 * PercentToSlider * (StatusFloat + ((1 - StatusFloat) * 0.25)));
             CoinsGive.text = "" + GetSlider.value;
             Percent.text = "проценты: " + Mathf.RoundToInt(PlayerPrefs.GetInt("CreditsPercent", 7) * (1f + ((50f - PlayerPrefs.GetInt("StatusPercent", 50)) / 100f))) + "%";
             Debug.Log(PlayerPrefs.GetInt("CreditsPercent", 7));
@@ -198,7 +198,7 @@ public class Credits : MonoBehaviour
             PlayerPrefs.SetInt("CreditsTimerStatus", 1);
             PlayerPrefs.SetInt("DelayCredits", 0);
         }
-        else if(PlayerPrefs.GetInt("DelayCredits", 0) != 4 && PlayerPrefs.GetInt("IndexDialogue", 0) == 5 && GetSlider.value >= 1798)
+        else if(PlayerPrefs.GetInt("DelayCredits", 0) != 4 && PlayerPrefs.GetInt("IndexDialogue", 0) == 5 && GetSlider.value >= 1898)
         {
             PlayerPrefs.SetInt("CreditsActivee", 1);
             PercentCalc = PlayerPrefs.GetInt("CreditsPercent", 7);

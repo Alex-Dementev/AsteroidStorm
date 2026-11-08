@@ -201,6 +201,7 @@ public class menu : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("start", 0);
         PlayerPrefs.SetFloat("energytofinalglav", 0);
         PlayerPrefs.SetInt("EnableGenerators", 1);
         PlayerPrefs.SetInt("intermediate", 0);

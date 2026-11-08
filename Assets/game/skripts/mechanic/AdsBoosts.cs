@@ -16,7 +16,7 @@ public class AdsBoosts : MonoBehaviour
 
     void Update()
     {
-        Coins = (int)(40 * PlayerPrefs.GetFloat("CreditMaxCoins", 1));
+        Coins = (int)(80 * PlayerPrefs.GetFloat("CreditMaxCoins", 1));
         CoinsText.text = "За рекламу: +" + Coins;
     }
     void Start()
@@ -71,13 +71,13 @@ public class AdsBoosts : MonoBehaviour
             NotText.text = "УЛЬТРА спасибо!";
 
         if(Not == 5)
-            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 125);
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 625);
         if(Not == 10)
-            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 250);
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 1250);
         if(Not == 15)
-            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 500);
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 2500);
         if(Not == 20)
-            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 1000);
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + 5000);
 
         if(Not >= 1)
             NotTextYes.text = "Помочь проекту!";

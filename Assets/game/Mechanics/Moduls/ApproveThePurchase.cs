@@ -12,30 +12,14 @@ public class ApproveThePurchase : MonoBehaviour
     public AudioSource Fail;
     public AudioSource Approved;
     public Text Name;
-    private Coroutine loop;
 
-    void OnEnable()
+
+    public void Open()
     {
-        loop = StartCoroutine(TimerLoop());
-    }
-
-    void OnDisable()
-    {
-        if (loop != null)
-            StopCoroutine(loop);
-    }
-    private IEnumerator TimerLoop()
-    {
-        while (true)
-        {
-            Index = PlayerPrefs.GetInt("IndexToBuyBox", 0);
-            Price = PlayerPrefs.GetInt("PriceToBuyBox", 0);
-            PriceText.text = "" + Price;
-            Name.text = "" + PlayerPrefs.GetString("NameBuyBox");
-
-
-            yield return new WaitForSeconds(0.05f);
-        }
+        Index = PlayerPrefs.GetInt("IndexToBuyBox", 0);
+        Price = PlayerPrefs.GetInt("PriceToBuyBox", 0);
+        PriceText.text = "" + Price;
+        Name.text = "" + PlayerPrefs.GetString("NameBuyBox");
     }
 
     public void Close()
@@ -73,6 +57,8 @@ public class ApproveThePurchase : MonoBehaviour
             }
             else
                 PlayerPrefs.SetInt(Index + "BuyBoxes", Index);
+
+            BoxEvents.TriggerBoxesUpdated();
                 
             Approved.Play();
 

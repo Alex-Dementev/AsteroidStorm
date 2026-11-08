@@ -23,24 +23,24 @@ public class PanelsBuySell : MonoBehaviour
         
         if(PlayerPrefs.GetInt("BuySlots", 0) == 3)
         {
-            Coins.text = "3500";
+            Coins.text = "6500";
         }
         if(PlayerPrefs.GetInt("BuySlots", 0) == 2)
         {
-            Coins.text = "2500";
+            Coins.text = "5500";
         }
         else if(PlayerPrefs.GetInt("BuySlots", 0) == 1)
         {
-            Coins.text = "1500";
+            Coins.text = "4500";
         }
         else if(PlayerPrefs.GetInt("BuySlots", 0) == 0)
         {
-            Coins.text = "500";
+            Coins.text = "2500";
         }
     }
     public void VBuy()
     {
-        if(PlayerPrefs.GetInt("BuySlots", 0) == 3 && PlayerPrefs.GetInt("coins", 0) >= 3500)
+        if(PlayerPrefs.GetInt("BuySlots", 0) == 3 && PlayerPrefs.GetInt("coins", 0) >= 6500)
         {
             BuySlot1.SetActive(false);
             BuySlot2.SetActive(false);
@@ -50,7 +50,7 @@ public class PanelsBuySell : MonoBehaviour
             Yes.Play();
             VBuyPanelExit();
         }
-        if(PlayerPrefs.GetInt("BuySlots", 0) == 2 && PlayerPrefs.GetInt("coins", 0) >= 2500)
+        if(PlayerPrefs.GetInt("BuySlots", 0) == 2 && PlayerPrefs.GetInt("coins", 0) >= 5500)
         {
             BuySlot1.SetActive(false);
             BuySlot2.SetActive(false);
@@ -59,7 +59,7 @@ public class PanelsBuySell : MonoBehaviour
             Yes.Play();
             VBuyPanelExit();
         }
-        else if(PlayerPrefs.GetInt("BuySlots", 0) == 1 && PlayerPrefs.GetInt("coins", 0) >= 1500)
+        else if(PlayerPrefs.GetInt("BuySlots", 0) == 1 && PlayerPrefs.GetInt("coins", 0) >= 4500)
         {
             BuySlot1.SetActive(false);
             BuySlot2.SetActive(false);
@@ -67,7 +67,7 @@ public class PanelsBuySell : MonoBehaviour
             Yes.Play();
             VBuyPanelExit();
         }
-        else if(PlayerPrefs.GetInt("BuySlots", 0) == 0 && PlayerPrefs.GetInt("coins", 0) >= 500)
+        else if(PlayerPrefs.GetInt("BuySlots", 0) == 0 && PlayerPrefs.GetInt("coins", 0) >= 2500)
         {
             BuySlot1.SetActive(false);
             PlayerPrefs.SetInt("BuySlots", 1);
@@ -96,10 +96,10 @@ public class PanelsBuySell : MonoBehaviour
             PlayerPrefs.SetInt("Ach6Level", 2);
 
         CoinsInt = PlayerPrefs.GetInt("coins", 0);
-        CoinsInt += 1650;
+        CoinsInt += 3000;
         PlayerPrefs.SetInt("coins", CoinsInt);
         CoinsInt = PlayerPrefs.GetInt("allcoins", 0);
-        CoinsInt += 1650;
+        CoinsInt += 3000;
         PlayerPrefs.SetInt("allcoins", CoinsInt);
 
         pets1.UpdateSlots();

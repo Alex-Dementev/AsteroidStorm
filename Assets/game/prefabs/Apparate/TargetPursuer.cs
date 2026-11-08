@@ -9,12 +9,18 @@ public class TargetPursuer : MonoBehaviour
     [HideInInspector] public death death;
     private bool started;
     public AudioSource Ad;
+    public bool fuel;
 
     private void Start()
     {
         initialOffset = new Vector3(Random.Range(-50f, 50f), -15f, -60f);
 
         attackProgress = -0.25f;
+
+        if(fuel)
+            attackDuration /= 2.2f;
+        else
+            attackDuration /= 1.2f;
 
         
         float audios = PlayerPrefs.GetFloat("audios", 0.5f);
@@ -39,7 +45,18 @@ public class TargetPursuer : MonoBehaviour
             Ad.Play();
         }
 
-        if (attackProgress >= 1f)
+        if (attackProgress >= 1f && fuel)
+        {
+            transform.position = target.position;
+
+            death.fuel += 180;
+            Score2GFirst.Quality -= 10;
+            death.Bonus(true);
+
+            Destroy(gameObject);
+            return;
+        }
+        else if (attackProgress >= 1f)
         {
             transform.position = target.position;
 

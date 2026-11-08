@@ -64,6 +64,7 @@ public class death : MonoBehaviour
     public GameObject Escape;
     private bool EnableGenerators = true;
     private bool Escaped = false;
+    public Generator Generator;
 
 
 
@@ -239,6 +240,8 @@ public class death : MonoBehaviour
     {
         EnableGenerators = PlayerPrefs.GetInt("EnableGenerators", 1) == 1;
 
+        Score2GFirst.Quality = 80;
+
         if(EnableGenerators)
             EnableGenerators = false;
         else
@@ -303,8 +306,16 @@ public class death : MonoBehaviour
             quoteText.color = Color.white;
         }
 
-        if(Is3G2P && SliderFuel != null || Is3G && SliderFuel != null)
+        if(Is3G2P && SliderFuel != null)
             SliderFuel.maxValue = 20;
+
+        if(Is3G)
+        {
+            if(SliderFuel != null)
+                SliderFuel.maxValue = 320;
+
+            fuel = 320;
+        }
     }
 
     void Update()
@@ -342,16 +353,12 @@ public class death : MonoBehaviour
         }
 
         float MinusFuelDelta = MinusFuel * Time.deltaTime;
-        if(!Is3G2P && !Is3G)
+        if(!Is3G2P)
             fuel -= MinusFuelDelta;
         else if(Is3G2P)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Music.time / 30 * 800 + 160f);
             fuel = 20 - (transform.position.z / 950 * 20);
-        }
-        else if(Is3G)
-        {
-            fuel = 20 - (transform.position.z / 5550 * 15);
         }
 
         if(SliderFuel != null)
@@ -476,12 +483,27 @@ public class death : MonoBehaviour
             }
         }
 
-        if(Is3G && SpawnedPrefab == null && live < PlayerPrefs.GetInt("LifeToStart", 1))
+        if(energy.energyint <= 5 && Is3G && !EnableGenerators && PlayerPrefs.GetFloat("TurbinsEnergy", 0) != 0)
         {
-                SpawnedPrefab = Instantiate(prefab, targetTransform.position + new Vector3(0f, 0f, -60f), Quaternion.Euler(0f, -90f, 0f));
-                TargetPursuer TP = SpawnedPrefab.GetComponent<TargetPursuer>();
-                TP.target = targetTransform;
-                TP.death = this;
+            ChangeEnableGenerators();
+            Generator.Click();
+        }
+
+        if(Is3G && SpawnedPrefab == null && fuel <= 60)
+        {
+            SpawnedPrefab = Instantiate(prefab, targetTransform.position + new Vector3(0f, 0f, -50f), Quaternion.Euler(0f, -90f, 0f));
+            TargetPursuer TP = SpawnedPrefab.GetComponent<TargetPursuer>();
+            TP.target = targetTransform;
+            TP.death = this;
+            TP.fuel = true;
+        }
+        else if(Is3G && SpawnedPrefab == null && live < PlayerPrefs.GetInt("LifeToStart", 1))
+        {
+            SpawnedPrefab = Instantiate(prefab, targetTransform.position + new Vector3(0f, 0f, -60f), Quaternion.Euler(0f, -90f, 0f));
+            TargetPursuer TP = SpawnedPrefab.GetComponent<TargetPursuer>();
+            TP.target = targetTransform;
+            TP.death = this;
+            TP.fuel = false;
         }
     }
 

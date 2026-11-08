@@ -136,6 +136,11 @@ public class ScoreCounter : MonoBehaviour
     };
 
 
+    
+    void Awake()
+    {
+        PlayerPrefs.SetInt("live", PlayerPrefs.GetInt("LifeToStart", 1));
+    }
 
     void Start()
     {
@@ -178,8 +183,6 @@ public class ScoreCounter : MonoBehaviour
         UpdateObstacleCount();
 
         ScheduleNextSpawn();
-
-        PlayerPrefs.SetInt("live", PlayerPrefs.GetInt("LifeToStart", 1));
     }
 
     void Update()

@@ -59,14 +59,14 @@ public class statistick : MonoBehaviour
             MinusFuel += PlayerPrefs.GetFloat("Genertors4Fuel", 0);
             MinusFuel += PlayerPrefs.GetFloat("TurbinsFuel", 0);
             MinusFuel *= PlayerPrefs.GetFloat("DeBuffFuel", 1f);
-            fuelminusT.text = MinusFuel.ToString() + "к";
+            fuelminusT.text = MinusFuel.ToString("F4") + "к";
 
             float MinusEnergy = PlayerPrefs.GetFloat("Generators1Energy", 0);
             MinusEnergy += PlayerPrefs.GetFloat("Generators2Energy", 0);
             MinusEnergy += PlayerPrefs.GetFloat("Generators3Energy", 0);
             MinusEnergy += PlayerPrefs.GetFloat("Generators4Energy", 0);
             MinusEnergy -= PlayerPrefs.GetFloat("TurbinsEnergy", 0);
-            energyminusT.text = MinusEnergy.ToString() + "ед";
+            energyminusT.text = MinusEnergy.ToString("F1") + "ед";
 
 
             Delay = 5f;
