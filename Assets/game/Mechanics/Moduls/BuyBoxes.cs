@@ -19,75 +19,8 @@ public class BuyBoxes : MonoBehaviour
     {
         if(IsNotBuyBox && PlayerPrefs.GetInt("g2passed", 0) == 0)
             gameObject.SetActive(false);
-        else if(IsNotBuyBox && PlayerPrefs.GetInt("g2passed", 0) == 1 && fuelBoxes)
-        {
-            if(PlayerPrefs.GetInt("CurrentTanksToRust", 0) == 0)
-            {
-                if(PlayerPrefs.GetInt("MaxFuel1", 0) == 0)
-                {
-                    if(PlayerPrefs.GetInt("MaxFuel2", 0) != 0)
-                    {
-                        PlayerPrefs.SetInt("CurrentTanksToRust", 507);
-                        PlayerPrefs.SetInt("MaxFuel1Rust", PlayerPrefs.GetInt("MaxFuel1", 0));
-                        PlayerPrefs.SetInt("MaxFuel1", 0);
-                        PlayerPrefs.SetInt("Rust507", 1);
-                    }
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("CurrentTanksToRust", 508);
-                    PlayerPrefs.SetInt("MaxFuel2Rust", PlayerPrefs.GetInt("MaxFuel2", 0));
-                    PlayerPrefs.SetInt("MaxFuel2", 0);
-                    PlayerPrefs.SetInt("Rust508", 1);
-                }
-            }
-
-            if(PlayerPrefs.GetInt("CurrentTanksToRust", 0) != Index)
-                gameObject.SetActive(false);
-        }
-        else if(IsNotBuyBox && PlayerPrefs.GetInt("g2passed", 0) == 1 && !fuelBoxes && PlayerPrefs.GetInt("Rust", 0) != 1)
-        {
-            PlayerPrefs.SetInt("Rust", 1);
-
-            
-            PlayerPrefs.SetFloat("Generators1EnergyRust", PlayerPrefs.GetFloat("Generators1Energy", 0));
-            PlayerPrefs.SetFloat("Generators1FuelRust", PlayerPrefs.GetFloat("Generators1Fuel", 0));
-            PlayerPrefs.SetFloat("Generators1Energy", 0);
-            PlayerPrefs.SetFloat("Generators1Fuel", 0);
-            PlayerPrefs.SetInt("Rust500", 1);
-            Debug.Log("Generators1EnergyRust: " + PlayerPrefs.GetFloat("Generators1EnergyRust", 0) + ", Generators1Energy: " + PlayerPrefs.GetFloat("Generators1Energy", 0));
-
-            PlayerPrefs.SetFloat("Generators3EnergyRust", PlayerPrefs.GetFloat("Generators3Energy", 0));
-            PlayerPrefs.SetFloat("Generators3FuelRust", PlayerPrefs.GetFloat("Generators3Fuel", 0));
-            PlayerPrefs.SetFloat("Generators3Energy", 0);
-            PlayerPrefs.SetFloat("Generators3Fuel", 0);
-            PlayerPrefs.SetInt("Rust501", 1);
-
-            PlayerPrefs.SetFloat("Generators4EnergyRust", PlayerPrefs.GetFloat("Generators4Energy", 0));
-            PlayerPrefs.SetFloat("Generators4FuelRust", PlayerPrefs.GetFloat("Generators4Fuel", 0));
-            PlayerPrefs.SetFloat("Generators4Energy", 0);
-            PlayerPrefs.SetFloat("Generators4Fuel", 0);
-            PlayerPrefs.SetInt("Rust502", 1);
-
-
-            PlayerPrefs.SetInt("GyperJumpRust", PlayerPrefs.GetInt("GyperJump", 0));
-            PlayerPrefs.SetInt("GyperJump", 0);
-            PlayerPrefs.SetInt("Rust503", 1);
-
-            PlayerPrefs.SetInt("ScannerRust", PlayerPrefs.GetInt("Scanner", 0));
-            PlayerPrefs.SetInt("Scanner", 0);
-            PlayerPrefs.SetInt("Rust504", 1);
-
-            PlayerPrefs.SetInt("ShieldRust", PlayerPrefs.GetInt("Shield", 0));
-            PlayerPrefs.SetInt("Shield", 0);
-            PlayerPrefs.SetInt("Rust505", 1);
-
-            PlayerPrefs.SetInt("ProjectileRust", PlayerPrefs.GetInt("Projectile", 0));
-            PlayerPrefs.SetInt("Projectile", 0);
-            PlayerPrefs.SetInt("Rust506", 1);
-        }
-
-
+        else if(IsNotBuyBox && PlayerPrefs.GetInt("g2passed", 0) == 1 && fuelBoxes && PlayerPrefs.GetInt("CurrentTanksToRust", 0) != Index)
+            gameObject.SetActive(false);
         BoxEvents.OnBoxesUpdated += RefreshState;
         
         RefreshState();

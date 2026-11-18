@@ -15,8 +15,14 @@ public class UpdateModuls : MonoBehaviour
     public AudioSource Apply;
     public AudioSource DontApply;
 
-    void Start()
+    void OnEnable()
     {
+        if(PlayerPrefs.GetInt("ResetBuyModulsADS", 0) == 1)
+        {
+            ForceRefreshADS();
+            PlayerPrefs.SetInt("ResetBuyModulsADS", 0);
+        }
+
         // выключаем всё перед загрузкой
         DisableAll(common1, rare1, epic1, legendary1, ultra1);
         DisableAll(common2, rare2, epic2, legendary2, ultra2);
@@ -83,14 +89,21 @@ public class UpdateModuls : MonoBehaviour
     // ==========================
     public void ForceRefresh()
     {
-        if(PlayerPrefs.GetInt("coins", 0) >= 70 && PlayerPrefs.GetInt("IndexDialogue", 0) >= 20)
-            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) - 70);
+        if(PlayerPrefs.GetInt("coins", 0) >= 220 && PlayerPrefs.GetInt("IndexDialogue", 0) >= 20)
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) - 220);
         else
         {
             DontApply.Play();
             return;
         }
 
+        Apply.Play();
+        
+        UpdateAllColumns();
+        PlayerPrefs.Save();
+    }
+    public void ForceRefreshADS()
+    {
         Apply.Play();
         
         UpdateAllColumns();

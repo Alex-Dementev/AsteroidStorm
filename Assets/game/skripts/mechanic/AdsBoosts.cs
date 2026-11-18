@@ -38,6 +38,18 @@ public class AdsBoosts : MonoBehaviour
             NotTextYes.text = "Помочь проекту!";
     }
 
+    public void RefreshModuls()
+    {
+        if(PlayerPrefs.GetInt("ResetBuyModulsADS", 0) == 1)
+        {
+            No.Play();
+            return;
+        }
+
+        PlayerPrefs.SetInt("ResetBuyModulsADS", 1);
+        Yes.Play();
+    }
+
     public void BuyCoins()
     {
         PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins", 0) + Coins);

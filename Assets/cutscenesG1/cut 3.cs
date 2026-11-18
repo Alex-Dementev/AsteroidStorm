@@ -17,9 +17,18 @@ public class cut3 : MonoBehaviour
     public Animator anim;
     public Animator anim2;
     public int sus;
+    public AudioSource music;
 
     void Start()
     {
+        if(music != null)
+        {
+            music.volume = PlayerPrefs.GetFloat("musics", 0.5f);
+
+            if(PlayerPrefs.GetInt("music") == 1)
+                music.enabled = false;
+        }
+
         audios = PlayerPrefs.GetFloat("audios", 0.5f);
         ad1.volume = audios / 14f;
         ad3.volume = audios / 1.85f;

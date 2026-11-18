@@ -6,6 +6,7 @@ public class next : MonoBehaviour
 {
     public AudioSource ad;
     public Animator anim;
+    public Animator ground;
 
 
     public void nextscene()
@@ -45,5 +46,9 @@ public class next : MonoBehaviour
     public void sound()
     {
         ad.Play();
+    }
+    void Start()
+    {
+        ground.Play("S");
     }
 }

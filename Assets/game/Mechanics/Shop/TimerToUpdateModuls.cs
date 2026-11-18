@@ -179,32 +179,4 @@ public class ShopTimerSmart : MonoBehaviour
         startTimer = true;
         EnsureTimer();
     }
-
-    
-    
-    public void ReduceTimerBy20Percent()
-    {
-        if (!PlayerPrefs.HasKey(END_TIME_KEY))
-            return;
-
-        Yes.Play();
-
-        long endTicks = long.Parse(PlayerPrefs.GetString(END_TIME_KEY));
-        long nowTicks = DateTime.UtcNow.Ticks;
-
-        // сколько осталось
-        long remainingTicks = endTicks - nowTicks;
-
-        if (remainingTicks <= 0)
-            return;
-
-        // минус 60% от времени
-        long reducedTicks = (long)(remainingTicks * 0.4f);
-
-        long newEndTicks = nowTicks + reducedTicks;
-
-        PlayerPrefs.SetString(END_TIME_KEY, newEndTicks.ToString());
-        PlayerPrefs.Save();
-    }
-
 }

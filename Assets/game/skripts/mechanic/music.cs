@@ -16,12 +16,10 @@ public class MusicManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(PashalkMusicIs1);
-        Debug.Log(PashalkMusic);
         musics = PlayerPrefs.GetFloat("musics", 0.5f);
         ad1.volume = musics;
         ad1_2.volume = musics;
-        ad1_3.volume = musics / 4.5f;
+        ad1_3.volume = musics / 4f;
 
         if(!PashalkMusic)
         {
@@ -94,5 +92,15 @@ public class MusicManager : MonoBehaviour
         }
         else
             PashalkMusic = true;
+    }
+
+    void Start()
+    {
+        if(PlayerPrefs.GetInt("g2passed", 0) == 1 && PlayerPrefs.GetInt("isfinal", 0) == 0)
+        {
+            ad1.pitch = 0.85f;
+            ad1_2.pitch = 0.85f;
+            ad1_3.pitch = 0.85f;
+        }
     }
 }

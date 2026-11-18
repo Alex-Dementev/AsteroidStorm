@@ -7,6 +7,8 @@ public class Subtitle : MonoBehaviour
     public Text SubtitleText;
     public AudioSource Dialogue1;
     public AudioSource Dialogue2;
+    public AudioSource Dialogue3;
+    public AudioSource Dialogue4;
 
     private AudioSource Current;
     private string CurrentSentence;
@@ -20,10 +22,22 @@ public class Subtitle : MonoBehaviour
             Dialogue1.Play();
             Current = Dialogue1;
         }
-        else
+        else if(PlayerPrefs.GetInt("isfinal2g", 0) == 1)
         {
             Dialogue2.Play();
             Current = Dialogue2;
+            go.SetActive(true);
+        }
+        else if(PlayerPrefs.GetInt("isfinal1g", 0) == 1)
+        {
+            Dialogue3.Play();
+            Current = Dialogue3;
+            go.SetActive(true);
+        }
+        else
+        {
+            Dialogue4.Play();
+            Current = Dialogue4;
             go.SetActive(true);
         }
     }
@@ -136,7 +150,15 @@ public class Subtitle : MonoBehaviour
                 Current = null;
             }
         }
-        else
+        else if(Current == Dialogue2)
+        {
+            
+        }
+        else if(Current == Dialogue3)
+        {
+            
+        }
+        else if(Current == Dialogue4)
         {
             
         }
