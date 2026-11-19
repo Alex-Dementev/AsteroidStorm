@@ -49,6 +49,7 @@ public class next : MonoBehaviour
     }
     void Start()
     {
-        ground.Play("S");
+        if(PlayerPrefs.GetInt("isfinal", 0) == 1)
+            ground.Play("S");
     }
 }

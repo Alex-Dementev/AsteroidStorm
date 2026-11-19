@@ -17,7 +17,7 @@ public class Subtitle : MonoBehaviour
 
     void Start()
     {
-        if(PlayerPrefs.GetInt("isfinal", 0) == 0)
+        if(PlayerPrefs.GetInt("isfinal", 0) == 1)
         {
             Dialogue1.Play();
             Current = Dialogue1;
@@ -84,62 +84,12 @@ public class Subtitle : MonoBehaviour
         {
             if(Time <= 5.6f)
             {
-                SetSubtitle("Что это за... тень!?");
+                SetSubtitle("Озвучка финала");
                 ToNext = 0.1f;
             }
             else if(Time <= 8.3f)
             {
-                SetSubtitle("Ты тоже это видишь, Рома?");
-                ToNext = 0.03f;
-            }
-            else if(Time <= 14.7f)
-            {
-                SetSubtitle("Вижу, за луной... Похоже на искажение. Оно только что появилось?");
-                ToNext = 0.02f;
-            }
-            else if(Time <= 19.3f)
-            {
-                SetSubtitle("Нет. Я проверил старые снимки. Раньше там ничего не было...");
-                ToNext = 0.015f;
-            }
-            else if(Time <= 22.6f)
-            {
-                SetSubtitle("Что бы это не было, оно появилось внезапно.");
-                ToNext = 0.015f;
-            }
-            else if(Time <= 30.3f)
-            {
-                SetSubtitle("Подождите, оно словно поглощает свет, как будто дыра, или...");
-                ToNext = 0.03f;
-            }
-            else if(Time <= 35.6f)
-            {
-                SetSubtitle("Оно меняется. Только что было меньше. Что это вообще может быть?");
-                ToNext = 0.015f;
-            }
-            else if(Time <= 38.6f)
-            {
-                SetSubtitle("Если не совпадение, значит, что-то серьезное.");
-                ToNext = 0.015f;
-            }
-            else if(Time <= 41.3f)
-            {
-                SetSubtitle("Может это связанно с тем сигналом который мы поймали?");
-                ToNext = 0.015f;
-            }
-            else if(Time <= 44.3f)
-            {
-                SetSubtitle("Это не похоже на обычную аномалию...");
-                ToNext = 0.025f;
-            }
-            else if(Time <= 51.3f)
-            {
-                SetSubtitle("Слишком... Тихо... Слишком... Точно.");
-                ToNext = 0.14f;
-            }
-            else if(Time <= 55.5f)
-            {
-                SetSubtitle("И что мы теперь будем делать!?");
+                SetSubtitle("СДЕЛАЙ ОЗВУЧКУ ПЖПЖ");
                 ToNext = 0.03f;
             }
             else if(Time <= 57.8f)
@@ -152,15 +102,63 @@ public class Subtitle : MonoBehaviour
         }
         else if(Current == Dialogue2)
         {
-            
+            if(Time <= 5.6f)
+            {
+                SetSubtitle("Озвучка озвучка после коммы");
+                ToNext = 0.1f;
+            }
+            else if(Time <= 8.3f)
+            {
+                SetSubtitle("СДЕЛАЙ ОЗВУЧКУ ПЖПЖ");
+                ToNext = 0.03f;
+            }
+            else if(Time <= 57.8f)
+            {
+                SetSubtitle("Я ПОЛЕЧУ!");
+                ToNext = 0.085f;
+
+                Current = null;
+            }
         }
         else if(Current == Dialogue3)
         {
-            
+            if(Time <= 5.6f)
+            {
+                SetSubtitle("Озвучка после 1 главы");
+                ToNext = 0.1f;
+            }
+            else if(Time <= 8.3f)
+            {
+                SetSubtitle("СДЕЛАЙ ОЗВУЧКУ ПЖПЖ");
+                ToNext = 0.03f;
+            }
+            else if(Time <= 57.8f)
+            {
+                SetSubtitle("Я ПОЛЕЧУ!");
+                ToNext = 0.085f;
+
+                Current = null;
+            }
         }
         else if(Current == Dialogue4)
         {
-            
+            if(Time <= 5.6f)
+            {
+                SetSubtitle("Озвучка начала");
+                ToNext = 0.1f;
+            }
+            else if(Time <= 8.3f)
+            {
+                SetSubtitle("СДЕЛАЙ ОЗВУЧКУ ПЖПЖ");
+                ToNext = 0.03f;
+            }
+            else if(Time <= 57.8f)
+            {
+                SetSubtitle("Я ПОЛЕЧУ!");
+                ToNext = 0.085f;
+
+                Current = null;
+            }
         }
     }
 
